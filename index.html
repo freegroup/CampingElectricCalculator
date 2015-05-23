@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>MindMap prototype</title>
+
+  <script src="./javascript/excanvas/excanvas.js"></script>
+
+  <SCRIPT src="./javascript/scriptaculous/lib/prototype.js"></SCRIPT>
+  <SCRIPT src="./javascript/scriptaculous/src/scriptaculous.js"></SCRIPT>
+
+  <SCRIPT src="./javascript/mindmap/Bootstrap.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/UUID.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/ArrayList.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/SelectionListener.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/Toolbar.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/ToolbarButton.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/ToolbarButtonGroup.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/Mindmap.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/Node.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/LeftNode.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/RightNode.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/Command.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/CommandStack.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/CommandStackEvent.js"></SCRIPT>
+  <SCRIPT src="./javascript/mindmap/CommandStackEventListener.js"></SCRIPT>
+
+  <SCRIPT src="./javascript/AddButton.js"></SCRIPT>
+  <SCRIPT src="./javascript/DeleteButton.js"></SCRIPT>
+  <SCRIPT src="./javascript/CommandAdd.js"></SCRIPT>
+  <SCRIPT src="./javascript/CommandDelete.js"></SCRIPT>
+  <SCRIPT src="./javascript/Application.js"></SCRIPT>
+<script>
+function clientDimension()
+{
+   var myWidth = 0;
+   var myHeight = 0;
+   if( typeof( window.innerWidth ) == 'number' ) {
+     //Non-IE
+     myWidth = window.innerWidth;
+     myHeight = window.innerHeight;
+   } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+     //IE 6+ in 'standards compliant mode'
+     myWidth = document.documentElement.clientWidth;
+     myHeight = document.documentElement.clientHeight;
+   } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+     //IE 4 compatible
+     myWidth = document.body.clientWidth;
+     myHeight = document.body.clientHeight;
+   }
+  return {width:myWidth, height:myHeight};
+}
+
+
+function onLoad()
+{
+ Event.observe(document.onresize ? document : window, "resize", function(event) 
+ {
+   var dimension = clientDimension();
+   Element.setStyle("canvas", "height:"+(dimension.height-35-40)+"px");
+   Element.setStyle("canvas", "width:"+(dimension.width-210)+"px");
+ });
+ var dimension = clientDimension();
+ Element.setStyle("canvas", "height:"+(dimension.height-35-40)+"px");
+ Element.setStyle("canvas", "width:"+(dimension.width-210)+"px");
+
+ var application = new map.Application("application");
+ application.init();
+}
+
+
+</script>
+ <link  type="text/css"  rel="stylesheet" href="css/toolbar.css" />
+ <link  type="text/css"  rel="stylesheet" href="css/main.css" />
+
+</head>
+<body id="application" style="font-size:100%;margin:0px;padding:0px;overflow:hidden" onload="onLoad()">
+<div class="statusbar">
+statusbar     Press CTRL+Click for multiselect different nodes in the mindmap
+</div>
+
+<div id="canvas" class="canvas" >
+</div>
+</body>
+</html>
+
+
+
+
