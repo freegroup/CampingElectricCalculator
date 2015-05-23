@@ -1,0 +1,81 @@
+.toolbar {
+  height:35px;
+  background: transparent url(../images/bg_map_toolbar.gif) top left repeat-x;
+  border: none;
+  border-bottom: 1px solid #1259a4;
+  font-size: smaller;
+  width: 100%;
+  padding:0px;
+  margin:0px;
+}
+
+
+.toolbar_button_group
+{
+  float:left;
+  padding:0px;
+  margin:0px;
+  margin-left:15px;
+  margin-top:3px
+}
+
+li.toolbar_button
+{
+  background:transparent url(../images/bg_toolbar_button.gif) no-repeat scroll;
+  float:left;
+  padding:0px;
+  margin:0px;
+  list-style-image: none;
+  list-style-type: none;
+}
+
+a.toolbar_button
+{
+  background-position: 10 0;
+  line-height:27px;
+  height:27px;
+  padding:0px;
+  margin:0px;
+  padding-left:10px;
+  padding-right:10px;
+  cursor:pointer;
+  color:white;
+}
+
+a.toolbar_button_disabled
+{
+  color:#4A95CC !important;
+}
+
+
+li.first_button
+{
+  background-position: 0px 0px;
+}
+
+li.first_button:hover
+{
+  background-position: 0px -27px;
+}
+
+li.center_button
+{
+  background-position: -20px 0px;
+}
+
+li.center_button:hover
+{
+  background-position: -20px -27px;
+}
+
+
+li.last_button
+{
+  background-position: 100% 0px;
+}
+
+li.last_button:hover
+{
+  background-position: 100% -27px;
+}
+
