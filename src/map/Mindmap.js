@@ -3,7 +3,7 @@ import { disableSelection, createCanvas } from './utils'
 import LeftNode from './LeftNode'
 
 export default class Mindmap {
-  constructor (id, width, height) {
+  constructor(id, width, height) {
     this.width = width
     this.height = height
     this.leftChildren = []
@@ -42,16 +42,16 @@ export default class Mindmap {
   /**
    * Binding for the click event
    * @private
-   **/
-  _click () {
+   * */
+  _click() {
     //  Event.stop(event)
   }
 
   /**
    * Binding for the mouse down event
    * @private
-   **/
-  _mousedown (event) {
+   * */
+  _mousedown(event) {
     this.clientX = event.clientX
     this.clientY = event.clientY
     this.mousedown = true
@@ -60,23 +60,23 @@ export default class Mindmap {
   /**
    * Binding for the mouse up event
    * @private
-   **/
-  _mouseup () {
+   * */
+  _mouseup() {
     this.mousedown = false
   }
 
   /**
    * Binding for the mouse up event
    * @private
-   **/
-  _mousemove () { }
+   * */
+  _mousemove() { }
 
   /**
    * Returns the current selected nodes.<br>
    *
    * @type map.ArrayList
-   **/
-  getCurrentSelection () {
+   * */
+  getCurrentSelection() {
     return this.selection
   }
 
@@ -85,8 +85,8 @@ export default class Mindmap {
    * selection
    *
    * @private
-   **/
-  setCurrentSelection (node) {
+   * */
+  setCurrentSelection(node) {
     this.selection.forEach((child) => child.setSelected(false))
     this.selection = []
     if (node !== null) {
@@ -101,8 +101,8 @@ export default class Mindmap {
    * selection
    *
    * @private
-   **/
-  removeCurrentSelection (node) {
+   * */
+  removeCurrentSelection(node) {
     this.selection = $.grep(this.selection, (element) => element !== node)
     node.setSelected(false)
     this.notifyListeners()
@@ -113,8 +113,8 @@ export default class Mindmap {
    * for multiselect.
    *
    * @private
-   **/
-  addCurrentSelection (node) {
+   * */
+  addCurrentSelection(node) {
     this.selection.push(node)
     node.setSelected(true)
     this.notifyListeners()
@@ -125,8 +125,8 @@ export default class Mindmap {
    * for multiselect.
    *
    * @private
-   **/
-  clearCurrentSelection () {
+   * */
+  clearCurrentSelection() {
     this.selection.forEach((child) => child.setSelected(false))
     this.selection = []
     this.notifyListeners()
@@ -138,8 +138,8 @@ export default class Mindmap {
    *
    * @type map.Node
    * @abstract
-   **/
-  createEmptyChildNode () {
+   * */
+  createEmptyChildNode() {
     return new LeftNode()
   }
 
@@ -148,8 +148,8 @@ export default class Mindmap {
    *
    * @param {boolean} flag [true] if you want mark this element as selected
    * @final
-   **/
-  setSelected (flag) {
+   * */
+  setSelected(flag) {
     if (flag === true) {
       $(this.getAnchor()).addClass('selected_node')
       $(this.getAnchor()).removeClass('normal_node')
@@ -164,19 +164,19 @@ export default class Mindmap {
    * always returns <code>false</code>
    *
    * @type boolean
-   **/
-  get deleteable () {
+   * */
+  get deleteable() {
     return false
   }
 
-  getAnchor () {
+  getAnchor() {
     return this.centerLabel
   }
 
   /**
    * @type HTMLElement
-   **/
-  addNode (node) {
+   * */
+  addNode(node) {
     if (node instanceof LeftNode) {
       this.leftChildrenHTML.append(node.getHTMLElement())
       this.leftChildren.push(node)
@@ -193,8 +193,8 @@ export default class Mindmap {
 
   /**
    * @type HTMLElement
-   **/
-  removeNode (node) {
+   * */
+  removeNode(node) {
     if (node instanceof LeftNode) {
       node.getHTMLElement().remove()
       this.leftChildren = $.grep(this.leftChildren, (value) => value !== node)
@@ -210,40 +210,40 @@ export default class Mindmap {
     this.drawLines()
   }
 
-  getHeight () {
+  getHeight() {
     return this.height
   }
 
-  getWidth () {
+  getWidth() {
     return this.width
   }
 
-  scrollTo (x, y) {
+  scrollTo(x, y) {
     this.html.parentNode.scrollLeft = x
     this.html.parentNode.scrollTop = y
   }
 
   /**
    * @type HTMLElement
-   **/
-  getHTMLElement () {
+   * */
+  getHTMLElement() {
     if (this.html === null) {
       this.html = document.createElement('table')
       this.html.className = 'root'
-      this.html.style.width = this.width + 'px'
-      this.html.style.height = this.height + 'px'
+      this.html.style.width = `${this.width}px`
+      this.html.style.height = `${this.height}px`
 
-      var row = this.html.insertRow(0)
+      const row = this.html.insertRow(0)
 
       this.leftChildrenHTML = row.insertCell(0)
       this.leftChildrenHTML.className = 'left_canvas'
-      this.leftChildrenHTML.width = '' + parseInt(this.width / 2)
+      this.leftChildrenHTML.width = `${parseInt(this.width / 2)}`
 
       this.leftLines = row.insertCell(1)
       this.leftLines.style.width = '50px'
-      this.leftLines.style.height = this.height + 'px'
+      this.leftLines.style.height = `${this.height}px`
       this.leftCanvas = createCanvas(this.leftLines)
-      this.leftCanvas.style.height = this.height + 'px'
+      this.leftCanvas.style.height = `${this.height}px`
       this.leftCanvas.setAttribute('width', '50')
       this.leftCanvas.setAttribute('height', this.height)
 
@@ -256,24 +256,24 @@ export default class Mindmap {
 
       this.rightLines = row.insertCell(3)
       this.rightLines.style.width = '50px'
-      this.rightLines.style.height = this.height + 'px'
+      this.rightLines.style.height = `${this.height}px`
       this.rightCanvas = createCanvas(this.rightLines)
-      this.rightCanvas.style.height = this.height + 'px'
+      this.rightCanvas.style.height = `${this.height}px`
       this.rightCanvas.setAttribute('width', '50')
       this.rightCanvas.setAttribute('height', this.height)
 
       this.rightChildrenHTML = row.insertCell(4)
       this.rightChildrenHTML.className = 'right_canvas'
-      this.rightChildrenHTML.width = '' + parseInt(this.width / 2)
+      this.rightChildrenHTML.width = `${parseInt(this.width / 2)}`
     }
     return this.html
   }
 
-  drawLines () {
+  drawLines() {
     this.adjustCanvasHeight()
 
-    var ctx = this.leftCanvas.getContext('2d')
-    var thisAnchor = $(this.leftCanvas).offset()
+    let ctx = this.leftCanvas.getContext('2d')
+    let thisAnchor = $(this.leftCanvas).offset()
     ctx.clearRect(0, 0, 50, this.height)
 
     ctx.strokeStyle = '#999999'
@@ -304,8 +304,8 @@ export default class Mindmap {
   /**
    *
    * @private
-   **/
-  adjustCanvasHeight () {
+   * */
+  adjustCanvasHeight() {
     this.leftCanvas.setAttribute('height', this.height - 5)
     this.rightCanvas.setAttribute('height', this.height - 5)
 
@@ -316,7 +316,7 @@ export default class Mindmap {
    * Adds a listener to the mindmap, which will be notified whenever the selection has been changed.
    * @param {map.CommandStackListener} listener the listener to add.
    */
-  addSelectionListener (listener) {
+  addSelectionListener(listener) {
     this.selectionListeners.push(listener)
   }
 
@@ -324,21 +324,16 @@ export default class Mindmap {
    * Removes a listener.
    * @param {map.SelectionListener} listener the listener to remove.
    */
-  removeSelectionListener (listener) {
-    this.selectionListeners = $.grep(
-      this.selectionListeners,
-      (value) => value !== listener
-    )
+  removeSelectionListener(listener) {
+    this.selectionListeners = $.grep(this.selectionListeners, value => value !== listener)
   }
 
   /**
    * Notifies selection listeners that the selection has been changed
    *
    * @private
-   **/
-  notifyListeners () {
-    this.selectionListeners.forEach((listener) =>
-      listener.selectionChanged(this.selection)
-    )
+   * */
+  notifyListeners() {
+    this.selectionListeners.forEach(listener => listener.selectionChanged(this.selection))
   }
 }

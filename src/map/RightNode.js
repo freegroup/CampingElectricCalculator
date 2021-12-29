@@ -1,10 +1,10 @@
-import Node from '@/map/Node'
 import $ from 'jquery'
 import { v4 as uuidv4 } from 'uuid'
+import Node from '@/map/Node'
 import { createCanvas } from './utils'
 
 export default class RightNode extends Node {
-  constructor () {
+  constructor() {
     super()
   }
 
@@ -22,7 +22,7 @@ export default class RightNode extends Node {
   <td><div class="left_label">label</div></td>
   </tr>
   </table>
-  **/
+  * */
   getHTMLElement () {
     if (this.html === null) {
       this.html = document.createElement('table')
@@ -77,7 +77,7 @@ export default class RightNode extends Node {
    * Returns an empty child node.<br>
    *
    * @type map.RightNode
-   **/
+   * */
   createEmptyChildNode () {
     return new RightNode()
   }
@@ -87,19 +87,18 @@ export default class RightNode extends Node {
    * Called by the framework.
    *
    * @private
-   **/
+   * */
   drawLines () {
     if (this.visible) {
-      var height = this.adjustCanvasHeight()
-      var thisAnchor = Element.cumulativeOffset($(this.canvas))
-      var ctx = this.canvas.getContext('2d')
+      const height = this.adjustCanvasHeight()
+      const thisAnchor = $(this.canvas).offset()
+      const ctx = this.canvas.getContext('2d')
       ctx.clearRect(0, 0, 30, height)
-
       ctx.strokeStyle = '#999999'
       ctx.lineWidth = 0.3
       this.children.forEach((child) => {
-        var anchor = child.getAbsoluteAnchor()
-        var top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
+        const anchor = child.getAbsoluteAnchor()
+        const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
         ctx.moveTo(30, top)
         ctx.bezierCurveTo(0, top, 15, height / 2, 0, height / 2)
         ctx.stroke()
@@ -111,7 +110,7 @@ export default class RightNode extends Node {
   /**
    *
    * @private
-   **/
+   * */
   adjustCanvasHeight () {
     this.canvas.setAttribute('height', 5)
     const height = $(this.childrenContainer).outerHeight()

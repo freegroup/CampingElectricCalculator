@@ -3,9 +3,9 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: [
+  'extends': [
     'plugin:vue/essential',
-    '@vue/airbnb',
+    '@vue/standard',
   ],
   parserOptions: {
     parser: 'babel-eslint',
@@ -13,5 +13,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-param-reassign': 0,
+    'space-before-function-paren':0,
   },
 };

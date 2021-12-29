@@ -1,19 +1,19 @@
-import Node from './Node'
 import $ from 'jquery'
-import { createCanvas } from './utils'
 import { v4 as uuidv4 } from 'uuid'
+import Node from './Node'
+import { createCanvas } from './utils'
 
 export default class LeftNode extends Node {
   constructor() {
     super()
   }
 
-  getHTMLElement () {
+  getHTMLElement() {
     if (this.html === null) {
       this.html = document.createElement('table')
       this.html.className = 'left_node mindmapTable'
 
-      var row = this.html.insertRow(0)
+      const row = this.html.insertRow(0)
       row.style.height = '100%'
 
       this.leftFiller = row.insertCell(0)
@@ -25,12 +25,12 @@ export default class LeftNode extends Node {
       this.childrenContainer.style.height = '100%'
       this.childrenContainer.className = 'left_children'
 
-      var innerTable = document.createElement('table')
+      const innerTable = document.createElement('table')
       innerTable.className = 'mindmapTable'
       innerTable.style.height = '100%'
-      var innerRow = innerTable.insertRow(0)
+      const innerRow = innerTable.insertRow(0)
       innerRow.style.height = '100%'
-      var cell = innerRow.insertCell(0)
+      let cell = innerRow.insertCell(0)
       cell.style.height = '100%'
       this.childContainer = cell
 
@@ -67,8 +67,8 @@ export default class LeftNode extends Node {
    * Returns an empty child node.<br>
    *
    * @type map.LeftNode
-   **/
-  createEmptyChildNode () {
+   * */
+  createEmptyChildNode() {
     return new LeftNode()
   }
 
@@ -77,8 +77,8 @@ export default class LeftNode extends Node {
    * Called by the framework.
    *
    * @private
-   **/
-  drawLines (flag) {
+   * */
+  drawLines(flag) {
     if (this.visible) {
       const height = this.adjustCanvasHeight()
       const thisAnchor = $(this.canvas).offset()
@@ -101,23 +101,22 @@ export default class LeftNode extends Node {
   /**
    *
    * @private
-   **/
-  get visible () {
+   * */
+  get visible() {
     return $(this.childrenContainer).css('visibility') !== 'hidden'
   }
 
   /**
    *
    * @private
-   **/
-  adjustCanvasHeight () {
+   * */
+  adjustCanvasHeight() {
     this.canvas.setAttribute('height', 5)
     let height = $(this.childrenContainer).outerHeight()
-    console.log(height)
+
     this.canvas.setAttribute('height', height)
     height = $(this.childrenContainer).outerHeight()
-    console.log(height)
-    console.log('---------')
+
     return height
   }
 }

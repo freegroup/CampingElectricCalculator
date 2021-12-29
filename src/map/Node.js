@@ -7,7 +7,7 @@ import $ from 'jquery'
  * @constructor
  */
 export default class Node {
-  constructor () {
+  constructor() {
     this._parent = null
     this._mindmap = null
     this._deleteable = true
@@ -26,8 +26,8 @@ export default class Node {
   /**
    * @final
    * @private
-   **/
-  _collapse (event) {
+   * */
+  _collapse(event) {
     $(this.childrenContainer).toggle()
     event.stopPropagation()
     this.drawLines()
@@ -36,34 +36,34 @@ export default class Node {
   /**
    * @final
    * @private
-   **/
-  _click () {
+   * */
+  _click() {
     this.mindmap.setCurrentSelection(this)
   }
 
   /**
    * @final
    * @private
-   **/
-  _dblclick () {
+   * */
+  _dblclick() {
     this.startEdit()
   }
 
-  _mousedown () {
+  _mousedown() {
     this.mouseDown = true
   }
 
-  _mouseup () {
+  _mouseup() {
     this.mouseDown = false
   }
 
-  _mousemove () { }
+  _mousemove() { }
 
   /**
    * @type HTMLElement
    * @final
-   **/
-  addNode (node) {
+   * */
+  addNode(node) {
     this.children.push(node)
     this.childContainer.append(node.getHTMLElement())
     node.parent = this
@@ -74,8 +74,8 @@ export default class Node {
   /**
    * @type HTMLElement
    * @final
-   **/
-  removeNode (node) {
+   * */
+  removeNode(node) {
     this.children = $.grep(this.children, (element) => element !== node)
     node.getHTMLElement().remove()
     node.parent = null
@@ -84,7 +84,7 @@ export default class Node {
     this.drawLines()
   }
 
-  deepCopy (node) {
+  deepCopy(node) {
     const clone = this.createEmptyChildNode()
     clone.getHTMLElement()
     const children = node.getChildren()
@@ -99,7 +99,7 @@ export default class Node {
    * Set the parent node of this element.
    * @param {Node} parent
    */
-  set parent (parent) {
+  set parent(parent) {
     this._parent = parent
     if (this._parent !== null) this.drawLines()
   }
@@ -108,8 +108,8 @@ export default class Node {
    * Returns the parent node of this object.<br>
    *
    * @type map.Node
-   **/
-  get parent () {
+   * */
+  get parent() {
     return this._parent
   }
 
@@ -117,16 +117,16 @@ export default class Node {
    * Returns the children nodes of this object.<br>
    *
    * @type map.Array
-   **/
-  getChildren () {
+   * */
+  getChildren() {
     return this.children
   }
 
   /**
    *
    * @private
-   **/
-  get visible () {
+   * */
+  get visible() {
     return $(this.childrenContainer).css('visibility') !== 'hidden'
   }
 
@@ -134,13 +134,13 @@ export default class Node {
    * Set the to root mindmap element of this node.
    *
    * @param {Mindmap} mindmap the mindmap of the element
-   **/
-  set mindmap (mindmap) {
+   * */
+  set mindmap(mindmap) {
     this._mindmap = mindmap
     this.children.forEach((child) => (child.mindmap = mindmap))
   }
 
-  get mindmap () {
+  get mindmap() {
     return this._mindmap
   }
 
@@ -148,8 +148,8 @@ export default class Node {
    * Set the deleteable attribute of the node.
    *
    * @param {boolean} flag The deleteable flag
-   **/
-  setDeleteable (flag) {
+   * */
+  setDeleteable(flag) {
     this._deleteable = flag
   }
 
@@ -157,8 +157,8 @@ export default class Node {
    * Returns whenether the element is deletable
    *
    * @type boolean
-   **/
-  get deleteable () {
+   * */
+  get deleteable() {
     return this._deleteable
   }
 
@@ -166,8 +166,8 @@ export default class Node {
    * Returns the current assigned mindmap object.<br>
    *
    * @type map.Mindmap
-   **/
-  getMindmap () {
+   * */
+  getMindmap() {
     return this.mindmap
   }
 
@@ -179,8 +179,8 @@ export default class Node {
    * in the selected mode.
    *
    * @param {boolean} flag [true] if you want mark this element as selected
-   **/
-  setSelected (flag) {
+   * */
+  setSelected(flag) {
     if (flag === true) {
       $(this.getAnchor()).addClass('selected_node')
       $(this.getAnchor()).removeClass('normal_node')
@@ -193,8 +193,8 @@ export default class Node {
   /**
    *
    * @param {boolean} flag [true] if you want mark this element
-   **/
-  setHighlighted (flag) {
+   * */
+  setHighlighted(flag) {
     if (flag) $(this.getAnchor()).addClass('highlighted_node')
     else $(this.getAnchor()).removeClass('highlighted_node')
   }
@@ -204,8 +204,8 @@ export default class Node {
    * Called by the framework.
    *
    * @private
-   **/
-  hideAction (flag) {
+   * */
+  hideAction(flag) {
     if (this.actionIcon === undefined) return
 
     if (flag) $(this.actionIcon).hide()
@@ -218,8 +218,8 @@ export default class Node {
    *
    * @type map.Node
    * @abstract
-   **/
-  createEmptyChildNode () {
+   * */
+  createEmptyChildNode() {
     throw Error('subclass must implement this method')
   }
 
@@ -227,8 +227,8 @@ export default class Node {
    * Event after the HTML has been generate.
    *
    * @private
-   **/
-  afterCreateHTML () {
+   * */
+  afterCreateHTML() {
     $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)
     $(this.getAnchor()).on('click', this.eventbinding_click)
     $(this.getAnchor()).on('dblclick', this.eventbinding_dblclick)
@@ -243,37 +243,37 @@ export default class Node {
   /**
    *
    * @private
-   **/
-  startEdit () {
+   * */
+  startEdit() {
     alert('start edit')
   }
 
   /**
    * @private
-   **/
-  getAnchor () {
+   * */
+  getAnchor() {
     return this.labelDiv
   }
 
   /**
    * @private
-   **/
-  getAbsoluteAnchor () {
+   * */
+  getAbsoluteAnchor() {
     return $(this.labelDiv).offset()
   }
 
   /**
    * @private
-   **/
-  getAnchorHeight () {
+   * */
+  getAnchorHeight() {
     return $(this.labelDiv).height()
   }
 
   /**
    * @private
-   **/
-  getAnchorBoundigBox () {
-    var pos = this.getAbsoluteAnchor()
+   * */
+  getAnchorBoundigBox() {
+    const pos = this.getAbsoluteAnchor()
     pos.width = $(this.labelDiv).width()
     pos.height = $(this.labelDiv).height()
     return pos
@@ -281,11 +281,11 @@ export default class Node {
 
   /**
    * @private
-   **/
-  isOver (iX, iY) {
-    var box = this.getAnchorBoundigBox()
-    var iX2 = box.left + box.width
-    var iY2 = box.top - box.height
+   * */
+  isOver(iX, iY) {
+    const box = this.getAnchorBoundigBox()
+    const iX2 = box.left + box.width
+    const iY2 = box.top - box.height
     return iX >= box.left && iX <= iX2 && iY <= box.top && iY >= iY2
   }
 }

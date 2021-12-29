@@ -1,13 +1,13 @@
 import $ from 'jquery'
 
-var createCanvas = function (parent) {
-  var canvas = document.createElement('canvas')
+function createCanvas(parent) {
+  const canvas = document.createElement('canvas')
   $(canvas).addClass('mindmapCanvas')
   parent.append(canvas)
   return canvas
 }
 
-var disableSelection = function (element) {
+function disableSelection(element) {
   element.onselectstart = () => false
   element.unselectable = 'on'
   element.style.MozUserSelect = 'none'
