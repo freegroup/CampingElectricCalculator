@@ -1,16 +1,17 @@
 <template>
-  <div class="home">
-    <Mindmap msg="Welcome to Your Vue.js App"/>
+  <div>
+    <HelloWorld/>
   </div>
 </template>
 
 <script>
-import Mindmap from '@/components/Mindmap.vue'
+import HelloWorld from '../components/HelloWorld.vue'
 
 export default {
   name: 'Home',
+
   components: {
-    Mindmap
+    HelloWorld
   }
 }
 </script>
