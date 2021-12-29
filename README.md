@@ -1,6 +1,24 @@
-# MindManager
-playground for a very simple MindMap tool. Only for R&amp;D
+# mind-manager
 
+## Project setup
+```
+npm install
+```
 
-This is just a playground to test some js libs. Checkout the result or
-demo page. 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
