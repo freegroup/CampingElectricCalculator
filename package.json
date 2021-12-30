@@ -32,8 +32,11 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
+    "less": "^3.0.4",
+    "less-loader": "^5.0.0",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.4.5",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.7.0"
   }

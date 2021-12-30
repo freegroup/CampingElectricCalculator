@@ -1,5 +1,4 @@
 import $ from 'jquery'
-import { v4 as uuidv4 } from 'uuid'
 import Node from '@/map/Node'
 import { createCanvas } from './utils'
 
@@ -8,49 +7,36 @@ export default class RightNode extends Node {
     super()
   }
 
-  /**
+  getComponentContainer () {
+    return this.labelDiv
+  }
 
-  <table  class="left_node">
-  <tr>
-  <td class="left_filler">&nbsp;</td>
-  <td class="left_children">
-    <div class="left_line_canvas">
-    CHILDREN_NODES
-    </div>
-  </td>
-  <td class="left_action">action</td>
-  <td><div class="left_label">label</div></td>
-  </tr>
-  </table>
-  * */
   getHTMLElement () {
     if (this.html === null) {
       this.html = document.createElement('table')
-      this.html.className = 'right_node mindmapTable'
+      this.html.className = 'right_node'
 
       const row = this.html.insertRow(0)
       row.style.height = '100%'
 
       this.leftLabel = row.insertCell(0)
-      this.leftLabel.className = 'right_label'
+      this.leftLabel.className = 'label'
       this.labelDiv = document.createElement('div')
-      this.labelDiv.innerHTML = 'label'
-      this.labelDiv.id = uuidv4()
+      this.labelDiv.className = 'container'
       this.leftLabel.append(this.labelDiv)
 
       this.actionIcon = row.insertCell(1)
-      this.actionIcon.className = 'right_action'
+      this.actionIcon.className = 'action'
       this.actionIconIcon = document.createElement('img')
       this.actionIconIcon.src = require('@/assets/icon_plus.png')
-      this.actionIconIcon.className = 'right_action_icon'
+      this.actionIconIcon.className = 'action_icon'
       this.actionIcon.append(this.actionIconIcon)
 
       this.childrenContainer = row.insertCell(2)
       this.childrenContainer.style.height = '100%'
-      this.childrenContainer.className = 'right_children'
+      this.childrenContainer.className = 'children'
 
       const innerTable = document.createElement('table')
-      innerTable.className = 'mindmapTable'
       innerTable.style.height = '100%'
 
       const innerRow = innerTable.insertRow(0)
@@ -86,7 +72,6 @@ export default class RightNode extends Node {
    * Draw all required lines to the children nodes.<br>
    * Called by the framework.
    *
-   * @private
    * */
   drawLines () {
     if (this.visible) {
@@ -94,8 +79,8 @@ export default class RightNode extends Node {
       const thisAnchor = $(this.canvas).offset()
       const ctx = this.canvas.getContext('2d')
       ctx.clearRect(0, 0, 30, height)
-      ctx.strokeStyle = '#999999'
-      ctx.lineWidth = 0.3
+      ctx.strokeStyle = '#4550A9'
+      ctx.lineWidth = 4
       this.children.forEach((child) => {
         const anchor = child.getAbsoluteAnchor()
         const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
@@ -104,7 +89,7 @@ export default class RightNode extends Node {
         ctx.stroke()
       })
     }
-    if (this.parent !== null) this.parent.drawLines()
+    this.parent !== null && this.parent.drawLines()
   }
 
   /**

@@ -1,8 +1,5 @@
-import $ from 'jquery'
-
 function createCanvas(parent) {
   const canvas = document.createElement('canvas')
-  $(canvas).addClass('mindmapCanvas')
   parent.append(canvas)
   return canvas
 }

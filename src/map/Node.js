@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import ComponentHost from './ComponentHost'
 
 /**
  *
@@ -6,12 +7,13 @@ import $ from 'jquery'
  * @author Andreas Herz
  * @constructor
  */
-export default class Node {
+export default class Node extends ComponentHost {
   constructor() {
+    super()
     this._parent = null
     this._mindmap = null
     this._deleteable = true
-    this.children = []
+    this._children = []
     this.actionIcon = null
     this.html = null
 
@@ -57,7 +59,16 @@ export default class Node {
     this.mouseDown = false
   }
 
-  _mousemove() { }
+  _mousemove() {
+  }
+
+  /**
+   *
+   * @private
+   * */
+  startEdit() {
+    alert('start edit')
+  }
 
   /**
    * @type HTMLElement
@@ -84,24 +95,13 @@ export default class Node {
     this.drawLines()
   }
 
-  deepCopy(node) {
-    const clone = this.createEmptyChildNode()
-    clone.getHTMLElement()
-    const children = node.getChildren()
-    children.forEach((child) => {
-      clone.addNode(this.deepCopy(child))
-    })
-
-    return clone
-  }
-
   /**
    * Set the parent node of this element.
    * @param {Node} parent
    */
   set parent(parent) {
     this._parent = parent
-    if (this._parent !== null) this.drawLines()
+    this._parent !== null && this.drawLines()
   }
 
   /**
@@ -118,8 +118,12 @@ export default class Node {
    *
    * @type map.Array
    * */
-  getChildren() {
-    return this.children
+  get children() {
+    return this._children
+  }
+
+  set children(children) {
+    this._children = children
   }
 
   /**
@@ -149,7 +153,7 @@ export default class Node {
    *
    * @param {boolean} flag The deleteable flag
    * */
-  setDeleteable(flag) {
+  set deleteable(flag) {
     this._deleteable = flag
   }
 
@@ -160,15 +164,6 @@ export default class Node {
    * */
   get deleteable() {
     return this._deleteable
-  }
-
-  /**
-   * Returns the current assigned mindmap object.<br>
-   *
-   * @type map.Mindmap
-   * */
-  getMindmap() {
-    return this.mindmap
   }
 
   /**
@@ -183,10 +178,8 @@ export default class Node {
   setSelected(flag) {
     if (flag === true) {
       $(this.getAnchor()).addClass('selected_node')
-      $(this.getAnchor()).removeClass('normal_node')
     } else {
       $(this.getAnchor()).removeClass('selected_node')
-      $(this.getAnchor()).addClass('normal_node')
     }
   }
 
@@ -226,7 +219,6 @@ export default class Node {
   /**
    * Event after the HTML has been generate.
    *
-   * @private
    * */
   afterCreateHTML() {
     $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)
@@ -237,55 +229,37 @@ export default class Node {
 
     $(this.actionIconIcon).on('mousedown', this.eventbinding_collapse)
 
+    $(this.getAnchor()).on("click", ".component_configuration", (event) => {
+      event.stopPropagation()
+    })
+
     this.setSelected(false)
   }
 
   /**
-   *
-   * @private
-   * */
-  startEdit() {
-    alert('start edit')
-  }
-
-  /**
-   * @private
    * */
   getAnchor() {
     return this.labelDiv
   }
 
   /**
-   * @private
    * */
   getAbsoluteAnchor() {
     return $(this.labelDiv).offset()
   }
 
   /**
-   * @private
    * */
   getAnchorHeight() {
     return $(this.labelDiv).height()
   }
 
   /**
-   * @private
    * */
   getAnchorBoundigBox() {
     const pos = this.getAbsoluteAnchor()
     pos.width = $(this.labelDiv).width()
     pos.height = $(this.labelDiv).height()
     return pos
-  }
-
-  /**
-   * @private
-   * */
-  isOver(iX, iY) {
-    const box = this.getAnchorBoundigBox()
-    const iX2 = box.left + box.width
-    const iY2 = box.top - box.height
-    return iX >= box.left && iX <= iX2 && iY <= box.top && iY >= iY2
   }
 }

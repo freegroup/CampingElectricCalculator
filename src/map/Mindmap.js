@@ -1,14 +1,17 @@
 import $ from 'jquery'
 import { disableSelection, createCanvas } from './utils'
 import LeftNode from './LeftNode'
+import ComponentHost from './ComponentHost'
 
-export default class Mindmap {
+export default class Mindmap extends ComponentHost {
   constructor(id, width, height) {
+    super()
+    this.lineCanvasWidth = 80
     this.width = width
     this.height = height
     this.leftChildren = []
     this.rightChildren = []
-    this.selection = []
+    this.selection = null
     this.selectionListeners = []
     this.html = null
 
@@ -34,9 +37,16 @@ export default class Mindmap {
     $(this.html.parentNode).on('mouseup', this.eventbinding_mouseup)
     $(this.html.parentNode).on('click', this.eventbinding_click)
     $(this.html.parentNode).on('mousemove', this.eventbinding_mousemove)
+    $(this.getAnchor()).on("click", ".component_configuration", (event) => {
+      event.stopPropagation()
+    })
 
     disableSelection(this.html)
     this.setCurrentSelection(this)
+  }
+
+  getComponentContainer () {
+    return this.centerLabel
   }
 
   /**
@@ -74,7 +84,7 @@ export default class Mindmap {
   /**
    * Returns the current selected nodes.<br>
    *
-   * @type map.ArrayList
+   * @type {Node}
    * */
   getCurrentSelection() {
     return this.selection
@@ -87,60 +97,15 @@ export default class Mindmap {
    * @private
    * */
   setCurrentSelection(node) {
-    this.selection.forEach((child) => child.setSelected(false))
-    this.selection = []
+    if (this.selection !== null) {
+      this.selection.setSelected(false)
+    }
+    this.selection = null
     if (node !== null) {
-      this.selection.push(node)
+      this.selection = node
       node.setSelected(true)
     }
     this.notifyListeners()
-  }
-
-  /**
-   * Set the current selected node of the mindmap and reset the old
-   * selection
-   *
-   * @private
-   * */
-  removeCurrentSelection(node) {
-    this.selection = $.grep(this.selection, (element) => element !== node)
-    node.setSelected(false)
-    this.notifyListeners()
-  }
-
-  /**
-   * Add the handsover node the the selection. This is the support
-   * for multiselect.
-   *
-   * @private
-   * */
-  addCurrentSelection(node) {
-    this.selection.push(node)
-    node.setSelected(true)
-    this.notifyListeners()
-  }
-
-  /**
-   * Reset the current selection
-   * for multiselect.
-   *
-   * @private
-   * */
-  clearCurrentSelection() {
-    this.selection.forEach((child) => child.setSelected(false))
-    this.selection = []
-    this.notifyListeners()
-  }
-
-  /**
-   * Returns an empty child node.<br>
-   * Inherited classes can override this method to return node depending child nodes.<br>
-   *
-   * @type map.Node
-   * @abstract
-   * */
-  createEmptyChildNode() {
-    return new LeftNode()
   }
 
   /**
@@ -152,10 +117,8 @@ export default class Mindmap {
   setSelected(flag) {
     if (flag === true) {
       $(this.getAnchor()).addClass('selected_node')
-      $(this.getAnchor()).removeClass('normal_node')
     } else {
       $(this.getAnchor()).removeClass('selected_node')
-      $(this.getAnchor()).addClass('normal_node')
     }
   }
 
@@ -195,13 +158,9 @@ export default class Mindmap {
    * @type HTMLElement
    * */
   removeNode(node) {
-    if (node instanceof LeftNode) {
-      node.getHTMLElement().remove()
-      this.leftChildren = $.grep(this.leftChildren, (value) => value !== node)
-    } else {
-      node.getHTMLElement().remove()
-      this.rightChildren = $.grep(this.rightChildren, (value) => value !== node)
-    }
+    node.getHTMLElement().remove()
+    this.leftChildren = $.grep(this.leftChildren, (value) => value !== node)
+    this.rightChildren = $.grep(this.rightChildren, (value) => value !== node)
 
     // The mindmap is parent and to root element of this node
     //
@@ -218,11 +177,6 @@ export default class Mindmap {
     return this.width
   }
 
-  scrollTo(x, y) {
-    this.html.parentNode.scrollLeft = x
-    this.html.parentNode.scrollTop = y
-  }
-
   /**
    * @type HTMLElement
    * */
@@ -233,38 +187,40 @@ export default class Mindmap {
       this.html.style.width = `${this.width}px`
       this.html.style.height = `${this.height}px`
 
-      const row = this.html.insertRow(0)
+      {
+        const row = this.html.insertRow(0)
 
-      this.leftChildrenHTML = row.insertCell(0)
-      this.leftChildrenHTML.className = 'left_canvas'
-      this.leftChildrenHTML.width = `${parseInt(this.width / 2)}`
+        this.leftChildrenHTML = row.insertCell(0)
+        this.leftChildrenHTML.className = 'left_canvas'
+        this.leftChildrenHTML.width = `${parseInt(this.width / 2)}`
 
-      this.leftLines = row.insertCell(1)
-      this.leftLines.style.width = '50px'
-      this.leftLines.style.height = `${this.height}px`
-      this.leftCanvas = createCanvas(this.leftLines)
-      this.leftCanvas.style.height = `${this.height}px`
-      this.leftCanvas.setAttribute('width', '50')
-      this.leftCanvas.setAttribute('height', this.height)
+        this.leftLines = row.insertCell(1)
+        this.leftLines.style.width = `${this.lineCanvasWidth}px`
+        this.leftLines.style.height = `${this.height}px`
+        this.leftCanvas = createCanvas(this.leftLines)
+        this.leftCanvas.style.height = `${this.height}px`
+        this.leftCanvas.setAttribute('width', this.lineCanvasWidth)
+        this.leftCanvas.setAttribute('height', this.height)
 
-      this.centerCanvas = row.insertCell(2)
-      this.centerCanvas.className = 'center_canvas'
-      this.centerCanvas.width = '80'
-      this.centerLabel = document.createElement('div')
-      this.centerLabel.innerHTML = 'CENTER'
-      this.centerCanvas.append(this.centerLabel)
+        this.centerCanvas = row.insertCell(2)
+        this.centerCanvas.className = 'center_canvas center_node'
+        this.centerCanvas.width = '80'
+        this.centerLabel = document.createElement('div')
+        this.centerLabel.className = 'container'
+        this.centerCanvas.append(this.centerLabel)
 
-      this.rightLines = row.insertCell(3)
-      this.rightLines.style.width = '50px'
-      this.rightLines.style.height = `${this.height}px`
-      this.rightCanvas = createCanvas(this.rightLines)
-      this.rightCanvas.style.height = `${this.height}px`
-      this.rightCanvas.setAttribute('width', '50')
-      this.rightCanvas.setAttribute('height', this.height)
+        this.rightLines = row.insertCell(3)
+        this.rightLines.style.width = `${this.lineCanvasWidth}px`
+        this.rightLines.style.height = `${this.height}px`
+        this.rightCanvas = createCanvas(this.rightLines)
+        this.rightCanvas.style.height = `${this.height}px`
+        this.rightCanvas.setAttribute('width', this.lineCanvasWidth)
+        this.rightCanvas.setAttribute('height', this.height)
 
-      this.rightChildrenHTML = row.insertCell(4)
-      this.rightChildrenHTML.className = 'right_canvas'
-      this.rightChildrenHTML.width = `${parseInt(this.width / 2)}`
+        this.rightChildrenHTML = row.insertCell(4)
+        this.rightChildrenHTML.className = 'right_canvas'
+        this.rightChildrenHTML.width = `${parseInt(this.width / 2)}`
+      }
     }
     return this.html
   }
@@ -274,28 +230,28 @@ export default class Mindmap {
 
     let ctx = this.leftCanvas.getContext('2d')
     let thisAnchor = $(this.leftCanvas).offset()
-    ctx.clearRect(0, 0, 50, this.height)
+    ctx.clearRect(0, 0, this.lineCanvasWidth, this.height)
 
-    ctx.strokeStyle = '#999999'
-    ctx.lineWidth = 0.3
+    ctx.strokeStyle = '#4550A9'
+    ctx.lineWidth = 4
     this.leftChildren.forEach((child) => {
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       ctx.moveTo(0, top)
-      ctx.bezierCurveTo(20, top, 15, this.height / 2, 50, this.height / 2)
+      ctx.bezierCurveTo(20, top, 15, this.height / 2, this.lineCanvasWidth, this.height / 2)
       ctx.stroke()
     })
 
     ctx = this.rightCanvas.getContext('2d')
     thisAnchor = $(this.rightCanvas).offset()
-    ctx.clearRect(0, 0, 50, this.height)
+    ctx.clearRect(0, 0, this.lineCanvasWidth, this.height)
 
-    ctx.strokeStyle = '#999999'
-    ctx.lineWidth = 0.3
+    ctx.strokeStyle = '#4550A9'
+    ctx.lineWidth = 4
     this.rightChildren.forEach((child) => {
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-      ctx.moveTo(50, top)
+      ctx.moveTo(this.lineCanvasWidth, top)
       ctx.bezierCurveTo(0, top, 15, this.height / 2, 0, this.height / 2)
       ctx.stroke()
     })
@@ -306,26 +262,38 @@ export default class Mindmap {
    * @private
    * */
   adjustCanvasHeight() {
-    this.leftCanvas.setAttribute('height', this.height - 5)
-    this.rightCanvas.setAttribute('height', this.height - 5)
+    this.leftCanvas.setAttribute('height', this.height)
+    this.rightCanvas.setAttribute('height', this.height)
 
     return this.height
   }
 
   /**
    * Adds a listener to the mindmap, which will be notified whenever the selection has been changed.
-   * @param {map.CommandStackListener} listener the listener to add.
+   * @param {String} event the kind of event you whant to listen.
+   * @param {Function} listener function or listener to call if the event is fired
    */
-  addSelectionListener(listener) {
-    this.selectionListeners.push(listener)
+  on(event, listener) {
+    if (event !== "select") {
+      throw Error("only event of kind 'change' is supported")
+    }
+
+    if (typeof listener.selectionChanged === "function") {
+      this.selectionListeners.push(listener)
+    } else if (typeof listener === "function") {
+      this.selectionListeners.push({ selectionChanged: listener })
+    } else {
+      throw Error("Object doesn't implement required callback interface")
+    }
+    return this
   }
 
   /**
    * Removes a listener.
    * @param {map.SelectionListener} listener the listener to remove.
    */
-  removeSelectionListener(listener) {
-    this.selectionListeners = $.grep(this.selectionListeners, value => value !== listener)
+  off(listener) {
+    this.selectionListeners = $.grep(this.selectionListeners, entry => (entry === listener || entry.selectionChanged === listener))
   }
 
   /**

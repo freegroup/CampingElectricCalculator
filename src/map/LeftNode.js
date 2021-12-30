@@ -1,5 +1,4 @@
 import $ from 'jquery'
-import { v4 as uuidv4 } from 'uuid'
 import Node from './Node'
 import { createCanvas } from './utils'
 
@@ -8,28 +7,32 @@ export default class LeftNode extends Node {
     super()
   }
 
+  getComponentContainer () {
+    return this.labelDiv
+  }
+
   getHTMLElement() {
     if (this.html === null) {
       this.html = document.createElement('table')
-      this.html.className = 'left_node mindmapTable'
+      this.html.className = 'left_node'
 
       const row = this.html.insertRow(0)
       row.style.height = '100%'
 
       this.leftFiller = row.insertCell(0)
-      this.leftFiller.className = 'left_filler'
+      this.leftFiller.className = 'filler'
       this.leftFiller.style.height = '100%'
       this.leftFiller.innerHTML = '&nbsp;'
 
       this.childrenContainer = row.insertCell(1)
       this.childrenContainer.style.height = '100%'
-      this.childrenContainer.className = 'left_children'
+      this.childrenContainer.className = 'children'
 
       const innerTable = document.createElement('table')
-      innerTable.className = 'mindmapTable'
       innerTable.style.height = '100%'
       const innerRow = innerTable.insertRow(0)
       innerRow.style.height = '100%'
+ 
       let cell = innerRow.insertCell(0)
       cell.style.height = '100%'
       this.childContainer = cell
@@ -43,20 +46,19 @@ export default class LeftNode extends Node {
       this.childrenContainer.append(innerTable)
 
       this.actionIcon = row.insertCell(2)
-      this.actionIcon.className = 'left_action'
+      this.actionIcon.className = 'action'
 
       this.actionIconIcon = document.createElement('img')
       this.actionIconIcon.src = require('@/assets/icon_plus.png')
-      this.actionIconIcon.className = 'left_action_icon'
+      this.actionIconIcon.className = 'action_icon'
       this.actionIcon.append(this.actionIconIcon)
 
       this.leftLabel = row.insertCell(3)
-      this.leftLabel.className = 'left_label'
+      this.leftLabel.className = 'label'
       this.labelDiv = document.createElement('div')
-      this.labelDiv.innerHTML = 'label'
-      this.labelDiv.id = uuidv4()
-
+      this.labelDiv.className = 'container'
       this.leftLabel.append(this.labelDiv)
+
       this.hideAction(this.children.length === 0)
       this.afterCreateHTML()
     }
@@ -78,15 +80,15 @@ export default class LeftNode extends Node {
    *
    * @private
    * */
-  drawLines(flag) {
+  drawLines() {
     if (this.visible) {
       const height = this.adjustCanvasHeight()
       const thisAnchor = $(this.canvas).offset()
       const ctx = this.canvas.getContext('2d')
       ctx.clearRect(0, 0, 30, height)
 
-      ctx.strokeStyle = '#999999'
-      ctx.lineWidth = 0.3
+      ctx.strokeStyle = '#4550A9'
+      ctx.lineWidth = 4
       this.children.forEach((child) => {
         const anchor = child.getAbsoluteAnchor()
         const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
@@ -95,7 +97,7 @@ export default class LeftNode extends Node {
         ctx.stroke()
       })
     }
-    if (flag === undefined && this.parent !== null) this.parent.drawLines()
+    this.parent !== null && this.parent.drawLines()
   }
 
   /**
@@ -112,10 +114,8 @@ export default class LeftNode extends Node {
    * */
   adjustCanvasHeight() {
     this.canvas.setAttribute('height', 5)
-    let height = $(this.childrenContainer).outerHeight()
-
+    const height = $(this.childrenContainer).outerHeight()
     this.canvas.setAttribute('height', height)
-    height = $(this.childrenContainer).outerHeight()
 
     return height
   }
