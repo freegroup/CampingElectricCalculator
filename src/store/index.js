@@ -5,6 +5,7 @@ import fuse from './Fuse'
 import accu from './Accu'
 import solarBooster from './SolarBooster'
 import starterBooster from './StarterBooster'
+import configuration from './Configuration'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     fuse,
     accu,
     solarBooster,
-    starterBooster
+    starterBooster,
+    configuration
   }
 })

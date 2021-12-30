@@ -12,7 +12,11 @@ const configuration = {
         }
       ]
     },
-    { type: "starterBooster", uuid: "6", children: [] }
+    { 
+      type: "starterBooster", 
+      uuid: "6", 
+      children: [] 
+    }
   ],
   right: [{ type: "fuse", uuid: "8", children: [] }]
 }

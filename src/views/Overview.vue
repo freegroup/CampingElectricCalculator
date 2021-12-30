@@ -1,6 +1,6 @@
 <template>
 <div>
-  <ComponentMap @nodeSelected="handleNodeSelected"  @configureNode="handleConfigureNode"  :configuration="configuration"/>
+  <ComponentMap @componentSelect="handleComponentSelect"  @componentConfigure="handleComponentConfigure" />
   <Modal ref="dialog"/>
 </div>
 </template>
@@ -8,7 +8,6 @@
 <script>
 import ComponentMap from '@/components/ComponentMap.vue'
 import Modal from '@/components/Modal.vue'
-import configuration from '@/data/configuration.js'
 
 export default {
   name: 'Overview',
@@ -17,9 +16,6 @@ export default {
     ComponentMap,
     Modal
   },
-  data() {
-    return { configuration }
-  },
   methods: {
     async showModal() {
       const confirmation = await this.$refs.dialog.show()
@@ -27,11 +23,15 @@ export default {
         // do something, the user is OK with it :)
       }
     },
-    handleNodeSelected (event) {
-      console.log("NODE selected", event)
+    handleComponentSelect (component) {
+      console.log("NODE selected", component)
     },
-    handleConfigureNode (event) {
-      console.log("NODE configure", event)
+    async handleComponentConfigure   (component) {
+      console.log("NODE configure", component)
+      const result = await this.$refs.dialog.show(component.type)
+      if (result === true) {
+        console.log("configure done")
+      }
     }
   }
 }

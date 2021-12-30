@@ -1,5 +1,5 @@
 <template>
-  <div class="canvas" ref="root"></div>
+    <div class="canvas" ref="root"></div>
 </template>
 
 <script>
@@ -10,18 +10,19 @@ import Component from '@/electric/Component'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
-  props: ["configuration"],
   mounted() {
     const { root } = this.$refs
     const map = new MindMap(root, 8000, 8000)
-    // setup the center element 
-    const centerComponent = this.$store.getters[this.configuration.center.type + "/getByUuid"]( this.configuration.center.uuid)
-    map.setComponent(new Component(centerComponent))
-    this.createLeftComponents(map, this.configuration.left)
-    this.createRightComponents(map, this.configuration.right)
 
-    map.on("select", event => this.$emit("nodeSelected", event))
-    map.on("configure", event => this.$emit("configureNode", event))
+    const configuration = this.$store.state.configuration.config
+    // setup the center element 
+    const centerComponent = this.$store.getters[configuration.center.type + "/getByUuid"]( configuration.center.uuid)
+    map.setComponent(new Component(centerComponent))
+    this.createLeftComponents(map, configuration.left)
+    this.createRightComponents(map, configuration.right)
+
+    map.on("select", event => this.$emit("componentSelect", event.component))
+    map.on("configure", event => this.$emit("componentConfigure", event.component))
 
     // it is possible, that not all images are loaded immediatly. In this case
     // we must check the images and redraw the lines between the nodes.
@@ -180,10 +181,10 @@ export default {
     .component_accu.component_icon{
       max-height: 150px;
     }
-    .component_solar_booster.component_icon{
+    .component_solarBooster.component_icon{
       max-height: 90px;
     }
-    .component_starter_booster.component_icon{
+    .component_starterBooster.component_icon{
       max-height: 90px;
     }
     .component_fuse.component_icon{
