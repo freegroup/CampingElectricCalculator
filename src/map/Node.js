@@ -231,6 +231,7 @@ export default class Node extends ComponentHost {
 
     $(this.getAnchor()).on("click", ".component_configuration", (event) => {
       event.stopPropagation()
+      this._mindmap.onConfigureComponent(this)
     })
 
     this.setSelected(false)

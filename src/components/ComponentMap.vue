@@ -20,7 +20,8 @@ export default {
     this.createLeftComponents(map, this.configuration.left)
     this.createRightComponents(map, this.configuration.right)
 
-    map.on("select", (node) => this.$emit("nodeSelected", node))
+    map.on("select", event => this.$emit("nodeSelected", event))
+    map.on("configure", event => this.$emit("configureNode", event))
 
     // it is possible, that not all images are loaded immediatly. In this case
     // we must check the images and redraw the lines between the nodes.

@@ -12,7 +12,7 @@ export default class Mindmap extends ComponentHost {
     this.leftChildren = []
     this.rightChildren = []
     this.selection = null
-    this.selectionListeners = []
+    this.listeners = []
     this.html = null
 
     $(id).append(this.getHTMLElement())
@@ -39,6 +39,7 @@ export default class Mindmap extends ComponentHost {
     $(this.html.parentNode).on('mousemove', this.eventbinding_mousemove)
     $(this.getAnchor()).on("click", ".component_configuration", (event) => {
       event.stopPropagation()
+      this.onConfigureComponent(this)
     })
 
     disableSelection(this.html)
@@ -105,7 +106,7 @@ export default class Mindmap extends ComponentHost {
       this.selection = node
       node.setSelected(true)
     }
-    this.notifyListeners()
+    this.notifyListeners({ event: "select", component: this.selection })
   }
 
   /**
@@ -268,20 +269,24 @@ export default class Mindmap extends ComponentHost {
     return this.height
   }
 
+  onConfigureComponent(component) {
+    this.notifyListeners({ event: "configure", component: component })
+  }
+
   /**
    * Adds a listener to the mindmap, which will be notified whenever the selection has been changed.
    * @param {String} event the kind of event you whant to listen.
    * @param {Function} listener function or listener to call if the event is fired
    */
   on(event, listener) {
-    if (event !== "select") {
-      throw Error("only event of kind 'change' is supported")
+    if (event !== "select" && event !== "configure") {
+      throw Error("only event of kind 'select, configure' is supported")
     }
 
     if (typeof listener.selectionChanged === "function") {
-      this.selectionListeners.push(listener)
+      this.listeners.push({ event: event, callback: listener.selectionChanged })
     } else if (typeof listener === "function") {
-      this.selectionListeners.push({ selectionChanged: listener })
+      this.listeners.push({ event: event, callback: listener })
     } else {
       throw Error("Object doesn't implement required callback interface")
     }
@@ -293,7 +298,7 @@ export default class Mindmap extends ComponentHost {
    * @param {map.SelectionListener} listener the listener to remove.
    */
   off(listener) {
-    this.selectionListeners = $.grep(this.selectionListeners, entry => (entry === listener || entry.selectionChanged === listener))
+    this.listeners = $.grep(this.listeners, entry => (entry === listener || entry.selectionChanged === listener))
   }
 
   /**
@@ -301,7 +306,11 @@ export default class Mindmap extends ComponentHost {
    *
    * @private
    * */
-  notifyListeners() {
-    this.selectionListeners.forEach(listener => listener.selectionChanged(this.selection))
+  notifyListeners(event) {
+    this.listeners.forEach(listener => { 
+      if (listener.event === event.event) {
+        listener.callback(event)
+      }
+    })
   }
 }

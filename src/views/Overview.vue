@@ -1,6 +1,6 @@
 <template>
 <div>
-  <ComponentMap @nodeSelected="handleNodeSelected" :configuration="configuration"/>
+  <ComponentMap @nodeSelected="handleNodeSelected"  @configureNode="handleConfigureNode"  :configuration="configuration"/>
   <Modal ref="dialog"/>
 </div>
 </template>
@@ -27,8 +27,11 @@ export default {
         // do something, the user is OK with it :)
       }
     },
-    handleNodeSelected (node) {
-      console.log("NODE selected", node)
+    handleNodeSelected (event) {
+      console.log("NODE selected", event)
+    },
+    handleConfigureNode (event) {
+      console.log("NODE configure", event)
     }
   }
 }
