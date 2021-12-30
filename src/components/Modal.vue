@@ -6,9 +6,8 @@
         <v-card-text style="height: 350px;">
           <v-list three-line>
             <template v-for="item in components" >
-                <v-list-item :key="item.uuid" >
-                    <v-img max-height="150"
-  max-width="120" :src="item.imageSrc"></v-img>
+                <v-list-item :key="item.uuid" @click="onItemSelected(item.uuid)">
+                    <v-img max-height="100" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
                         <v-list-item-title v-html="item.name"></v-list-item-title>
                         <v-list-item-subtitle v-html="item.name"></v-list-item-subtitle>
@@ -22,13 +21,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="onOkButtonClick"
-          >
-            I accept
-          </v-btn>
+          <v-btn color="primary" text @click="onOkButtonClick"> I accept</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -41,7 +34,8 @@ export default {
     return {
       showFlag: false,
       resolve: null,
-      type: null
+      type: null,
+      uuid: null
     }
   },
   computed: {
@@ -60,9 +54,15 @@ export default {
         this.showFlag = true
       })
     },
+    onItemSelected(uuid) {
+      console.log(uuid)
+      this.uuid = uuid
+      this.showFlag = false
+      this.resolve && this.resolve(this.uuid)
+    },
     onOkButtonClick() {
       this.showFlag = false
-      this.resolve && this.resolve(true)
+      this.resolve && this.resolve(this.uuid)
     },
     onCancelButtonClick() {
       this.showFlag = false
