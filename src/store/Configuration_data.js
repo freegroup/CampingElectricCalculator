@@ -8,7 +8,19 @@ const configuration = {
         {
           type: "solarBooster",
           uuid: "4",
-          children: []
+          children: [
+            {
+              type: "solarPanel",
+              uuid: "99",
+              children: [
+                {
+                  type: "solarPanel",
+                  uuid: "99",
+                  children: []
+                } 
+              ]
+            }         
+          ]
         }
       ]
     },

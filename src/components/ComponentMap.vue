@@ -3,10 +3,8 @@
 </template>
 
 <script>
-import MindMap from '@/map/Mindmap'
-import RightNode from '@/map/RightNode'
-import LeftNode from '@/map/LeftNode'
-import Component from '@/electric/Component'
+import MindMap from '@/map/Mindmap.js'
+import NodeFactory from '@/map/Factory.js'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
@@ -16,13 +14,14 @@ export default {
 
     const configuration = this.$store.state.configuration.config
     // setup the center element 
-    const centerComponent = this.$store.getters[configuration.center.type + "/getByUuid"]( configuration.center.uuid)
-    map.setComponent(new Component(centerComponent))
+    const data = this.$store.getters[configuration.center.type + "/getByUuid"]( configuration.center.uuid)
+    map.setModel(data)
     this.createLeftComponents(map, configuration.left)
     this.createRightComponents(map, configuration.right)
 
     map.on("select", event => this.$emit("componentSelect", event.component))
     map.on("configure", event => this.$emit("componentConfigure", event.component))
+    map.on("showError", event => this.$emit("componentShowError", event.component))
 
     // it is possible, that not all images are loaded immediatly. In this case
     // we must check the images and redraw the lines between the nodes.
@@ -41,19 +40,17 @@ export default {
   methods: {
     createLeftComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
-        const node = new LeftNode()
-        const componentData = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
+        const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
+        const node = NodeFactory.createNode(true, data)
         parentComponentHost.addNode(node)
-        node.setComponent(new Component(componentData))
         this.createLeftComponents(node, componentRef.children) 
       })
     },
     createRightComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
-        const node = new RightNode()
-        const componentData = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
+        const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
+        const node = NodeFactory.createNode(false, data)
         parentComponentHost.addNode(node)
-        node.setComponent(new Component(componentData))
         this.createRightComponents(node, componentRef.children) 
       })
     }
@@ -106,11 +103,23 @@ export default {
       .filler {
         width: 100%;
       }
-      .container{
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        padding:10px;
-        border-radius:5px;
-        border: 1px dotted transparent;
+      .label {
+        div{
+          position: relative;
+          .container{
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            padding:10px;
+            border-radius:5px;
+            border: 1px dotted transparent;
+          }
+          .error_icon {
+            position: absolute;
+            bottom: 2px;
+            left: 4px;
+            height: 26px;
+            cursor: pointer;
+          }
+        }
       }
     }
 
@@ -121,11 +130,23 @@ export default {
       .filler {
         width: 100%;
       }
-      .container{
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        padding:10px;
-        border-radius:5px;
-        border: 1px dotted transparent;
+      .label {
+        div{
+          position: relative;
+          .container{
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            padding:10px;
+            border-radius:5px;
+            border: 1px dotted transparent;
+          }
+          .error_icon {
+            position: absolute;
+            bottom: 2px;
+            left: 4px;
+            height: 26px;
+            cursor: pointer;
+          }
+        }
       }
     }
 
@@ -187,8 +208,11 @@ export default {
     .component_starterBooster.component_icon{
       max-height: 90px;
     }
+    .component_solarPanel.component_icon{
+      max-height: 90px;
+    }
     .component_fuse.component_icon{
-      max-height: 50px;
+      max-height: 90px;
     }
   }
 }

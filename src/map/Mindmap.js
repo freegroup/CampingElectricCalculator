@@ -1,9 +1,8 @@
 import $ from 'jquery'
 import { disableSelection, createCanvas } from './utils'
-import LeftNode from './LeftNode'
-import ComponentHost from './ComponentHost'
+import GenericNode from './GenericNode'
 
-export default class Mindmap extends ComponentHost {
+export default class Mindmap extends GenericNode {
   constructor(id, width, height) {
     super()
     this.lineCanvasWidth = 80
@@ -14,6 +13,7 @@ export default class Mindmap extends ComponentHost {
     this.selection = null
     this.listeners = []
     this.html = null
+    this.centerLabel = null
 
     $(id).append(this.getHTMLElement())
 
@@ -39,7 +39,7 @@ export default class Mindmap extends ComponentHost {
     $(this.html.parentNode).on('mousemove', this.eventbinding_mousemove)
     $(this.getAnchor()).on("click", ".component_configuration", (event) => {
       event.stopPropagation()
-      this.onConfigureComponent(this)
+      this.onComponentConfigure(this)
     })
 
     disableSelection(this.html)
@@ -123,16 +123,6 @@ export default class Mindmap extends ComponentHost {
     }
   }
 
-  /**
-   * Returns whenether the element is deletable. The root node (the Mindmap)
-   * always returns <code>false</code>
-   *
-   * @type boolean
-   * */
-  get deleteable() {
-    return false
-  }
-
   getAnchor() {
     return this.centerLabel
   }
@@ -141,7 +131,7 @@ export default class Mindmap extends ComponentHost {
    * @type HTMLElement
    * */
   addNode(node) {
-    if (node instanceof LeftNode) {
+    if (node.leftSide) {
       this.leftChildrenHTML.append(node.getHTMLElement())
       this.leftChildren.push(node)
     } else {
@@ -269,8 +259,12 @@ export default class Mindmap extends ComponentHost {
     return this.height
   }
 
-  onConfigureComponent(component) {
+  onComponentConfigure(component) {
     this.notifyListeners({ event: "configure", component: component })
+  }
+
+  onComponentShowErrors(component) {
+    this.notifyListeners({ event: "showError", component: component })
   }
 
   /**
@@ -279,10 +273,6 @@ export default class Mindmap extends ComponentHost {
    * @param {Function} listener function or listener to call if the event is fired
    */
   on(event, listener) {
-    if (event !== "select" && event !== "configure") {
-      throw Error("only event of kind 'select, configure' is supported")
-    }
-
     if (typeof listener.selectionChanged === "function") {
       this.listeners.push({ event: event, callback: listener.selectionChanged })
     } else if (typeof listener === "function") {
