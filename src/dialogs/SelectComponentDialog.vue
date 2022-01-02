@@ -5,15 +5,25 @@
 
         <v-card-text style="height: 350px;">
           <v-list three-line>
-            <template v-for="item in components" >
-                <v-list-item :key="item.uuid" @click="onItemSelected(item.uuid)">
+            <v-list-group
+                :value="true"
+                no-action
+                sub-group
+              >
+                <template v-slot:activator>
+                  <v-list-item-content>
+                    <v-list-item-title>Admin</v-list-item-title>
+                  </v-list-item-content>
+                </template>
+
+                <v-list-item :key="item.uuid" @click="onItemSelected(item.uuid)" v-for="item in components" >
                     <v-img max-height="100" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
                         <v-list-item-title v-html="item.name"></v-list-item-title>
                         <v-list-item-subtitle v-html="item.name"></v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
-            </template>
+            </v-list-group>
           </v-list>
         </v-card-text>
 
@@ -30,7 +40,7 @@
 
 <script>
 export default {
-  name: "Modal",
+  name: "SelectComponentDialog",
   data() {
     return {
       showFlag: false,

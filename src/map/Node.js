@@ -51,11 +51,9 @@ export default class Node extends GenericNode {
   }
 
   _mousedown() {
-    this.mouseDown = true
   }
 
   _mouseup() {
-    this.mouseDown = false
   }
 
   /**
@@ -143,23 +141,13 @@ export default class Node extends GenericNode {
   }
 
   /**
-   *
-   * @param {boolean} flag [true] if you want mark this element
-   * */
-  setHighlighted(flag) {
-    if (flag) $(this.getAnchor()).addClass('highlighted_node')
-    else $(this.getAnchor()).removeClass('highlighted_node')
-  }
-
-  /**
    * Event after the HTML has been generate.
    *
    * */
   afterCreateHTML() {
     $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)
-    $(this.getAnchor()).on('click', this.eventbinding_click)
-    $(this.getAnchor()).on('dblclick', this.eventbinding_dblclick)
     $(this.getAnchor()).on('mouseup', this.eventbinding_mouseup)
+    $(this.getAnchor()).on('click', this.eventbinding_click)
 
     $(this.actionIconIcon).on('mousedown', this.eventbinding_collapse)
 
@@ -229,56 +217,83 @@ export default class Node extends GenericNode {
       this.html.className = 'left_node'
 
       const row = this.html.insertRow(0)
-      row.style.height = '100%'
-
-      this.leftFiller = row.insertCell(0)
-      this.leftFiller.className = 'filler'
-      this.leftFiller.style.height = '100%'
-      this.leftFiller.innerHTML = '&nbsp;'
-
-      this.childrenContainer = row.insertCell(1)
-      this.childrenContainer.style.height = '100%'
-      this.childrenContainer.className = 'children'
-
-      const innerTable = document.createElement('table')
-      innerTable.style.height = '100%'
-      const innerRow = innerTable.insertRow(0)
-      innerRow.style.height = '100%'
- 
-      let cell = innerRow.insertCell(0)
-      cell.style.height = '100%'
-      this.childContainer = cell
-
-      cell = innerRow.insertCell(1)
-      cell.style.height = '100%'
-      this.canvas = createCanvas(cell)
-      this.canvas.setAttribute('width', '30')
-      this.canvas.setAttribute('height', '30')
-
-      this.childrenContainer.append(innerTable)
-
-      this.actionIcon = row.insertCell(2)
-      this.actionIcon.className = 'action'
-
-      this.actionIconIcon = document.createElement('img')
-      this.actionIconIcon.src = require('@/assets/icon_plus.png')
-      this.actionIconIcon.className = 'action_icon'
-      this.actionIcon.append(this.actionIconIcon)
-
-      this.leftLabel = row.insertCell(3)
-      this.leftLabel.className = 'label'
       {
-        this.labelContainer = document.createElement('div')
-        this.leftLabel.append(this.labelContainer)
+        row.style.height = '100%'
+        // FILLER
+        // ===============================
+        this.leftFiller = row.insertCell(0)
         {
-          this.labelDiv = document.createElement('div')
-          this.labelDiv.className = 'container'
-          this.labelContainer.append(this.labelDiv)
+          this.leftFiller.className = 'filler'
+          this.leftFiller.style.height = '100%'
+          this.leftFiller.innerHTML = '&nbsp;'
+        }
 
-          this.errorIcon = document.createElement('img')
-          this.errorIcon.src = require('@/assets/error.png')
-          this.errorIcon.className = 'error_icon'
-          this.labelContainer.append(this.errorIcon)
+        // CHILDREN
+        // ===============================
+        this.childrenContainer = row.insertCell(1)
+        {
+          this.childrenContainer.className = 'children'
+          this.childrenContainer.style.height = '100%'
+
+          const innerTable = document.createElement('table')
+          {
+            this.childrenContainer.append(innerTable)
+            innerTable.style.height = '100%'
+            const innerRow = innerTable.insertRow(0)
+            {
+              innerRow.style.height = '100%'
+        
+              let cell = innerRow.insertCell(0)
+              cell.style.height = '100%'
+              this.childContainer = cell
+
+              cell = innerRow.insertCell(1)
+              {
+                cell.style.height = '100%'
+                this.canvas = createCanvas(cell)
+                {
+                  this.canvas.setAttribute('width', '30')
+                  this.canvas.setAttribute('height', '30')
+                }
+              }
+            }
+          }
+        }
+
+        // ACTIONS
+        // ===============================
+        this.actionIcon = row.insertCell(2)
+        {
+          this.actionIcon.className = 'action'
+          this.actionIconIcon = document.createElement('img')
+          {
+            this.actionIcon.append(this.actionIconIcon)
+            this.actionIconIcon.src = require('@/assets/icon_plus.png')
+            this.actionIconIcon.className = 'action_icon'
+          }
+        }
+
+        // LABEL or the Node itself
+        // ===============================
+        this.leftLabel = row.insertCell(3)
+        {
+          this.leftLabel.className = 'label'
+          this.labelContainer = document.createElement('div')
+          {
+            this.leftLabel.append(this.labelContainer)
+            this.labelDiv = document.createElement('div')
+            {
+              this.labelContainer.append(this.labelDiv)
+              this.labelDiv.className = 'container'
+
+              this.errorIcon = document.createElement('img')
+              {
+                this.labelContainer.append(this.errorIcon)
+                this.errorIcon.src = require('@/assets/error.png')
+                this.errorIcon.className = 'error_icon'
+              }
+            }
+          }
         }
       }
       this.updateStatusIcons()

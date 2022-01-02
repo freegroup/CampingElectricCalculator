@@ -30,13 +30,11 @@ export default class Mindmap extends GenericNode {
 
     this.eventbinding_mousedown = this._mousedown.bind(this)
     this.eventbinding_mouseup = this._mouseup.bind(this)
-    this.eventbinding_mousemove = this._mousemove.bind(this)
     this.eventbinding_click = this._click.bind(this)
 
     $(this.html.parentNode).on('mousedown', this.eventbinding_mousedown)
     $(this.html.parentNode).on('mouseup', this.eventbinding_mouseup)
     $(this.html.parentNode).on('click', this.eventbinding_click)
-    $(this.html.parentNode).on('mousemove', this.eventbinding_mousemove)
     $(this.getAnchor()).on("click", ".component_configuration", (event) => {
       event.stopPropagation()
       this.onComponentConfigure(this)
@@ -63,9 +61,6 @@ export default class Mindmap extends GenericNode {
    * @private
    * */
   _mousedown(event) {
-    this.clientX = event.clientX
-    this.clientY = event.clientY
-    this.mousedown = true
   }
 
   /**
@@ -73,14 +68,7 @@ export default class Mindmap extends GenericNode {
    * @private
    * */
   _mouseup() {
-    this.mousedown = false
   }
-
-  /**
-   * Binding for the mouse up event
-   * @private
-   * */
-  _mousemove() { }
 
   /**
    * Returns the current selected nodes.<br>

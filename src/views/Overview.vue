@@ -5,22 +5,22 @@
       @componentConfigure="handleNodeConfigure" 
       @componentShowError="handleNodeShowError" 
   />
-  <Modal ref="dialog"/>
+  <SelectComponentDialog ref="componentDialog"/>
   <ErrorDialog ref="errorDialog"/>
 </div>
 </template>
 
 <script>
 import ComponentMap from '@/components/ComponentMap.vue'
-import Modal from '@/components/Modal.vue'
-import ErrorDialog from '@/components/ErrorDialog.vue'
+import SelectComponentDialog from '@/dialogs/SelectComponentDialog.vue'
+import ErrorDialog from '@/dialogs/ErrorDialog.vue'
 
 export default {
   name: 'Overview',
 
   components: {
     ComponentMap,
-    Modal,
+    SelectComponentDialog,
     ErrorDialog
   },
   methods: {
@@ -29,7 +29,7 @@ export default {
     },
 
     async handleNodeConfigure (node) {
-      const uuid = await this.$refs.dialog.show(node.type)
+      const uuid = await this.$refs.componentDialog.show(node.type)
       if (uuid !== null) {
         const data = this.$store.getters[node.type + "/getByUuid"](uuid)
         node.setModel(data)
