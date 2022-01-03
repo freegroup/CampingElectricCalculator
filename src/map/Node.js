@@ -18,7 +18,6 @@ export default class Node extends GenericNode {
     this.html = null
     this.labelDiv = null
 
-    this.eventbinding_collapse = this._collapse.bind(this)
     this.eventbinding_click = this._click.bind(this)
     this.eventbinding_mousedown = this._mousedown.bind(this)
     this.eventbinding_mouseup = this._mouseup.bind(this)
@@ -74,7 +73,7 @@ export default class Node extends GenericNode {
    * */
   removeNode(node) {
     this.children = $.grep(this.children, (element) => element !== node)
-    node.getHTMLElement().remove()
+    node.html.remove()
     node.parent = null
     node.mindmap = null
     this.updateStatusIcons()
@@ -141,30 +140,6 @@ export default class Node extends GenericNode {
   }
 
   /**
-   * Event after the HTML has been generate.
-   *
-   * */
-  afterCreateHTML() {
-    $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)
-    $(this.getAnchor()).on('mouseup', this.eventbinding_mouseup)
-    $(this.getAnchor()).on('click', this.eventbinding_click)
-
-    $(this.actionIconIcon).on('mousedown', this.eventbinding_collapse)
-
-    $(this.getAnchor()).on("click", ".component_configuration", (event) => {
-      event.stopPropagation()
-      this._mindmap.onComponentConfigure(this)
-    })
-
-    $(this.errorIcon).on("click", (event) => {
-      event.stopPropagation()
-      this._mindmap.onComponentShowErrors(this)
-    })
-
-    this.setSelected(false)
-  }
-
-  /**
    * */
   getAnchor() {
     return this.labelDiv
@@ -214,42 +189,41 @@ export default class Node extends GenericNode {
   getLeftHTMLElement() {
     if (this.html === null) {
       this.html = document.createElement('table')
-      this.html.className = 'left_node'
+      this.html.className = 'child_node'
 
-      const row = this.html.insertRow(0)
+      const row = this.html.insertRow()
       {
-        row.style.height = '100%'
+        // row.style.height = '100%'
         // FILLER
         // ===============================
-        this.leftFiller = row.insertCell(0)
+        this.leftFiller = row.insertCell()
         {
           this.leftFiller.className = 'filler'
-          this.leftFiller.style.height = '100%'
+          // this.leftFiller.style.height = '100%'
           this.leftFiller.innerHTML = '&nbsp;'
         }
 
         // CHILDREN
         // ===============================
-        this.childrenContainer = row.insertCell(1)
+        this.childrenContainer = row.insertCell()
         {
           this.childrenContainer.className = 'children'
-          this.childrenContainer.style.height = '100%'
+          // this.childrenContainer.style.height = '100%'
 
           const innerTable = document.createElement('table')
           {
             this.childrenContainer.append(innerTable)
-            innerTable.style.height = '100%'
-            const innerRow = innerTable.insertRow(0)
+            // innerTable.style.height = '100%'
+            const innerRow = innerTable.insertRow()
             {
-              innerRow.style.height = '100%'
+              // innerRow.style.height = '100%'
         
-              let cell = innerRow.insertCell(0)
-              cell.style.height = '100%'
-              this.childContainer = cell
+              this.childContainer = innerRow.insertCell()
+              // this.childContainer.style.height = '100%'
 
-              cell = innerRow.insertCell(1)
+              const cell = innerRow.insertCell()
               {
-                cell.style.height = '100%'
+                // cell.style.height = '100%'
                 this.canvas = createCanvas(cell)
                 {
                   this.canvas.setAttribute('width', '30')
@@ -262,36 +236,55 @@ export default class Node extends GenericNode {
 
         // ACTIONS
         // ===============================
-        this.actionIcon = row.insertCell(2)
+        this.addChildCell = row.insertCell()
         {
-          this.actionIcon.className = 'action'
-          this.actionIconIcon = document.createElement('img')
+          this.addChildCell.className = 'action'
+          this.addChildIcon = document.createElement('img')
           {
-            this.actionIcon.append(this.actionIconIcon)
-            this.actionIconIcon.src = require('@/assets/icon_plus.png')
-            this.actionIconIcon.className = 'action_icon'
+            this.addChildCell.append(this.addChildIcon)
+            this.addChildIcon.src = require('@/assets/icon_plus.png')
+            this.addChildIcon.className = 'addChild_icon'
           }
         }
 
         // LABEL or the Node itself
         // ===============================
-        this.leftLabel = row.insertCell(3)
+        this.leftLabel = row.insertCell()
         {
           this.leftLabel.className = 'label'
           this.labelContainer = document.createElement('div')
           {
             this.leftLabel.append(this.labelContainer)
+            
+            this.toolbarDiv = document.createElement('div')
+            {
+              this.labelContainer.append(this.toolbarDiv)
+              this.toolbarDiv.className = 'toolbar'
+
+              this.configIcon = document.createElement('img')
+              {
+                this.toolbarDiv.append(this.configIcon)
+                this.configIcon.src = require('@/assets/configuration.png')
+              }
+
+              this.deleteIcon = document.createElement('img')
+              {
+                this.toolbarDiv.append(this.deleteIcon)
+                this.deleteIcon.src = require('@/assets/delete.png')
+              }
+            }
+
             this.labelDiv = document.createElement('div')
             {
               this.labelContainer.append(this.labelDiv)
               this.labelDiv.className = 'container'
+            }
 
-              this.errorIcon = document.createElement('img')
-              {
-                this.labelContainer.append(this.errorIcon)
-                this.errorIcon.src = require('@/assets/error.png')
-                this.errorIcon.className = 'error_icon'
-              }
+            this.errorIcon = document.createElement('img')
+            {
+              this.labelContainer.append(this.errorIcon)
+              this.errorIcon.className = 'error_icon'
+              this.errorIcon.src = require('@/assets/error.png')
             }
           }
         }
@@ -305,45 +298,88 @@ export default class Node extends GenericNode {
   getRightHTMLElement () {
     if (this.html === null) {
       this.html = document.createElement('table')
-      this.html.className = 'right_node'
+      this.html.className = 'child_node'
 
       const row = this.html.insertRow(0)
-      row.style.height = '100%'
+      {
+        // row.style.height = '100%'
 
-      this.leftLabel = row.insertCell(0)
-      this.leftLabel.className = 'label'
-      this.labelDiv = document.createElement('div')
-      this.labelDiv.className = 'container'
-      this.leftLabel.append(this.labelDiv)
+        this.leftLabel = row.insertCell(0)
+        {
+          this.leftLabel.className = 'label'
+          this.labelContainer = document.createElement('div')
+          {
+            this.leftLabel.append(this.labelContainer)
+            this.toolbarDiv = document.createElement('div')
+            {
+              this.labelContainer.append(this.toolbarDiv)
+              this.toolbarDiv.className = 'toolbar'
 
-      this.actionIcon = row.insertCell(1)
-      this.actionIcon.className = 'action'
-      this.actionIconIcon = document.createElement('img')
-      this.actionIconIcon.src = require('@/assets/icon_plus.png')
-      this.actionIconIcon.className = 'action_icon'
-      this.actionIcon.append(this.actionIconIcon)
+              this.configIcon = document.createElement('img')
+              {
+                this.toolbarDiv.append(this.configIcon)
+                this.configIcon.src = require('@/assets/configuration.png')
+              }
 
-      this.childrenContainer = row.insertCell(2)
-      this.childrenContainer.style.height = '100%'
-      this.childrenContainer.className = 'children'
+              this.deleteIcon = document.createElement('img')
+              {
+                this.toolbarDiv.append(this.deleteIcon)
+                this.deleteIcon.src = require('@/assets/delete.png')
+              }
+            }
 
-      const innerTable = document.createElement('table')
-      innerTable.style.height = '100%'
+            this.labelDiv = document.createElement('div')
+            {
+              this.labelContainer.append(this.labelDiv)
+              this.labelDiv.className = 'container'
+            }
+          }
+        }
 
-      const innerRow = innerTable.insertRow(0)
-      innerRow.style.height = '100%'
+        this.addChildCell = row.insertCell(1)
+        {
+          this.addChildCell.className = 'action'
 
-      let cell = innerRow.insertCell(0)
-      cell.style.height = '100%'
-      this.canvas = createCanvas(cell)
-      this.canvas.setAttribute('width', '30')
-      this.canvas.setAttribute('height', '30')
+          this.addChildIcon = document.createElement('img')
+          {
+            this.addChildCell.append(this.addChildIcon)
+            this.addChildIcon.src = require('@/assets/icon_plus.png')
+            this.addChildIcon.className = 'addChild_icon'
+          }
+        }
 
-      cell = innerRow.insertCell(1)
-      cell.style.height = '100%'
-      this.childContainer = cell
+        this.childrenContainer = row.insertCell(2)
+        {
+          this.childrenContainer.className = 'children'
+          // this.childrenContainer.style.height = '100%'
 
-      this.childrenContainer.append(innerTable)
+          const innerTable = document.createElement('table')
+          {
+            this.childrenContainer.append(innerTable)
+            // innerTable.style.height = '100%'
+
+            const innerRow = innerTable.insertRow(0)
+            {
+              // innerRow.style.height = '100%'
+
+              const cell = innerRow.insertCell(0)
+              {
+                // cell.style.height = '100%'
+                this.canvas = createCanvas(cell)
+                {
+                  this.canvas.setAttribute('width', '30')
+                  this.canvas.setAttribute('height', '30')
+                }
+              }
+
+              this.childContainer = innerRow.insertCell(1)
+              {
+                // this.childContainer.style.height = '100%'
+              }
+            }
+          }
+        }
+      }
       this.updateStatusIcons()
       this.afterCreateHTML()
     }
@@ -377,5 +413,39 @@ export default class Node extends GenericNode {
       })
     }
     this.parent !== null && this.parent.drawLines()
+  }
+
+  /**
+   * Event after the HTML has been generate.
+   *
+   * */
+  afterCreateHTML() {
+    $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)
+    $(this.getAnchor()).on('mouseup', this.eventbinding_mouseup)
+    $(this.getAnchor()).on('click', this.eventbinding_click)
+
+    $(this.addChildIcon).on('click', this.eventbinding_collapse)
+
+    $(this.addChildIcon).on("click", event => {
+      event.stopPropagation()
+      this.mindmap.onComponentAddChild(this)
+    })
+
+    $(this.configIcon).on("click", event => {
+      event.stopPropagation()
+      this.mindmap.onComponentConfigure(this)
+    })
+
+    $(this.deleteIcon).on("click", event => {
+      event.stopPropagation()
+      this.parent.removeNode(this)
+    })
+
+    $(this.errorIcon).on("click", (event) => {
+      event.stopPropagation()
+      this.mindmap.onComponentShowErrors(this)
+    })
+
+    this.setSelected(false)
   }
 }

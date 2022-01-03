@@ -1,16 +1,29 @@
 <template>
+  <div>
     <div class="canvas" ref="root"></div>
+    <SelectComponentDialog ref="selectDialog"/>
+    <AddComponentDialog ref="addChildDialog"/>
+    <ErrorDialog ref="errorDialog"/>
+  </div>
 </template>
 
 <script>
 import MindMap from '@/map/Mindmap.js'
 import NodeFactory from '@/map/Factory.js'
 import { mapState, mapGetters } from 'vuex'
+import SelectComponentDialog from '@/dialogs/SelectComponentDialog.vue'
+import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
+import ErrorDialog from '@/dialogs/ErrorDialog.vue'
 
 export default {
+  components: {
+    AddComponentDialog,
+    SelectComponentDialog,
+    ErrorDialog
+  },
   mounted() {
     const { root } = this.$refs
-    const map = new MindMap(root, 8000, 8000)
+    const map = new MindMap(root, 700, 300)
 
     const configuration = this.$store.state.configuration.config
     // setup the center element 
@@ -19,9 +32,10 @@ export default {
     this.createLeftComponents(map, configuration.left)
     this.createRightComponents(map, configuration.right)
 
-    map.on("select", event => this.$emit("componentSelect", event.component))
-    map.on("configure", event => this.$emit("componentConfigure", event.component))
-    map.on("showError", event => this.$emit("componentShowError", event.component))
+    map.on("select", event => this.handleNodeSelect(event.component))
+    map.on("configure", event => this.handleNodeConfigure( event.component))
+    map.on("showError", event => this.handleNodeShowError( event.component))
+    map.on("addChild", event => this.handleNodeAddChild( event.component))
 
     // it is possible, that not all images are loaded immediatly. In this case
     // we must check the images and redraw the lines between the nodes.
@@ -53,6 +67,32 @@ export default {
         parentComponentHost.addNode(node)
         this.createRightComponents(node, componentRef.children) 
       })
+    },
+    
+    async handleNodeAddChild (node) {
+      const { type, uuid } = await this.$refs.addChildDialog.show(node.getChildCandidates())
+      if (uuid) {
+        const data = this.$store.getters[type + "/getByUuid"](uuid)
+        const child = NodeFactory.createNode(node.leftSide, data)
+        node.addNode(child)
+      }
+    },
+    
+    async handleNodeSelect (node) {
+      console.log("NODE selected", node)
+    },
+
+    async handleNodeConfigure (node) {
+      const uuid = await this.$refs.selectDialog.show(node.type)
+      if (uuid) {
+        const data = this.$store.getters[node.type + "/getByUuid"](uuid)
+        node.setModel(data)
+      }
+    },
+
+    async handleNodeShowError (node) {
+      const errors = node.getErrors()
+      await this.$refs.errorDialog.show(errors)
     }
   },
   computed: mapState({
@@ -88,56 +128,43 @@ export default {
       border-spacing: 0;
       border-collapse: inherit;
       border: none;    
-      border-spacing: 0 20px;
       tr, td {
-        padding: 0;
+        padding:0;
         margin: 0;
         border: none;
       }
     }
-
-    .left_node {
-      .action_icon {
-        cursor: pointer;
-      }
-      .filler {
-        width: 100%;
-      }
-      .label {
-        div{
-          position: relative;
-          .container{
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-            padding:10px;
-            border-radius:5px;
-            border: 1px dotted transparent;
-          }
-          .error_icon {
-            position: absolute;
-            bottom: 2px;
-            left: 4px;
-            height: 26px;
-            cursor: pointer;
-          }
-        }
-      }
+    .addChild_icon {
+      cursor: pointer;
+      height:24px;
     }
-
-    .right_node {
-      .action_icon {
-        cursor: pointer;
-      }
+    .child_node {
       .filler {
         width: 100%;
       }
       .label {
-        div{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        >div{
           position: relative;
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+          border-radius: 5px;
+          border: 1px dotted transparent;
+          .toolbar {
+            height: 26px;
+            border-bottom: 1px solid lightgray;
+            text-align: right;
+            img{
+              height: 22px;
+              padding: 3px;
+              cursor: pointer;
+              &:hover {
+                background-color:lightgray;
+              }
+            }
+          }
           .container{
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             padding:10px;
-            border-radius:5px;
-            border: 1px dotted transparent;
           }
           .error_icon {
             position: absolute;
@@ -151,7 +178,7 @@ export default {
     }
 
     .center_node {
-      .container{
+     .container{
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         padding:10px;
         border-radius:5px;
@@ -180,14 +207,6 @@ export default {
     .component {
       position:relative;
     }
-
-    .component_configuration {
-      position: absolute;
-      top:2px;
-      right:3px;
-      height:20px;
-      cursor: pointer;
-    }
     
     .component_label {
       white-space: nowrap;
@@ -200,19 +219,19 @@ export default {
     }
     
     .component_accu.component_icon{
-      max-height: 150px;
+      max-height: 90px;
     }
     .component_solarBooster.component_icon{
-      max-height: 90px;
+      max-height: 70px;
     }
     .component_starterBooster.component_icon{
-      max-height: 90px;
+      max-height: 70px;
     }
     .component_solarPanel.component_icon{
-      max-height: 90px;
+      max-height: 70px;
     }
     .component_fuse.component_icon{
-      max-height: 90px;
+      max-height: 70px;
     }
   }
 }

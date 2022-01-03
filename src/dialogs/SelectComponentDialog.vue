@@ -1,29 +1,17 @@
 <template>
     <v-dialog v-model="showFlag" width="500" >
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2">Privacy Policy</v-card-title>
+        <v-card-title class="text-h5 grey lighten-2">Select Component</v-card-title>
 
         <v-card-text style="height: 350px;">
-          <v-list three-line>
-            <v-list-group
-                :value="true"
-                no-action
-                sub-group
-              >
-                <template v-slot:activator>
-                  <v-list-item-content>
-                    <v-list-item-title>Admin</v-list-item-title>
-                  </v-list-item-content>
-                </template>
-
+          <v-list three-line dense>
                 <v-list-item :key="item.uuid" @click="onItemSelected(item.uuid)" v-for="item in components" >
-                    <v-img max-height="100" max-width="100" :src="item.imageSrc"></v-img>
+                    <v-img  class="mt-4 mb-4 mr-6" max-height="100" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
                         <v-list-item-title v-html="item.name"></v-list-item-title>
                         <v-list-item-subtitle v-html="item.name"></v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
-            </v-list-group>
           </v-list>
         </v-card-text>
 
@@ -31,7 +19,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onOkButtonClick"> I accept</v-btn>
+          <v-btn color="primary" text @click="onCloseButtonClick">Close</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -45,8 +33,7 @@ export default {
     return {
       showFlag: false,
       resolve: null,
-      type: null,
-      uuid: null
+      type: null
     }
   },
   computed: {
@@ -66,17 +53,12 @@ export default {
       })
     },
     onItemSelected(uuid) {
-      this.uuid = uuid
       this.showFlag = false
-      this.resolve && this.resolve(this.uuid)
+      this.resolve && this.resolve(uuid)
     },
-    onOkButtonClick() {
+    onCloseButtonClick() {
       this.showFlag = false
-      this.resolve && this.resolve(this.uuid)
-    },
-    onCancelButtonClick() {
-      this.showFlag = false
-      this.resolve && this.resolve(false)
+      this.resolve && this.resolve()
     }
   }
 }

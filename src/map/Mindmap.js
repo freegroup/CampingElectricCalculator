@@ -35,10 +35,6 @@ export default class Mindmap extends GenericNode {
     $(this.html.parentNode).on('mousedown', this.eventbinding_mousedown)
     $(this.html.parentNode).on('mouseup', this.eventbinding_mouseup)
     $(this.html.parentNode).on('click', this.eventbinding_click)
-    $(this.getAnchor()).on("click", ".component_configuration", (event) => {
-      event.stopPropagation()
-      this.onComponentConfigure(this)
-    })
 
     disableSelection(this.html)
     this.setCurrentSelection(this)
@@ -148,14 +144,6 @@ export default class Mindmap extends GenericNode {
     this.drawLines()
   }
 
-  getHeight() {
-    return this.height
-  }
-
-  getWidth() {
-    return this.width
-  }
-
   /**
    * @type HTMLElement
    * */
@@ -169,36 +157,71 @@ export default class Mindmap extends GenericNode {
       {
         const row = this.html.insertRow(0)
 
-        this.leftChildrenHTML = row.insertCell(0)
-        this.leftChildrenHTML.className = 'left_canvas'
-        this.leftChildrenHTML.width = `${parseInt(this.width / 2)}`
+        this.leftChildrenHTML = row.insertCell()
+        {
+          this.leftChildrenHTML.className = 'left_canvas'
+          this.leftChildrenHTML.width = `${parseInt(this.width / 2)}`
+        }
 
-        this.leftLines = row.insertCell(1)
-        this.leftLines.style.width = `${this.lineCanvasWidth}px`
-        this.leftLines.style.height = `${this.height}px`
-        this.leftCanvas = createCanvas(this.leftLines)
-        this.leftCanvas.style.height = `${this.height}px`
-        this.leftCanvas.setAttribute('width', this.lineCanvasWidth)
-        this.leftCanvas.setAttribute('height', this.height)
+        this.leftLines = row.insertCell()
+        {
+          this.leftLines.style.width = `${this.lineCanvasWidth}px`
+          this.leftLines.style.height = `${this.height}px`
+          this.leftCanvas = createCanvas(this.leftLines)
+          {
+            this.leftCanvas.style.height = `${this.height}px`
+            this.leftCanvas.setAttribute('width', this.lineCanvasWidth)
+            this.leftCanvas.setAttribute('height', this.height)
+          }
+        }
 
-        this.centerCanvas = row.insertCell(2)
-        this.centerCanvas.className = 'center_canvas center_node'
-        this.centerCanvas.width = '80'
-        this.centerLabel = document.createElement('div')
-        this.centerLabel.className = 'container'
-        this.centerCanvas.append(this.centerLabel)
+        let addChildCell = row.insertCell()
+        {
+          addChildCell.className = 'action'
+          this.addLeftChildIcon = document.createElement('img')
+          {
+            addChildCell.append(this.addLeftChildIcon)
+            this.addLeftChildIcon.src = require('@/assets/icon_plus.png')
+            this.addLeftChildIcon.className = 'addChild_icon'
+          }
+        }
 
-        this.rightLines = row.insertCell(3)
-        this.rightLines.style.width = `${this.lineCanvasWidth}px`
-        this.rightLines.style.height = `${this.height}px`
-        this.rightCanvas = createCanvas(this.rightLines)
-        this.rightCanvas.style.height = `${this.height}px`
-        this.rightCanvas.setAttribute('width', this.lineCanvasWidth)
-        this.rightCanvas.setAttribute('height', this.height)
+        this.centerCanvas = row.insertCell()
+        {
+          this.centerCanvas.className = 'center_canvas center_node'
+          this.centerLabel = document.createElement('div')
+          {
+            this.centerLabel.className = 'container'
+            this.centerCanvas.append(this.centerLabel)
+          }
+        }
 
-        this.rightChildrenHTML = row.insertCell(4)
-        this.rightChildrenHTML.className = 'right_canvas'
-        this.rightChildrenHTML.width = `${parseInt(this.width / 2)}`
+        addChildCell = row.insertCell()
+        {
+          addChildCell.className = 'action'
+          this.addRightChildIcon = document.createElement('img')
+          {
+            addChildCell.append(this.addRightChildIcon)
+            this.addRightChildIcon.src = require('@/assets/icon_plus.png')
+            this.addRightChildIcon.className = 'addChild_icon'
+          }
+        }
+
+        this.rightLines = row.insertCell()
+        {
+          this.rightLines.style.width = `${this.lineCanvasWidth}px`
+          this.rightLines.style.height = `${this.height}px`
+          this.rightCanvas = createCanvas(this.rightLines)
+          this.rightCanvas.style.height = `${this.height}px`
+          this.rightCanvas.setAttribute('width', this.lineCanvasWidth)
+          this.rightCanvas.setAttribute('height', this.height)
+        }
+
+        this.rightChildrenHTML = row.insertCell()
+        {
+          this.rightChildrenHTML.className = 'right_canvas'
+          this.rightChildrenHTML.width = `${parseInt(this.width / 2)}`
+        }
       }
     }
     return this.html
@@ -245,6 +268,10 @@ export default class Mindmap extends GenericNode {
     this.rightCanvas.setAttribute('height', this.height)
 
     return this.height
+  }
+
+  onComponentAddChild(component) {
+    this.notifyListeners({ event: "addChild", component: component })
   }
 
   onComponentConfigure(component) {
