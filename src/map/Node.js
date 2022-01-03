@@ -193,13 +193,11 @@ export default class Node extends GenericNode {
 
       const row = this.html.insertRow()
       {
-        // row.style.height = '100%'
         // FILLER
         // ===============================
         this.leftFiller = row.insertCell()
         {
           this.leftFiller.className = 'filler'
-          // this.leftFiller.style.height = '100%'
           this.leftFiller.innerHTML = '&nbsp;'
         }
 
@@ -208,22 +206,16 @@ export default class Node extends GenericNode {
         this.childrenContainer = row.insertCell()
         {
           this.childrenContainer.className = 'children'
-          // this.childrenContainer.style.height = '100%'
 
           const innerTable = document.createElement('table')
           {
             this.childrenContainer.append(innerTable)
-            // innerTable.style.height = '100%'
             const innerRow = innerTable.insertRow()
             {
-              // innerRow.style.height = '100%'
-        
               this.childContainer = innerRow.insertCell()
-              // this.childContainer.style.height = '100%'
 
               const cell = innerRow.insertCell()
               {
-                // cell.style.height = '100%'
                 this.canvas = createCanvas(cell)
                 {
                   this.canvas.setAttribute('width', '30')
@@ -302,8 +294,6 @@ export default class Node extends GenericNode {
 
       const row = this.html.insertRow(0)
       {
-        // row.style.height = '100%'
-
         this.leftLabel = row.insertCell(0)
         {
           this.leftLabel.className = 'label'
@@ -351,20 +341,15 @@ export default class Node extends GenericNode {
         this.childrenContainer = row.insertCell(2)
         {
           this.childrenContainer.className = 'children'
-          // this.childrenContainer.style.height = '100%'
 
           const innerTable = document.createElement('table')
           {
             this.childrenContainer.append(innerTable)
-            // innerTable.style.height = '100%'
-
+ 
             const innerRow = innerTable.insertRow(0)
             {
-              // innerRow.style.height = '100%'
-
               const cell = innerRow.insertCell(0)
               {
-                // cell.style.height = '100%'
                 this.canvas = createCanvas(cell)
                 {
                   this.canvas.setAttribute('width', '30')
@@ -374,7 +359,6 @@ export default class Node extends GenericNode {
 
               this.childContainer = innerRow.insertCell(1)
               {
-                // this.childContainer.style.height = '100%'
               }
             }
           }
@@ -428,7 +412,7 @@ export default class Node extends GenericNode {
 
     $(this.addChildIcon).on("click", event => {
       event.stopPropagation()
-      this.mindmap.onComponentAddChild(this)
+      this.mindmap.onComponentAddChild(this, this.leftSide)
     })
 
     $(this.configIcon).on("click", event => {

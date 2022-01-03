@@ -8,8 +8,8 @@ const components = [
     imageSrc: images("./bluesolar_75_15.png"),
     data: {
       typ: "mppt",
-      ausgangsstrom: 15,
-      ausgangsspannung: 12,
+      strom: 15,
+      spannung: 12,
       // Eingangsspannung muss GÖßER als die Leewrlaufspannung der Solarpanele sein
       eingangsspannung: 75,
       // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
@@ -23,8 +23,8 @@ const components = [
     imageSrc: images("./bluesolar_75_15.png"),
     data: {
       typ: "mppt",
-      ausgangsstrom: 15,
-      ausgangsspannung: 12,
+      strom: 151,
+      spannung: 12,
       // Eingangsspannung muss GÖßER als die Leewrlaufspannung der Solarpanele sein
       eingangsspannung: 35,
       // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein

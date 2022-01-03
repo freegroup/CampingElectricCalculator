@@ -1,6 +1,7 @@
 import SolarPanel from "./SolarPanel.js"
 import SolarBooster from "./SolarBooster.js"
 import StarterBooster from "./StarterBooster.js"
+import FuseBox from "./FuseBox.js"
 import Fuse from "./Fuse.js"
 
 export default class NodeFactory {
@@ -15,6 +16,9 @@ export default class NodeFactory {
         break 
       case "fuse":
         node = new Fuse(model)     
+        break
+      case "fuseBox":
+        node = new FuseBox(model)     
         break
       case "solarPanel":
         node = new SolarPanel(model)

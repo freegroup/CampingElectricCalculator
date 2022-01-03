@@ -24,9 +24,9 @@ export default class SolarPanel extends Node {
   }
 
   calculateCircuitData () {
+    const result = JSON.parse(JSON.stringify(this.model.data)) // deep copy
     // It is only allowed, that this element has ONE direct child element
     //
-    const result = JSON.parse(JSON.stringify(this.model.data)) // deep copy
     if ( this.children.length === 1) {
       const childData = this.children[0].calculateCircuitData()
       /* SolarPanel data struct
@@ -34,19 +34,19 @@ export default class SolarPanel extends Node {
             gewicht: 6000,
             watt: 80,
             zellen: 36,
-            nennspannung: 18.20,
+            spannung: 18.20,
             leerlaufspannung: 21.50,
-            nennstrom: 4.40,
+            strom: 4.40,
             kurzschlusstrom: 4.91
           }
       */
       result.gewicht += childData.gewicht
       result.watt += childData.watt
-      result.nennspannung += childData.nennspannung
+      result.spannung += childData.spannung
       result.leerlaufspannung += childData.leerlaufspannung
       // in "Reihe" geschaltet SolarPanel verdoppeln sich die SPannung und die Ströme bleiben gleich
       //
-      // 'nennstrom' und 'kurzschlusstrom' verändern sich somit nicht.
+      // 'strom' und 'kurzschlusstrom' verändern sich somit nicht.
       // siehe: https://www.youtube.com/watch?v=xItbVw-IPzI
     }
 

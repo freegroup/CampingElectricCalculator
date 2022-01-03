@@ -1,15 +1,20 @@
-import config from "./Configuration_data.js"
+import Default from "./configuration/Default.json"
+import SolarOnly from "./configuration/SolarOnly.json"
 
 export default {
   namespaced: true,
   state: {
-    config: config
   },
   actions: {
   },
   getters: {
-    getCurrent: (state, getters, rootState, rootGetters) => () => {
-      return state.config
+    getById: (state, getters, rootState, rootGetters) => ( id) => {
+      switch (id) {
+        case "SolarOnly":
+          return SolarOnly
+        default:
+          return Default
+      }
     }
   },
   mutations: {

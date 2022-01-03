@@ -9,7 +9,7 @@ export default class GenericNode {
   }
 
   getChildCandidates () {
-    return ["fuse", "solarBooster", "solarPanel", "starterBooster"] 
+    return ["fuse", "fuseBox", "solarBooster", "solarPanel", "starterBooster"] 
   }
 
   getErrors () {

@@ -11,9 +11,9 @@ const components = [
       gewicht: 6000,
       watt: 80,
       zellen: 36,
-      nennspannung: 18.20,
+      spannung: 18.20, // Nennspannung
       leerlaufspannung: 21.50,
-      nennstrom: 4.40,
+      strom: 4.40, // Nennstrom
       kurzschlusstrom: 4.91
     }
   },
@@ -27,9 +27,9 @@ const components = [
       gewicht: 6000,
       watt: 80,
       zellen: 36,
-      nennspannung: 18.20,
+      spannung: 18.20, // Nennspannung
       leerlaufspannung: 21.50,
-      nennstrom: 4.40,
+      strom: 4.40, // Nennstrom
       kurzschlusstrom: 4.91
     }
   }

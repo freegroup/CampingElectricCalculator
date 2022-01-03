@@ -10,6 +10,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "overview" */ '@/views/Overview.vue')
   },
   {
+    path: '/map',
+    name: 'DefaultMap',
+    component: () => import(/* webpackChunkName: "map" */ '@/views/Map.vue')
+  },
+  {
+    path: '/map/:configuration',
+    name: 'Map',
+    component: () => import(/* webpackChunkName: "map" */ '@/views/Map.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

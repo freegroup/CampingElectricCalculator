@@ -6,7 +6,6 @@ export default class SolarBooster extends Node {
   }
 
   getErrors () {
-    console.log("BOOOOOOOOOSTER", this.children)
     const result = []
 
     // if more than one child exists, each of them must have the same data.uuid. It is not allowed to 
@@ -22,8 +21,8 @@ export default class SolarBooster extends Node {
 
       // all direct children must deliver the same voltage. Voltage can be differe if on panel has an child panel (serial)
       //
-      const firstVoltage = this.children[0].calculateCircuitData().nennspannung
-      if ( this.children.find( child => child.calculateCircuitData().nennspannung !== firstVoltage) ) {
+      const firstVoltage = this.children[0].calculateCircuitData().spannung
+      if ( this.children.find( child => child.calculateCircuitData().spannung !== firstVoltage) ) {
         result.push("Direct child panels delivers different voltages")
       }
     }
@@ -35,20 +34,20 @@ export default class SolarBooster extends Node {
       // skip the first element, because we have already the data of the first element in charge
       // ( slice(1) )
       this.children.slice(1).forEach( child => {
-        data.nennstrom += child.calculateCircuitData().nennstrom 
+        data.strom += child.calculateCircuitData().strom 
       })
 
       // calculate [P] of all pinput sources and check if the booster can handle this
       //
-      const eingangswatt = data.nennstrom * data.nennspannung
+      const eingangswatt = data.strom * data.spannung
       if ( eingangswatt > this.calculateCircuitData().eingangswatt ) {
-        result.push(`[P= ${eingangswatt} Watt] of all input sources are bigger than the charger can handle (${this.calculateCircuitData().eingangswatt} )`)
+        result.push(`[P = ${eingangswatt} Watt] of all input sources are bigger than the charger can handle [P = ${this.calculateCircuitData().eingangswatt} Watt]`)
       }
 
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.leerlaufspannung > this.calculateCircuitData().eingangsspannung ) {
-        result.push(`The voltage [U= ${data.leerlaufspannung} Volt] of the input sources are bigger than the maximum voltage which the charger can handle (${this.calculateCircuitData().eingangsspannung} )`)
+        result.push(`The voltage [U = ${data.leerlaufspannung} Volt] of the input sources are bigger than the maximum voltage which the charger can handle [U = ${this.calculateCircuitData().eingangsspannung} Volt]`)
       }
     }
 

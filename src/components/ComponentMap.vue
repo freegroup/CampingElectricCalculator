@@ -16,42 +16,59 @@ import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
 
 export default {
+  data() {
+    return {
+      map: null
+    }
+  },
   components: {
     AddComponentDialog,
     SelectComponentDialog,
     ErrorDialog
   },
+  watch: {
+    '$route' (to, from) {
+      const configuration = this.$store.getters["configuration/getById"](to.params.configuration)
+      this.loadConfiguration(configuration)
+    }
+  },
   mounted() {
     const { root } = this.$refs
-    const map = new MindMap(root, 700, 300)
+    this.map = new MindMap(root, 7000, 7000)
+    this.map.on("select", event => this.handleNodeSelect(event))
+    this.map.on("configure", event => this.handleNodeConfigure( event))
+    this.map.on("showError", event => this.handleNodeShowError( event))
+    this.map.on("addChild", event => this.handleNodeAddChild( event))
 
-    const configuration = this.$store.state.configuration.config
-    // setup the center element 
-    const data = this.$store.getters[configuration.center.type + "/getByUuid"]( configuration.center.uuid)
-    map.setModel(data)
-    this.createLeftComponents(map, configuration.left)
-    this.createRightComponents(map, configuration.right)
-
-    map.on("select", event => this.handleNodeSelect(event.component))
-    map.on("configure", event => this.handleNodeConfigure( event.component))
-    map.on("showError", event => this.handleNodeShowError( event.component))
-    map.on("addChild", event => this.handleNodeAddChild( event.component))
-
-    // it is possible, that not all images are loaded immediatly. In this case
-    // we must check the images and redraw the lines between the nodes.
-    Promise.all(Array.from(document.images).map(img => {
-      if (img.complete) {
-        return Promise.resolve(img.naturalHeight !== 0)
-      }
-      return new Promise(resolve => {
-        img.addEventListener('load', () => resolve(true))
-        img.addEventListener('error', () => resolve(false))
-      })
-    })).then(results => {
-      map.drawLines()
-    })
+    const configuration = this.$store.getters["configuration/getById"](this.$route.params.configuration)
+    this.loadConfiguration(configuration)
   },
   methods: {
+    loadConfiguration (configuration) {
+      // delete the old DOM tree
+      this.map.reset()
+
+      // setup the center element 
+      const data = this.$store.getters[configuration.center.type + "/getByUuid"]( configuration.center.uuid)
+      this.map.setModel(data)
+      this.createLeftComponents(this.map, configuration.left)
+      this.createRightComponents(this.map, configuration.right)
+
+      // it is possible, that not all images are loaded immediatly. In this case
+      // we must check the images and redraw the lines between the nodes.
+      Promise.all(Array.from(document.images).map(img => {
+        if (img.complete) {
+          return Promise.resolve(img.naturalHeight !== 0)
+        }
+        return new Promise(resolve => {
+          img.addEventListener('load', () => resolve(true))
+          img.addEventListener('error', () => resolve(false))
+        })
+      })).then(results => {
+        this.map.drawLines()
+      })
+    },
+
     createLeftComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
         const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
@@ -60,6 +77,7 @@ export default {
         this.createLeftComponents(node, componentRef.children) 
       })
     },
+
     createRightComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
         const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
@@ -69,20 +87,22 @@ export default {
       })
     },
     
-    async handleNodeAddChild (node) {
+    async handleNodeAddChild (event) {
+      const node = event.component
       const { type, uuid } = await this.$refs.addChildDialog.show(node.getChildCandidates())
       if (uuid) {
         const data = this.$store.getters[type + "/getByUuid"](uuid)
-        const child = NodeFactory.createNode(node.leftSide, data)
+        const child = NodeFactory.createNode(event.leftSide, data)
         node.addNode(child)
       }
     },
     
-    async handleNodeSelect (node) {
-      console.log("NODE selected", node)
+    async handleNodeSelect (event) {
+      console.log("NODE selected", event.component)
     },
 
-    async handleNodeConfigure (node) {
+    async handleNodeConfigure (event) {
+      const node = event.component
       const uuid = await this.$refs.selectDialog.show(node.type)
       if (uuid) {
         const data = this.$store.getters[node.type + "/getByUuid"](uuid)
@@ -90,7 +110,8 @@ export default {
       }
     },
 
-    async handleNodeShowError (node) {
+    async handleNodeShowError (event) {
+      const node = event.component
       const errors = node.getErrors()
       await this.$refs.errorDialog.show(errors)
     }
@@ -221,16 +242,7 @@ export default {
     .component_accu.component_icon{
       max-height: 90px;
     }
-    .component_solarBooster.component_icon{
-      max-height: 70px;
-    }
-    .component_starterBooster.component_icon{
-      max-height: 70px;
-    }
-    .component_solarPanel.component_icon{
-      max-height: 70px;
-    }
-    .component_fuse.component_icon{
+    .component_icon{
       max-height: 70px;
     }
   }

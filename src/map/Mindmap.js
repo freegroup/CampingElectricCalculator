@@ -14,8 +14,9 @@ export default class Mindmap extends GenericNode {
     this.listeners = []
     this.html = null
     this.centerLabel = null
+    this.host = $(id)
 
-    $(id).append(this.getHTMLElement())
+    this.host.append(this.getHTMLElement())
 
     $(this.getAnchor())[0].scrollIntoView({
       behavior: 'auto',
@@ -36,8 +37,28 @@ export default class Mindmap extends GenericNode {
     $(this.html.parentNode).on('mouseup', this.eventbinding_mouseup)
     $(this.html.parentNode).on('click', this.eventbinding_click)
 
+    $(this.addLeftChildIcon).on("click", event => {
+      event.stopPropagation()
+      this.onComponentAddChild(this, true)
+    })
+
+    $(this.addRightChildIcon).on("click", event => {
+      event.stopPropagation()
+      this.onComponentAddChild(this, false)
+    })
+
     disableSelection(this.html)
     this.setCurrentSelection(this)
+  }
+
+  reset () {
+    this.leftChildren = []
+    this.rightChildren = []
+    if (this.html !== null ) {
+      this.html.remove()
+      this.html = null
+    }
+    this.host.append(this.getHTMLElement())
   }
 
   getComponentContainer () {
@@ -270,8 +291,8 @@ export default class Mindmap extends GenericNode {
     return this.height
   }
 
-  onComponentAddChild(component) {
-    this.notifyListeners({ event: "addChild", component: component })
+  onComponentAddChild(parent, leftSide) {
+    this.notifyListeners({ event: "addChild", component: parent, leftSide: leftSide })
   }
 
   onComponentConfigure(component) {
