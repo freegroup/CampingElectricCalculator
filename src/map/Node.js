@@ -426,7 +426,7 @@ export default class Node extends GenericNode {
 
     $(this.deleteIcon).on("click", event => {
       event.stopPropagation()
-      this.parent.removeNode(this)
+      this.mindmap.onComponentRemoveChild(this)
     })
 
     $(this.errorIcon).on("click", (event) => {

@@ -1,8 +1,5 @@
 <template>
   <v-app>
-    <v-system-bar
-  height="30"
->fffffff</v-system-bar>
   <v-app-bar
       app
       color="#E39623"

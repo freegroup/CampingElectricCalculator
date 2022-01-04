@@ -8,7 +8,8 @@ const fuses =
     name: "Automat 150A", 
     imageSrc: images("./sicherungsatomat-200A.png"),
     data: {
-      strom: 150
+      strom: 150,
+      spannung: 12
     }
   },
   { 
@@ -17,7 +18,8 @@ const fuses =
     name: "Automat 200A", 
     imageSrc: images("./sicherungsatomat-200A.png"),
     data: {
-      strom: 200
+      strom: 200,
+      spannung: 12
     }
   }
 ]

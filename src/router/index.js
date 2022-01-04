@@ -20,6 +20,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "map" */ '@/views/Map.vue')
   },
   {
+    path: '/list/:configuration',
+    name: 'ShoppingList',
+    component: () => import(/* webpackChunkName: "list" */ '@/views/ShoppingList.vue')
+  },
+  {
     path: '/diameter',
     name: 'WireDiameter',
     component: () => import(/* webpackChunkName: "diameter" */ '@/views/WireDiameter.vue')

@@ -14,6 +14,7 @@
     "roboto-fontface": "*",
     "uuid": "^3.4.0",
     "vue": "^2.6.11",
+    "vue-i18n": "^8.26.8",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
     "vuex": "^3.4.0"

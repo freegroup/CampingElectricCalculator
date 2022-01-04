@@ -8,7 +8,7 @@ const components = [
     imageSrc: images("./engel_ck100.png"),
     data: {
       spannung: 12, 
-      strom: 32 / 12, // I=P/U
+      strom: (32 / 12).toFixed(2), // I=P/U
       watt: 32
     }
   }

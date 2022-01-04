@@ -39,20 +39,23 @@ export default {
     this.map.on("configure", event => this.handleNodeConfigure( event))
     this.map.on("showError", event => this.handleNodeShowError( event))
     this.map.on("addChild", event => this.handleNodeAddChild( event))
+    this.map.on("removeChild", event => this.handleNodeRemoveChild( event))
 
     const configuration = this.$store.getters["configuration/getById"](this.$route.params.configuration)
     this.loadConfiguration(configuration)
   },
   methods: {
-    loadConfiguration (configuration) {
+    loadConfiguration (configuration ) {
+      this.configuration = configuration
+      const config = configuration.config
       // delete the old DOM tree
       this.map.reset()
 
       // setup the center element 
-      const data = this.$store.getters[configuration.center.type + "/getByUuid"]( configuration.center.uuid)
+      const data = this.$store.getters[config.center.type + "/getByUuid"]( config.center.uuid)
       this.map.setModel(data)
-      this.createLeftComponents(this.map, configuration.left)
-      this.createRightComponents(this.map, configuration.right)
+      this.createLeftComponents(this.map, config.left)
+      this.createRightComponents(this.map, config.right)
 
       // it is possible, that not all images are loaded immediatly. In this case
       // we must check the images and redraw the lines between the nodes.
@@ -67,6 +70,7 @@ export default {
       })).then(results => {
         this.map.drawLines()
       })
+      this.$emit("configLoaded")
     },
 
     createLeftComponents (parentComponentHost, childComponents) {
@@ -89,12 +93,20 @@ export default {
     
     async handleNodeAddChild (event) {
       const node = event.component
-      const { type, uuid } = await this.$refs.addChildDialog.show(node.getChildCandidates())
+      const candidateTypes = event.candidates
+      const { type, uuid } = await this.$refs.addChildDialog.show(candidateTypes)
       if (uuid) {
         const data = this.$store.getters[type + "/getByUuid"](uuid)
         const child = NodeFactory.createNode(event.leftSide, data)
         node.addNode(child)
+        this.saveConfig()
       }
+    },
+    
+    async handleNodeRemoveChild (event) {
+      const node = event.component
+      node.parent.removeNode(node)
+      this.saveConfig()
     },
     
     async handleNodeSelect (event) {
@@ -107,6 +119,7 @@ export default {
       if (uuid) {
         const data = this.$store.getters[node.type + "/getByUuid"](uuid)
         node.setModel(data)
+        this.saveConfig()
       }
     },
 
@@ -114,6 +127,24 @@ export default {
       const node = event.component
       const errors = node.getErrors()
       await this.$refs.errorDialog.show(errors)
+    },
+
+    saveConfig() {
+      // save the changes as "user" configuration
+      this.$store.dispatch('configuration/saveUserConfiguration', this.map.toJson())
+
+      // and load now the "user" configuration. Only the "user" configuration is changeable
+      if ( this.configuration.id !== "user") {
+        this.$router.push({ path: '/map/user' })
+      }
+    },
+
+    getLabel() {
+      return this.configuration.label
+    },
+
+    getConfiguration() {
+      return this.configuration
     },
 
     toJson() {
@@ -251,5 +282,4 @@ export default {
     }
   }
 }
-
 </style>

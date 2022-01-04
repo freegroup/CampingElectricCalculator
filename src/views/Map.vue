@@ -7,6 +7,12 @@
       <v-btn icon @click="exportJson">
         <v-icon>mdi-heart</v-icon>
       </v-btn>
+      <v-btn icon @click="exportPdf">
+        <v-icon>mdi-text-box-check-outline</v-icon>
+      </v-btn>
+      <template v-slot:extension>
+        <h4>{{label}}</h4>
+      </template>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -37,7 +43,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-main>
-      <ComponentMap ref="mindmap"/>
+      <ComponentMap ref="mindmap" @configLoaded="onConfigLoaded"/>
     </v-main>
    <JsonDialog ref="jsonDialog"/>
   </v-app>
@@ -56,12 +62,20 @@ export default {
   },
   data: () => ({
     drawer: false,
+    label: "",
     group: null
   }),
   methods: {
+    onConfigLoaded() {
+      this.label = this.$refs.mindmap.getLabel()
+    },
     exportJson() {
       const json = this.$refs.mindmap.toJson()
       this.$refs.jsonDialog.show(json)
+    },
+    exportPdf() {
+      const routeData = this.$router.resolve({ path: '/list/' + this.$refs.mindmap.getConfiguration().id })
+      window.open(routeData.href, '_blank')
     }
   },
   watch: {
@@ -69,10 +83,18 @@ export default {
       this.drawer = false
     }
   },
-  computed: mapState({
-    configurations: state => {
-      return state.configuration.all
-    }
-  })
+  computed: {
+    ...mapState({
+      configurations: state => {
+        return state.configuration.all
+      }
+    })
+  }
 }
 </script>
+
+<style>
+.v-toolbar__extension{
+  background-color: rgba(255,255,255,0.1);
+}
+</style>

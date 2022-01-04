@@ -32,8 +32,9 @@
 
       </v-list>
     </v-navigation-drawer>
+    
     <v-main>
-      <ComponentMap/>
+
     </v-main>
 
   </v-app>

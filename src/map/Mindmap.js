@@ -36,8 +36,12 @@ export default class Mindmap extends GenericNode {
     this.setCurrentSelection(this)
   }
 
-  getChildCandidates () {
+  getLeftChildCandidates () {
     return ["fuse", "fuseBox", "solarBooster", "starterBooster"] 
+  }
+
+  getRightChildCandidates () {
+    return ["fuse", "fuseBox"] 
   }
 
   reset () {
@@ -48,6 +52,12 @@ export default class Mindmap extends GenericNode {
       this.html = null
     }
     this.host.append(this.getHTMLElement())
+
+    $(this.getAnchor())[0].scrollIntoView({
+      behavior: 'auto',
+      inline: 'center',
+      block: 'center'
+    })
   }
 
   getComponentContainer () {
@@ -241,12 +251,12 @@ export default class Mindmap extends GenericNode {
   
       $(this.addLeftChildIcon).on("click", event => {
         event.stopPropagation()
-        this.onComponentAddChild(this, true)
+        this.notifyListeners({ event: "addChild", component: this, leftSide: true, candidates: this.getLeftChildCandidates() })
       })
   
       $(this.addRightChildIcon).on("click", event => {
         event.stopPropagation()
-        this.onComponentAddChild(this, false)
+        this.notifyListeners({ event: "addChild", component: this, leftSide: false, candidates: this.getRightChildCandidates() })
       })  
     }
     return this.html
@@ -296,7 +306,11 @@ export default class Mindmap extends GenericNode {
   }
 
   onComponentAddChild(parent, leftSide) {
-    this.notifyListeners({ event: "addChild", component: parent, leftSide: leftSide })
+    this.notifyListeners({ event: "addChild", component: parent, leftSide: leftSide, candidates: parent.getChildCandidates() })
+  }
+
+  onComponentRemoveChild(node) {
+    this.notifyListeners({ event: "removeChild", component: node })
   }
 
   onComponentConfigure(component) {
