@@ -3,12 +3,10 @@
     <v-app-bar app color="#E39623" dense dark>
       <v-toolbar-title>Configuration: {{configuration.label}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
+
     </v-app-bar>
 
-    <v-main class="ma-6">
+    <v-main class="ma-6" >
       {{ $t("view.shopping.battery")}}
       <v-card class="pa-3 mb-10">
         <v-row no-gutters>
@@ -86,8 +84,8 @@
                   <tr><th width="200" class="text-left">Name</th> <th class="text-left">Value</th></tr>
                 </thead>
                 <tbody>
-                  <tr :key="key" v-for="key in Object.keys(item.data)" >
-                    <td>{{ $t("data.label."+key)}}</td><td>{{item.data[key]}} {{ $t("data.unit."+key)}}</td> 
+                  <tr :key="item.uuid + index" v-for="(key, index) in Object.keys(item.data)" >
+                    <td>{{$t("data.label."+key)}}</td><td>{{item.data[key]}} {{$t("data.unit."+key)}}</td> 
                   </tr>
                 </tbody>
               </template>
@@ -100,7 +98,6 @@
 
   </v-app>
 </template>
-
 <script>
 
 export default {

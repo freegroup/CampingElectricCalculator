@@ -20,6 +20,7 @@ module.exports = {
     'no-trailing-spaces':0,
     'space-in-parens': 0,
     'dot-notation': 0,
-    'no-lone-blocks': 0
+    'no-lone-blocks': 0,
+    'new-cap' :0
   },
 };
