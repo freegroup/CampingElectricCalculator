@@ -54,11 +54,12 @@
       <v-container>
             <v-layout row wrap>
               <v-flex>
-                <v-card class="mx-auto" max-width="350">
+                <v-card class="mx-auto" max-width="350" >
                   <v-img src="@/assets/mindmap.png" height="200px" ></v-img>
 
                   <v-card-title>Get the correct sizing</v-card-title>
-                  <v-card-subtitle>Connect your components in a mind map and calculate if the components are well dimensioned.</v-card-subtitle>
+                  <v-card-subtitle style="min-height:100px">Connect your components in a mindmap fashion 
+                    and check if the components are well dimensioned.</v-card-subtitle>
 
                   <v-card-actions>
                     <v-btn color="orange lighten-2" :to="{path:'/map'}" text>Start</v-btn>
@@ -68,13 +69,16 @@
               </v-flex>
               <v-flex>
                 <v-card class="mx-auto" max-width="350">
-                  <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="200px" ></v-img>
+                  <v-img src="@/assets/wirediameter.png" height="200px" ></v-img>
 
-                  <v-card-title>Top western road trips</v-card-title>
-                  <v-card-subtitle>1,000 miles of wonder</v-card-subtitle>
+                  <v-card-title>Wire size vs. Ampere</v-card-title>
+                  <v-card-subtitle  style="min-height:100px">
+                    You want to lay electricity for consumers or even install a second battery? Then you 
+                    should know exactly which cable cross-section your cables should have!
+                  </v-card-subtitle>
 
                   <v-card-actions>
-                    <v-btn color="orange lighten-2" text>Explore</v-btn>
+                    <v-btn color="orange lighten-2"  :to="{path:'/diameter'}" text>Start</v-btn>
                     <v-spacer></v-spacer>
                   </v-card-actions>
                 </v-card>
@@ -115,6 +119,7 @@ export default {
     background-color: rgba(227,150,35,1);
     padding-left:30px;
     padding-right: 30px;
+    min-width:300px;
   }
 }
 </style>

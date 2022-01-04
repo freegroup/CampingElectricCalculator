@@ -6,10 +6,15 @@ export default class GenericNode {
     this.model = null
     this.errorIcon = null
     this.addChildCell = null
+    this.supportsChildren = true
+  }
+
+  get type() {
+    return this.model.type
   }
 
   getChildCandidates () {
-    return ["fuse", "fuseBox", "solarBooster", "solarPanel", "starterBooster"] 
+    return ["fuse", "fuseBox", "solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator", "fridge", "usb"] 
   }
 
   getErrors () {
@@ -30,10 +35,6 @@ export default class GenericNode {
     else $(this.errorIcon).show()
   }
 
-  get type () {
-    return this.model.type
-  }
-
   setModel(model) {
     this.model = model
     this.renderModel()
@@ -45,9 +46,19 @@ export default class GenericNode {
       this.getComponentContainer().innerHTML = 
       `<div class="component">
         <div class="component_${this.model.type} component_label">${this.model.name}</div>
-        <img class="component_${this.model.type} component_icon"          src="${this.model.imageSrc}">
+        <img class="component_${this.model.type} component_icon" src="${this.model.imageSrc}">
       </div>`
       this.drawLines()
     }
+  }
+
+  toJson() {
+    // deep copy the data
+    const json = { uuid: this.model.uuid, type: this.model.type }
+    json.children = []
+    this.children.forEach( child => {
+      json.children.push(child.toJson())
+    })
+    return json
   }
 }

@@ -24,11 +24,6 @@ export default class Mindmap extends GenericNode {
       block: 'center'
     })
 
-    $(this.getAnchor()).on('click', (event) => {
-      event.stopPropagation()
-      this.setCurrentSelection(this)
-    })
-
     this.eventbinding_mousedown = this._mousedown.bind(this)
     this.eventbinding_mouseup = this._mouseup.bind(this)
     this.eventbinding_click = this._click.bind(this)
@@ -36,16 +31,6 @@ export default class Mindmap extends GenericNode {
     $(this.html.parentNode).on('mousedown', this.eventbinding_mousedown)
     $(this.html.parentNode).on('mouseup', this.eventbinding_mouseup)
     $(this.html.parentNode).on('click', this.eventbinding_click)
-
-    $(this.addLeftChildIcon).on("click", event => {
-      event.stopPropagation()
-      this.onComponentAddChild(this, true)
-    })
-
-    $(this.addRightChildIcon).on("click", event => {
-      event.stopPropagation()
-      this.onComponentAddChild(this, false)
-    })
 
     disableSelection(this.html)
     this.setCurrentSelection(this)
@@ -244,6 +229,21 @@ export default class Mindmap extends GenericNode {
           this.rightChildrenHTML.width = `${parseInt(this.width / 2)}`
         }
       }
+
+      $(this.centerLabel).on('click', (event) => {
+        event.stopPropagation()
+        this.setCurrentSelection(this)
+      })
+  
+      $(this.addLeftChildIcon).on("click", event => {
+        event.stopPropagation()
+        this.onComponentAddChild(this, true)
+      })
+  
+      $(this.addRightChildIcon).on("click", event => {
+        event.stopPropagation()
+        this.onComponentAddChild(this, false)
+      })  
     }
     return this.html
   }
@@ -338,5 +338,20 @@ export default class Mindmap extends GenericNode {
         listener.callback(event)
       }
     })
+  }
+
+  toJson() {
+    // deep copy the data
+    const json = {}
+    json.center = { uuid: this.model.uuid, type: this.model.type }
+    json.left = []
+    json.right = []
+    this.leftChildren.forEach( child => {
+      json.left.push(child.toJson())
+    })
+    this.rightChildren.forEach( child => {
+      json.right.push(child.toJson())
+    })
+    return json
   }
 }

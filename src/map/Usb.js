@@ -1,8 +1,9 @@
 import Node from './Node'
 
-export default class StarterBooster extends Node {
+export default class Usb extends Node {
   constructor() {
     super()
+    this.supportsChildren = false
   }
 
   calculateCircuitData () {

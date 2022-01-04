@@ -228,14 +228,16 @@ export default class Node extends GenericNode {
 
         // ACTIONS
         // ===============================
-        this.addChildCell = row.insertCell()
-        {
-          this.addChildCell.className = 'action'
-          this.addChildIcon = document.createElement('img')
+        if ( this.supportsChildren ) {
+          this.addChildCell = row.insertCell()
           {
-            this.addChildCell.append(this.addChildIcon)
-            this.addChildIcon.src = require('@/assets/icon_plus.png')
-            this.addChildIcon.className = 'addChild_icon'
+            this.addChildCell.className = 'action'
+            this.addChildIcon = document.createElement('img')
+            {
+              this.addChildCell.append(this.addChildIcon)
+              this.addChildIcon.src = require('@/assets/icon_plus.png')
+              this.addChildIcon.className = 'addChild_icon'
+            }
           }
         }
 
@@ -292,9 +294,9 @@ export default class Node extends GenericNode {
       this.html = document.createElement('table')
       this.html.className = 'child_node'
 
-      const row = this.html.insertRow(0)
+      const row = this.html.insertRow()
       {
-        this.leftLabel = row.insertCell(0)
+        this.leftLabel = row.insertCell()
         {
           this.leftLabel.className = 'label'
           this.labelContainer = document.createElement('div')
@@ -326,19 +328,21 @@ export default class Node extends GenericNode {
           }
         }
 
-        this.addChildCell = row.insertCell(1)
-        {
-          this.addChildCell.className = 'action'
-
-          this.addChildIcon = document.createElement('img')
+        if ( this.supportsChildren ) {
+          this.addChildCell = row.insertCell()
           {
-            this.addChildCell.append(this.addChildIcon)
-            this.addChildIcon.src = require('@/assets/icon_plus.png')
-            this.addChildIcon.className = 'addChild_icon'
+            this.addChildCell.className = 'action'
+
+            this.addChildIcon = document.createElement('img')
+            {
+              this.addChildCell.append(this.addChildIcon)
+              this.addChildIcon.src = require('@/assets/icon_plus.png')
+              this.addChildIcon.className = 'addChild_icon'
+            }
           }
         }
 
-        this.childrenContainer = row.insertCell(2)
+        this.childrenContainer = row.insertCell()
         {
           this.childrenContainer.className = 'children'
 
@@ -346,9 +350,9 @@ export default class Node extends GenericNode {
           {
             this.childrenContainer.append(innerTable)
  
-            const innerRow = innerTable.insertRow(0)
+            const innerRow = innerTable.insertRow()
             {
-              const cell = innerRow.insertCell(0)
+              const cell = innerRow.insertCell()
               {
                 this.canvas = createCanvas(cell)
                 {
@@ -357,7 +361,7 @@ export default class Node extends GenericNode {
                 }
               }
 
-              this.childContainer = innerRow.insertCell(1)
+              this.childContainer = innerRow.insertCell()
               {
               }
             }

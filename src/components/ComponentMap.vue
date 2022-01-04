@@ -114,6 +114,10 @@ export default {
       const node = event.component
       const errors = node.getErrors()
       await this.$refs.errorDialog.show(errors)
+    },
+
+    toJson() {
+      return this.map.toJson()
     }
   },
   computed: mapState({

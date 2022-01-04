@@ -1,34 +1,72 @@
 {
-  "center": { "type": "accu", "uuid": "1" },
+  "center": {
+    "uuid": "1",
+    "type": "accu"
+  },
   "left": [
     {
-      "type": "fuse",
       "uuid": "7",
+      "type": "fuse",
       "children": [
         {
-          "type": "solarBooster",
           "uuid": "4",
+          "type": "solarBooster",
           "children": [
             {
-              "type": "solarPanel",
               "uuid": "99",
-              "children": [
-                {
-                  "type": "solarPanel",
-                  "uuid": "99",
-                  "children": []
-                } 
-              ]
-            }         
+              "type": "solarPanel",
+              "children": []
+            }
           ]
         }
       ]
     },
-    { 
-      "type": "starterBooster", 
-      "uuid": "6", 
-      "children": [] 
+    {
+      "uuid": "7",
+      "type": "fuse",
+      "children": [
+        {
+          "uuid": "6",
+          "type": "starterBooster",
+          "children": [
+            {
+              "uuid": "1w3453245",
+              "type": "starterAccu",
+              "children": [
+                {
+                  "uuid": "1w345iuiouh3245",
+                  "type": "alternator",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
-  "right": [{ "type": "fuse", "uuid": "8", "children": [] }]
+  "right": [
+    {
+      "uuid": "8",
+      "type": "fuse",
+      "children": [
+        {
+          "uuid": "7asdf",
+          "type": "fuseBox",
+          "children": [
+            {
+              "uuid": "1w3453lk245",
+              "type": "fridge",
+              "children": []
+            },
+            {
+              "uuid": "1w312343lk2454x",
+              "type": "usb",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

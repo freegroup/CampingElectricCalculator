@@ -1,6 +1,6 @@
 import Node from './Node'
 
-export default class Fuse extends Node {
+export default class FuseBox extends Node {
   constructor() {
     super()
   }

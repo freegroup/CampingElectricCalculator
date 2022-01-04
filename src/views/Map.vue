@@ -2,18 +2,18 @@
     <v-app>
     <v-app-bar app color="#E39623" dense dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Camper electric configuration</v-toolbar-title>
+      <v-toolbar-title>Camper Electric Configuration</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon @click="exportJson">
         <v-icon>mdi-heart</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
       v-model="drawer"
-      bottom
       absolute
       temporary
+      left
       src="@/assets/bg.png"
     >
       <v-list nav dark dense >
@@ -37,26 +37,33 @@
       </v-list>
     </v-navigation-drawer>
     <v-main>
-      <ComponentMap/>
+      <ComponentMap ref="mindmap"/>
     </v-main>
-
+   <JsonDialog ref="jsonDialog"/>
   </v-app>
 </template>
 
 <script>
+import JsonDialog from '@/dialogs/JsonDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'Map',
   components: {
-    ComponentMap
+    ComponentMap,
+    JsonDialog
   },
   data: () => ({
     drawer: false,
     group: null
   }),
-
+  methods: {
+    exportJson() {
+      const json = this.$refs.mindmap.toJson()
+      this.$refs.jsonDialog.show(json)
+    }
+  },
   watch: {
     group () {
       this.drawer = false
