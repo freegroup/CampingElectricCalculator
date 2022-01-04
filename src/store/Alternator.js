@@ -4,15 +4,11 @@ import components from "./Alternator_data.js"
 export default {
   namespaced: true,
   state: {
-    components: components
-  },
-  actions: {
+    components
   },
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (uuid) => {
       return state.components.find(component => component.uuid === uuid)
     }
-  },
-  mutations: {
   }
 }

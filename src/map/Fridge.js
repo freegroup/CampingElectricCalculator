@@ -3,7 +3,10 @@ import Node from './Node'
 export default class Fridge extends Node {
   constructor() {
     super()
-    this.supportsChildren = false
+  }
+
+  getChildCandidates () {
+    return [] 
   }
 
   calculateCircuitData () {

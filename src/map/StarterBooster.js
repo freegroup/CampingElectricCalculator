@@ -5,6 +5,10 @@ export default class StarterBooster extends Node {
     super()
   }
 
+  getChildCandidates () {
+    return ["starterAccu", "alternator"] 
+  }
+
   calculateCircuitData () {
     // It is only allowed, that this element has ONE direct child element
     //

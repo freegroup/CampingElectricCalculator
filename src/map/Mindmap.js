@@ -36,6 +36,10 @@ export default class Mindmap extends GenericNode {
     this.setCurrentSelection(this)
   }
 
+  getChildCandidates () {
+    return ["fuse", "fuseBox", "solarBooster", "starterBooster"] 
+  }
+
   reset () {
     this.leftChildren = []
     this.rightChildren = []

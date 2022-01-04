@@ -4,15 +4,11 @@ import components from "./Fuse_data.js"
 export default {
   namespaced: true,
   state: {
-    components: components
-  },
-  actions: {
+    components
   },
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (id) => {
       return state.components.find(component => component.uuid === id)
     }
-  },
-  mutations: {
   }
 }

@@ -5,6 +5,10 @@ export default class StarterAccu extends Node {
     super()
   }
 
+  getChildCandidates () {
+    return ["alternator"] 
+  }
+
   calculateCircuitData () {
     // It is only allowed, that this element has ONE direct child element
     //

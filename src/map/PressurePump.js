@@ -1,6 +1,6 @@
 import Node from './Node'
 
-export default class StarterBooster extends Node {
+export default class PressurePump extends Node {
   constructor() {
     super()
   }

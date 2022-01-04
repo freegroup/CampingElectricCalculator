@@ -1,5 +1,5 @@
 
-import components from "./Usb_data.js"
+import components from "./UsbConsumer_data.js"
 
 export default {
   namespaced: true,

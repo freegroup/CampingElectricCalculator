@@ -62,7 +62,13 @@
             {
               "uuid": "1w312343lk2454x",
               "type": "usb",
-              "children": []
+              "children": [
+                {
+                  "uuid": "1w312343lk245phone",
+                  "type": "usbConsumer",
+                  "children": []
+                }
+              ]
             }
           ]
         }

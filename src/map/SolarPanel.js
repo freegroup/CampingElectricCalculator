@@ -5,6 +5,10 @@ export default class SolarPanel extends Node {
     super()
   }
 
+  getChildCandidates () {
+    return ["solarPanel"] 
+  }
+
   getErrors () {
     const result = []
     // it is only allow to have one child panel. This must be the same kind. 

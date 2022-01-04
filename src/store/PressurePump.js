@@ -1,10 +1,10 @@
 
-import components from "./Usb_data.js"
+import components from "./PressurePump_data.js"
 
 export default {
   namespaced: true,
   state: {
-    components
+    components: components
   },
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (uuid) => {

@@ -1,6 +1,6 @@
 import Node from './Node'
 
-export default class StarterBooster extends Node {
+export default class UsbConsumer extends Node {
   constructor() {
     super()
   }

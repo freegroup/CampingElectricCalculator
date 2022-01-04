@@ -5,6 +5,10 @@ export default class FuseBox extends Node {
     super()
   }
 
+  getChildCandidates () {
+    return ["pressurePump", "fridge", "usb"] 
+  }
+
   getErrors () {
     const result = []
 

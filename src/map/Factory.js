@@ -5,13 +5,21 @@ import SolarBooster from "./SolarBooster.js"
 import StarterAccu from "./StarterAccu.js"
 import StarterBooster from "./StarterBooster.js"
 import FuseBox from "./FuseBox.js"
+import PressurePump from "./PressurePump.js"
 import Usb from "./Usb.js"
+import UsbConsumer from "./UsbConsumer.js"
 import Fuse from "./Fuse.js"
 
 export default class NodeFactory {
   static createNode (leftSide, model) {
     let node = null  
     switch (model.type) {
+      case "usbConsumer":
+        node = new UsbConsumer(model)     
+        break
+      case "pressurePump":
+        node = new PressurePump(model)     
+        break
       case "usb":
         node = new Usb(model)     
         break

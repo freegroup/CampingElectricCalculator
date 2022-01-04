@@ -228,7 +228,7 @@ export default class Node extends GenericNode {
 
         // ACTIONS
         // ===============================
-        if ( this.supportsChildren ) {
+        if ( this.getChildCandidates().length > 0 ) {
           this.addChildCell = row.insertCell()
           {
             this.addChildCell.className = 'action'
@@ -328,7 +328,7 @@ export default class Node extends GenericNode {
           }
         }
 
-        if ( this.supportsChildren ) {
+        if ( this.getChildCandidates().length > 0 ) {
           this.addChildCell = row.insertCell()
           {
             this.addChildCell.className = 'action'

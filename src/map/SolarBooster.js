@@ -5,6 +5,10 @@ export default class SolarBooster extends Node {
     super()
   }
 
+  getChildCandidates () {
+    return ["solarPanel"] 
+  }
+
   getErrors () {
     const result = []
 

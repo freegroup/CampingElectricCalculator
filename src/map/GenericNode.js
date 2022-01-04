@@ -6,7 +6,6 @@ export default class GenericNode {
     this.model = null
     this.errorIcon = null
     this.addChildCell = null
-    this.supportsChildren = true
   }
 
   get type() {
@@ -14,7 +13,7 @@ export default class GenericNode {
   }
 
   getChildCandidates () {
-    return ["fuse", "fuseBox", "solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator", "fridge", "usb"] 
+    return ["pressurePump", "fuse", "fuseBox", "solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator", "fridge", "usb", "usbConsumer"] 
   }
 
   getErrors () {
