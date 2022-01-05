@@ -9,9 +9,8 @@ const components = [
     shopping: [
     ],
     data: {
-      gewicht: 6000,
       spannung: 12, 
-      strom: 80
+      strom: 400
     }
   }
 ]

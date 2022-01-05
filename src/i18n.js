@@ -5,6 +5,7 @@ export default {
         ah: "Ampere Hour",
         strom: "Current",
         nennladestrom: "Current",
+        nennstrom: "Current",
         watt: "Watt",
         strom_je_anschluss: "Current / Unit",
         anschluesse: "Units",
@@ -17,12 +18,14 @@ export default {
         eingangsstrom: "Input Current",
         eingangswatt: "Input Watt",
         chargeSupport: "Supported Battery Types",
-        spannung: "Power"
+        spannung: "Power",
+        nennspannung: "Nominal Power"
       },
       unit: {
         ah: "Ah",
         strom: "A",
         nennladestrom: "A",
+        nennstrom: "A",
         strom_je_anschluss: "A",
         watt: "Watt",
         anschluesse: "",
@@ -35,6 +38,7 @@ export default {
         eingangsstrom: "A",
         eingangswatt: "Watt",
         spannung: "Volt",
+        nennspannung: "Volt",
         chargeSupport: ""
       }
     },

@@ -419,10 +419,12 @@ export default class Node extends GenericNode {
   afterCreateHTML() {
     $(this.getAnchor()).on('click', '.output_button', (event) => {
       event.stopPropagation()
+      this.mindmap.onComponentBilanz(this)
     })
 
     $(this.getAnchor()).on('click', '.input_button', (event) => {
       event.stopPropagation()
+      this.mindmap.onComponentBilanz(this)
     })
 
     $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)

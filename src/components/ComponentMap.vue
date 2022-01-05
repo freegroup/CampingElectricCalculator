@@ -5,6 +5,7 @@
     <AddComponentDialog ref="addChildDialog"/>
     <ErrorDialog ref="errorDialog"/>
     <InfoDialog ref="infoDialog"/>
+    <BilanzDialog ref="bilanzDialog"/>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import SelectComponentDialog from '@/dialogs/SelectComponentDialog.vue'
 import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
 import InfoDialog from '@/dialogs/InfoDialog.vue'
+import BilanzDialog from '@/dialogs/BilanzDialog.vue'
 
 export default {
   data() {
@@ -27,6 +29,7 @@ export default {
     AddComponentDialog,
     SelectComponentDialog,
     ErrorDialog,
+    BilanzDialog,
     InfoDialog
   },
   watch: {
@@ -43,6 +46,7 @@ export default {
     this.map.on("showError", event => this.handleNodeShowError( event))
     this.map.on("addChild", event => this.handleNodeAddChild( event))
     this.map.on("showInfo", event => this.handleNodeShowInfo( event))
+    this.map.on("showBilanz", event => this.handleNodeBilanz( event))
     this.map.on("removeChild", event => this.handleNodeRemoveChild( event))
 
     const configuration = this.$store.getters["configuration/getById"](this.$route.params.configuration)
@@ -134,9 +138,13 @@ export default {
     },
 
     async handleNodeShowInfo (event) {
-      console.log("info")
       const node = event.component
-      await this.$refs.infoDialog.show(node.model)
+      await this.$refs.infoDialog.show(node)
+    },
+
+    async handleNodeBilanz (event) {
+      const node = event.component
+      await this.$refs.bilanzDialog.show(node)
     },
 
     saveConfig() {

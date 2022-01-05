@@ -291,6 +291,16 @@ export default class Mindmap extends GenericNode {
         event.stopPropagation()
         this.notifyListeners({ event: "addChild", component: this, leftSide: false, candidates: this.getRightChildCandidates() })
       })  
+
+      $(this.getAnchor()).on('click', '.output_button', (event) => {
+        event.stopPropagation()
+        this.onComponentBilanz(this)
+      })
+  
+      $(this.getAnchor()).on('click', '.input_button', (event) => {
+        event.stopPropagation()
+        this.onComponentBilanz(this)
+      })  
     }
     return this.html
   }
@@ -356,6 +366,10 @@ export default class Mindmap extends GenericNode {
 
   onComponentShowInfo(component) {
     this.notifyListeners({ event: "showInfo", component: component })
+  }
+
+  onComponentBilanz(component) {
+    this.notifyListeners({ event: "showBilanz", component: component })
   }
 
   /**

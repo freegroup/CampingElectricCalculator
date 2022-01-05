@@ -27,24 +27,25 @@ export default class SolarPanel extends Node {
     return result
   }
 
-  calculateCircuitData () {
+  calculateInputData () {
+    return null
+  }
+
+  calculateOutputData () {
     const result = JSON.parse(JSON.stringify(this.model.data)) // deep copy
     // It is only allowed, that this element has ONE direct child element
     //
     if ( this.children.length === 1) {
-      const childData = this.children[0].calculateCircuitData()
+      const childData = this.children[0].calculateOutputData()
       /* SolarPanel data struct
           data: {
-            gewicht: 6000,
             watt: 80,
-            zellen: 36,
             nennspannung: 18.20,
             leerlaufspannung: 21.50,
             nennstrom: 4.40,
             kurzschlusstrom: 4.91
           }
       */
-      result.gewicht += childData.gewicht
       result.watt += childData.watt
       result.nennspannung += childData.nennspannung
       result.leerlaufspannung += childData.leerlaufspannung

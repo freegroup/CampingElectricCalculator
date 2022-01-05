@@ -63,4 +63,20 @@ export default class GenericNode {
     })
     return json
   }
+
+  calculateOutputData () {
+    // It is only allowed, that this element has ONE direct child element
+    //
+    return JSON.parse(JSON.stringify(this.model.data)) // deep copy
+  }
+
+  calculateInputData () {
+    // It is only allowed, that this element has ONE direct child element
+    //
+    if ( !this.leftSide ) {
+      return JSON.parse(JSON.stringify(this.model.data)) 
+    }
+
+    return {}
+  }
 }

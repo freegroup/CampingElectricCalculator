@@ -10,9 +10,7 @@ const components = [
     shopping: [
     ],
     data: {
-      gewicht: 6000,
       watt: 80, // Watt peak
-      zellen: 36,
       nennspannung: 18.20,
       leerlaufspannung: 21.50,
       nennstrom: 4.40,
@@ -28,9 +26,7 @@ const components = [
     shopping: [
     ],
     data: {
-      gewicht: 6000,
       watt: 80, // Watt peak
-      zellen: 36,
       nennspannung: 18.20, // Nennspannung
       leerlaufspannung: 21.50,
       nennstrom: 4.40, // Nennstrom
