@@ -4,6 +4,7 @@ export default {
       label: {
         ah: "Ampere Hour",
         strom: "Current",
+        nennladestrom: "Current",
         watt: "Watt",
         strom_je_anschluss: "Current / Unit",
         anschluesse: "Units",
@@ -15,11 +16,13 @@ export default {
         eingangsspannung: "Input Voltage",
         eingangsstrom: "Input Current",
         eingangswatt: "Input Watt",
+        chargeSupport: "Supported Battery Types",
         spannung: "Power"
       },
       unit: {
         ah: "Ah",
         strom: "A",
+        nennladestrom: "A",
         strom_je_anschluss: "A",
         watt: "Watt",
         anschluesse: "",
@@ -31,7 +34,8 @@ export default {
         eingangsspannung: "Volt",
         eingangsstrom: "A",
         eingangswatt: "Watt",
-        spannung: "Volt"
+        spannung: "Volt",
+        chargeSupport: ""
       }
     },
     view: {
@@ -39,6 +43,7 @@ export default {
         battery: "Battery",
         charge: "Charging Side",
         factsheet: "Factsheet",
+        shops: "Online Shops",
         consumer: "Consumer Side"
       }
     },

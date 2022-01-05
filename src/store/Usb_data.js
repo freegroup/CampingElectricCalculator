@@ -1,4 +1,4 @@
-const images = require.context("@/assets/components/usb/", true, /\.png$/)
+const images = require.context("@/store/images/usb/", true, /\.png$/)
 
 const components = [
   { 
@@ -6,6 +6,8 @@ const components = [
     type: "usb", 
     name: "USB 3.6A", 
     imageSrc: images("./usb.png"),
+    shopping: [
+    ],
     data: {
       spannung: 12, 
       strom: 3.6, // I=P/U
@@ -17,6 +19,8 @@ const components = [
     type: "usb", 
     name: "2x USB 3.6A", 
     imageSrc: images("./usb.png"),
+    shopping: [
+    ],
     data: {
       spannung: 12, 
       strom: 2 * 3.6, // I=P/U
@@ -28,6 +32,8 @@ const components = [
     type: "usb", 
     name: "4x USB 3.6A", 
     imageSrc: images("./usb.png"),
+    shopping: [
+    ],
     data: {
       spannung: 12, 
       strom: 4 * 3.6, // I=P/U

@@ -1,10 +1,14 @@
 
 import components from "./SolarBooster_data.js"
 
+function sortComponents (payload) {
+  return payload.sort((a, b) => a.data.strom - b.data.strom)
+}
+
 export default {
   namespaced: true,
   state: {
-    components: components
+    components: sortComponents(components)
   },
   actions: {
   },

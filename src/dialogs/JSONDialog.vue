@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showFlag" width="500" >
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2">Configuration</v-card-title>
+        <v-card-title class="orange lighten-2">Configuration Data</v-card-title>
 
         <v-card-text style="height: 350px;overflow:scroll">
           <pre>

@@ -1,4 +1,4 @@
-const images = require.context("@/assets/components/starterAccu/", true, /\.png$/)
+const images = require.context("@/store/images/starterAccu/", true, /\.png$/)
 
 const components = [
   { 
@@ -6,6 +6,8 @@ const components = [
     type: "starterAccu", 
     name: "Starter", 
     imageSrc: images("./starter.png"),
+    shopping: [
+    ],
     data: {
       gewicht: 6000,
       spannung: 12, 

@@ -10,7 +10,7 @@
       {{ $t("view.shopping.battery")}}
       <v-card class="pa-3 mb-10">
         <v-row no-gutters>
-          <v-col cols="12">
+          <v-col cols="12"  class="mb-5">
            <div class="text-h6">{{battery.name}}</div>
            <div class="text-subtitle-1">{{battery.description}}</div>
           </v-col>
@@ -18,19 +18,35 @@
             <v-img class="mt-5" :src="battery.imageSrc" contain></v-img>
           </v-col>
           <v-col cols="10"  class="mt-5 pl-10">
-            {{ $t("view.shopping.factsheet")}}
-            <v-card >
+            <v-row>
+              <v-icon class="mr-2" >mdi-clipboard-outline</v-icon> {{ $t("view.shopping.factsheet")}}
+            </v-row>
+            <v-row>
               <v-simple-table flat dense>
-              <template v-slot:default>
-                <thead>
-                  <tr><th width="200" class="text-left">Name</th>    <th class="text-left">Value</th></tr>
-                </thead>
-                <tbody>
-                  <tr :key="key" v-for="key in Object.keys(battery.data)" ><td>{{ $t("data.label."+key)}}</td><td>{{battery.data[key]}} {{ $t("data.unit."+key)}}</td> </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-            </v-card>
+                <template v-slot:default>
+                  <thead>
+                    <tr><th width="200" class="text-left">Name</th>    <th class="text-left">Value</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr :key="key" v-for="key in Object.keys(battery.data)" ><td>{{ $t("data.label."+key)}}</td><td>{{battery.data[key]}} {{ $t("data.unit."+key)}}</td> </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+            </v-row>
+            <template v-if="battery.shopping.length > 0">
+              <v-row class="mt-10">
+                <v-icon class="mr-2" >mdi-cart-outline</v-icon> {{ $t("view.shopping.shops")}}
+              </v-row>
+              <v-row  class="mb-5">
+                <v-simple-table flat dense>
+                  <template v-slot:default>
+                    <tbody>
+                      <tr :key="index+'shop'" v-for="(shop, index) in battery.shopping" ><td>{{ shop.shop}}</td><td><v-btn target="_blank" class="ma-1 darken-1" color="red" plain :href="shop.link"> {{shop.label}} <v-icon small >mdi-open-in-new</v-icon></v-btn></td> </tr>
+                    </tbody>
+                  </template>
+                </v-simple-table>
+              </v-row>
+            </template>
           </v-col>
         </v-row>
       </v-card>
@@ -46,8 +62,10 @@
             <v-img class="mt-5" :src="item.imageSrc" contain></v-img>
           </v-col>
           <v-col cols="10"  class="mt-5 pl-10">
-            {{ $t("view.shopping.factsheet")}}
-            <v-card >
+            <v-row>
+              <v-icon class="mr-2" >mdi-clipboard-outline</v-icon>{{ $t("view.shopping.factsheet")}}
+            </v-row>
+            <v-row>
               <v-simple-table flat dense>
               <template v-slot:default>
                 <thead>
@@ -60,7 +78,21 @@
                 </tbody>
               </template>
             </v-simple-table>
-            </v-card>
+            </v-row>
+            <template v-if="item.shopping.length > 0">
+              <v-row class="mt-10">
+                <v-icon class="mr-2" >mdi-cart-outline</v-icon> {{ $t("view.shopping.shops")}}
+              </v-row>
+              <v-row  class="mb-5">
+                <v-simple-table flat dense>
+                  <template v-slot:default>
+                    <tbody>
+                      <tr :key="index+'shop'" v-for="(shop, index) in item.shopping" ><td>{{ shop.shop}}</td><td><v-btn target="_blank" class="ma-1 darken-1" color="red" plain :href="shop.link"> {{shop.label}} <v-icon small >mdi-open-in-new</v-icon></v-btn></td> </tr>
+                    </tbody>
+                  </template>
+                </v-simple-table>
+              </v-row>
+            </template>
           </v-col>
         </v-row>
       </v-card>
@@ -76,8 +108,10 @@
             <v-img class="mt-5" :src="item.imageSrc" contain></v-img>
           </v-col>
           <v-col cols="10"  class="mt-5 pl-10">
-            {{ $t("view.shopping.factsheet")}}
-            <v-card >
+            <v-row>
+              <v-icon class="mr-2" >mdi-clipboard-outline</v-icon>{{ $t("view.shopping.factsheet")}}
+            </v-row>
+            <v-row>
               <v-simple-table flat dense>
               <template v-slot:default>
                 <thead>
@@ -90,7 +124,21 @@
                 </tbody>
               </template>
             </v-simple-table>
-            </v-card>
+            </v-row>
+            <template v-if="item.shopping.length > 0">
+              <v-row class="mt-10">
+                <v-icon class="mr-2" >mdi-cart-outline</v-icon> {{ $t("view.shopping.shops")}}
+              </v-row>
+              <v-row  class="mb-5">
+                <v-simple-table flat dense>
+                  <template v-slot:default>
+                    <tbody>
+                      <tr :key="index+'shop'" v-for="(shop, index) in item.shopping" ><td>{{ shop.shop}}</td><td><v-btn target="_blank" class="ma-1 darken-1" color="red" plain :href="shop.link"> {{shop.label}} <v-icon small >mdi-open-in-new</v-icon></v-btn></td> </tr>
+                    </tbody>
+                  </template>
+                </v-simple-table>
+              </v-row>
+            </template>
           </v-col>
         </v-row>
       </v-card>

@@ -38,19 +38,19 @@ export default class SolarPanel extends Node {
             gewicht: 6000,
             watt: 80,
             zellen: 36,
-            spannung: 18.20,
+            nennspannung: 18.20,
             leerlaufspannung: 21.50,
-            strom: 4.40,
+            nennstrom: 4.40,
             kurzschlusstrom: 4.91
           }
       */
       result.gewicht += childData.gewicht
       result.watt += childData.watt
-      result.spannung += childData.spannung
+      result.nennspannung += childData.nennspannung
       result.leerlaufspannung += childData.leerlaufspannung
-      // in "Reihe" geschaltet SolarPanel verdoppeln sich die SPannung und die Ströme bleiben gleich
+      // in "Reihe" geschaltet SolarPanel addieren sich die Spannung und die Ströme bleiben gleich
       //
-      // 'strom' und 'kurzschlusstrom' verändern sich somit nicht.
+      // 'nennstrom' und 'kurzschlusstrom' verändern sich somit nicht.
       // siehe: https://www.youtube.com/watch?v=xItbVw-IPzI
     }
 

@@ -1,10 +1,14 @@
 
 import components from "./SolarPanel_data.js"
 
+function sortComponents (payload) {
+  return payload.sort((a, b) => a.data.watt - b.data.watt)
+}
+
 export default {
   namespaced: true,
   state: {
-    components: components
+    components: sortComponents(components)
   },
   actions: {
   },

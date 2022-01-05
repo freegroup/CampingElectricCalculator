@@ -4,6 +4,7 @@
     <SelectComponentDialog ref="selectDialog"/>
     <AddComponentDialog ref="addChildDialog"/>
     <ErrorDialog ref="errorDialog"/>
+    <InfoDialog ref="infoDialog"/>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import { mapState, mapGetters } from 'vuex'
 import SelectComponentDialog from '@/dialogs/SelectComponentDialog.vue'
 import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
+import InfoDialog from '@/dialogs/InfoDialog.vue'
 
 export default {
   data() {
@@ -24,7 +26,8 @@ export default {
   components: {
     AddComponentDialog,
     SelectComponentDialog,
-    ErrorDialog
+    ErrorDialog,
+    InfoDialog
   },
   watch: {
     '$route' (to, from) {
@@ -39,6 +42,7 @@ export default {
     this.map.on("configure", event => this.handleNodeConfigure( event))
     this.map.on("showError", event => this.handleNodeShowError( event))
     this.map.on("addChild", event => this.handleNodeAddChild( event))
+    this.map.on("showInfo", event => this.handleNodeShowInfo( event))
     this.map.on("removeChild", event => this.handleNodeRemoveChild( event))
 
     const configuration = this.$store.getters["configuration/getById"](this.$route.params.configuration)
@@ -129,6 +133,12 @@ export default {
       await this.$refs.errorDialog.show(errors)
     },
 
+    async handleNodeShowInfo (event) {
+      console.log("info")
+      const node = event.component
+      await this.$refs.infoDialog.show(node.model)
+    },
+
     saveConfig() {
       // save the changes as "user" configuration
       this.$store.dispatch('configuration/saveUserConfiguration', this.map.toJson())
@@ -175,7 +185,18 @@ export default {
 
   .root {
     position: relative;
-    
+    border-collapse: collapse;
+
+    .producer {
+      background-image: #effeff7e;
+    }
+    .storage {
+      background-color: #dfe7eb42;
+    }
+    .consumer {
+      background-image: #effeff6b;
+    }
+
     canvas {
       display: block;
     }
@@ -193,58 +214,70 @@ export default {
     .addChild_icon {
       cursor: pointer;
       height:24px;
+      position: relative;
+      display: block;
     }
     .child_node {
       .filler {
         width: 100%;
       }
-      .label {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        >div{
-          position: relative;
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-          border-radius: 5px;
-          border: 1px dotted transparent;
-          .toolbar {
-            height: 26px;
-            border-bottom: 1px solid lightgray;
-            text-align: right;
-            img{
-              height: 22px;
-              padding: 3px;
-              cursor: pointer;
-              &:hover {
-                background-color:lightgray;
-              }
+    }
+    .node {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      >div{
+        position: relative;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-radius: 5px;
+        border: 1px dotted transparent;
+        .toolbar {
+          height: 26px;
+          border-bottom: 1px solid lightgray;
+          text-align: right;
+          img{
+            height: 22px;
+            padding: 3px;
+            cursor: pointer;
+            &:hover {
+              background-color:lightgray;
             }
           }
-          .container{
-            padding:10px;
-          }
-          .error_icon {
-            position: absolute;
-            bottom: 2px;
-            left: 4px;
-            height: 26px;
+        }
+        .container{
+          padding:10px;
+          .input_button {
             cursor: pointer;
+            background-color:rgba(0,0,0,0.05);
+            width:10px;
+            position:absolute;
+            top:25px;
+            bottom:0px;
+            left:0px;
+            &:hover {
+              background-color:rgba(0,0,0,0.1);
+            }
+          }
+          .output_button {
+            cursor: pointer;
+            background-color:rgba(0,0,0,0.05);
+            width:10px;
+            position:absolute;
+            top:25px;
+            bottom:0px;
+            right:0px;
+            &:hover {
+              background-color:rgba(0,0,0,0.1);
+            }
           }
         }
+        .error_icon {
+          position: absolute;
+          bottom: 2px;
+          left: 4px;
+          height: 26px;
+          cursor: pointer;
+        }
       }
-    }
-
-    .center_node {
-     .container{
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        padding:10px;
-        border-radius:5px;
-        border: 1px dotted transparent;
-      }
-    }
-
-    .center_canvas {
-      text-align: center;
-      white-space: nowrap;
     }
 
     .selected_node {
@@ -266,7 +299,8 @@ export default {
     
     .component_label {
       white-space: nowrap;
-      padding-right:30px;
+      padding-right:10px;
+      padding-left:10px;
     }
     .component_icon {
       display: block;

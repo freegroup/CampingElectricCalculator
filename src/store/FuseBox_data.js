@@ -1,4 +1,4 @@
-const images = require.context("@/assets/components/fuseBox/", true, /\.png$/)
+const images = require.context("@/store/images/fuseBox/", true, /\.png$/)
 
 export default 
 [
@@ -7,6 +7,8 @@ export default
     type: "fuseBox", 
     name: "Sicherungsbox 12", 
     imageSrc: images("./mictuning_12.png"),
+    shopping: [
+    ],
     data: {
       strom: 100,
       spannung: 12,

@@ -1,9 +1,9 @@
 <template>
     <v-dialog v-model="showFlag" width="500" >
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2">Errors</v-card-title>
+        <v-card-title class="red lighten-2">Configuration Errors</v-card-title>
 
-        <v-card-text style="height: 350px;">
+        <v-card-text style="height: 350px; overflow: scroll">
           <v-list >
             <template v-for="(item, index) in errors" >
                 <v-list-item :key="index">

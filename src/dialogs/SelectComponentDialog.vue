@@ -1,15 +1,15 @@
 <template>
     <v-dialog v-model="showFlag" width="500" >
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2">{{ $t("dialog.selectComponent.header")}}</v-card-title>
+        <v-card-title class="orange lighten-2">{{ $t("dialog.selectComponent.header")}}</v-card-title>
 
-        <v-card-text style="height: 350px;">
+        <v-card-text style="height: 350px; overflow:scroll">
           <v-list three-line dense>
                 <v-list-item :key="item.uuid" @click="onItemSelected(item.uuid)" v-for="item in components" >
                     <v-img  class="mt-4 mb-4 mr-6" max-height="100" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
                         <v-list-item-title>{{item.name}}</v-list-item-title>
-                        <v-list-item-subtitle v-html="item.name"></v-list-item-subtitle>
+                        <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
           </v-list>

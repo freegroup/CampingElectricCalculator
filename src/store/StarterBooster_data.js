@@ -1,4 +1,4 @@
-const images = require.context("@/assets/components/starterBooster/", true, /\.png$/)
+const images = require.context("@/store/images/starterBooster/", true, /\.png$/)
 
 const components = [
   { 
@@ -6,6 +6,8 @@ const components = [
     type: "starterBooster", 
     name: "Schaudt WA121525", 
     imageSrc: images("./schaudt_wa121525.png"),
+    shopping: [
+    ],
     data: {
       // Eingangsspannung muss GÖßER als die Leewrlaufspannung der Solarpanele sein
       eingangsspannung: 12,

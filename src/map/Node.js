@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import GenericNode from './GenericNode'
-import { createCanvas } from "./utils.js"
+import { createCanvas, drawArrowLine } from "./utils.js"
+
+const CANVAS_WIDTH = 80
 /**
  *
  * @version @VERSION@
@@ -218,7 +220,7 @@ export default class Node extends GenericNode {
               {
                 this.canvas = createCanvas(cell)
                 {
-                  this.canvas.setAttribute('width', '30')
+                  this.canvas.setAttribute('width', CANVAS_WIDTH)
                   this.canvas.setAttribute('height', '30')
                 }
               }
@@ -245,7 +247,7 @@ export default class Node extends GenericNode {
         // ===============================
         this.leftLabel = row.insertCell()
         {
-          this.leftLabel.className = 'label'
+          this.leftLabel.className = 'node'
           this.labelContainer = document.createElement('div')
           {
             this.leftLabel.append(this.labelContainer)
@@ -254,6 +256,12 @@ export default class Node extends GenericNode {
             {
               this.labelContainer.append(this.toolbarDiv)
               this.toolbarDiv.className = 'toolbar'
+
+              this.infoIcon = document.createElement('img')
+              {
+                this.toolbarDiv.append(this.infoIcon)
+                this.infoIcon.src = require('@/assets/info.png')
+              }
 
               this.configIcon = document.createElement('img')
               {
@@ -298,7 +306,7 @@ export default class Node extends GenericNode {
       {
         this.leftLabel = row.insertCell()
         {
-          this.leftLabel.className = 'label'
+          this.leftLabel.className = 'node'
           this.labelContainer = document.createElement('div')
           {
             this.leftLabel.append(this.labelContainer)
@@ -356,7 +364,7 @@ export default class Node extends GenericNode {
               {
                 this.canvas = createCanvas(cell)
                 {
-                  this.canvas.setAttribute('width', '30')
+                  this.canvas.setAttribute('width', CANVAS_WIDTH)
                   this.canvas.setAttribute('height', '30')
                 }
               }
@@ -384,18 +392,19 @@ export default class Node extends GenericNode {
       const height = this.adjustCanvasHeight()
       const thisAnchor = $(this.canvas).offset()
       const ctx = this.canvas.getContext('2d')
-      ctx.clearRect(0, 0, 30, height)
+      ctx.clearRect(0, 0, CANVAS_WIDTH, height)
       ctx.strokeStyle = '#4550A9'
+      ctx.fillStyle = '#4550A9'
       ctx.lineWidth = 4
       this.children.forEach((child) => {
         const anchor = child.getAbsoluteAnchor()
         const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
         if (this.leftSide) {
-          ctx.moveTo(0, top)
-          ctx.bezierCurveTo(20, top, 15, height / 2, 30, height / 2)  
+          drawArrowLine(ctx, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 4, y: height / 2 }, undefined, 15, false, true)
         } else {
-          ctx.moveTo(30, top)
-          ctx.bezierCurveTo(0, top, 15, height / 2, 0, height / 2)
+          // ctx.moveTo(CANVAS_WIDTH, top)
+          // ctx.bezierCurveTo(0, top, CANVAS_WIDTH / 2, height / 2, 0, height / 2)
+          drawArrowLine(ctx, { x: CANVAS_WIDTH, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 0, y: height / 2 }, 15, true, false)
         }
         ctx.stroke()
       })
@@ -408,6 +417,14 @@ export default class Node extends GenericNode {
    *
    * */
   afterCreateHTML() {
+    $(this.getAnchor()).on('click', '.output_button', (event) => {
+      event.stopPropagation()
+    })
+
+    $(this.getAnchor()).on('click', '.input_button', (event) => {
+      event.stopPropagation()
+    })
+
     $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)
     $(this.getAnchor()).on('mouseup', this.eventbinding_mouseup)
     $(this.getAnchor()).on('click', this.eventbinding_click)
@@ -432,6 +449,11 @@ export default class Node extends GenericNode {
     $(this.errorIcon).on("click", (event) => {
       event.stopPropagation()
       this.mindmap.onComponentShowErrors(this)
+    })
+
+    $(this.infoIcon).on("click", (event) => {
+      event.stopPropagation()
+      this.mindmap.onComponentShowInfo(this)
     })
 
     this.setSelected(false)

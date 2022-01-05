@@ -1,16 +1,16 @@
-const images = require.context("@/assets/components/alternator/", true, /\.png$/)
+const images = require.context("@/store/images/alternator/", true, /\.png$/)
 
-const components = [
+export default [
   { 
     uuid: "1w345iuiouh3245", 
     type: "alternator", 
     name: "Alternator", 
     imageSrc: images("./alternator.png"),
+    shopping: [
+    ],
     data: {
       spannung: 12, 
       strom: 80
     }
   }
 ]
-
-export default components

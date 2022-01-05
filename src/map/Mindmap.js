@@ -175,16 +175,17 @@ export default class Mindmap extends GenericNode {
       this.html.style.height = `${this.height}px`
 
       {
-        const row = this.html.insertRow(0)
+        const row = this.html.insertRow()
 
         this.leftChildrenHTML = row.insertCell()
         {
-          this.leftChildrenHTML.className = 'left_canvas'
+          this.leftChildrenHTML.className = 'left_canvas producer'
           this.leftChildrenHTML.width = `${parseInt(this.width / 2)}`
         }
 
         this.leftLines = row.insertCell()
         {
+          this.leftLines.className = 'producer'
           this.leftLines.style.width = `${this.lineCanvasWidth}px`
           this.leftLines.style.height = `${this.height}px`
           this.leftCanvas = createCanvas(this.leftLines)
@@ -195,12 +196,12 @@ export default class Mindmap extends GenericNode {
           }
         }
 
-        let addChildCell = row.insertCell()
+        const addLeftChildCell = row.insertCell()
         {
-          addChildCell.className = 'action'
+          addLeftChildCell.className = 'storage'
           this.addLeftChildIcon = document.createElement('img')
           {
-            addChildCell.append(this.addLeftChildIcon)
+            addLeftChildCell.append(this.addLeftChildIcon)
             this.addLeftChildIcon.src = require('@/assets/icon_plus.png')
             this.addLeftChildIcon.className = 'addChild_icon'
           }
@@ -208,20 +209,42 @@ export default class Mindmap extends GenericNode {
 
         this.centerCanvas = row.insertCell()
         {
-          this.centerCanvas.className = 'center_canvas center_node'
-          this.centerLabel = document.createElement('div')
+          this.centerCanvas.className = 'node storage'
+          this.labelContainer = document.createElement('div')
           {
-            this.centerLabel.className = 'container'
-            this.centerCanvas.append(this.centerLabel)
+            this.centerCanvas.append(this.labelContainer)
+            this.toolbarDiv = document.createElement('div')
+            {
+              this.labelContainer.append(this.toolbarDiv)
+              this.toolbarDiv.className = 'toolbar'
+
+              this.infoIcon = document.createElement('img')
+              {
+                this.toolbarDiv.append(this.infoIcon)
+                this.infoIcon.src = require('@/assets/info.png')
+              }
+
+              this.configIcon = document.createElement('img')
+              {
+                this.toolbarDiv.append(this.configIcon)
+                this.configIcon.src = require('@/assets/configuration.png')
+              }
+            }
+
+            this.centerLabel = document.createElement('div')
+            {
+              this.centerLabel.className = 'container'
+              this.labelContainer.append(this.centerLabel)
+            }
           }
         }
 
-        addChildCell = row.insertCell()
+        const addRightChildCell = row.insertCell()
         {
-          addChildCell.className = 'action'
+          addRightChildCell.className = 'storage'
           this.addRightChildIcon = document.createElement('img')
           {
-            addChildCell.append(this.addRightChildIcon)
+            addRightChildCell.append(this.addRightChildIcon)
             this.addRightChildIcon.src = require('@/assets/icon_plus.png')
             this.addRightChildIcon.className = 'addChild_icon'
           }
@@ -229,6 +252,7 @@ export default class Mindmap extends GenericNode {
 
         this.rightLines = row.insertCell()
         {
+          this.rightLines.className = 'consumer'
           this.rightLines.style.width = `${this.lineCanvasWidth}px`
           this.rightLines.style.height = `${this.height}px`
           this.rightCanvas = createCanvas(this.rightLines)
@@ -239,7 +263,7 @@ export default class Mindmap extends GenericNode {
 
         this.rightChildrenHTML = row.insertCell()
         {
-          this.rightChildrenHTML.className = 'right_canvas'
+          this.rightChildrenHTML.className = 'right_canvas consumer'
           this.rightChildrenHTML.width = `${parseInt(this.width / 2)}`
         }
       }
@@ -247,6 +271,15 @@ export default class Mindmap extends GenericNode {
       $(this.centerLabel).on('click', (event) => {
         event.stopPropagation()
         this.setCurrentSelection(this)
+      })
+      $(this.configIcon).on("click", event => {
+        event.stopPropagation()
+        this.onComponentConfigure(this)
+      })
+  
+      $(this.infoIcon).on("click", event => {
+        event.stopPropagation()
+        this.onComponentShowInfo(this)
       })
   
       $(this.addLeftChildIcon).on("click", event => {
@@ -319,6 +352,10 @@ export default class Mindmap extends GenericNode {
 
   onComponentShowErrors(component) {
     this.notifyListeners({ event: "showError", component: component })
+  }
+
+  onComponentShowInfo(component) {
+    this.notifyListeners({ event: "showInfo", component: component })
   }
 
   /**

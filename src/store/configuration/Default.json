@@ -1,19 +1,19 @@
 {
   "center": {
-    "uuid": "1",
+    "uuid": "6473ECD0-5189-4DB0-8E31-480975998729",
     "type": "accu"
   },
   "left": [
     {
-      "uuid": "7",
+      "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
       "type": "fuse",
       "children": [
         {
-          "uuid": "4",
+          "uuid": "17302EE5-08AC-4E2C-882B-F30EA9536B07",
           "type": "solarBooster",
           "children": [
             {
-              "uuid": "99",
+              "uuid": "6676406A-45EA-4B45-98A9-6118ADF47CD6",
               "type": "solarPanel",
               "children": []
             }
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "uuid": "7",
+      "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
       "type": "fuse",
       "children": [
         {
@@ -47,7 +47,7 @@
   ],
   "right": [
     {
-      "uuid": "8",
+      "uuid": "C9A6897A-A19C-4CBD-A05B-F93ED56CF65A",
       "type": "fuse",
       "children": [
         {

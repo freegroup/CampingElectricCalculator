@@ -1,10 +1,14 @@
 
 import components from "./Accu_data.js"
 
+function sortComponents (payload) {
+  return payload.sort((a, b) => a.data.ah - b.data.ah)
+}
+
 export default {
   namespaced: true,
   state: {
-    components: components
+    components: sortComponents(components)
   },
   actions: {
   },

@@ -1,4 +1,4 @@
-const images = require.context("@/assets/components/pressurePump/", true, /\.png$/)
+const images = require.context("@/store/images/pressurePump/", true, /\.png$/)
 
 const components = [
   { 
@@ -6,6 +6,8 @@ const components = [
     type: "pressurePump", 
     name: "Lilie LP4142", 
     imageSrc: images("./lilie_lp4142.png"),
+    shopping: [
+    ],
     data: {
       spannung: 12, 
       strom: 3.5,

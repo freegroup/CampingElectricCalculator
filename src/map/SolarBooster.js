@@ -33,24 +33,23 @@ export default class SolarBooster extends Node {
     
     // Calculate if the accumulated voltage and current are out of specification of the charger/booster
     // Berechnung der Parallelschaltung
+    // https://www.tigerexped.de/solarladeregler-berechnen
     if ( this.children.length > 0 ) {
       const data = this.children[0].calculateCircuitData()
-      // skip the first element, because we have already the data of the first element in charge
-      // ( slice(1) )
       this.children.slice(1).forEach( child => {
         data.strom += child.calculateCircuitData().strom 
+        data.watt += child.calculateCircuitData().watt 
       })
 
-      // calculate [P] of all pinput sources and check if the booster can handle this
+      // calculate [P] of all pinout sources and check if the booster can handle this
       //
-      const eingangswatt = data.strom * data.spannung
-      if ( eingangswatt > this.calculateCircuitData().eingangswatt ) {
-        result.push(`[P = ${eingangswatt} Watt] of all input sources are bigger than the charger can handle [P = ${this.calculateCircuitData().eingangswatt} Watt]`)
+      if ( data.strom > this.model.data.nennladestrom ) {
+        result.push(`[I = ${data.strom} Ampere] is bigger than the charger can handle [I = ${this.model.data.nennladestrom} Amper]`)
       }
 
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
-      if ( data.leerlaufspannung > this.calculateCircuitData().eingangsspannung ) {
+      if ( data.leerlaufspannung > this.model.data.eingangsspannung ) {
         result.push(`The voltage [U = ${data.leerlaufspannung} Volt] of the input sources are bigger than the maximum voltage which the charger can handle [U = ${this.calculateCircuitData().eingangsspannung} Volt]`)
       }
     }
@@ -59,10 +58,38 @@ export default class SolarBooster extends Node {
   }
 
   calculateCircuitData () {
-    // It is only allowed, that this element has ONE direct child element
-    //
-    const result = JSON.parse(JSON.stringify(this.model.data)) // deep copy
+    // Berechnung der Parallelschaltung aller "parallel" angehängten Panels. 
+    if ( this.children.length > 0 ) {
+      const data = this.children[0].calculateCircuitData()
+      this.children.slice(1).forEach( child => {
+        data.nennstrom += child.calculateCircuitData().nennstrom 
+        data.watt += child.calculateCircuitData().watt 
+      })
 
-    return result
+      switch ( this.model.data.typ ) {
+        case "MPPT":
+          // Im Inneren des MPPT-Laderegler passiert folgendes: Am Solar-Eingang 
+          // kommen z.B. P=100W Solarpower an, nämlich 18,5V x 5,14A. 
+          // Die 18,5V sind aber viel zu viel für deinen Akku. Der benötigt zum Laden 
+          // lediglich 14,8V (wenn es ein AGM Akku ist). Also macht der DC-DC Wandler 
+          // im Inneren des MPPT-Reglers aus den 18,5 Volt einfach 14,8 Volt, bei 
+          // gleicher Leistung (P=100W). Dabei ändert sich der Ladestrom – er steigt an! 
+          // Die Formel dazu liefert den Beweis: I=100W/14.4V . Das ergibt einen neuen 
+          // Ladestrom von 6,75A.
+          return { data: { spannung: 14.8, strom: data.watt / 14.8, watt: data.watt } }
+        case "PWM":
+          // Der Kollege PWM mag es unkompliziert, und passt deswegen die Modulspannung 
+          // an deine Ladespannung des Akkus an – in dem Fall 14,8V (AGM Akku).
+          // Wenn du nun nochmal einen Blick auf die Spannung “Vm” des Moduls wirfst, wirst 
+          // du feststellen, dass diese bei 18,5V liegt. Der Regler “verschenkt” sozusagen 
+          // 3,7V, weil dein Akku ja lediglich 14,8 benötigt, während der Strom (Im) gleich 
+          // bleibt
+          return { data: { spannung: 14.8, strom: data.nennstrom, watt: data.nennstrom * 14.8 } }
+        default:
+          return { data: { spannung: 14.8, strom: 0, watt: 0 } }
+      }
+    }
+
+    return { data: { spannung: 14.8, strom: 0, watt: 0 } }
   }
 }

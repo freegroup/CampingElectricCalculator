@@ -5,6 +5,13 @@ export default class Fuse extends Node {
     super()
   }
 
+  getChildCandidates () {
+    if ( this.leftSide ) {
+      return ["solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator"] 
+    }
+    return ["fuseBox"] 
+  }
+
   getErrors () {
     const result = []
 

@@ -1,10 +1,14 @@
 
 import components from "./FuseBox_data.js"
 
+function sortComponents (payload) {
+  return payload.sort((a, b) => a.data.strom - b.data.strom)
+}
+
 export default {
   namespaced: true,
   state: {
-    components
+    components: sortComponents(components)
   },
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (id) => {
