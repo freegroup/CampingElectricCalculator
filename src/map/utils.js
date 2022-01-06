@@ -1,3 +1,11 @@
+
+function htmlToElement(html) {
+  var template = document.createElement('template')
+  html = html.trim() // Never return a text node of whitespace as the result
+  template.innerHTML = html
+  return template.content.firstChild
+}
+
 function createCanvas(parent) {
   const canvas = document.createElement("canvas")
   parent.append(canvas)
@@ -72,4 +80,4 @@ function drawArrowLine(ctx, p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndAr
   ctx.stroke()
 }
 
-export { createCanvas, disableSelection, drawArrowLine }
+export { createCanvas, disableSelection, drawArrowLine, htmlToElement }

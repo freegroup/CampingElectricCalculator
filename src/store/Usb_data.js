@@ -1,6 +1,6 @@
 const images = require.context("@/store/images/usb/", true, /\.png$/)
 
-const components = [
+export default [
   { 
     uuid: "1w312343lk245", 
     type: "usb", 
@@ -11,7 +11,7 @@ const components = [
     data: {
       spannung: 12, 
       strom: 3.6, // I=P/U
-      watt: 3.6 * 12
+      watt: (3.6 * 12).toFixed(2)
     }
   },
   { 
@@ -23,8 +23,8 @@ const components = [
     ],
     data: {
       spannung: 12, 
-      strom: 2 * 3.6, // I=P/U
-      watt: 2 * 3.6 * 12
+      strom: (2 * 3.6).toFixed(2), // I=P/U
+      watt: (2 * 3.6 * 12).toFixed(2)
     }
   },
   { 
@@ -36,10 +36,8 @@ const components = [
     ],
     data: {
       spannung: 12, 
-      strom: 4 * 3.6, // I=P/U
-      watt: 4 * 3.6 * 12
+      strom: (4 * 3.6).toFixed(2), // I=P/U
+      watt: (4 * 3.6 * 12).toFixed(2)
     }
   }
 ]
-
-export default components

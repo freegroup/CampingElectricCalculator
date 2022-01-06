@@ -1,13 +1,13 @@
 <template>
     <v-dialog v-model="showFlag" width="500" >
       <v-card>
-        <v-card-title class="text-h5 grey lighten-2">Privacy Policy</v-card-title>
+        <v-card-title class="text-h5 orange lighten-2">Add Component</v-card-title>
 
         <v-card-text style="height: 350px; overflow:auto">
           <v-list dense>
             <v-list-group :value="false" v-for="type in types" :key="type" >
                 <template v-slot:activator>
-                  <v-list-item-title>{{type}}</v-list-item-title>
+                  <v-list-item-title>{{ $t('component.' + type)}}</v-list-item-title>
                 </template>
                 <template v-for="(item, index) in components(type)" >
                   <v-list-item :key="item.uuid" @click="onItemSelected(type, item.uuid)" >

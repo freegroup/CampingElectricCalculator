@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import GenericNode from './GenericNode'
-import { createCanvas, drawArrowLine } from "./utils.js"
+import { createCanvas, drawArrowLine, htmlToElement } from "./utils.js"
 
 const CANVAS_WIDTH = 80
 /**
@@ -257,23 +257,17 @@ export default class Node extends GenericNode {
               this.labelContainer.append(this.toolbarDiv)
               this.toolbarDiv.className = 'toolbar'
 
-              this.infoIcon = document.createElement('img')
-              {
-                this.toolbarDiv.append(this.infoIcon)
-                this.infoIcon.src = require('@/assets/info.png')
-              }
+              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-gauge"></i>')
+              this.toolbarDiv.append(this.gaugeIcon)
 
-              this.configIcon = document.createElement('img')
-              {
-                this.toolbarDiv.append(this.configIcon)
-                this.configIcon.src = require('@/assets/configuration.png')
-              }
+              this.infoIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-information-outline"></i>')
+              this.toolbarDiv.append(this.infoIcon)
 
-              this.deleteIcon = document.createElement('img')
-              {
-                this.toolbarDiv.append(this.deleteIcon)
-                this.deleteIcon.src = require('@/assets/delete.png')
-              }
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-pencil"></i>')
+              this.toolbarDiv.append(this.configIcon)
+
+              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon pl-3 v-icon mdi mdi-trash-can-outline"></i>')
+              this.toolbarDiv.append(this.deleteIcon)
             }
 
             this.labelDiv = document.createElement('div')
@@ -315,17 +309,17 @@ export default class Node extends GenericNode {
               this.labelContainer.append(this.toolbarDiv)
               this.toolbarDiv.className = 'toolbar'
 
-              this.configIcon = document.createElement('img')
-              {
-                this.toolbarDiv.append(this.configIcon)
-                this.configIcon.src = require('@/assets/configuration.png')
-              }
+              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-gauge"></i>')
+              this.toolbarDiv.append(this.gaugeIcon)
 
-              this.deleteIcon = document.createElement('img')
-              {
-                this.toolbarDiv.append(this.deleteIcon)
-                this.deleteIcon.src = require('@/assets/delete.png')
-              }
+              this.infoIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-information-outline"></i>')
+              this.toolbarDiv.append(this.infoIcon)
+
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-pencil"></i>')
+              this.toolbarDiv.append(this.configIcon)
+
+              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon pl-3 v-icon mdi mdi-trash-can-outline"></i>')
+              this.toolbarDiv.append(this.deleteIcon)
             }
 
             this.labelDiv = document.createElement('div')
@@ -417,16 +411,6 @@ export default class Node extends GenericNode {
    *
    * */
   afterCreateHTML() {
-    $(this.getAnchor()).on('click', '.output_button', (event) => {
-      event.stopPropagation()
-      this.mindmap.onComponentBilanz(this)
-    })
-
-    $(this.getAnchor()).on('click', '.input_button', (event) => {
-      event.stopPropagation()
-      this.mindmap.onComponentBilanz(this)
-    })
-
     $(this.getAnchor()).on('mousedown', this.eventbinding_mousedown)
     $(this.getAnchor()).on('mouseup', this.eventbinding_mouseup)
     $(this.getAnchor()).on('click', this.eventbinding_click)
@@ -436,6 +420,11 @@ export default class Node extends GenericNode {
     $(this.addChildIcon).on("click", event => {
       event.stopPropagation()
       this.mindmap.onComponentAddChild(this, this.leftSide)
+    })
+
+    $(this.gaugeIcon).on("click", event => {
+      event.stopPropagation()
+      this.mindmap.onComponentBilanz(this)
     })
 
     $(this.configIcon).on("click", event => {

@@ -51,6 +51,20 @@ export default {
         consumer: "Consumer Side"
       }
     },
+    component: {
+      solarBooster: "Solar Booster",
+      solarPanel: "Solar Panel",
+      starterBooster: "DC-DC Booster",
+      starterAccu: "Start Battery",
+      alternator: "Alternator",
+      accu: "Caravan Battery",
+      fridge: "Fridge",
+      fuse: "Fuse",
+      fuseBox: "Fuse Box",
+      pressurePump: "Pressure Pump",
+      usb: "Usb Socket",
+      usbConsumer: "Usb Charging Devices"
+    },
     dialog: {
       selectComponent: {
         header: "Select Component"

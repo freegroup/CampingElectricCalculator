@@ -44,12 +44,11 @@ export default class GenericNode {
     if (this.getComponentContainer() !== null ) {
       this.getComponentContainer().innerHTML = 
       `
-      <div class="input_button"></div>
       <div class="component">
         <div class="component_${this.model.type} component_label">${this.model.name}</div>
         <img class="component_${this.model.type} component_icon" src="${this.model.imageSrc}"></img>
       </div>
-      <div class="output_button"></div>`
+      `
       this.drawLines()
     }
   }

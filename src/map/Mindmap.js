@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { disableSelection, createCanvas } from './utils'
+import { disableSelection, createCanvas, htmlToElement } from './utils'
 import GenericNode from './GenericNode'
 
 export default class Mindmap extends GenericNode {
@@ -218,17 +218,14 @@ export default class Mindmap extends GenericNode {
               this.labelContainer.append(this.toolbarDiv)
               this.toolbarDiv.className = 'toolbar'
 
-              this.infoIcon = document.createElement('img')
-              {
-                this.toolbarDiv.append(this.infoIcon)
-                this.infoIcon.src = require('@/assets/info.png')
-              }
+              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-gauge"></i>')
+              this.toolbarDiv.append(this.gaugeIcon)
 
-              this.configIcon = document.createElement('img')
-              {
-                this.toolbarDiv.append(this.configIcon)
-                this.configIcon.src = require('@/assets/configuration.png')
-              }
+              this.infoIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-information-outline"></i>')
+              this.toolbarDiv.append(this.infoIcon)
+
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon pr-8 v-icon mdi mdi-pencil"></i>')
+              this.toolbarDiv.append(this.configIcon)
             }
 
             this.centerLabel = document.createElement('div')
@@ -281,6 +278,11 @@ export default class Mindmap extends GenericNode {
         event.stopPropagation()
         this.onComponentShowInfo(this)
       })
+      
+      $(this.gaugeIcon).on("click", event => {
+        event.stopPropagation()
+        this.onComponentBilanz(this)
+      })
   
       $(this.addLeftChildIcon).on("click", event => {
         event.stopPropagation()
@@ -290,16 +292,6 @@ export default class Mindmap extends GenericNode {
       $(this.addRightChildIcon).on("click", event => {
         event.stopPropagation()
         this.notifyListeners({ event: "addChild", component: this, leftSide: false, candidates: this.getRightChildCandidates() })
-      })  
-
-      $(this.getAnchor()).on('click', '.output_button', (event) => {
-        event.stopPropagation()
-        this.onComponentBilanz(this)
-      })
-  
-      $(this.getAnchor()).on('click', '.input_button', (event) => {
-        event.stopPropagation()
-        this.onComponentBilanz(this)
       })  
     }
     return this.html

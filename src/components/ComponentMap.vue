@@ -242,12 +242,12 @@ export default {
           height: 26px;
           border-bottom: 1px solid lightgray;
           text-align: right;
-          img{
-            height: 22px;
-            padding: 3px;
+          .toolbar_icon{
+            font-size: 16px;
+            padding-left: 3px;
             cursor: pointer;
             &:hover {
-              background-color:lightgray;
+              color:orange;
             }
           }
         }
