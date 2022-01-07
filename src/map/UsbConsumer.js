@@ -15,6 +15,12 @@ export default class UsbConsumer extends RightNode {
   }
 
   calculateConsumptionData () {
-    return { strom: this.model.data.strom, spannung: this.model.data.spannung, watt: this.model.data.watt }
+    return { 
+      strom: this.model.data.strom, 
+      spannung: this.model.data.spannung, 
+      watt: this.model.data.watt,
+      operationHours: this.model.operationHours,
+      amperestunden: this.model.data.strom * this.model.operationHours
+    }
   }
 }
