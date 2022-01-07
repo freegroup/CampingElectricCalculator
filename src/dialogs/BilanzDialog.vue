@@ -1,9 +1,9 @@
 <template>
-    <v-dialog v-model="showFlag" :width="input && output ? 900 : 700" >
+    <v-dialog v-model="showFlag" :width="input && output ? 900 : 700" scrollable>
       <v-card>
         <DialogHeader :title="$t('dialog.bilanz.title')" :subtitle="$t('dialog.bilanz.subtitle')" icon="mdi-lightning-bolt-outline"></DialogHeader>
 
-        <v-card-text style="height: 350px; overflow: auto">
+        <v-card-text style="height: 350px;">
           <template v-if="output && input">
             <v-row class="mt-5">
               <v-col align-self="center" align="center" cols="5" class="text-h6">Input</v-col>

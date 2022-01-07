@@ -7,6 +7,7 @@
     <InfoDialog ref="infoDialog"/>
     <BilanzDialog ref="bilanzDialog"/>
     <ConsumerDialog ref="consumerDialog"/>
+    <TimerDialog ref="timerDialog"/>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import SelectComponentDialog from '@/dialogs/SelectComponentDialog.vue'
 import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
 import InfoDialog from '@/dialogs/InfoDialog.vue'
+import TimerDialog from '@/dialogs/TimerDialog.vue'
 import BilanzDialog from '@/dialogs/BilanzDialog.vue'
 import ConsumerDialog from '@/dialogs/ConsumerDialog.vue'
 
@@ -33,6 +35,7 @@ export default {
     ErrorDialog,
     BilanzDialog,
     ConsumerDialog,
+    TimerDialog,
     InfoDialog
   },
   watch: {
@@ -45,12 +48,14 @@ export default {
     const { root } = this.$refs
     this.map = new MindMap(root, 7000, 7000)
     this.map.on("select", event => this.handleNodeSelect(event))
+    this.map.on("timer", event => this.handleNodeTimer( event))
     this.map.on("configure", event => this.handleNodeConfigure( event))
     this.map.on("showError", event => this.handleNodeShowError( event))
     this.map.on("addChild", event => this.handleNodeAddChild( event))
     this.map.on("showInfo", event => this.handleNodeShowInfo( event))
     this.map.on("showBilanz", event => this.handleNodeBilanz( event))
     this.map.on("removeChild", event => this.handleNodeRemoveChild( event))
+    this.map.on("changed", () => this.saveConfig())
 
     const configuration = this.$store.getters["configuration/getById"](this.$route.params.configuration)
     this.loadConfiguration(configuration)
@@ -65,6 +70,7 @@ export default {
       // setup the center element 
       const data = this.$store.getters[config.center.type + "/getByUuid"]( config.center.uuid)
       this.map.setModel(data)
+      this.map.model.operationHours = 24
       this.createLeftComponents(this.map, config.left)
       this.createRightComponents(this.map, config.right)
 
@@ -87,7 +93,12 @@ export default {
     createLeftComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
         const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
+        let operationHours = componentRef.operationHours
+        if ( isNaN(operationHours) ) {
+          operationHours = 24
+        }
         const node = NodeFactory.createNode(true, data)
+        node.model.operationHours = operationHours
         parentComponentHost.addNode(node)
         this.createLeftComponents(node, componentRef.children) 
       })
@@ -96,7 +107,12 @@ export default {
     createRightComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
         const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
+        let operationHours = componentRef.operationHours
+        if ( isNaN(operationHours) ) {
+          operationHours = 24
+        }
         const node = NodeFactory.createNode(false, data)
+        node.model.operationHours = operationHours
         parentComponentHost.addNode(node)
         this.createRightComponents(node, componentRef.children) 
       })
@@ -121,7 +137,7 @@ export default {
     },
     
     async handleNodeSelect (event) {
-      console.log("NODE selected", event.component)
+      // console.log("NODE selected", event.component)
     },
 
     async handleNodeConfigure (event) {
@@ -145,6 +161,12 @@ export default {
       this.$refs.infoDialog.show(node)
     },
 
+    async handleNodeTimer (event) {
+      const node = event.component
+      await this.$refs.timerDialog.show(node)
+      this.saveConfig()
+    },
+
     async handleNodeBilanz (event) {
       const node = event.component
       if ( node.leftSide ) {
@@ -155,6 +177,7 @@ export default {
     },
 
     saveConfig() {
+      console.log("SAVE")
       // save the changes as "user" configuration
       this.$store.dispatch('configuration/saveUserConfiguration', this.map.toJson())
 

@@ -1,9 +1,9 @@
 <template>
-    <v-dialog v-model="showFlag" width="700" >
-      <v-card>
+    <v-dialog v-model="showFlag" width="700" scrollable>
+      <v-card >
         <DialogHeader :title="$t('dialog.error.title')" :subtitle="$t('dialog.error.subtitle')" icon="mdi-message-alert-outline"></DialogHeader>
 
-        <v-card-text style="height: 350px; overflow: auto">
+        <v-card-text style="height: 350px;">
           <v-list >
             <template v-for="(item, index) in errors" >
                 <v-list-item :key="index">

@@ -1,9 +1,8 @@
-import Node from './Node'
+import LeftNode from './LeftNode'
 
-export default class StarterAccu extends Node {
+export default class StarterAccu extends LeftNode {
   constructor() {
     super()
-    this.leftSide = true
   }
 
   getChildCandidates () {

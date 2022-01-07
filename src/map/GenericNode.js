@@ -6,6 +6,10 @@ export default class GenericNode {
     this.model = null
     this.errorIcon = null
     this.addChildCell = null
+    // some components do not run the hole day. Indicate if you can switch off/on them  and this result a a differnet 
+    // power consumption balance
+    //
+    this.timerBased = false
   }
 
   get type() {
@@ -18,6 +22,10 @@ export default class GenericNode {
 
   getErrors () {
     return []
+  }
+
+  setOperationHours( hours ) {
+    this.model.operationHours = hours
   }
 
   updateStatusIcons() {
@@ -55,7 +63,12 @@ export default class GenericNode {
 
   toJson() {
     // deep copy the data
-    const json = { uuid: this.model.uuid, type: this.model.type }
+    let operationHours = this.model.operationHours
+    if ( isNaN(operationHours) ) {
+      operationHours = 24
+    }
+
+    const json = { uuid: this.model.uuid, type: this.model.type, operationHours: operationHours }
     json.children = []
     this.children.forEach( child => {
       json.children.push(child.toJson())

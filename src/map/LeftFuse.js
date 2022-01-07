@@ -1,13 +1,12 @@
-import Node from './Node'
+import LeftNode from './LeftNode'
 
-export default class Fuse extends Node {
+export default class Fuse extends LeftNode {
   constructor() {
     super()
-    this.leftSide = true
   }
 
   getChildCandidates () {
-    return ["solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator"] 
+    return ["solarBooster", "starterBooster", "starterAccu"] 
   }
 
   getErrors () {

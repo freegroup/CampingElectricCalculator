@@ -75,7 +75,7 @@ export default {
         subtitle: "Displays the total energy consumption flowing through this component"
       },
       bilanz: {
-        title: "Energy Flow",
+        title: "Energy Balance",
         subtitle: "An overview of the energy flowing into and out of the component"
       },
       addComponent: {
@@ -92,6 +92,18 @@ export default {
         okButton: "Close",
         title: "Component Information",
         subtitle: "Technical details about the component"
+      },
+      timer: {
+        okButton: "Apply",
+        title: "Timer Settings",
+        subtitle: "Set the average time per day that the device is in operation or charged from the power supply.",
+        sliderLabel: "Hours per Day",
+        description: "Not all devices are connected to the electrical system 24 hours a day and consume electricity. <b>Here you can set how long you think the affected device is charged or in operation on average per day.</b> These are items like cell phones, camera batteries, drone batteries, external chargers, water pumps, and so on. Basically anything that you charge and then unplug for use."
+      },
+      help: {
+        okButton: "Close",
+        title: "What does the tool do?",
+        subtitle: "Simplifies the calculation of your currents and consumption of your electrics"
       }
     }
   },

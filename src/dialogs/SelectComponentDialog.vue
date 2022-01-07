@@ -1,9 +1,9 @@
 <template>
-    <v-dialog v-model="showFlag" width="900" >
+    <v-dialog v-model="showFlag" width="900" scrollable>
       <v-card>
         <DialogHeader :title="$t('dialog.selectComponent.title')" :subtitle="$t('dialog.selectComponent.subtitle')" icon="mdi-swap-horizontal"></DialogHeader>
 
-        <v-card-text style="height: 350px; overflow:scroll">
+        <v-card-text style="height: 350px;">
           <v-list three-line dense>
                 <v-list-item :key="item.uuid" @click="onItemSelected(item.uuid)" v-for="item in components" >
                     <v-img  class="mt-4 mb-4 mr-6" max-height="100" max-width="100" :src="item.imageSrc"></v-img>

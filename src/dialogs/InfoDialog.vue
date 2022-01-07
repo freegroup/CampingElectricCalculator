@@ -1,10 +1,10 @@
 <template>
-    <v-dialog v-model="showFlag" width="700" >
+    <v-dialog v-model="showFlag" width="800" scrollable>
       <v-card>
         <DialogHeader :title="model.name" :subtitle="$t('dialog.info.subtitle')" icon="mdi-eye-outline"></DialogHeader>
 
-        <v-card-text style="height: 350px; overflow: scroll">
-        <v-row no-gutters justify="center">
+        <v-card-text style="height: 350px;">
+        <v-row no-gutters>
           <v-col cols="12"  class="mb-5">
            <div class="text-subtitle-1">{{model.description}}</div>
           </v-col>

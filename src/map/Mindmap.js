@@ -20,20 +20,13 @@ export default class Mindmap extends GenericNode {
     this.host.append(this.getHTMLElement())
 
     this.center()
-    this.eventbinding_mousedown = this._mousedown.bind(this)
-    this.eventbinding_mouseup = this._mouseup.bind(this)
-    this.eventbinding_click = this._click.bind(this)
-
-    $(this.html.parentNode).on('mousedown', this.eventbinding_mousedown)
-    $(this.html.parentNode).on('mouseup', this.eventbinding_mouseup)
-    $(this.html.parentNode).on('click', this.eventbinding_click)
 
     disableSelection(this.html)
     this.setCurrentSelection(this)
   }
 
   getLeftChildCandidates () {
-    return ["fuse", "fuseBox", "solarBooster", "starterBooster"] 
+    return ["fuse", "solarBooster", "starterBooster"] 
   }
 
   getRightChildCandidates () {
@@ -63,31 +56,9 @@ export default class Mindmap extends GenericNode {
       block: 'center'
     })
   }
-  
+
   getComponentContainer () {
     return this.centerLabel
-  }
-
-  /**
-   * Binding for the click event
-   * @private
-   * */
-  _click() {
-    //  Event.stop(event)
-  }
-
-  /**
-   * Binding for the mouse down event
-   * @private
-   * */
-  _mousedown(event) {
-  }
-
-  /**
-   * Binding for the mouse up event
-   * @private
-   * */
-  _mouseup() {
   }
 
   /**
@@ -203,12 +174,8 @@ export default class Mindmap extends GenericNode {
         const addLeftChildCell = row.insertCell()
         {
           addLeftChildCell.className = 'storage'
-          this.addLeftChildIcon = document.createElement('img')
-          {
-            addLeftChildCell.append(this.addLeftChildIcon)
-            this.addLeftChildIcon.src = require('@/assets/icon_plus.png')
-            this.addLeftChildIcon.className = 'addChild_icon'
-          }
+          this.addLeftChildIcon = htmlToElement('<i aria-hidden="true" class="addChild_icon v-icon mdi mdi-plus-circle-outline"></i>')
+          addLeftChildCell.append(this.addLeftChildIcon)
         }
 
         this.centerCanvas = row.insertCell()
@@ -243,12 +210,8 @@ export default class Mindmap extends GenericNode {
         const addRightChildCell = row.insertCell()
         {
           addRightChildCell.className = 'storage'
-          this.addRightChildIcon = document.createElement('img')
-          {
-            addRightChildCell.append(this.addRightChildIcon)
-            this.addRightChildIcon.src = require('@/assets/icon_plus.png')
-            this.addRightChildIcon.className = 'addChild_icon'
-          }
+          this.addRightChildIcon = htmlToElement('<i aria-hidden="true" class="addChild_icon v-icon mdi mdi-plus-circle-outline"></i>')
+          addRightChildCell.append(this.addRightChildIcon)
         }
 
         this.rightLines = row.insertCell()
@@ -354,6 +317,10 @@ export default class Mindmap extends GenericNode {
 
   onComponentConfigure(component) {
     this.notifyListeners({ event: "configure", component: component })
+  }
+
+  onComponentTimer(component) {
+    this.notifyListeners({ event: "timer", component: component })
   }
 
   onComponentShowErrors(component) {

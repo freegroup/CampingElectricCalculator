@@ -1,9 +1,8 @@
-import Node from './Node'
+import LeftNode from './LeftNode'
 
-export default class SolarPanel extends Node {
+export default class SolarPanel extends LeftNode {
   constructor() {
     super()
-    this.leftSide = true
   }
 
   getChildCandidates () {

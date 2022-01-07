@@ -1,9 +1,9 @@
 <template>
-    <v-dialog v-model="showFlag" width="800" >
+    <v-dialog v-model="showFlag" width="800" scrollable>
       <v-card>
         <DialogHeader :title="$t('dialog.addComponent.title')" :subtitle="$t('dialog.addComponent.subtitle')" icon="mdi-plus-network-outline"></DialogHeader>
 
-        <v-card-text style="height: 350px; overflow:auto">
+        <v-card-text style="height: 350px;">
           <v-list dense>
             <v-list-group :value="false" v-for="type in types" :key="type" >
                 <template v-slot:activator>

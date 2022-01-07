@@ -1,9 +1,8 @@
-import Node from './Node'
+import RightNode from './RightNode'
 
-export default class Usb extends Node {
+export default class Usb extends RightNode {
   constructor() {
     super()
-    this.leftSide = false
   }
 
   getChildCandidates () {

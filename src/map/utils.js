@@ -80,4 +80,5 @@ function drawArrowLine(ctx, p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndAr
   ctx.stroke()
 }
 
-export { createCanvas, disableSelection, drawArrowLine, htmlToElement }
+const CANVAS_WIDTH = 80
+export { createCanvas, disableSelection, drawArrowLine, htmlToElement, CANVAS_WIDTH }

@@ -4,18 +4,29 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Camper Electric Configuration</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click="exportJson">
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn icon @click="center">
-        <v-icon>mdi-image-filter-center-focus</v-icon>
-      </v-btn>
-      <v-btn icon @click="exportPdf">
-        <v-icon>mdi-text-box-check-outline</v-icon>
-      </v-btn>
-      <template v-slot:extension>
-        <h4>{{label}}</h4>
-      </template>
+
+          <v-btn @click="exportJson" class="ml-1">
+            <v-icon>mdi-heart</v-icon>
+            <div class="d-none d-lg-block">Export Json</div>
+          </v-btn>
+          
+          <v-btn @click="center" class="ml-1">
+            <v-icon>mdi-image-filter-center-focus</v-icon>
+            <div class="d-none d-lg-block">Center Document</div>
+          </v-btn>
+
+          <v-btn @click="exportPdf" class="ml-1">
+            <v-icon>mdi-text-box-check-outline</v-icon> 
+            <div class="d-none d-lg-block">Export Components</div>
+          </v-btn>
+          <v-btn @click="help" class="ml-1">
+            <v-icon>mdi-help-circle-outline</v-icon>
+            <div class="d-none d-lg-block">Help</div>
+          </v-btn>
+  
+          <template v-slot:extension>
+            <h4>{{label}}</h4>
+          </template>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -49,11 +60,13 @@
       <ComponentMap ref="mindmap" @configLoaded="onConfigLoaded"/>
     </v-main>
    <JsonDialog ref="jsonDialog"/>
+   <HelpDialog ref="helpDialog"/>
   </v-app>
 </template>
 
 <script>
 import JsonDialog from '@/dialogs/JsonDialog.vue'
+import HelpDialog from '@/dialogs/HelpDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'
 import { mapState } from 'vuex'
 
@@ -61,7 +74,8 @@ export default {
   name: 'Map',
   components: {
     ComponentMap,
-    JsonDialog
+    JsonDialog,
+    HelpDialog
   },
   data: () => ({
     drawer: false,
@@ -78,6 +92,9 @@ export default {
     exportJson() {
       const json = this.$refs.mindmap.toJson()
       this.$refs.jsonDialog.show(json)
+    },
+    help() {
+      this.$refs.helpDialog.show()
     },
     exportPdf() {
       const routeData = this.$router.resolve({ path: '/list/' + this.$refs.mindmap.getConfiguration().id })

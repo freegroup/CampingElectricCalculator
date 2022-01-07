@@ -1,9 +1,9 @@
-import Node from './Node'
+import RightNode from './RightNode'
 
-export default class PressurePump extends Node {
+export default class PressurePump extends RightNode {
   constructor() {
     super()
-    this.leftSide = false
+    this.timerBased = true
   }
 
   getChildCandidates () {

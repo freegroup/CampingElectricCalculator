@@ -1,18 +1,24 @@
 <template>
     <v-dialog v-model="showFlag" :width="700" scrollable>
       <v-card>
-        <DialogHeader :title="$t('dialog.consumer.title')" :subtitle="$t('dialog.consumer.subtitle')" icon="mdi-battery-charging-outline"></DialogHeader>
+        <DialogHeader :title="$t('dialog.timer.title')" :subtitle="$t('dialog.timer.subtitle')" icon="mdi-timer-outline"></DialogHeader>
 
-        <v-card-text style="height: 350px;">
+        <v-card-text style="height: 350px; overflow: auto">
              <v-row class="mt-5">
               <v-col cols="12">
-                <v-simple-table flat dense>
-                  <template v-slot:default>
-                    <tbody>
-                      <tr :key="key" v-for="key in Object.keys(consumption)" ><td>{{ $t("data.label."+key)}}</td><td>{{consumption[key]|toFixed}} {{ $t("data.unit."+key)}}</td> </tr>
-                    </tbody>
-                  </template>
-                </v-simple-table>
+                    <div v-html="$t('dialog.timer.description')"></div>
+              </v-col>
+            </v-row>
+             <v-row class="mt-10">
+              <v-col cols="12">
+                    <v-slider
+                      hint="Betrieb in Stunden pro Tag"
+                      v-model="operationHours"
+                      :label="$t('dialog.timer.sliderLabel')"
+                      min="1"
+                      max="24"
+                      thumb-label="always"
+                    ></v-slider>
               </v-col>
             </v-row>
 
@@ -32,7 +38,7 @@
 import DialogHeader from "@/components/DialogHeader.vue"
 
 export default {
-  name: "BilanzDialog",
+  name: "TimerDialog",
   data() {
     return {
       showFlag: false,
@@ -59,6 +65,16 @@ export default {
   computed: {
     consumption () {
       return this.component ? this.component.calculateConsumptionData() : null
+    },
+    operationHours: {
+      get () {
+        return this.component ? this.component.model.operationHours : 1
+      },
+      set (value) {
+        if ( this.component ) {
+          this.component.setOperationHours(value)
+        }
+      }
     }
   }
 }

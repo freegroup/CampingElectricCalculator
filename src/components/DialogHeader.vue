@@ -1,15 +1,20 @@
 <template>
-  <v-card-title class="orange white--text">
-    <v-row>
-      <v-col cols="2" align-self="center" align="left" >
-            <v-btn class="orange" fab ><v-icon class="white--text" >{{icon}}</v-icon></v-btn>
+  <v-card-title class="orange white--text ma-0 pa-0">
+    <v-container >
+    <v-row no-gutters>
+      <v-col cols="1" align-self="center" align="center">
+        <v-btn class="orange" fab small><v-icon class="white--text" >{{icon}}</v-icon></v-btn>
       </v-col>
-      <v-col cols="10">
-        <v-row class="pt-2">
-          <v-col cols="12" class="pa-0">{{title}}</v-col>
-          <v-col cols="12" class="pa-0 text-subtitle-1">{{subtitle}}</v-col></v-row> 
+      <v-col>
+        <v-list-item two-line dark>
+          <v-list-item-content>
+            <v-list-item-title>{{title}}</v-list-item-title>
+            <v-list-item-subtitle>{{subtitle}}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
       </v-col>
     </v-row>
+    </v-container>
   </v-card-title>
 </template>
 

@@ -1,9 +1,8 @@
-import Node from './Node'
+import RightNode from './RightNode'
 
-export default class Fridge extends Node {
+export default class Fridge extends RightNode {
   constructor() {
     super()
-    this.leftSide = false
   }
 
   getChildCandidates () {

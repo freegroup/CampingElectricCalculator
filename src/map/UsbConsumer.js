@@ -1,9 +1,9 @@
-import Node from './Node'
+import RightNode from './RightNode'
 
-export default class UsbConsumer extends Node {
+export default class UsbConsumer extends RightNode {
   constructor() {
     super()
-    this.leftSide = false
+    this.timerBased = true
   }
 
   getChildCandidates () {
@@ -13,7 +13,7 @@ export default class UsbConsumer extends Node {
   calculateOutputData () {
     return null
   }
-  
+
   calculateConsumptionData () {
     return { strom: this.model.data.strom, spannung: this.model.data.spannung, watt: this.model.data.watt }
   }
