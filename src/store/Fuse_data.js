@@ -16,7 +16,7 @@ export default
       }
     ],
     data: {
-      typ: "Automatic",
+      type: "Automatic",
       strom: 40,
       spannung: 12
     }
@@ -35,7 +35,7 @@ export default
       }
     ],
     data: {
-      typ: "Automatic",
+      type: "Automatic",
       strom: 50,
       spannung: 12
     }
@@ -54,7 +54,7 @@ export default
       }
     ],
     data: {
-      typ: "Automatic",
+      type: "Automatic",
       strom: 70,
       spannung: 12
     }
@@ -73,7 +73,7 @@ export default
       }
     ],
     data: {
-      typ: "Automatic",
+      type: "Automatic",
       strom: 100,
       spannung: 12
     }
@@ -92,7 +92,7 @@ export default
       }
     ],
     data: {
-      typ: "Automatic",
+      type: "Automatic",
       strom: 200,
       spannung: 12
     }

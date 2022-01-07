@@ -16,6 +16,13 @@ const i18n = new VueI18n({
   messages
 })
 
+Vue.filter('toFixed', function (value) {
+  if ( isNaN(value) ) {
+    return value
+  }
+  return value.toFixed(2).replace(/\.00$/, '')
+})
+
 new Vue({
   router,
   store,

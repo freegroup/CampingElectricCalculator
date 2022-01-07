@@ -1,6 +1,6 @@
 const images = require.context("@/store/images/starterBooster/", true, /\.png$/)
 
-const components = [
+export default [
   { 
     uuid: "6", 
     type: "starterBooster", 
@@ -9,14 +9,11 @@ const components = [
     shopping: [
     ],
     data: {
-      // Eingangsspannung muss GÖßER als die Leewrlaufspannung der Solarpanele sein
+      type: "DC-DC Converter",
       eingangsspannung: 12,
-      // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
       eingangsstrom: 15,
       spannung: 12,
       strom: 15
     }
   }
 ]
-
-export default components

@@ -70,12 +70,10 @@ export default class GenericNode {
   }
 
   calculateInputData () {
-    // It is only allowed, that this element has ONE direct child element
-    //
-    if ( !this.leftSide ) {
-      return JSON.parse(JSON.stringify(this.model.data)) 
-    }
+    return JSON.parse(JSON.stringify(this.model.data)) 
+  }
 
-    return {}
+  calculateConsumptionData () {
+    return { strom: 0, spannung: 12, watt: 0 }
   }
 }

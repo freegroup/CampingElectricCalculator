@@ -17,7 +17,7 @@ export default [
     data: {
       ah: 100,
       spannung: 12,
-      typ: "LiFePO4"
+      type: "LiFePO4"
     }
   },
   { 
@@ -36,7 +36,7 @@ export default [
     data: {
       ah: 200,
       spannung: 12,
-      typ: "LiFePO4"
+      type: "LiFePO4"
     }
   },
   { 
@@ -55,7 +55,7 @@ export default [
     data: {
       ah: 150,
       spannung: 12,
-      typ: "LiFePO4"
+      type: "LiFePO4"
     }
   }
 ]

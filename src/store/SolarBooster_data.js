@@ -1,6 +1,6 @@
 const images = require.context("@/store/images/solarBooster/", true, /\.png$/)
 
-const components = [
+export default [
   { 
     uuid: "17302EE5-08AC-4E2C-882B-F30EA9536B07", 
     type: "solarBooster", 
@@ -14,7 +14,7 @@ const components = [
       }
     ],
     data: {
-      typ: "MPPT",
+      type: "MPPT",
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
       nennladestrom: 15,
       spannung: 12,
@@ -37,7 +37,7 @@ const components = [
       }
     ],
     data: {
-      typ: "MPPT",
+      type: "MPPT",
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
       nennladestrom: 10,
       spannung: 12,
@@ -60,7 +60,7 @@ const components = [
       }
     ],
     data: {
-      typ: "PWM",
+      type: "PWM",
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
       nennladestrom: 30,
       spannung: 12,
@@ -71,5 +71,3 @@ const components = [
     }
   }
 ]
-
-export default components

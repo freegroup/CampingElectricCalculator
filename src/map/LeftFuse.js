@@ -1,12 +1,13 @@
 import Node from './Node'
 
-export default class FuseBox extends Node {
+export default class Fuse extends Node {
   constructor() {
     super()
+    this.leftSide = true
   }
 
   getChildCandidates () {
-    return ["pressurePump", "fridge", "usb"] 
+    return ["solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator"] 
   }
 
   getErrors () {
@@ -39,19 +40,17 @@ export default class FuseBox extends Node {
         result.push(`The power [I= ${data.strom} Ampere] of the input sources are bigger than the maximum power which the fuse can handle (${this.model.data.strom} )`)
       }
     }
-
     return result
   }
 
-  calculateOutputData () {
-    const result = { strom: 0, spannung: 0 }
+  calculateInputData () {
+    const result = { strom: 0, spannung: 0, watt: 0 }
     if ( this.children.length > 0 ) {
       let childData = this.children[0].calculateOutputData()
       // check that the attributes "strom" and "spannung" are in place
       if ("strom" in childData && "spannung" in childData) {
         result.strom = childData.strom
         result.spannung = childData.spannung
-
         this.children.slice(1).forEach( child => {
           childData = child.calculateOutputData()
           if ( "strom" in childData ) {
@@ -60,7 +59,11 @@ export default class FuseBox extends Node {
         })
       }
     }
-
+    result.watt = result.strom * result.spannung
     return result
+  }
+
+  calculateOutputData () {
+    return this.calculateInputData()
   }
 }

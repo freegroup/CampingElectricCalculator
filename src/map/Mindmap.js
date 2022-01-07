@@ -15,6 +15,7 @@ export default class Mindmap extends GenericNode {
     this.html = null
     this.centerLabel = null
     this.host = $(id)
+    this.leftSide = true
 
     this.host.append(this.getHTMLElement())
 
@@ -278,7 +279,7 @@ export default class Mindmap extends GenericNode {
         event.stopPropagation()
         this.onComponentShowInfo(this)
       })
-      
+
       $(this.gaugeIcon).on("click", event => {
         event.stopPropagation()
         this.onComponentBilanz(this)

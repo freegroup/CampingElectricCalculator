@@ -3,6 +3,7 @@ import Node from './Node'
 export default class SolarBooster extends Node {
   constructor() {
     super()
+    this.leftSide = true
   }
 
   getChildCandidates () {
@@ -76,7 +77,7 @@ export default class SolarBooster extends Node {
         data.watt += child.calculateOutputData().watt 
       })
 
-      switch ( this.model.data.typ ) {
+      switch ( this.model.data.type ) {
         case "MPPT":
           // Im Inneren des MPPT-Laderegler passiert folgendes: Am Solar-Eingang 
           // kommen z.B. P=100W Solarpower an, nämlich 18,5V x 5,14A. 
@@ -86,7 +87,7 @@ export default class SolarBooster extends Node {
           // gleicher Leistung (P=100W). Dabei ändert sich der Ladestrom – er steigt an! 
           // Die Formel dazu liefert den Beweis: I=100W/14.4V . Das ergibt einen neuen 
           // Ladestrom von 6,75A.
-          return { spannung: 14.8, strom: (data.watt / 14.8).toFixed(2), watt: data.watt } 
+          return { spannung: 14.8, strom: data.watt / 14.8, watt: data.watt, type: this.model.data.type } 
         case "PWM":
           // Der Kollege PWM mag es unkompliziert, und passt deswegen die Modulspannung 
           // an deine Ladespannung des Akkus an – in dem Fall 14,8V (AGM Akku).
@@ -94,9 +95,9 @@ export default class SolarBooster extends Node {
           // du feststellen, dass diese bei 18,5V liegt. Der Regler “verschenkt” sozusagen 
           // 3,7V, weil dein Akku ja lediglich 14,8 benötigt, während der Strom (Im) gleich 
           // bleibt
-          return { spannung: 14.8, strom: data.nennstrom, watt: (data.nennstrom * 14.8).toFixed(2) } 
+          return { spannung: 14.8, strom: data.nennstrom, watt: data.nennstrom * 14.8, type: this.model.data.type } 
         default:
-          return { spannung: 14.8, strom: 0, watt: 0 } 
+          return { spannung: 14.8, strom: 0, watt: 0, type: this.model.data.type } 
       }
     }
 

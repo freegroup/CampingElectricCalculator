@@ -25,10 +25,6 @@ export default class Node extends GenericNode {
     this.eventbinding_mouseup = this._mouseup.bind(this)
   }
 
-  setLeftSide (flag) {
-    this.leftSide = flag
-  }
-
   getComponentContainer () {
     return this.labelDiv
   }

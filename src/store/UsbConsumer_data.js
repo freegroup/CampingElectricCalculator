@@ -1,6 +1,6 @@
 const images = require.context("@/store/images/usbConsumer/", true, /\.png$/)
 
-const components = [
+export default [
   { 
     uuid: "1w312343lk245phone", 
     type: "usbConsumer", 
@@ -15,5 +15,3 @@ const components = [
     }
   }
 ]
-
-export default components

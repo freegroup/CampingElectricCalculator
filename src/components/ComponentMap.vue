@@ -6,6 +6,7 @@
     <ErrorDialog ref="errorDialog"/>
     <InfoDialog ref="infoDialog"/>
     <BilanzDialog ref="bilanzDialog"/>
+    <ConsumerDialog ref="consumerDialog"/>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
 import InfoDialog from '@/dialogs/InfoDialog.vue'
 import BilanzDialog from '@/dialogs/BilanzDialog.vue'
+import ConsumerDialog from '@/dialogs/ConsumerDialog.vue'
 
 export default {
   data() {
@@ -30,6 +32,7 @@ export default {
     SelectComponentDialog,
     ErrorDialog,
     BilanzDialog,
+    ConsumerDialog,
     InfoDialog
   },
   watch: {
@@ -134,17 +137,21 @@ export default {
     async handleNodeShowError (event) {
       const node = event.component
       const errors = node.getErrors()
-      await this.$refs.errorDialog.show(errors)
+      this.$refs.errorDialog.show(errors)
     },
 
     async handleNodeShowInfo (event) {
       const node = event.component
-      await this.$refs.infoDialog.show(node)
+      this.$refs.infoDialog.show(node)
     },
 
     async handleNodeBilanz (event) {
       const node = event.component
-      await this.$refs.bilanzDialog.show(node)
+      if ( node.leftSide ) {
+        this.$refs.bilanzDialog.show(node)
+      } else {
+        this.$refs.consumerDialog.show(node)
+      }
     },
 
     saveConfig() {

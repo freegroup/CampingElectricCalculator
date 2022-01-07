@@ -4,51 +4,55 @@ import SolarPanel from "./SolarPanel.js"
 import SolarBooster from "./SolarBooster.js"
 import StarterAccu from "./StarterAccu.js"
 import StarterBooster from "./StarterBooster.js"
-import FuseBox from "./FuseBox.js"
+import RightFuseBox from "./RightFuseBox.js"
 import PressurePump from "./PressurePump.js"
 import Usb from "./Usb.js"
 import UsbConsumer from "./UsbConsumer.js"
-import Fuse from "./Fuse.js"
+import LeftFuse from "./LeftFuse.js"
+import RightFuse from "./RightFuse.js"
 
 export default class NodeFactory {
   static createNode (leftSide, model) {
     let node = null  
     switch (model.type) {
       case "usbConsumer":
-        node = new UsbConsumer(model)     
+        node = new UsbConsumer()     
         break
       case "pressurePump":
-        node = new PressurePump(model)     
+        node = new PressurePump()     
         break
       case "usb":
-        node = new Usb(model)     
+        node = new Usb()     
         break
       case "fridge":
-        node = new Fridge(model)     
+        node = new Fridge()     
         break
       case "alternator":
-        node = new Alternator(model)     
+        node = new Alternator()     
         break
       case "starterBooster":
-        node = new StarterBooster(model)     
+        node = new StarterBooster()     
         break
       case "starterAccu":
-        node = new StarterAccu(model)     
+        node = new StarterAccu()     
         break
       case "solarBooster":
-        node = new SolarBooster(model)    
+        node = new SolarBooster()    
         break 
       case "fuse":
-        node = new Fuse(model)     
+        if ( leftSide ) {
+          node = new LeftFuse()  
+        } else {
+          node = new RightFuse()
+        }   
         break
       case "fuseBox":
-        node = new FuseBox(model)     
+        node = new RightFuseBox()
         break
       case "solarPanel":
-        node = new SolarPanel(model)
+        node = new SolarPanel()
         break
-    } 
-    node.setLeftSide(leftSide)
+    }
     node.setModel(model)
     return node
   }

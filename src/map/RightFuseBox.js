@@ -1,15 +1,13 @@
 import Node from './Node'
 
-export default class Fuse extends Node {
+export default class FuseBox extends Node {
   constructor() {
     super()
+    this.leftSide = false
   }
 
   getChildCandidates () {
-    if ( this.leftSide ) {
-      return ["solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator"] 
-    }
-    return ["fuseBox"] 
+    return ["pressurePump", "fridge", "usb"] 
   }
 
   getErrors () {
@@ -42,30 +40,20 @@ export default class Fuse extends Node {
         result.push(`The power [I= ${data.strom} Ampere] of the input sources are bigger than the maximum power which the fuse can handle (${this.model.data.strom} )`)
       }
     }
+
     return result
   }
 
-  calculateInputData () {
-    const result = { strom: 0, spannung: 0, watt: 0 }
+  calculateConsumptionData () {
+    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0 }
     if ( this.children.length > 0 ) {
-      let childData = this.children[0].calculateOutputData()
       // check that the attributes "strom" and "spannung" are in place
-      if ("strom" in childData && "spannung" in childData) {
-        result.strom = childData.strom
-        result.spannung = childData.spannung
-        this.children.slice(1).forEach( child => {
-          childData = child.calculateOutputData()
-          if ( "strom" in childData ) {
-            result.strom += childData.strom 
-          }
-        })
-      }
+      result.strom = this.children[0].calculateConsumptionData().strom
+      this.children.slice(1).forEach( child => {
+        result.strom += child.calculateConsumptionData().strom 
+      })
     }
-    result.watt = (result.strom * result.spannung).toFixed(2)
+    result.watt = (result.strom * result.spannung)
     return result
-  }
-
-  calculateOutputData () {
-    return this.calculateInputData()
   }
 }

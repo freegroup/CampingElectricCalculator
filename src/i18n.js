@@ -9,7 +9,7 @@ export default {
         watt: "Watt",
         strom_je_anschluss: "Current / Unit",
         anschluesse: "Units",
-        typ: "Typ",
+        type: "Typ",
         gewicht: "Weight",
         zellen: "Cells",
         leerlaufspannung: "Open-Circuit Voltage",
@@ -18,8 +18,8 @@ export default {
         eingangsstrom: "Input Current",
         eingangswatt: "Input Watt",
         chargeSupport: "Supported Battery Types",
-        spannung: "Power",
-        nennspannung: "Nominal Power"
+        spannung: "Voltage",
+        nennspannung: "Nominal Voltage"
       },
       unit: {
         ah: "Ah",
@@ -29,7 +29,7 @@ export default {
         strom_je_anschluss: "A",
         watt: "Watt",
         anschluesse: "",
-        typ: "",
+        type: "",
         gewicht: "Gramm",
         zellen: "",
         leerlaufspannung: "Volt",

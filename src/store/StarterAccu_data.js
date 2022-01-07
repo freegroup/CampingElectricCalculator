@@ -1,6 +1,6 @@
 const images = require.context("@/store/images/starterAccu/", true, /\.png$/)
 
-const components = [
+export default [
   { 
     uuid: "1w3453245", 
     type: "starterAccu", 
@@ -14,5 +14,3 @@ const components = [
     }
   }
 ]
-
-export default components

@@ -1,6 +1,6 @@
 const images = require.context("@/store/images/solarPanel/", true, /\.png$/)
 
-const components = [
+export default [
   { 
     uuid: "6676406A-45EA-4B45-98A9-6118ADF47CD6", 
     type: "solarPanel", 
@@ -34,5 +34,3 @@ const components = [
     }
   }
 ]
-
-export default components

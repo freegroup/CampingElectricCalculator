@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showFlag" :width="input && output ? 900 : 500" >
       <v-card>
-        <v-card-title class="orange lighten-2">Energy Bilanz</v-card-title>
+        <v-card-title class="orange lighten-2"><v-img max-height="30" max-width="30" class="mr-5" :src="component.model.imageSrc" contain></v-img> Energy Bilanz</v-card-title>
 
         <v-card-text style="height: 350px; overflow: auto">
           <template v-if="output && input">
@@ -15,7 +15,7 @@
                 <v-simple-table flat dense v-if="input">
                   <template v-slot:default>
                     <tbody>
-                      <tr :key="key" v-for="key in Object.keys(input)" ><td>{{ $t("data.label."+key)}}</td><td>{{input[key]}} {{ $t("data.unit."+key)}}</td> </tr>
+                      <tr :key="key" v-for="key in Object.keys(input)" ><td>{{ $t("data.label."+key)}}</td><td>{{input[key]|toFixed}} {{ $t("data.unit."+key)}}</td> </tr>
                     </tbody>
                   </template>
                 </v-simple-table>
@@ -27,23 +27,7 @@
                 <v-simple-table flat dense>
                   <template v-slot:default>
                     <tbody>
-                      <tr :key="key" v-for="key in Object.keys(output)" ><td>{{ $t("data.label."+key)}}</td><td>{{output[key]}} {{ $t("data.unit."+key)}}</td> </tr>
-                    </tbody>
-                  </template>
-                </v-simple-table>
-              </v-col>
-            </v-row>
-          </template>
-          <template v-if="output===null && input">
-            <v-row class="mt-5">
-              <v-col align-self="center" align="center" cols="12" class="text-h6">Consumption</v-col>
-            </v-row>
-            <v-row class="mt-5">
-              <v-col cols="12">
-                <v-simple-table flat dense>
-                  <template v-slot:default>
-                    <tbody>
-                      <tr :key="key" v-for="key in Object.keys(input)" ><td>{{ $t("data.label."+key)}}</td><td>{{input[key]}} {{ $t("data.unit."+key)}}</td> </tr>
+                      <tr :key="key" v-for="key in Object.keys(output)" ><td>{{ $t("data.label."+key)}}</td><td>{{output[key]|toFixed}} {{ $t("data.unit."+key)}}</td> </tr>
                     </tbody>
                   </template>
                 </v-simple-table>
@@ -51,7 +35,7 @@
             </v-row>
           </template>
 
-          <template v-if="input===null && output">
+          <template v-if="input===null">
             <v-row class="mt-5">
               <v-col align-self="center" align="center" cols="12" class="text-h6">Providing</v-col>
             </v-row>
@@ -60,7 +44,7 @@
                 <v-simple-table flat dense>
                   <template v-slot:default>
                     <tbody>
-                      <tr :key="key" v-for="key in Object.keys(output)" ><td>{{ $t("data.label."+key)}}</td><td>{{output[key]}} {{ $t("data.unit."+key)}}</td> </tr>
+                      <tr :key="key" v-for="key in Object.keys(output)" ><td>{{ $t("data.label."+key)}}</td><td>{{output[key]|toFixed}} {{ $t("data.unit."+key)}}</td> </tr>
                     </tbody>
                   </template>
                 </v-simple-table>
