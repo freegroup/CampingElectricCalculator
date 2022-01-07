@@ -13,7 +13,8 @@ export default [
       eingangsspannung: 12,
       eingangsstrom: 15,
       spannung: 12,
-      strom: 15
+      strom: 15,
+      watt: 12 * 15
     }
   }
 ]

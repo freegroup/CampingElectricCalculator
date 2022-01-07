@@ -7,6 +7,9 @@
       <v-btn icon @click="exportJson">
         <v-icon>mdi-heart</v-icon>
       </v-btn>
+      <v-btn icon @click="center">
+        <v-icon>mdi-image-filter-center-focus</v-icon>
+      </v-btn>
       <v-btn icon @click="exportPdf">
         <v-icon>mdi-text-box-check-outline</v-icon>
       </v-btn>
@@ -68,6 +71,9 @@ export default {
   methods: {
     onConfigLoaded() {
       this.label = this.$refs.mindmap.getLabel()
+    },
+    center() {
+      this.$refs.mindmap.center()
     },
     exportJson() {
       const json = this.$refs.mindmap.toJson()

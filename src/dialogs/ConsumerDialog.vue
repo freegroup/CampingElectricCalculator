@@ -1,7 +1,8 @@
 <template>
-    <v-dialog v-model="showFlag" :width="500" >
+    <v-dialog v-model="showFlag" :width="700" >
       <v-card>
-        <v-card-title class="orange lighten-2">Energy Consumption</v-card-title>
+        <DialogHeader :title="$t('dialog.consumer.title')" :subtitle="$t('dialog.consumer.subtitle')" icon="mdi-battery-charging-outline"></DialogHeader>
+
         <v-card-text style="height: 350px; overflow: auto">
              <v-row class="mt-5">
               <v-col cols="12">
@@ -28,6 +29,8 @@
 </template>
 
 <script>
+import DialogHeader from "@/components/DialogHeader.vue"
+
 export default {
   name: "BilanzDialog",
   data() {
@@ -37,7 +40,9 @@ export default {
       component: null
     }
   },
-
+  components: {
+    DialogHeader
+  },
   methods: {
     async show( component ) {
       return new Promise((resolve) => {

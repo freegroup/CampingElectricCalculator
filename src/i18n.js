@@ -9,7 +9,7 @@ export default {
         watt: "Watt",
         strom_je_anschluss: "Current / Unit",
         anschluesse: "Units",
-        type: "Typ",
+        type: "Type",
         gewicht: "Weight",
         zellen: "Cells",
         leerlaufspannung: "Open-Circuit Voltage",
@@ -67,8 +67,32 @@ export default {
     },
     dialog: {
       selectComponent: {
-        header: "Select Component"
-      }  
+        title: "Exchange Component",
+        subtitle: "Replace the component with one of the same type but different characteristics"
+      },
+      consumer: {
+        title: "Energy Consumption",
+        subtitle: "Displays the total energy consumption flowing through this component"
+      },
+      bilanz: {
+        title: "Energy Flow",
+        subtitle: "An overview of the energy flowing into and out of the component"
+      },
+      addComponent: {
+        okButton: "Close",
+        title: "Add Component",
+        subtitle: "Add a new component to the diagram which will be included in the total calculation."
+      },
+      error: {
+        okButton: "Close",
+        title: "Component Error",
+        subtitle: "Indicates errors in the configuration of the components or their children"
+      },
+      info: {
+        okButton: "Close",
+        title: "Component Information",
+        subtitle: "Technical details about the component"
+      }
     }
   },
   de: {

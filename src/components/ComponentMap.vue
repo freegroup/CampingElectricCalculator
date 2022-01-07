@@ -168,6 +168,10 @@ export default {
       return this.configuration.label
     },
 
+    center() {
+      return this.map.center()
+    },
+
     getConfiguration() {
       return this.configuration
     },
@@ -310,6 +314,8 @@ export default {
 
     .component {
       position:relative;
+      min-width: 150px;
+      text-align: center;
     }
     
     .component_label {

@@ -9,4 +9,8 @@ export default class StarterBooster extends Node {
   getChildCandidates () {
     return [] 
   }
+
+  calculateInputData () {
+    return null
+  }
 }

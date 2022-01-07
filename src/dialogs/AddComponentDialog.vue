@@ -1,7 +1,7 @@
 <template>
-    <v-dialog v-model="showFlag" width="500" >
+    <v-dialog v-model="showFlag" width="800" >
       <v-card>
-        <v-card-title class="text-h5 orange lighten-2">Add Component</v-card-title>
+        <DialogHeader :title="$t('dialog.addComponent.title')" :subtitle="$t('dialog.addComponent.subtitle')" icon="mdi-plus-network-outline"></DialogHeader>
 
         <v-card-text style="height: 350px; overflow:auto">
           <v-list dense>
@@ -27,7 +27,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onCloseButtonClick">Close</v-btn>
+          <v-btn color="primary" text @click="onCloseButtonClick">{{$t("dialog.addComponent.okButton")}}</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import DialogHeader from "@/components/DialogHeader.vue"
+
 export default {
   name: "AddComponentDialog",
   data() {
@@ -44,7 +46,8 @@ export default {
       types: []
     }
   },
-  computed: {
+  components: {
+    DialogHeader
   },
   methods: {
     components(type) {

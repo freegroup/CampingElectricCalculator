@@ -1,7 +1,7 @@
 <template>
-    <v-dialog v-model="showFlag" :width="input && output ? 900 : 500" >
+    <v-dialog v-model="showFlag" :width="input && output ? 900 : 700" >
       <v-card>
-        <v-card-title class="orange lighten-2"><v-img max-height="30" max-width="30" class="mr-5" :src="component.model.imageSrc" contain></v-img> Energy Bilanz</v-card-title>
+        <DialogHeader :title="$t('dialog.bilanz.title')" :subtitle="$t('dialog.bilanz.subtitle')" icon="mdi-lightning-bolt-outline"></DialogHeader>
 
         <v-card-text style="height: 350px; overflow: auto">
           <template v-if="output && input">
@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import DialogHeader from "@/components/DialogHeader.vue"
+
 export default {
   name: "BilanzDialog",
   data() {
@@ -73,7 +75,9 @@ export default {
       component: null
     }
   },
-
+  components: {
+    DialogHeader
+  },
   methods: {
     async show( component ) {
       return new Promise((resolve) => {
@@ -93,6 +97,9 @@ export default {
     },
     output () {
       return this.component ? this.component.calculateOutputData() : null
+    },
+    image () {
+      return this.component ? this.component.model.imageSrc : null
     }
   }
 }

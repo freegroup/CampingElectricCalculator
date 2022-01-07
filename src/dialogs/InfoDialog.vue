@@ -1,7 +1,8 @@
 <template>
     <v-dialog v-model="showFlag" width="700" >
       <v-card>
-        <v-card-title class="orange lighten-2">{{model.name}}</v-card-title>
+        <DialogHeader :title="model.name" :subtitle="$t('dialog.info.subtitle')" icon="mdi-eye-outline"></DialogHeader>
+
         <v-card-text style="height: 350px; overflow: scroll">
         <v-row no-gutters justify="center">
           <v-col cols="12"  class="mb-5">
@@ -56,6 +57,8 @@
 </template>
 
 <script>
+import DialogHeader from "@/components/DialogHeader.vue"
+
 export default {
   name: "InfoDialog",
   data() {
@@ -64,6 +67,9 @@ export default {
       resolve: null,
       model: { shopping: [], data: {} }
     }
+  },
+  components: {
+    DialogHeader
   },
   methods: {
     async show( component ) {

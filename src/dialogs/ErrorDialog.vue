@@ -1,9 +1,9 @@
 <template>
-    <v-dialog v-model="showFlag" width="500" >
+    <v-dialog v-model="showFlag" width="700" >
       <v-card>
-        <v-card-title class="red lighten-2">Configuration Errors</v-card-title>
+        <DialogHeader :title="$t('dialog.error.title')" :subtitle="$t('dialog.error.subtitle')" icon="mdi-message-alert-outline"></DialogHeader>
 
-        <v-card-text style="height: 350px; overflow: scroll">
+        <v-card-text style="height: 350px; overflow: auto">
           <v-list >
             <template v-for="(item, index) in errors" >
                 <v-list-item :key="index">
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import DialogHeader from "@/components/DialogHeader.vue"
+
 export default {
   name: "ErrorDialog",
   data() {
@@ -35,6 +37,9 @@ export default {
       resolve: null,
       errors: []
     }
+  },
+  components: {
+    DialogHeader
   },
   methods: {
     async show( errors ) {

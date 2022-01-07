@@ -1,7 +1,7 @@
 <template>
-    <v-dialog v-model="showFlag" width="500" >
+    <v-dialog v-model="showFlag" width="900" >
       <v-card>
-        <v-card-title class="orange lighten-2">{{ $t("dialog.selectComponent.header")}}</v-card-title>
+        <DialogHeader :title="$t('dialog.selectComponent.title')" :subtitle="$t('dialog.selectComponent.subtitle')" icon="mdi-swap-horizontal"></DialogHeader>
 
         <v-card-text style="height: 350px; overflow:scroll">
           <v-list three-line dense>
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import DialogHeader from "@/components/DialogHeader.vue"
+
 export default {
   name: "SelectComponentDialog",
   data() {
@@ -35,6 +37,9 @@ export default {
       resolve: null,
       type: null
     }
+  },
+  components: {
+    DialogHeader
   },
   computed: {
     components() {

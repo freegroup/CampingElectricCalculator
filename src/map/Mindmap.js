@@ -19,12 +19,7 @@ export default class Mindmap extends GenericNode {
 
     this.host.append(this.getHTMLElement())
 
-    $(this.getAnchor())[0].scrollIntoView({
-      behavior: 'auto',
-      inline: 'center',
-      block: 'center'
-    })
-
+    this.center()
     this.eventbinding_mousedown = this._mousedown.bind(this)
     this.eventbinding_mouseup = this._mouseup.bind(this)
     this.eventbinding_click = this._click.bind(this)
@@ -61,6 +56,14 @@ export default class Mindmap extends GenericNode {
     })
   }
 
+  center () {
+    $(this.getAnchor())[0].scrollIntoView({
+      behavior: 'auto',
+      inline: 'center',
+      block: 'center'
+    })
+  }
+  
   getComponentContainer () {
     return this.centerLabel
   }

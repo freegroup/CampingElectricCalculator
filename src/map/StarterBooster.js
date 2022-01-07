@@ -22,4 +22,12 @@ export default class StarterBooster extends Node {
 
     return { strom: 0, watt: 0 }
   }
+
+  calculateOutputData () {
+    const data = JSON.parse(JSON.stringify(this.model.data)) // deep copy
+    delete data.eingangsspannung
+    delete data.eingangsstrom
+
+    return data
+  }
 }

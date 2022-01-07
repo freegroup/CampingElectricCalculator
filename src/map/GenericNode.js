@@ -64,8 +64,6 @@ export default class GenericNode {
   }
 
   calculateOutputData () {
-    // It is only allowed, that this element has ONE direct child element
-    //
     return JSON.parse(JSON.stringify(this.model.data)) // deep copy
   }
 
