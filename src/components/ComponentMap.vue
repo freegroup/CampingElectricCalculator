@@ -5,7 +5,8 @@
     <AddComponentDialog ref="addChildDialog"/>
     <ErrorDialog ref="errorDialog"/>
     <InfoDialog ref="infoDialog"/>
-    <BilanzDialog ref="bilanzDialog"/>
+    <InOutBalanceDialog ref="balanceDialog"/>
+    <AccuBalanceDialog ref="accuBalanceDialog"/>
     <ConsumerDialog ref="consumerDialog"/>
     <TimerDialog ref="timerDialog"/>
   </div>
@@ -20,7 +21,8 @@ import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
 import InfoDialog from '@/dialogs/InfoDialog.vue'
 import TimerDialog from '@/dialogs/TimerDialog.vue'
-import BilanzDialog from '@/dialogs/BilanzDialog.vue'
+import AccuBalanceDialog from '@/dialogs/AccuBalanceDialog.vue'
+import InOutBalanceDialog from '@/dialogs/InOutBalanceDialog.vue'
 import ConsumerDialog from '@/dialogs/ConsumerDialog.vue'
 
 export default {
@@ -33,7 +35,8 @@ export default {
     AddComponentDialog,
     SelectComponentDialog,
     ErrorDialog,
-    BilanzDialog,
+    InOutBalanceDialog,
+    AccuBalanceDialog,
     ConsumerDialog,
     TimerDialog,
     InfoDialog
@@ -53,7 +56,7 @@ export default {
     this.map.on("showError", event => this.handleNodeShowError( event))
     this.map.on("addChild", event => this.handleNodeAddChild( event))
     this.map.on("showInfo", event => this.handleNodeShowInfo( event))
-    this.map.on("showBilanz", event => this.handleNodeBilanz( event))
+    this.map.on("showBalance", event => this.handleNodeBalance( event))
     this.map.on("removeChild", event => this.handleNodeRemoveChild( event))
     this.map.on("changed", () => this.saveConfig())
 
@@ -167,10 +170,12 @@ export default {
       this.saveConfig()
     },
 
-    async handleNodeBilanz (event) {
+    async handleNodeBalance (event) {
       const node = event.component
-      if ( node.leftSide ) {
-        this.$refs.bilanzDialog.show(node)
+      if ( node === this.map ) {
+        this.$refs.accuBalanceDialog.show(node)
+      } else if ( node.leftSide ) {
+        this.$refs.balanceDialog.show(node)
       } else {
         this.$refs.consumerDialog.show(node)
       }
@@ -276,6 +281,7 @@ export default {
           height: 26px;
           border-bottom: 1px solid lightgray;
           text-align: right;
+          padding-top:4px;
           .toolbar_icon{
             font-size: 16px;
             padding-left: 3px;
@@ -283,6 +289,17 @@ export default {
             &:hover {
               color:orange;
             }
+          }
+        }
+        .statusbar {
+          text-align: center;
+          opacity: 0.5;
+          font-size: 70%;
+          text-decoration: underline;
+          color: blue;
+          cursor:pointer;
+          &:hover{
+            opacity: 1;
           }
         }
         .container{

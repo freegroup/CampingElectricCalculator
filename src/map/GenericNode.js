@@ -26,6 +26,9 @@ export default class GenericNode {
 
   setOperationHours( hours ) {
     this.model.operationHours = hours
+    if ( this.statusbarDiv ) {
+      this.statusbarDiv.innerHTML = ` ${this.leftSide ? 'Running' : 'Connected'} ${hours} Hours / Day`
+    }
   }
 
   updateStatusIcons() {

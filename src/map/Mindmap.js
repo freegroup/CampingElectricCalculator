@@ -189,13 +189,13 @@ export default class Mindmap extends GenericNode {
               this.labelContainer.append(this.toolbarDiv)
               this.toolbarDiv.className = 'toolbar'
 
-              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-gauge"></i>')
+              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-gauge"></i>')
               this.toolbarDiv.append(this.gaugeIcon)
 
-              this.infoIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-information-outline"></i>')
+              this.infoIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-information-outline"></i>')
               this.toolbarDiv.append(this.infoIcon)
 
-              this.configIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon pr-8 v-icon mdi mdi-pencil"></i>')
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon pr-8 v-icon mdi mdi-pencil"></i>')
               this.toolbarDiv.append(this.configIcon)
             }
 
@@ -248,7 +248,7 @@ export default class Mindmap extends GenericNode {
 
       $(this.gaugeIcon).on("click", event => {
         event.stopPropagation()
-        this.onComponentBilanz(this)
+        this.onComponentBalance(this)
       })
   
       $(this.addLeftChildIcon).on("click", event => {
@@ -296,6 +296,39 @@ export default class Mindmap extends GenericNode {
     })
   }
 
+  calculateInputData () {
+    const result = { strom: 0, spannung: 0, watt: 0 }
+    if ( this.leftChildren.length > 0 ) {
+      let childData = this.leftChildren[0].calculateOutputData()
+      // check that the attributes "strom" and "spannung" are in place
+      result.amperestunden = childData.amperestunden
+      result.strom = childData.strom
+      result.spannung = childData.spannung
+      this.leftChildren.slice(1).forEach( child => {
+        childData = child.calculateOutputData()
+        result.strom += childData.strom 
+        result.amperestunden += childData.amperestunden 
+      })
+    }
+    result.watt = result.strom * result.spannung
+    return result
+  }
+
+  calculateOutputData () {
+    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0, amperestunden: 0 }
+    if ( this.rightChildren.length > 0 ) {
+      // check that the attributes "strom" and "spannung" are in place
+      result.strom = this.rightChildren[0].calculateConsumptionData().strom
+      result.amperestunden = this.rightChildren[0].calculateConsumptionData().amperestunden
+      this.rightChildren.slice(1).forEach( child => {
+        result.strom += child.calculateConsumptionData().strom 
+        result.amperestunden += child.calculateConsumptionData().amperestunden 
+      })
+    }
+    result.watt = (result.strom * result.spannung)
+    return result
+  }
+
   /**
    *
    * @private
@@ -331,8 +364,8 @@ export default class Mindmap extends GenericNode {
     this.notifyListeners({ event: "showInfo", component: component })
   }
 
-  onComponentBilanz(component) {
-    this.notifyListeners({ event: "showBilanz", component: component })
+  onComponentBalance(component) {
+    this.notifyListeners({ event: "showBalance", component: component })
   }
 
   /**

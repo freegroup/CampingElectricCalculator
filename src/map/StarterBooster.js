@@ -3,6 +3,7 @@ import LeftNode from './LeftNode'
 export default class StarterBooster extends LeftNode {
   constructor() {
     super()
+    this.timerBased = true
   }
 
   getChildCandidates () {
@@ -27,6 +28,7 @@ export default class StarterBooster extends LeftNode {
     delete data.eingangsspannung
     delete data.eingangsstrom
 
+    data.amperestunden = data.strom * this.model.operationHours
     return data
   }
 }

@@ -3,6 +3,7 @@ import LeftNode from './LeftNode'
 export default class SolarBooster extends LeftNode {
   constructor() {
     super()
+    this.timerBased = true
   }
 
   getChildCandidates () {
@@ -68,6 +69,7 @@ export default class SolarBooster extends LeftNode {
   }
 
   calculateOutputData () {
+    let result = { spannung: 14.8, strom: 0, watt: 0 } 
     // Berechnung der Parallelschaltung aller "parallel" angehängten Panels. 
     if ( this.children.length > 0 ) {
       const data = this.children[0].calculateOutputData()
@@ -86,7 +88,8 @@ export default class SolarBooster extends LeftNode {
           // gleicher Leistung (P=100W). Dabei ändert sich der Ladestrom – er steigt an! 
           // Die Formel dazu liefert den Beweis: I=100W/14.4V . Das ergibt einen neuen 
           // Ladestrom von 6,75A.
-          return { spannung: 14.8, strom: data.watt / 14.8, watt: data.watt, type: this.model.data.type } 
+          result = { spannung: 14.8, strom: data.watt / 14.8, watt: data.watt, type: this.model.data.type } 
+          break
         case "PWM":
           // Der Kollege PWM mag es unkompliziert, und passt deswegen die Modulspannung 
           // an deine Ladespannung des Akkus an – in dem Fall 14,8V (AGM Akku).
@@ -94,12 +97,14 @@ export default class SolarBooster extends LeftNode {
           // du feststellen, dass diese bei 18,5V liegt. Der Regler “verschenkt” sozusagen 
           // 3,7V, weil dein Akku ja lediglich 14,8 benötigt, während der Strom (Im) gleich 
           // bleibt
-          return { spannung: 14.8, strom: data.nennstrom, watt: data.nennstrom * 14.8, type: this.model.data.type } 
+          result = { spannung: 14.8, strom: data.nennstrom, watt: data.nennstrom * 14.8, type: this.model.data.type } 
+          break
         default:
-          return { spannung: 14.8, strom: 0, watt: 0, type: this.model.data.type } 
+          result = { spannung: 14.8, strom: 0, watt: 0, type: this.model.data.type } 
       }
     }
-
-    return { spannung: 14.8, strom: 0, watt: 0 } 
+    
+    result.amperestunden = result.strom * this.model.operationHours
+    return result
   }
 }

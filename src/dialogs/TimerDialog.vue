@@ -12,11 +12,12 @@
              <v-row class="mt-10">
               <v-col cols="12">
                     <v-slider
-                      hint="Betrieb in Stunden pro Tag"
+                      :hint="$t('dialog.timer.sliderDescription')"
                       v-model="operationHours"
                       :label="$t('dialog.timer.sliderLabel')"
-                      min="1"
+                      min="0.5"
                       max="24"
+                      step="0.5"
                       thumb-label="always"
                     ></v-slider>
               </v-col>

@@ -43,20 +43,18 @@ export default class Fuse extends LeftNode {
   }
 
   calculateInputData () {
-    const result = { strom: 0, spannung: 0, watt: 0 }
+    const result = { strom: 0, spannung: 0, watt: 0, amperestunden: 0 }
     if ( this.children.length > 0 ) {
       let childData = this.children[0].calculateOutputData()
       // check that the attributes "strom" and "spannung" are in place
-      if ("strom" in childData && "spannung" in childData) {
-        result.strom = childData.strom
-        result.spannung = childData.spannung
-        this.children.slice(1).forEach( child => {
-          childData = child.calculateOutputData()
-          if ( "strom" in childData ) {
-            result.strom += childData.strom 
-          }
-        })
-      }
+      result.strom = childData.strom
+      result.spannung = childData.spannung
+      result.amperestunden = childData.amperestunden
+      this.children.slice(1).forEach( child => {
+        childData = child.calculateOutputData()
+        result.strom += childData.strom 
+        result.amperestunden += childData.amperestunden 
+      })
     }
     result.watt = result.strom * result.spannung
     return result

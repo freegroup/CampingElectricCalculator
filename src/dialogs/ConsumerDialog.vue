@@ -32,7 +32,7 @@
 import DialogHeader from "@/components/DialogHeader.vue"
 
 export default {
-  name: "BilanzDialog",
+  name: "BalanceDialog",
   data() {
     return {
       showFlag: false,

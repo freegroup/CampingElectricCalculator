@@ -26,21 +26,16 @@ export default class RightNode extends Node {
               this.labelContainer.append(this.toolbarDiv)
               this.toolbarDiv.className = 'toolbar'
               
-              if ( this.timerBased ) {
-                this.timerIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-timer-outline"></i>')
-                this.toolbarDiv.append(this.timerIcon)
-              }
-
-              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-gauge"></i>')
+              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-gauge"></i>')
               this.toolbarDiv.append(this.gaugeIcon)
 
-              this.infoIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-information-outline"></i>')
+              this.infoIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-information-outline"></i>')
               this.toolbarDiv.append(this.infoIcon)
 
-              this.configIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-pencil"></i>')
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-pencil"></i>')
               this.toolbarDiv.append(this.configIcon)
 
-              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon pl-3 v-icon mdi mdi-trash-can-outline"></i>')
+              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="float-right toolbar_icon pl-3 v-icon mdi mdi-trash-can-outline"></i>')
               this.toolbarDiv.append(this.deleteIcon)
             }
 
@@ -48,6 +43,10 @@ export default class RightNode extends Node {
             {
               this.labelContainer.append(this.labelDiv)
               this.labelDiv.className = 'container'
+            }
+            if ( this.timerBased ) {
+              this.statusbarDiv = htmlToElement('<div class="statusbar">blah blah blah</div>')
+              this.labelContainer.append(this.statusbarDiv)
             }
           }
         }

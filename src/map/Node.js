@@ -168,14 +168,14 @@ export default class Node extends GenericNode {
       this.mindmap.onComponentAddChild(this, this.leftSide)
     })
 
-    $(this.timerIcon).on("click", event => {
+    $(this.statusbarDiv).on("click", event => {
       event.stopPropagation()
       this.mindmap.onComponentTimer(this)
     })
 
     $(this.gaugeIcon).on("click", event => {
       event.stopPropagation()
-      this.mindmap.onComponentBilanz(this)
+      this.mindmap.onComponentBalance(this)
     })
 
     $(this.configIcon).on("click", event => {
@@ -199,5 +199,7 @@ export default class Node extends GenericNode {
     })
 
     this.setSelected(false)
+
+    this.setOperationHours(this.model.operationHours)
   }
 }
