@@ -12,7 +12,7 @@
         {
           "uuid": "E9C5518A-B503-4C00-94F6-F16929A6DFDE",
           "type": "solarBooster",
-          "operationHours": 24,
+          "operationHours": 4.5,
           "children": [
             {
               "uuid": "22C85112-E95E-4185-B2E7-EB2CB2D35BA1",
