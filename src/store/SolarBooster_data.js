@@ -21,7 +21,9 @@ export default [
       // Eingangsspannung muss GÖßER als die Leewrlaufspannung der Solarpanele sein
       eingangsspannung: 75,
       // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
-      eingangswatt: 200
+      eingangswatt: 200,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 15
     }
   }, 
   { 
@@ -44,7 +46,9 @@ export default [
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
       eingangsspannung: 75,
       // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
-      eingangswatt: 130
+      eingangswatt: 130,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 13
     }
   }, 
   { 
@@ -67,7 +71,84 @@ export default [
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
       eingangsspannung: 50,
       // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
-      eingangswatt: 130
+      eingangswatt: 130,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 30
+    }
+  },
+  { 
+    uuid: "E9C5518A-B503-4C00-94F6-F16929A6DFDE", 
+    type: "solarBooster", 
+    name: "Büttner MPP 440", 
+    imageSrc: images("./buettner_mpp_440.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3n5pmOc",
+        label: "Büttner MT-Solarregler MPP 440 inkl. Temperaturfühler"
+      }
+    ],
+    data: {
+      type: "MPPT",
+      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      nennladestrom: 32,
+      spannung: 12,
+      // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
+      eingangsspannung: 50,
+      // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
+      eingangswatt: 440,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 26.5
+    }
+  },
+  { 
+    uuid: "CF70B8A2-B4EC-4639-BBD7-63D17D8BD39E", 
+    type: "solarBooster", 
+    name: "Büttner MPP 260", 
+    imageSrc: images("./buettner_mpp_260.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3qVYBNC",
+        label: "Büttner MT-Solarregler MPP 260 inkl. Temperaturfühler"
+      }
+    ],
+    data: {
+      type: "MPPT",
+      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      nennladestrom: 16,
+      spannung: 12,
+      // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
+      eingangsspannung: 50,
+      // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
+      eingangswatt: 260,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 18.5
+    }
+  },
+  { 
+    uuid: "0E276659-6695-4900-821B-A1D23D29B8AA", 
+    type: "solarBooster", 
+    name: "Büttner MPP 170", 
+    imageSrc: images("./buettner_mpp_170.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3n3xj6v",
+        label: "Büttner MT-Solarregler MPP 170 inkl. Temperaturfühler"
+      }
+    ],
+    data: {
+      type: "MPPT",
+      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      nennladestrom: 12.5,
+      spannung: 12,
+      // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
+      eingangsspannung: 50,
+      // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
+      eingangswatt: 170,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 10.5
     }
   }
 ]
