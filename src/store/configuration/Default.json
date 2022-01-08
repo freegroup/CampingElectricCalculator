@@ -7,14 +7,17 @@
     {
       "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
       "type": "fuse",
+      "operationHours": 24,
       "children": [
         {
-          "uuid": "17302EE5-08AC-4E2C-882B-F30EA9536B07",
+          "uuid": "E9C5518A-B503-4C00-94F6-F16929A6DFDE",
           "type": "solarBooster",
+          "operationHours": 24,
           "children": [
             {
-              "uuid": "6676406A-45EA-4B45-98A9-6118ADF47CD6",
+              "uuid": "22C85112-E95E-4185-B2E7-EB2CB2D35BA1",
               "type": "solarPanel",
+              "operationHours": 24,
               "children": []
             }
           ]
@@ -24,18 +27,22 @@
     {
       "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
       "type": "fuse",
+      "operationHours": 24,
       "children": [
         {
           "uuid": "6",
           "type": "starterBooster",
+          "operationHours": 1,
           "children": [
             {
               "uuid": "1w3453245",
               "type": "starterAccu",
+              "operationHours": 24,
               "children": [
                 {
                   "uuid": "1w345iuiouh3245",
                   "type": "alternator",
+                  "operationHours": 24,
                   "children": []
                 }
               ]
@@ -49,23 +56,28 @@
     {
       "uuid": "C9A6897A-A19C-4CBD-A05B-F93ED56CF65A",
       "type": "fuse",
+      "operationHours": 24,
       "children": [
         {
           "uuid": "7asdf",
           "type": "fuseBox",
+          "operationHours": 24,
           "children": [
             {
               "uuid": "1w3453lk245",
               "type": "fridge",
+              "operationHours": 24,
               "children": []
             },
             {
               "uuid": "1w312343lk2454x",
               "type": "usb",
+              "operationHours": 24,
               "children": [
                 {
                   "uuid": "1w312343lk245phone",
                   "type": "usbConsumer",
+                  "operationHours": 1.5,
                   "children": []
                 }
               ]
