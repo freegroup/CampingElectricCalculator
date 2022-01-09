@@ -55,6 +55,13 @@ export default class Mindmap extends GenericNode {
     })
     this.leftChildrenHTML.append(this.leftDefaultNode.getHTMLElement())
     this.rightChildrenHTML.append(this.rightDefaultNode.getHTMLElement())
+
+    this.leftDefaultNode.hidden = false
+    this.rightDefaultNode.hidden = false
+    $(this.rightLines).css('display', 'none')      
+    $(this.addRightChildIcon).addClass('pulse')
+    $(this.leftLines).css('display', 'none')      
+    $(this.addLeftChildIcon).addClass('pulse')
   }
 
   center () {

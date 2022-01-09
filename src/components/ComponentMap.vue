@@ -417,6 +417,8 @@ export default {
       white-space: nowrap;
       padding-right:10px;
       padding-left:10px;
+      font-size: 12px;
+      padding-bottom: 5px;
     }
     .component_icon {
       display: block;
