@@ -182,7 +182,6 @@ export default {
     },
 
     saveConfig() {
-      console.log("SAVE")
       // save the changes as "user" configuration
       this.$store.dispatch('configuration/saveUserConfiguration', this.map.toJson())
 

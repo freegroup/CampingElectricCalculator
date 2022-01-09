@@ -432,7 +432,6 @@ export default class Mindmap extends GenericNode {
     if ( diff >= 0 ) {
       runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
     } else {
-      console.log(this.model.data.amperestunden, runtimeDays)
       runtimeDays = (this.model.data.amperestunden / Math.abs(diff)).toFixed(2).replace(/\.00$/, '')
     }
     this.inputLabel.innerHTML = "Input<br>" + (inputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
