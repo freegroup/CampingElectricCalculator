@@ -15,7 +15,7 @@ export default [
       }
     ],
     data: {
-      ah: 100,
+      amperestunden: 100,
       spannung: 12,
       type: "LiFePO4"
     }
@@ -34,7 +34,7 @@ export default [
       }
     ],
     data: {
-      ah: 200,
+      amperestunden: 200,
       spannung: 12,
       type: "LiFePO4"
     }
@@ -53,7 +53,7 @@ export default [
       }
     ],
     data: {
-      ah: 150,
+      amperestunden: 150,
       spannung: 12,
       type: "LiFePO4"
     }

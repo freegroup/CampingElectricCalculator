@@ -2,7 +2,7 @@ export default {
   en: {
     data: { 
       label: {
-        ah: "Ampere Hour",
+        amperestunden: "Ampere Hour",
         strom: "Current",
         nennladestrom: "Current",
         nennstrom: "Current",
@@ -19,12 +19,11 @@ export default {
         eingangswatt: "Input Watt",
         chargeSupport: "Supported Battery Types",
         spannung: "Voltage",
-        amperestunden: "Ampere Hours",
         operationHours: "Operation Hours",
         nennspannung: "Nominal Voltage"
       },
       unit: {
-        ah: "Ah",
+        amperestunden: "Ah",
         strom: "A",
         nennladestrom: "A",
         nennstrom: "A",
@@ -41,7 +40,6 @@ export default {
         eingangswatt: "Watt",
         spannung: "Volt",
         nennspannung: "Volt",
-        amperestunden: "Ah",
         operationHours: "hours",
         chargeSupport: ""
       }

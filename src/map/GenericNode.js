@@ -29,6 +29,10 @@ export default class GenericNode {
     if ( this.statusbarDiv ) {
       this.statusbarDiv.innerHTML = ` ${this.leftSide ? 'Running' : 'Connected'} ${hours} Hours / Day`
     }
+
+    if ( this.mindmap ) {
+      this.mindmap.updateStatusbar()
+    }
   }
 
   updateStatusIcons() {

@@ -2,7 +2,7 @@
 import components from "./Accu_data.js"
 
 function sortComponents (payload) {
-  return payload.sort((a, b) => a.data.ah - b.data.ah)
+  return payload.sort((a, b) => a.data.amperestunden - b.data.amperestunden)
 }
 
 export default {

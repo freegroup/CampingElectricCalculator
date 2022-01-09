@@ -114,6 +114,11 @@ export default class Mindmap extends GenericNode {
     return this.centerLabel
   }
 
+  setModel ( model ) {
+    super.setModel(model)
+    this.updateStatusbar()
+  }
+
   /**
    * @type HTMLElement
    * */
@@ -136,6 +141,8 @@ export default class Mindmap extends GenericNode {
     //
     node.parent = this
     node.mindmap = this
+
+    this.updateStatusbar()
   }
 
   /**
@@ -162,6 +169,8 @@ export default class Mindmap extends GenericNode {
       $(this.rightLines).css('display', 'none')      
       $(this.addRightChildIcon).addClass('pulse')
     }
+
+    this.updateStatusbar()
   }
 
   /**
@@ -230,6 +239,15 @@ export default class Mindmap extends GenericNode {
               this.centerLabel.className = 'container'
               this.labelContainer.append(this.centerLabel)
             }
+
+            this.statusbarDiv = htmlToElement('<div class="balancebar"></div>')
+            this.labelContainer.append(this.statusbarDiv)
+            this.inputLabel = htmlToElement('<div class="input_label float-left">Input</div>')
+            this.statusbarDiv.append(this.inputLabel)
+            this.runtimeLabel = htmlToElement('<div class="runtime_label text-center">Running time</div>')
+            this.statusbarDiv.append(this.runtimeLabel)
+            this.outputLabel = htmlToElement('<div class="output_label float-right">Output</div>')
+            this.statusbarDiv.append(this.outputLabel)
           }
         }
 
@@ -324,7 +342,7 @@ export default class Mindmap extends GenericNode {
   }
 
   calculateInputData () {
-    const result = { strom: 0, spannung: 0, watt: 0 }
+    const result = { strom: 0, spannung: 0, watt: 0, amperestunden: 0 }
     if ( this.leftChildren.length > 0 ) {
       let childData = this.leftChildren[0].calculateOutputData()
       // check that the attributes "strom" and "spannung" are in place
@@ -395,6 +413,26 @@ export default class Mindmap extends GenericNode {
     this.notifyListeners({ event: "showBalance", component: component })
   }
 
+  updateStatusbar () {
+    // something has changed in the client config. We can recalculate the balance values for the input/output
+    // labels
+    const input = this.calculateInputData()
+    const output = this.calculateOutputData()
+    const inputAh = input.amperestunden
+    const outputAh = output.amperestunden
+    const diff = inputAh - outputAh
+    let runtimeDays = ""
+    if ( diff >= 0 ) {
+      runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
+    } else {
+      console.log(this.model.data.amperestunden, runtimeDays)
+      runtimeDays = (this.model.data.amperestunden / Math.abs(diff)).toFixed(2).replace(/\.00$/, '')
+    }
+    this.inputLabel.innerHTML = "Input<br>" + (inputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
+    this.runtimeLabel.innerHTML = "Running Time<br>" + runtimeDays + " days"
+    this.outputLabel.innerHTML = "Output<br>" + (outputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
+  }
+
   /**
    * Adds a listener to the mindmap, which will be notified whenever the selection has been changed.
    * @param {String} event the kind of event you whant to listen.
@@ -430,6 +468,7 @@ export default class Mindmap extends GenericNode {
         listener.callback(event)
       }
     })
+    this.updateStatusbar()
   }
 
   toJson() {

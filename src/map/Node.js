@@ -43,6 +43,8 @@ export default class Node extends GenericNode {
     node.parent = this
     node.mindmap = this.mindmap
     this.updateStatusIcons()
+    this.drawLines()
+    this.mindmap.updateStatusbar()
   }
 
   /**
@@ -56,6 +58,7 @@ export default class Node extends GenericNode {
     node.mindmap = null
     this.updateStatusIcons()
     this.drawLines()
+    this.mindmap.updateStatusbar()
   }
 
   /**

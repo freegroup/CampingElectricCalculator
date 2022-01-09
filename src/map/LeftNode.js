@@ -93,7 +93,7 @@ export default class LeftNode extends Node {
             }
 
             if ( this.timerBased ) {
-              this.statusbarDiv = htmlToElement('<div class="statusbar">blah blah blah</div>')
+              this.statusbarDiv = htmlToElement('<div class="statusbar">blamperestunden blah blah</div>')
               this.labelContainer.append(this.statusbarDiv)
             }
 

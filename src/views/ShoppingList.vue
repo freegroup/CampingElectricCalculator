@@ -178,7 +178,7 @@ export default {
       if ( type && uuid ) {
         return this.getComponent(type, uuid)
       }
-      return { data: { ah: 0 } }
+      return { data: { amperestunden: 0 } }
     },
     consumers() {
       const result = []

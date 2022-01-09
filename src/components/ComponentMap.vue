@@ -308,6 +308,32 @@ export default {
             opacity: 1;
           }
         }
+       .balancebar {
+          text-align: center;
+          opacity: 0.5;
+          font-size: 70%;
+          display: flow-root;
+          min-width: 200px;
+          .input_label{
+            color: green;
+            border:1px solid gray;
+            border-radius: 4px;
+            padding: 2px;
+            min-width: 60px;
+          }
+          .runtime_label {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          .output_label {
+            color: red;
+            border:1px solid gray;
+            border-radius: 4px;
+            padding: 2px;
+            min-width: 60px;
+          }
+        }
         .container{
           padding:10px;
           .input_button {
