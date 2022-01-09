@@ -10,7 +10,7 @@ export default class SolarBooster extends LeftNode {
     return ["solarPanel"] 
   }
 
-  getErrors () {
+  getErrorMessages () {
     const result = []
 
     // if more than one child exists, each of them must have the same data.uuid. It is not allowed to 
@@ -21,14 +21,14 @@ export default class SolarBooster extends LeftNode {
       //
       const firstUUID = this.children[0].model.uuid
       if ( this.children.find( child => child.model.uuid !== firstUUID) ) {
-        result.push("It is only allowd to add panels in 'parallel' mode of the same kind")
+        result.push({ type: "Error", text: "It is only allowd to add panels in 'parallel' mode of the same kind" })
       }
 
       // all direct children must deliver the same voltage. Voltage can be differe if on panel has an child panel (serial)
       //
       const firstVoltage = this.children[0].calculateOutputData().nennspannung
       if ( this.children.find( child => child.calculateOutputData().nennspannung !== firstVoltage) ) {
-        result.push("Direct child panels delivers different voltages")
+        result.push({ type: "Error", text: "Direct child panels delivers different voltages" })
       }
     }
     
@@ -41,13 +41,13 @@ export default class SolarBooster extends LeftNode {
       // calculate [P] of all pinout sources and check if the booster can handle this
       //
       if ( data.nennstrom > this.model.data.nennladestrom ) {
-        result.push(`[I = ${data.strom} Ampere] is bigger than the charger can handle [I = ${this.model.data.nennladestrom} Amper]`)
+        result.push({ type: "Error", text: `[I = ${data.strom} Ampere] is bigger than the charger can handle [I = ${this.model.data.nennladestrom} Amper]` })
       }
 
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.leerlaufspannung > this.model.data.eingangsspannung ) {
-        result.push(`The voltage [U = ${data.leerlaufspannung} Volt] of the input sources are bigger than the maximum voltage which the charger can handle [U = ${this.model.data.eingangsspannung} Volt]`)
+        result.push({ type: "Error", text: `The voltage [U = ${data.leerlaufspannung} Volt] of the input sources are bigger than the maximum voltage which the charger can handle [U = ${this.model.data.eingangsspannung} Volt]` })
       }
     }
 

@@ -155,7 +155,7 @@ export default {
 
     async handleNodeShowError (event) {
       const node = event.component
-      const errors = node.getErrors()
+      const errors = node.getErrorMessages()
       this.$refs.errorDialog.show(errors)
     },
 
@@ -363,7 +363,7 @@ export default {
         }
         .error_icon {
           position: absolute;
-          bottom: 2px;
+          bottom: 15px;
           left: 4px;
           height: 26px;
           cursor: pointer;

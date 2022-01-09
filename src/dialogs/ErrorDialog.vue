@@ -8,7 +8,7 @@
             <template v-for="(item, index) in errors" >
                 <v-list-item :key="index">
                     <v-list-item-content>
-                        {{ item }}
+                        {{ item.text }}
                     </v-list-item-content>
                 </v-list-item>
             </template>

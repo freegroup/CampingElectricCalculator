@@ -20,7 +20,7 @@ export default class GenericNode {
     return ["pressurePump", "fuse", "fuseBox", "solarBooster", "solarPanel", "starterBooster", "starterAccu", "alternator", "fridge", "usb", "usbConsumer"] 
   }
 
-  getErrors () {
+  getErrorMessages () {
     return []
   }
 
@@ -37,7 +37,19 @@ export default class GenericNode {
   }
 
   updateStatusIcons() {
-    this.hideError(this.getErrors().length === 0)
+    const msgs = this.getErrorMessages()
+    const errors = msgs.filter(msg => msg.type === "Error").length
+
+    this.hideError(msgs.length === 0)
+    
+    if ( errors === 0) {
+      $(this.errorIcon).removeClass("red--text text--darken-2")
+      $(this.errorIcon).addClass("yellow--text text--darken-2")
+    } else {
+      $(this.errorIcon).addClass("red--text text--darken-2")
+      $(this.errorIcon).removeClass("yellow--text text--darken-2")
+    }
+
     if ( this.parent ) {
       this.parent.updateStatusIcons()
     }

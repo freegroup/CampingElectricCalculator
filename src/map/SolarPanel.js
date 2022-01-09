@@ -9,19 +9,19 @@ export default class SolarPanel extends LeftNode {
     return ["solarPanel"] 
   }
 
-  getErrors () {
+  getErrorMessages () {
     const result = []
     // it is only allow to have one child panel. This must be the same kind. 
     // A child panel is interpreted as "Seriel" or "Reihenschaltung" of the panels
     //
     if ( this.children.length > 1 ) {
-      result.push("Maximnal one child panel is allowed.")
+      result.push({ type: "Error", text: "Maximnal one child panel is allowed." } )
     }
 
     if ( this.children.length === 1 ) {
       const child = this.children[0]
       if ( child.model.uuid !== this.model.uuid ) {
-        result.push("It is only allowd to add panels in 'serial' mode of the same kind")
+        result.push({ type: "Error", text: "It is only allowd to add panels in 'serial' mode of the same kind" })
       }
     }
     return result

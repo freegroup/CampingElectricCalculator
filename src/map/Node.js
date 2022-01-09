@@ -69,6 +69,7 @@ export default class Node extends GenericNode {
     this._parent = parent
     this._parent !== null && this.drawLines()
     this.renderModel()
+    this.updateStatusIcons()
   }
 
   /**

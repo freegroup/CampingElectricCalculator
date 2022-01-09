@@ -7,6 +7,7 @@ export default [
     name: "SmartPhone", 
     imageSrc: images("./phone_charge.png"),
     operationHours: 2,
+    runningMode: "loading",
     shopping: [
     ],
     data: {
@@ -21,6 +22,7 @@ export default [
     name: "15inch Mac Book Pro", 
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
+    runningMode: "loading",
     shopping: [
     ],
     data: {
@@ -35,6 +37,7 @@ export default [
     name: "13inch Mac Book Pro", 
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
+    runningMode: "loading",
     shopping: [
     ],
     data: {
@@ -49,6 +52,7 @@ export default [
     name: "12inch Mac Book Pro", 
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
+    runningMode: "loading",
     shopping: [
     ],
     data: {
@@ -63,6 +67,7 @@ export default [
     name: "Mac Book Air", 
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
+    runningMode: "loading",
     shopping: [
     ],
     data: {

@@ -9,7 +9,7 @@ export default class Usb extends RightNode {
     return ["usbConsumer"] 
   }
 
-  getErrors () {
+  getErrorMessages () {
     const result = []
 
     // Calculate if the accumulated "operationHours". Must be less than 24 hours
@@ -25,9 +25,9 @@ export default class Usb extends RightNode {
       //
       if ( (data.operationHours / this.model.data.buchsen) > 24 ) {
         if ( this.model.data.buchse > 1 ) {
-          result.push(`The USB ports are occupied more than 24 hours a day. Install an additional socket.`)
+          result.push({ type: "Warning", text: `The USB ports are occupied more than 24 hours a day. Install an additional socket.` })
         } else {
-          result.push(`The USB port is occupied more than 24 hours a day. Install an additional socket.`)
+          result.push({ type: "Warning", text: `The USB port is occupied more than 24 hours a day. Install an additional socket.` })
         }
       }
     }

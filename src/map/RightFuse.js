@@ -9,7 +9,7 @@ export default class Fuse extends RightNode {
     return ["fuseBox"] 
   }
 
-  getErrors () {
+  getErrorMessages () {
     const result = []
 
     // if more than one child exists, each of them must have the same "spannung". It is not allowed 
@@ -20,7 +20,7 @@ export default class Fuse extends RightNode {
       //
       const firstSpannung = this.children[0].calculateOutputData().spannung
       if ( this.children.find( child => child.calculateOutputData().spannung !== firstSpannung) ) {
-        result.push(`It is not allowed to mix different voltages on the fuse.`)
+        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
       }
     }
     
@@ -36,7 +36,7 @@ export default class Fuse extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push(`The power [I= ${data.strom} Ampere] of the input sources are bigger than the maximum power which the fuse can handle (${this.model.data.strom} )`)
+        result.push({ type: "Error", text: `The power [I= ${data.strom} Ampere] of the input sources are bigger than the maximum power which the fuse can handle (${this.model.data.strom} )` })
       }
     }
     return result
