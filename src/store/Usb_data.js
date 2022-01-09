@@ -12,7 +12,8 @@ export default [
     data: {
       spannung: 12, 
       strom: 3.6, // I=P/U
-      watt: 3.6 * 12
+      watt: 3.6 * 12,
+      buchsen: 1
     }
   },
   { 
@@ -26,7 +27,8 @@ export default [
     data: {
       spannung: 12, 
       strom: 2 * 3.6, // I=P/U
-      watt: 2 * 3.6 * 12
+      watt: 2 * 3.6 * 12,
+      buchsen: 2
     }
   },
   { 
@@ -40,7 +42,8 @@ export default [
     data: {
       spannung: 12, 
       strom: 4 * 3.6, // I=P/U
-      watt: 4 * 3.6 * 12
+      watt: 4 * 3.6 * 12,
+      buchsen: 4
     }
   }
 ]

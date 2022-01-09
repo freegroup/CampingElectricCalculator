@@ -49,12 +49,19 @@
 
         <v-divider></v-divider>
 
-        <v-subheader>Example Setups</v-subheader>
-
-        <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in configurations" :key="index">
-          <v-list-item-title>{{configuration.label}}</v-list-item-title>
-        </v-list-item>
-
+        <v-list-group no-action dark dense :value="true">
+          <template v-slot:activator>
+            <v-list-item-icon>
+              <v-icon class="white--text">mdi-lan</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title class="white--text" >Example Setup</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in configurations" :key="index">
+            <v-list-item-title>{{configuration.label}}</v-list-item-title>
+          </v-list-item>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
     <v-main>

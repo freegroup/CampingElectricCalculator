@@ -33,6 +33,7 @@ export default class GenericNode {
     if ( this.mindmap ) {
       this.mindmap.updateStatusbar()
     }
+    this.updateStatusIcons()
   }
 
   updateStatusIcons() {

@@ -48,6 +48,8 @@ export default class RightNode extends Node {
               this.statusbarDiv = htmlToElement('<div class="statusbar">blah blah blah</div>')
               this.labelContainer.append(this.statusbarDiv)
             }
+            this.errorIcon = htmlToElement('<i aria-hidden="true" class="error_icon pl-3 red--text v-icon mdi mdi-alert"></i>')
+            this.labelContainer.append(this.errorIcon)
           }
         }
 
