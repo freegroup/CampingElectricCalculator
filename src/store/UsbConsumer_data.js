@@ -6,6 +6,7 @@ export default [
     type: "usbConsumer", 
     name: "SmartPhone ", 
     imageSrc: images("./phone_charge.png"),
+    operationHours: 2,
     shopping: [
     ],
     data: {

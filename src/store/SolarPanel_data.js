@@ -7,6 +7,7 @@ export default [
     name: "ECTIVE MSP 80", 
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp80.png"),
+    operationHours: 24,
     shopping: [
       {
         shop: "Amazon",
@@ -28,6 +29,7 @@ export default [
     name: "ECTIVE MSP 70", 
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp70.png"),
+    operationHours: 24,
     shopping: [
       {
         shop: "Amazon",
@@ -49,6 +51,7 @@ export default [
     name: "ECTIVE MSP 100", 
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp100.png"),
+    operationHours: 24,
     shopping: [
       {
         shop: "Amazon",
@@ -70,6 +73,7 @@ export default [
     name: "Büttner Power Line 210", 
     hersteller: "Büttner",
     imageSrc: images("./buettner210.png"),
+    operationHours: 24,
     shopping: [
       {
         shop: "Etriox",

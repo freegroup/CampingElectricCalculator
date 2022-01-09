@@ -6,6 +6,7 @@ export default [
     type: "alternator", 
     name: "Alternator", 
     imageSrc: images("./alternator.png"),
+    operationHours: 24,
     shopping: [
     ],
     data: {

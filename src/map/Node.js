@@ -77,11 +77,15 @@ export default class Node extends GenericNode {
     return this._parent
   }
 
+  set hidden(flag) {
+    $(this.html).css('display', flag === true ? "none" : 'block')
+  }
+
   /**
    *
    * @private
    * */
-  get visible() {
+  get childrenVisible() {
     return $(this.childrenContainer).css('visibility') !== 'hidden'
   }
 

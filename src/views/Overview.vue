@@ -52,7 +52,9 @@
             <v-layout row wrap>
               <v-flex>
                 <v-card class="mx-auto" max-width="350" >
-                  <v-img src="@/assets/mindmap.png" height="200px" ></v-img>
+                    <router-link  :to="{path:'/map'}" >
+                      <v-img src="@/assets/mindmap.png" height="200px" ></v-img>
+                    </router-link>
 
                   <v-card-title>Get the correct sizing</v-card-title>
                   <v-card-subtitle style="min-height:100px">Connect your components in a mindmap fashion 
@@ -66,7 +68,9 @@
               </v-flex>
               <v-flex>
                 <v-card class="mx-auto" max-width="350">
-                  <v-img src="@/assets/wirediameter.png" height="200px" ></v-img>
+                  <router-link  :to="{path:'/diameter'}" >
+                    <v-img src="@/assets/wirediameter.png" height="200px" ></v-img>
+                  </router-link>
 
                   <v-card-title>Wire size vs. Ampere</v-card-title>
                   <v-card-subtitle  style="min-height:100px">

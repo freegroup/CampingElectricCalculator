@@ -84,6 +84,7 @@ export default
     name: "Red Wulf Fuse 200A", 
     description: "Automatic wear-free fuse for the motorhome electrical system. In case of overload or when you press the emergency stop button, the fuse switches off and can be switched on again manually when you press the latch again.",
     imageSrc: images("./redwulf-200A.png"),
+    operationHours: 24,
     shopping: [
       {
         shop: "Amazon",

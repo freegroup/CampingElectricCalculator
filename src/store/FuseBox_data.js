@@ -7,6 +7,7 @@ export default
     type: "fuseBox", 
     name: "Sicherungsbox 12", 
     imageSrc: images("./mictuning_12.png"),
+    operationHours: 24,
     shopping: [
     ],
     data: {

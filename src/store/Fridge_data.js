@@ -6,6 +6,7 @@ export default [
     type: "fridge", 
     name: "Engel CK100", 
     imageSrc: images("./engel_ck100.png"),
+    operationHours: 24,
     shopping: [
     ],
     data: {

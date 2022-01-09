@@ -2,7 +2,7 @@ import Node from './Node'
 import $ from "jquery"
 import { createCanvas, htmlToElement, CANVAS_WIDTH, drawArrowLine } from "./utils.js"
 
-export default class RightNode extends Node {
+export default class LeftNode extends Node {
   constructor() {
     super()
     this.leftSide = true
@@ -114,7 +114,7 @@ export default class RightNode extends Node {
    *
    * */
   drawLines () {
-    if (this.visible) {
+    if (this.childrenVisible) {
       const height = this.adjustCanvasHeight()
       const thisAnchor = $(this.canvas).offset()
       const ctx = this.canvas.getContext('2d')

@@ -233,6 +233,11 @@ export default {
   .root {
     position: relative;
     border-collapse: collapse;
+    background-image: url('~@/assets/background.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    background-size: 800px;
 
     .producer {
       background-image: #effeff7e;
@@ -277,6 +282,7 @@ export default {
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         border-radius: 5px;
         border: 1px dotted transparent;
+        background: white;
         .toolbar {
           height: 26px;
           border-bottom: 1px solid lightgray;
@@ -339,6 +345,29 @@ export default {
       }
     }
 
+    .producer_placeholder {
+      div {
+      background-image: url('~@/assets/provider.png');
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: right center;
+      background-size: contain;
+      height:400px;
+      width:150px;
+      }
+    }
+    .consumer_placeholder {
+      div {
+      background-image: url('~@/assets/consumer.png');
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: right center;
+      background-size: contain;
+      height:400px;
+      width:150px;
+      }
+    }
+
     .selected_node {
       border: 1px dotted red !important;
     }
@@ -375,6 +404,17 @@ export default {
     .component_icon{
       max-height: 70px;
     }
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: rotate(0deg); }
+    80% { transform: rotate(0deg); }
+    85% { transform: rotate(15deg); }
+    95% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
   }
 }
 </style>

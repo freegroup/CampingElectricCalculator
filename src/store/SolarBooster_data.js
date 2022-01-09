@@ -6,6 +6,7 @@ export default [
     type: "solarBooster", 
     name: "BlueSolar 75|15", 
     imageSrc: images("./bluesolar_75_15.png"),
+    operationHours: 4.5,
     shopping: [
       {
         shop: "Amazon",
@@ -31,6 +32,7 @@ export default [
     type: "solarBooster", 
     name: "BlueSolar 75|10", 
     imageSrc: images("./bluesolar_75_10.png"),
+    operationHours: 4.5,
     shopping: [
       {
         shop: "Amazon",
@@ -56,6 +58,7 @@ export default [
     type: "solarBooster", 
     name: "Thlevel 30A PWM", 
     imageSrc: images("./thlevel_30A_pwm.png"),
+    operationHours: 4.5,
     shopping: [
       {
         shop: "Amazon",
@@ -81,6 +84,7 @@ export default [
     type: "solarBooster", 
     name: "Büttner MPP 440", 
     imageSrc: images("./buettner_mpp_440.png"),
+    operationHours: 4.5,
     shopping: [
       {
         shop: "Amazon",
@@ -106,6 +110,7 @@ export default [
     type: "solarBooster", 
     name: "Büttner MPP 260", 
     imageSrc: images("./buettner_mpp_260.png"),
+    operationHours: 4.5,
     shopping: [
       {
         shop: "Amazon",
@@ -131,6 +136,7 @@ export default [
     type: "solarBooster", 
     name: "Büttner MPP 170", 
     imageSrc: images("./buettner_mpp_170.png"),
+    operationHours: 4.5,
     shopping: [
       {
         shop: "Amazon",

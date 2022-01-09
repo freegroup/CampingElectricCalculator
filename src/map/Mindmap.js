@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import { disableSelection, createCanvas, htmlToElement } from './utils'
 import GenericNode from './GenericNode'
+import LeftDefaultNode from './LeftDefaultNode'
+import RightDefaultNode from './RightDefaultNode'
 
 export default class Mindmap extends GenericNode {
   constructor(id, width, height) {
@@ -16,13 +18,17 @@ export default class Mindmap extends GenericNode {
     this.centerLabel = null
     this.host = $(id)
     this.leftSide = true
+    this.leftDefaultNode = new LeftDefaultNode()
+    this.rightDefaultNode = new RightDefaultNode()
 
     this.host.append(this.getHTMLElement())
 
     this.center()
 
     disableSelection(this.html)
-    this.setCurrentSelection(this)
+
+    this.leftChildrenHTML.append(this.leftDefaultNode.getHTMLElement())
+    this.rightChildrenHTML.append(this.rightDefaultNode.getHTMLElement())
   }
 
   getLeftChildCandidates () {
@@ -47,6 +53,8 @@ export default class Mindmap extends GenericNode {
       inline: 'center',
       block: 'center'
     })
+    this.leftChildrenHTML.append(this.leftDefaultNode.getHTMLElement())
+    this.rightChildrenHTML.append(this.rightDefaultNode.getHTMLElement())
   }
 
   center () {
@@ -113,9 +121,15 @@ export default class Mindmap extends GenericNode {
     if (node.leftSide) {
       this.leftChildrenHTML.append(node.getHTMLElement())
       this.leftChildren.push(node)
+      this.leftDefaultNode.hidden = true
+      $(this.leftLines).css('display', 'initial')
+      $(this.addLeftChildIcon).removeClass('pulse')
     } else {
       this.rightChildrenHTML.append(node.getHTMLElement())
       this.rightChildren.push(node)
+      this.rightDefaultNode.hidden = true
+      $(this.addRightChildIcon).removeClass('pulse')
+      $(this.rightLines).css('display', 'initial')
     }
 
     // The mindmap is parent and to root element of this node
@@ -137,6 +151,17 @@ export default class Mindmap extends GenericNode {
     node.parent = null
     node.mindmap = null
     this.drawLines()
+
+    if ( this.leftChildren.length === 0 && node.leftSide === true) {
+      this.leftDefaultNode.hidden = false
+      $(this.leftLines).css('display', 'none')
+      $(this.addLeftChildIcon).addClass('pulse')
+    }
+    if ( this.rightChildren.length === 0 && node.leftSide === false) {
+      this.rightDefaultNode.hidden = false
+      $(this.rightLines).css('display', 'none')      
+      $(this.addRightChildIcon).addClass('pulse')
+    }
   }
 
   /**
@@ -163,6 +188,7 @@ export default class Mindmap extends GenericNode {
           this.leftLines.className = 'producer'
           this.leftLines.style.width = `${this.lineCanvasWidth}px`
           this.leftLines.style.height = `${this.height}px`
+          this.leftLines.style.display = `none`
           this.leftCanvas = createCanvas(this.leftLines)
           {
             this.leftCanvas.style.height = `${this.height}px`
@@ -174,7 +200,7 @@ export default class Mindmap extends GenericNode {
         const addLeftChildCell = row.insertCell()
         {
           addLeftChildCell.className = 'storage'
-          this.addLeftChildIcon = htmlToElement('<i aria-hidden="true" class="addChild_icon v-icon mdi mdi-plus-circle-outline"></i>')
+          this.addLeftChildIcon = htmlToElement('<i aria-hidden="true" class="pulse addChild_icon v-icon mdi mdi-plus-circle-outline"></i>')
           addLeftChildCell.append(this.addLeftChildIcon)
         }
 
@@ -210,7 +236,7 @@ export default class Mindmap extends GenericNode {
         const addRightChildCell = row.insertCell()
         {
           addRightChildCell.className = 'storage'
-          this.addRightChildIcon = htmlToElement('<i aria-hidden="true" class="addChild_icon v-icon mdi mdi-plus-circle-outline"></i>')
+          this.addRightChildIcon = htmlToElement('<i aria-hidden="true" class="pulse addChild_icon v-icon mdi mdi-plus-circle-outline"></i>')
           addRightChildCell.append(this.addRightChildIcon)
         }
 
@@ -219,6 +245,7 @@ export default class Mindmap extends GenericNode {
           this.rightLines.className = 'consumer'
           this.rightLines.style.width = `${this.lineCanvasWidth}px`
           this.rightLines.style.height = `${this.height}px`
+          this.rightLines.style.display = `none`
           this.rightCanvas = createCanvas(this.rightLines)
           this.rightCanvas.style.height = `${this.height}px`
           this.rightCanvas.setAttribute('width', this.lineCanvasWidth)

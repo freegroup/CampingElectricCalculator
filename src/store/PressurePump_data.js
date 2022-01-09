@@ -6,6 +6,7 @@ const components = [
     type: "pressurePump", 
     name: "Lilie LP4142", 
     imageSrc: images("./lilie_lp4142.png"),
+    operationHours: 2,
     shopping: [
     ],
     data: {

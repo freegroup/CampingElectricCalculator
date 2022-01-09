@@ -99,7 +99,7 @@ export default class RightNode extends Node {
    *
   * */
   drawLines () {
-    if (this.visible) {
+    if (this.childrenVisible) {
       const height = this.adjustCanvasHeight()
       const thisAnchor = $(this.canvas).offset()
       const ctx = this.canvas.getContext('2d')

@@ -6,6 +6,7 @@ export default [
     type: "starterBooster", 
     name: "Schaudt WA121525", 
     imageSrc: images("./schaudt_wa121525.png"),
+    operationHours: 1,
     shopping: [
     ],
     data: {
