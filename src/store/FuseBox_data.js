@@ -67,5 +67,49 @@ export default
       strom_je_anschluss: 8,
       anschluesse: 6
     }
+  },
+  { 
+    uuid: "30ED8CBE-A6F5-4ABA-AEF0-3D6A7389D3E0", 
+    type: "fuseBox", 
+    name: "Philippi - STV 110", 
+    imageSrc: images("./philipi_stv110.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/33mpCBm",
+        label: "Philippi - Stromkreisverteiler STV 110",
+        lastKnownPrice: 180
+      }
+    ],
+    data: {
+      strom: 10 * 8,
+      spannung: 12,
+      strom_je_anschluss: 8,
+      anschluesse: 10
+    }
+  },
+  { 
+    uuid: "432DED45-0BB0-4060-A788-43B0DDDDEC4F", 
+    type: "fuseBox", 
+    name: "Simple Fusebox 8x", 
+    imageSrc: images("./sicherungsfach_8.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3GfwUWe",
+        label: "Simple Fusebox 8x",
+        lastKnownPrice: 11.99
+      }
+    ],
+    data: {
+      strom: 8 * 15,
+      spannung: 12,
+      strom_je_anschluss: 15,
+      anschluesse: 8
+    }
   }
 ]
