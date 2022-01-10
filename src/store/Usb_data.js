@@ -9,6 +9,12 @@ export default [
     operationHours: 24,
     exportable: true,
     shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3t9eWkF",
+        label: "ProCar 67341000 Power USB-C/A",
+        lastKnownPrice: 16.99
+      }
     ],
     data: {
       spannung: 12, 
@@ -25,6 +31,12 @@ export default [
     operationHours: 24,
     exportable: true,
     shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3t9eWkF",
+        label: "ProCar 67341000 Power USB-C/A",
+        lastKnownPrice: 16.99
+      }
     ],
     data: {
       spannung: 12, 
@@ -41,6 +53,12 @@ export default [
     operationHours: 24,
     exportable: true,
     shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3t9eWkF",
+        label: "ProCar 67341000 Power USB-C/A",
+        lastKnownPrice: 16.99
+      }
     ],
     data: {
       spannung: 12, 

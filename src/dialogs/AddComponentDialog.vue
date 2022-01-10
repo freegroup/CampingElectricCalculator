@@ -5,21 +5,42 @@
 
         <v-card-text style="height: 350px;">
           <v-list dense>
-            <v-list-group :value="false" v-for="type in types" :key="type" >
-                <template v-slot:activator>
-                  <v-list-item-title>{{ $t('component.' + type)}}</v-list-item-title>
-                </template>
-                <template v-for="(item, index) in components(type)" >
-                  <v-list-item :key="item.uuid" @click="onItemSelected(type, item.uuid)" >
-                      <v-img max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
-                      <v-list-item-content>
-                          <v-list-item-title v-html="item.name"></v-list-item-title>
-                          <v-list-item-subtitle v-html="item.name"></v-list-item-subtitle>
-                      </v-list-item-content>
+            <template v-if="types.length > 1">
+              <v-list-group :value="false" v-for="type in types" :key="type" >
+                  <template v-slot:activator>
+                    <v-list-item-title>{{ $t('component.' + type)}}</v-list-item-title>
+                  </template>
+                  <template v-for="(item, index) in components(type)" >
+                    <v-list-item :key="item.uuid" >
+                        <v-img  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
+                        <v-list-item-content>
+                          <v-list-item-title  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" v-html="item.name"></v-list-item-title>
+                          <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
+                            <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
+                          </v-list-item-subtitle>
+                          <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-divider :key="item.uuid+'fff'" v-if="index !== (components(type).length - 1)"></v-divider>
+                  </template>
+              </v-list-group>
+            </template>
+            <template v-if="types.length === 1">
+              <template  v-for="type in types">
+                <template v-for="item in components(type)" >
+                  <v-list-item :key="item.uuid">
+                    <v-img style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
+                    <v-list-item-content>
+                        <v-list-item-title style="cursor:pointer" @click="onItemSelected(type, item.uuid)"  v-html="item.name"></v-list-item-title>
+                        <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
+                          <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
+                        </v-list-item-subtitle>
+                        <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
+                    </v-list-item-content>
                   </v-list-item>
-                  <v-divider  :key="item.uuid+'fff'" v-if="index !== (components(type).length - 1)"></v-divider>
                 </template>
-            </v-list-group>
+              </template>
+            </template>
           </v-list>
         </v-card-text>
 
@@ -60,13 +81,24 @@ export default {
         this.showFlag = true
       })
     },
+    lastKnownPrice ( item ) {
+      if (item.shopping.length === 0) {
+        return "-"
+      }
+      const low = item.shopping.reduce((prev, curr) => prev.lastKnownPrice < curr.lastKnownPrice ? prev : curr)
+      const high = item.shopping.reduce((prev, curr) => prev.lastKnownPrice > curr.lastKnownPrice ? prev : curr)
+      if (low.lastKnownPrice === high.lastKnownPrice ) {
+        return (low.lastKnownPrice).toFixed(2) + " €"
+      }
+      return (low.lastKnownPrice).toFixed(2) + " - " + (high.lastKnownPrice).toFixed(2) + " €"
+    },
     onItemSelected(type, uuid) {
       this.showFlag = false
       this.resolve && this.resolve({ type: type, uuid: uuid })
     },
     onCloseButtonClick() {
       this.showFlag = false
-      this.resolve && this.resolve()
+      this.resolve && this.resolve({ type: undefined, uuid: undefined })
     }
   }
 }

@@ -85,7 +85,9 @@ export default {
       addComponent: {
         okButton: "Close",
         title: "Add Component",
-        subtitle: "Add a new component to the diagram which will be included in the total calculation."
+        shopLabel: "Shops",
+        subtitle: "Add a new component to the diagram which will be included in the total calculation.",
+        lastKnownPrice: "Last known price"
       },
       error: {
         okButton: "Close",

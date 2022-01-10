@@ -9,6 +9,12 @@ const components = [
     operationHours: 2,
     exportable: true,
     shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3nbrZ1j",
+        label: "Lilie WhiteYellow Soft Serie Membran Water pump",
+        lastKnownPrice: 105
+      }
     ],
     data: {
       spannung: 12, 

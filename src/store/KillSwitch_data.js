@@ -13,7 +13,8 @@ export default
       {
         shop: "Amazon",
         link: "https://amzn.to/3JVQVTX",
-        label: "Battery Switch Disconnect 12V 24V 48V, Switch 1-2-Both-OFF, 300A"
+        label: "Battery Switch Disconnect 12V 24V 48V, Switch 1-2-Both-OFF, 300A",
+        lastKnownPrice: 20.29
       }
     ],
     data: {

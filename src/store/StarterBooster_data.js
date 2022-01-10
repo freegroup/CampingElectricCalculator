@@ -17,7 +17,7 @@ export default [
       }
     ],
     data: {
-      chargeSupport: ["Lithium", ",Gel", "Blei", "AGM"],
+      chargeSupport: ["LiFePO4", "Gel", "Blei", "AGM"],
       type: "DC-DC Converter",
       eingangsspannung: 12,
       eingangsstrom: 15,

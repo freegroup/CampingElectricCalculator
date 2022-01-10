@@ -13,7 +13,8 @@ export default
       {
         shop: "Amazon",
         link: "https://amzn.to/3zuCba8",
-        label: "Red Wulf Fuse Switch 40A"
+        label: "Red Wulf Fuse Switch 40A",
+        lastKnownPrice: 23
       }
     ],
     data: {
@@ -32,7 +33,8 @@ export default
       {
         shop: "Amazon",
         link: "https://amzn.to/3mZ6yAi",
-        label: "Red Wulf Fuse Switch 50A"
+        label: "Red Wulf Fuse Switch 50A",
+        lastKnownPrice: 15.99
       }
     ],
     data: {
@@ -52,7 +54,8 @@ export default
       {
         shop: "Amazon",
         link: "https://amzn.to/3EYBpmy",
-        label: "Red Wulf Fuse Switch 70A"
+        label: "Red Wulf Fuse Switch 70A",
+        lastKnownPrice: 24
       }
     ],
     data: {
@@ -72,7 +75,8 @@ export default
       {
         shop: "Amazon",
         link: "https://amzn.to/3zpOh4d",
-        label: "Red Wulf Fuse Switch 100A"
+        label: "Red Wulf Fuse Switch 100A",
+        lastKnownPrice: 16
       }
     ],
     data: {
@@ -93,7 +97,8 @@ export default
       {
         shop: "Amazon",
         link: "https://amzn.to/3mXGeGQ",
-        label: "Red Wulf Fuse Switch 200A"
+        label: "Red Wulf Fuse Switch 200A",
+        lastKnownPrice: 16
       }
     ],
     data: {

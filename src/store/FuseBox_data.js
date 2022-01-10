@@ -5,11 +5,17 @@ export default
   { 
     uuid: "7asdf", 
     type: "fuseBox", 
-    name: "Sicherungsbox 12", 
+    name: "Fusebox 12-slots", 
     imageSrc: images("./mictuning_12.png"),
     operationHours: 24,
     exportable: true,
     shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/331M0QM",
+        label: "MICTUNING 12-Fach Fusebox, ATO Sicherungskasten mit LED-Anzeige",
+        lastKnownPrice: 19.90
+      }
     ],
     data: {
       strom: 100,

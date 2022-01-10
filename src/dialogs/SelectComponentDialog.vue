@@ -4,14 +4,20 @@
         <DialogHeader :title="$t('dialog.selectComponent.title')" :subtitle="$t('dialog.selectComponent.subtitle')" icon="mdi-swap-horizontal"></DialogHeader>
 
         <v-card-text style="height: 350px;">
-          <v-list three-line dense>
-                <v-list-item :key="item.uuid" @click="onItemSelected(item.uuid)" v-for="item in components" >
-                    <v-img  class="mt-4 mb-4 mr-6" max-height="100" max-width="100" :src="item.imageSrc"></v-img>
+          <v-list dense>
+  
+                <template v-for="item in components" >
+                  <v-list-item :key="item.uuid">
+                    <v-img style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
-                        <v-list-item-title>{{item.name}}</v-list-item-title>
-                        <v-list-item-subtitle v-html="item.description"></v-list-item-subtitle>
+                        <v-list-item-title style="cursor:pointer" @click="onItemSelected(type, item.uuid)"  v-html="item.name"></v-list-item-title>
+                        <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
+                          <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
+                        </v-list-item-subtitle>
+                        <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
                     </v-list-item-content>
-                </v-list-item>
+                  </v-list-item>
+                </template>
           </v-list>
         </v-card-text>
 
@@ -56,6 +62,17 @@ export default {
         this.resolve = resolve
         this.showFlag = true
       })
+    },
+    lastKnownPrice ( item ) {
+      if (item.shopping.length === 0) {
+        return "-"
+      }
+      const low = item.shopping.reduce((prev, curr) => prev.lastKnownPrice < curr.lastKnownPrice ? prev : curr)
+      const high = item.shopping.reduce((prev, curr) => prev.lastKnownPrice > curr.lastKnownPrice ? prev : curr)
+      if (low.lastKnownPrice === high.lastKnownPrice ) {
+        return (low.lastKnownPrice).toFixed(2) + " €"
+      }
+      return (low.lastKnownPrice).toFixed(2) + " - " + (high.lastKnownPrice).toFixed(2) + " €"
     },
     onItemSelected(uuid) {
       this.showFlag = false

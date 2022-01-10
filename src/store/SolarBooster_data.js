@@ -12,7 +12,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/32PDkgo",
-        label: "Victron Energy BlueSolar MPPT 75/15 12V 24V 15A"
+        label: "Victron Energy BlueSolar MPPT 75/15 12V 24V 15A",
+        lastKnownPrice: 91
       }
     ],
     data: {
@@ -39,7 +40,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/3sYrHyk",
-        label: "Victron Energy BlueSolar MPPT 75/10 12V 24V 10A"
+        label: "Victron Energy BlueSolar MPPT 75/10 12V 24V 10A",
+        lastKnownPrice: 81
       }
     ],
     data: {
@@ -66,7 +68,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/3n0xKi5",
-        label: "Thlevel 30A 12V/24V Solar Laderegler"
+        label: "Thlevel 30A 12V/24V Solar Laderegler",
+        lastKnownPrice: 18.90
       }
     ],
     data: {
@@ -93,7 +96,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/3n5pmOc",
-        label: "Büttner MT-Solarregler MPP 440 inkl. Temperaturfühler"
+        label: "Büttner MT-Solarregler MPP 440 inkl. Temperaturfühler",
+        lastKnownPrice: 408
       }
     ],
     data: {
@@ -120,7 +124,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/3qVYBNC",
-        label: "Büttner MT-Solarregler MPP 260 inkl. Temperaturfühler"
+        label: "Büttner MT-Solarregler MPP 260 inkl. Temperaturfühler",
+        lastKnownPrice: 252
       }
     ],
     data: {
@@ -147,7 +152,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/3n3xj6v",
-        label: "Büttner MT-Solarregler MPP 170 inkl. Temperaturfühler"
+        label: "Büttner MT-Solarregler MPP 170 inkl. Temperaturfühler",
+        lastKnownPrice: 205
       }
     ],
     data: {

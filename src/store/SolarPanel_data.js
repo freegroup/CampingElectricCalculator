@@ -13,7 +13,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/3G6QxQs",
-        label: "ECTIVE 24V 70W Monokristallines Solarmodul Black Edition"
+        label: "ECTIVE 24V 70W Monokristallines Solarmodul Black Edition",
+        lastKnownPrice: 86
       }
     ],
     data: {
@@ -36,7 +37,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/3G6QxQs",
-        label: "ECTIVE 24V 70W Monokristallines Solarmodul Black Edition"
+        label: "ECTIVE 24V 70W Monokristallines Solarmodul Black Edition",
+        lastKnownPrice: 86
       }
     ],
     data: {
@@ -59,7 +61,8 @@ export default [
       {
         shop: "Amazon",
         link: "https://amzn.to/34BKl5b",
-        label: "ECTIVE 24V 100W Monokristallines Solarmodul Black Edition"
+        label: "ECTIVE 24V 100W Monokristallines Solarmodul Black Edition",
+        lastKnownPrice: 102
       }
     ],
     data: {
@@ -82,12 +85,14 @@ export default [
       {
         shop: "Etriox",
         link: "https://shop.etriox.de/Buettner-Power-Line-Solar-Komplettanlage-210-W",
-        label: "Büttner Power Line Solar-Komplettanlage 210 W"
+        label: "Büttner Power Line Solar-Komplettanlage 210 W, Komplettanlage",
+        lastKnownPrice: 960
       },
       {
         shop: "Camping Wagner",
         link: "https://www.campingwagner.de/product_info.php/info/p83927_Buettner-Elektronik-Power-Line-MT-210-Solar-Komplettanlage--210Wp--920Wh-Tag.html",
-        label: "Büttner Power Line Solar-Komplettanlage 210 W"
+        label: "Büttner Power Line Solar-Komplettanlage 210 W, Komplettanlage",
+        lastKnownPrice: 1239
       }
     ],
     data: {
