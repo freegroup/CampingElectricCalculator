@@ -8,9 +8,9 @@
   
                 <template v-for="item in components" >
                   <v-list-item :key="item.uuid">
-                    <v-img style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
+                    <v-img style="cursor:pointer" @click="onItemSelected(item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
-                        <v-list-item-title style="cursor:pointer" @click="onItemSelected(type, item.uuid)"  v-html="item.name"></v-list-item-title>
+                        <v-list-item-title style="cursor:pointer" @click="onItemSelected(item.uuid)"  v-html="item.name"></v-list-item-title>
                         <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
                           <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
                         </v-list-item-subtitle>
