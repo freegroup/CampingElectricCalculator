@@ -88,7 +88,7 @@ export default class SolarBooster extends LeftNode {
           // gleicher Leistung (P=100W). Dabei ändert sich der Ladestrom – er steigt an! 
           // Die Formel dazu liefert den Beweis: I=100W/14.4V . Das ergibt einen neuen 
           // Ladestrom von 6,75A.
-          result = { spannung: 14.8, strom: data.watt / 14.8, watt: data.watt, type: this.model.data.type } 
+          result = { spannung: 12, strom: data.watt / 12, watt: data.watt, type: this.model.data.type } 
           break
         case "PWM":
           // Der Kollege PWM mag es unkompliziert, und passt deswegen die Modulspannung 
@@ -97,10 +97,10 @@ export default class SolarBooster extends LeftNode {
           // du feststellen, dass diese bei 18,5V liegt. Der Regler “verschenkt” sozusagen 
           // 3,7V, weil dein Akku ja lediglich 14,8 benötigt, während der Strom (Im) gleich 
           // bleibt
-          result = { spannung: 14.8, strom: data.nennstrom, watt: data.nennstrom * 14.8, type: this.model.data.type } 
+          result = { spannung: 12, strom: data.nennstrom, watt: data.nennstrom * 12, type: this.model.data.type } 
           break
         default:
-          result = { spannung: 14.8, strom: 0, watt: 0, type: this.model.data.type } 
+          result = { spannung: 12, strom: 0, watt: 0, type: this.model.data.type } 
       }
     }
     

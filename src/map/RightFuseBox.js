@@ -1,6 +1,6 @@
 import RightNode from './RightNode'
 
-export default class FuseBox extends RightNode {
+export default class RightFuseBox extends RightNode {
   constructor() {
     super()
   }

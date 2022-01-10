@@ -8,6 +8,7 @@ import fridge from './Fridge'
 import fuse from './Fuse'
 import fuseBox from './FuseBox'
 import accu from './Accu'
+import killSwitch from './KillSwitch'
 import solarBooster from './SolarBooster'
 import starterBooster from './StarterBooster'
 import starterAccu from './StarterAccu'
@@ -29,6 +30,7 @@ export default new Vuex.Store({
     pressurePump,
     solarBooster,
     starterBooster,
+    killSwitch,
     starterAccu,
     solarPanel,
     configuration

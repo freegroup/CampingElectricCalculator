@@ -88,7 +88,7 @@ export default {
           img.addEventListener('error', () => resolve(false))
         })
       })).then(results => {
-        this.map.drawLines()
+        this.map.drawLines(true)
       })
       this.$emit("configLoaded")
     },

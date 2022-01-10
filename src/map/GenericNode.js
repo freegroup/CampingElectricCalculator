@@ -34,6 +34,9 @@ export default class GenericNode {
       this.mindmap.updateStatusbar()
     }
     this.updateStatusIcons()
+    if ( this.mindmap ) {
+      this.mindmap.drawLines(true)
+    }
   }
 
   updateStatusIcons() {
@@ -106,5 +109,12 @@ export default class GenericNode {
 
   calculateConsumptionData () {
     return { strom: 0, spannung: 12, watt: 0 }
+  }
+
+  // calculates the overall percentage of the MindMap flow of this node.
+  // This data is used to calculate the line thickness of the connectors.
+  // [0..1]
+  getPercentageOfAh () {
+    return 0
   }
 }

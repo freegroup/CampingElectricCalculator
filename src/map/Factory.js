@@ -1,4 +1,6 @@
 import Alternator from "./Alternator.js"
+import LeftKillSwitch from "./LeftKillSwitch.js"
+import RightKillSwitch from "./RightKillSwitch.js"
 import Fridge from "./Fridge.js"
 import SolarPanel from "./SolarPanel.js"
 import SolarBooster from "./SolarBooster.js"
@@ -44,6 +46,13 @@ export default class NodeFactory {
           node = new LeftFuse()  
         } else {
           node = new RightFuse()
+        }   
+        break
+      case "killSwitch":
+        if ( leftSide ) {
+          node = new LeftKillSwitch()  
+        } else {
+          node = new RightKillSwitch()
         }   
         break
       case "fuseBox":

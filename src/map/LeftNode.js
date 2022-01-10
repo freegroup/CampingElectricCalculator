@@ -1,6 +1,6 @@
 import Node from './Node'
 import $ from "jquery"
-import { createCanvas, htmlToElement, CANVAS_WIDTH, drawArrowLine } from "./utils.js"
+import { createCanvas, htmlToElement, CANVAS_WIDTH, ARROW_STROKE, drawArrowLine } from "./utils.js"
 
 export default class LeftNode extends Node {
   constructor() {
@@ -113,22 +113,39 @@ export default class LeftNode extends Node {
    * Called by the framework.
    *
    * */
-  drawLines () {
-    if (this.childrenVisible) {
-      const height = this.adjustCanvasHeight()
-      const thisAnchor = $(this.canvas).offset()
-      const ctx = this.canvas.getContext('2d')
-      ctx.clearRect(0, 0, CANVAS_WIDTH, height)
-      ctx.strokeStyle = '#4550A9'
-      ctx.fillStyle = '#4550A9'
-      ctx.lineWidth = 4
-      this.children.forEach((child) => {
-        const anchor = child.getAbsoluteAnchor()
-        const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-        drawArrowLine(ctx, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 4, y: height / 2 }, undefined, 15, false, true)
-        ctx.stroke()
-      })
+  drawLines (recursive) {
+    if ( recursive ) {
+      if (this.childrenVisible) {
+        const height = this.adjustCanvasHeight()
+        const thisAnchor = $(this.canvas).offset()
+        const ctx = this.canvas.getContext('2d')
+        ctx.clearRect(0, 0, CANVAS_WIDTH, height)
+        ctx.strokeStyle = '#5CC9FA'
+        ctx.fillStyle = '#5CC9FA'
+        this.children.forEach((child) => {
+          const percentage = child.getPercentageOfAh()
+          const anchor = child.getAbsoluteAnchor()
+          const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
+          ctx.lineWidth = Math.max(1, ARROW_STROKE * percentage)
+          drawArrowLine(ctx, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 5, y: height / 2 }, 15, false, false)
+          child.drawLines(true)
+        })
+      }
+    } else {
+      this.mindmap !== null && this.mindmap.drawLines(true)
     }
-    this.parent !== null && this.parent.drawLines()
+  }
+
+  getPercentageOfAh () {
+    if ( this.mindmap === null ) {
+      return 0
+    }
+    const rootAh = this.mindmap.calculateInputData().amperestunden
+    const thisAh = this.calculateOutputData().amperestunden
+    console.log(this, thisAh, rootAh)
+    if ( isNaN(rootAh) || isNaN(thisAh) ) {
+      return 0
+    }
+    return ( 1 / rootAh ) * thisAh
   }
 }

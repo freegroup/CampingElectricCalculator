@@ -1,12 +1,12 @@
-import LeftNode from './LeftNode'
+import RightNode from './RightNode'
 
-export default class LeftFuse extends LeftNode {
+export default class RightKillSwitch extends RightNode {
   constructor() {
     super()
   }
 
   getChildCandidates () {
-    return ["solarBooster", "starterBooster", "starterAccu"] 
+    return ["fuse", "fuseBox"] 
   }
 
   getErrorMessages () {
@@ -20,7 +20,7 @@ export default class LeftFuse extends LeftNode {
       //
       const firstSpannung = this.children[0].calculateOutputData().spannung
       if ( this.children.find( child => child.calculateOutputData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
+        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the switch.` })
       }
     }
     
@@ -36,31 +36,24 @@ export default class LeftFuse extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The power [I= ${data.strom} Ampere] of the input sources are bigger than the maximum power which the fuse can handle (${this.model.data.strom} )` })
+        result.push({ type: "Error", text: `The power [I= ${data.strom} Ampere] of the input sources are bigger than the maximum power which the switch can handle (${this.model.data.strom} )` })
       }
     }
     return result
   }
 
-  calculateInputData () {
-    const result = { strom: 0, spannung: 0, watt: 0, amperestunden: 0 }
+  calculateConsumptionData () {
+    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0, amperestunden: 0 }
     if ( this.children.length > 0 ) {
-      let childData = this.children[0].calculateOutputData()
       // check that the attributes "strom" and "spannung" are in place
-      result.strom = childData.strom
-      result.spannung = childData.spannung
-      result.amperestunden = childData.amperestunden
+      result.strom = this.children[0].calculateConsumptionData().strom
+      result.amperestunden = this.children[0].calculateConsumptionData().amperestunden
       this.children.slice(1).forEach( child => {
-        childData = child.calculateOutputData()
-        result.strom += childData.strom 
-        result.amperestunden += childData.amperestunden 
+        result.strom += child.calculateConsumptionData().strom 
+        result.amperestunden += child.calculateConsumptionData().amperestunden 
       })
     }
-    result.watt = result.strom * result.spannung
+    result.watt = (result.strom * result.spannung)
     return result
-  }
-
-  calculateOutputData () {
-    return this.calculateInputData()
   }
 }

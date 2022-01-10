@@ -54,7 +54,7 @@ export default class SolarPanel extends LeftNode {
       // 'nennstrom' und 'kurzschlusstrom' verändern sich somit nicht.
       // siehe: https://www.youtube.com/watch?v=xItbVw-IPzI
     }
-
+    
     return result
   }
 }

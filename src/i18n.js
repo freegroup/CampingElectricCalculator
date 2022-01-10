@@ -55,6 +55,7 @@ export default {
     },
     component: {
       solarBooster: "Solar Booster",
+      killSwitch: "Power Switch",
       solarPanel: "Solar Panel",
       starterBooster: "DC-DC Booster",
       starterAccu: "Start Battery",

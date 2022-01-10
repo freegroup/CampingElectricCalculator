@@ -1,6 +1,6 @@
 import Node from './Node'
 import $ from "jquery"
-import { createCanvas, htmlToElement, CANVAS_WIDTH, drawArrowLine } from "./utils.js"
+import { createCanvas, htmlToElement, CANVAS_WIDTH, ARROW_STROKE, drawArrowLine } from "./utils.js"
 
 export default class RightNode extends Node {
   constructor() {
@@ -100,22 +100,44 @@ export default class RightNode extends Node {
    * Called by the framework.
    *
   * */
-  drawLines () {
-    if (this.childrenVisible) {
-      const height = this.adjustCanvasHeight()
-      const thisAnchor = $(this.canvas).offset()
-      const ctx = this.canvas.getContext('2d')
-      ctx.clearRect(0, 0, CANVAS_WIDTH, height)
-      ctx.strokeStyle = '#4550A9'
-      ctx.fillStyle = '#4550A9'
-      ctx.lineWidth = 4
-      this.children.forEach((child) => {
-        const anchor = child.getAbsoluteAnchor()
-        const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-        drawArrowLine(ctx, { x: CANVAS_WIDTH, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 0, y: height / 2 }, 15, true, false)
-        ctx.stroke()
-      })
+  drawLines (recursive) {
+    if ( recursive ) {
+      if (this.childrenVisible) {
+        const height = this.adjustCanvasHeight()
+        const thisAnchor = $(this.canvas).offset()
+        const ctx = this.canvas.getContext('2d')
+        ctx.clearRect(0, 0, CANVAS_WIDTH, height)
+        ctx.strokeStyle = '#C2185B'
+        ctx.fillStyle = '#C2185B'
+        this.children.forEach((child) => {
+          // the child node can't have more percentage than the parent
+          // The parent is the limitation factor. E.g. a USB-socket can't deliver more power even if the charging
+          // device can draw more
+          //
+          const percentage = Math.min(this.getPercentageOfAh(), child.getPercentageOfAh())
+          const anchor = child.getAbsoluteAnchor()
+          const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
+          ctx.lineWidth = Math.max(1, ARROW_STROKE * percentage)
+
+          drawArrowLine(ctx, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 }, 15, false, false)
+          child.drawLines(true)
+        })
+      }
+    } else {
+      this.mindmap !== null && this.mindmap.drawLines(true)
     }
-    this.parent !== null && this.parent.drawLines()
+  }
+
+  getPercentageOfAh () {
+    if ( this.mindmap === null ) {
+      return 0
+    }
+    const rootAh = this.mindmap.calculateOutputData().amperestunden
+    const thisAh = this.calculateConsumptionData().amperestunden
+
+    if ( isNaN(rootAh) || isNaN(thisAh) ) {
+      return 0
+    }
+    return ( 1 / rootAh ) * thisAh
   }
 }

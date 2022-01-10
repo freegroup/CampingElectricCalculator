@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { disableSelection, createCanvas, htmlToElement } from './utils'
+import { disableSelection, createCanvas, htmlToElement, CANVAS_WIDTH, ARROW_STROKE, drawArrowLine } from "./utils.js"
 import GenericNode from './GenericNode'
 import LeftDefaultNode from './LeftDefaultNode'
 import RightDefaultNode from './RightDefaultNode'
@@ -32,11 +32,11 @@ export default class Mindmap extends GenericNode {
   }
 
   getLeftChildCandidates () {
-    return ["fuse", "solarBooster", "starterBooster"] 
+    return ["killSwitch", "fuse", "solarBooster", "starterBooster"] 
   }
 
   getRightChildCandidates () {
-    return ["fuse", "fuseBox"] 
+    return ["killSwitch", "fuse", "fuseBox"] 
   }
 
   reset () {
@@ -316,35 +316,43 @@ export default class Mindmap extends GenericNode {
     return this.html
   }
 
-  drawLines() {
+  drawLines(recursive) {
     this.adjustCanvasHeight()
 
     let ctx = this.leftCanvas.getContext('2d')
     let thisAnchor = $(this.leftCanvas).offset()
     ctx.clearRect(0, 0, this.lineCanvasWidth, this.height)
 
-    ctx.strokeStyle = '#4550A9'
-    ctx.lineWidth = 4
+    ctx.strokeStyle = '#5CC9FA'
+    ctx.fillStyle = '#5CC9FA'
     this.leftChildren.forEach((child) => {
+      const percentage = child.getPercentageOfAh()
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-      ctx.moveTo(0, top)
-      ctx.bezierCurveTo(20, top, 15, this.height / 2, this.lineCanvasWidth, this.height / 2)
-      ctx.stroke()
+      ctx.lineWidth = Math.max(1, ARROW_STROKE * percentage)
+      drawArrowLine(ctx, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 }, 15, false, false)
+      if ( recursive ) {
+        child.drawLines(recursive)
+      }
     })
 
     ctx = this.rightCanvas.getContext('2d')
     thisAnchor = $(this.rightCanvas).offset()
     ctx.clearRect(0, 0, this.lineCanvasWidth, this.height)
 
-    ctx.strokeStyle = '#4550A9'
-    ctx.lineWidth = 4
+    ctx.strokeStyle = '#C2185B'
+    ctx.fillStyle = '#C2185B'
     this.rightChildren.forEach((child) => {
+      const percentage = child.getPercentageOfAh()
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-      ctx.moveTo(this.lineCanvasWidth, top)
-      ctx.bezierCurveTo(0, top, 15, this.height / 2, 0, this.height / 2)
-      ctx.stroke()
+      ctx.lineWidth = Math.max(1, ARROW_STROKE * percentage)
+      drawArrowLine(ctx, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
+      // drawCircle(ctx, CANVAS_WIDTH / 2, this.height / 2, 10)
+      // drawCircle(ctx, CANVAS_WIDTH / 2, top, 10)
+      if ( recursive ) {
+        child.drawLines(recursive)
+      }
     })
   }
 

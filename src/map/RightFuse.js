@@ -1,12 +1,12 @@
 import RightNode from './RightNode'
 
-export default class Fuse extends RightNode {
+export default class RightFuse extends RightNode {
   constructor() {
     super()
   }
 
   getChildCandidates () {
-    return ["fuseBox"] 
+    return ["killSwitch", "fuseBox"] 
   }
 
   getErrorMessages () {
@@ -18,8 +18,8 @@ export default class Fuse extends RightNode {
     if ( this.children.length > 1 ) {
       // all direct children must have the same voltage
       //
-      const firstSpannung = this.children[0].calculateOutputData().spannung
-      if ( this.children.find( child => child.calculateOutputData().spannung !== firstSpannung) ) {
+      const firstSpannung = this.children[0].calculateConsumptionData().spannung
+      if ( this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung) ) {
         result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
       }
     }
@@ -27,11 +27,11 @@ export default class Fuse extends RightNode {
     // Calculate if the accumulated "strom"
     //
     if ( this.children.length > 0 ) {
-      const data = this.children[0].calculateOutputData()
+      const data = this.children[0].calculateConsumptionData()
       // skip the first element, because we have already the data of the first element in charge
       // ( slice(1) )
       this.children.slice(1).forEach( child => {
-        data.strom += child.calculateOutputData().strom 
+        data.strom += child.calculateConsumptionData().strom 
       })
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //

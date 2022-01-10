@@ -24,10 +24,15 @@ export default class StarterBooster extends LeftNode {
   }
 
   calculateOutputData () {
+    const input = this.calculateInputData()
     const data = JSON.parse(JSON.stringify(this.model.data)) // deep copy
     delete data.eingangsspannung
     delete data.eingangsstrom
 
+    // the booster can't deliver more than the possible input 
+    // power
+    data.strom = Math.min(data.strom, input.strom)
+    
     data.amperestunden = data.strom * this.model.operationHours
     return data
   }

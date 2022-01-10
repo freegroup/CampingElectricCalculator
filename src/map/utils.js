@@ -19,8 +19,19 @@ function disableSelection(element) {
   element.style.cursor = "default"
 }
 
+function drawCircle(ctx, centerX, centerY, radius) {
+  ctx.beginPath()
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false)
+  ctx.fillStyle = 'green'
+  ctx.fill()
+  ctx.lineWidth = 2
+  ctx.strokeStyle = '#003300'
+  ctx.stroke()
+}
 // draws both cubic and quadratic bezier
 function drawArrowLine(ctx, p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndArrow) {
+  ctx.lineCap = "round"
+  ctx.imageSmoothingEnabled = true
   var x, y, norm, ex, ey
   function pointsToNormalisedVec(p, pp) {
     var len
@@ -77,8 +88,15 @@ function drawArrowLine(ctx, p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndAr
     ctx.fill()
   }
 
+  // ctx.lineWidth = ctx.lineWidth + 2
+  // const c = ctx.strokeStyle
+  // ctx.strokeStyle = "gray"
+  // ctx.stroke()
+  // ctx.strokeStyle = c
+  // ctx.lineWidth = ctx.lineWidth - 2
   ctx.stroke()
 }
 
 const CANVAS_WIDTH = 80
-export { createCanvas, disableSelection, drawArrowLine, htmlToElement, CANVAS_WIDTH }
+const ARROW_STROKE = 10
+export { createCanvas, disableSelection, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH, ARROW_STROKE }
