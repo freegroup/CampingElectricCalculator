@@ -6,6 +6,7 @@ export default [
     type: "starterAccu", 
     name: "Starter", 
     imageSrc: images("./starter.png"),
+    exportable: false,
     shopping: [
     ],
     data: {

@@ -57,6 +57,7 @@ export default {
       solarBooster: "Solar Booster",
       killSwitch: "Power Switch",
       solarPanel: "Solar Panel",
+      shoreBooster: "Shore Power Battery Charger",
       starterBooster: "DC-DC Booster",
       starterAccu: "Start Battery",
       alternator: "Alternator",

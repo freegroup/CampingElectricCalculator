@@ -8,6 +8,7 @@ export default
     name: "Sicherungsbox 12", 
     imageSrc: images("./mictuning_12.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
     ],
     data: {

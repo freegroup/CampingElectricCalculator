@@ -8,6 +8,7 @@ export default [
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp80.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -30,6 +31,7 @@ export default [
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp70.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -52,6 +54,7 @@ export default [
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp100.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -74,6 +77,7 @@ export default [
     hersteller: "Büttner",
     imageSrc: images("./buettner210.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
       {
         shop: "Etriox",

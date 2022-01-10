@@ -43,6 +43,7 @@ export default class Node extends GenericNode {
     node.parent = this
     node.mindmap = this.mindmap
     this.updateStatusIcons()
+    node.updateStatusIcons()
     this.drawLines()
     this.mindmap.updateStatusbar()
   }

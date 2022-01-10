@@ -3,6 +3,7 @@ import LeftKillSwitch from "./LeftKillSwitch.js"
 import RightKillSwitch from "./RightKillSwitch.js"
 import Fridge from "./Fridge.js"
 import SolarPanel from "./SolarPanel.js"
+import ShoreBooster from "./ShoreBooster.js"
 import SolarBooster from "./SolarBooster.js"
 import StarterAccu from "./StarterAccu.js"
 import StarterBooster from "./StarterBooster.js"
@@ -34,6 +35,9 @@ export default class NodeFactory {
         break
       case "starterBooster":
         node = new StarterBooster()     
+        break
+      case "shoreBooster":
+        node = new ShoreBooster()     
         break
       case "starterAccu":
         node = new StarterAccu()     

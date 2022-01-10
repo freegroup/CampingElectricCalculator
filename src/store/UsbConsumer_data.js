@@ -8,6 +8,7 @@ export default [
     imageSrc: images("./phone_charge.png"),
     operationHours: 2,
     runningMode: "loading",
+    exportable: false,
     shopping: [
     ],
     data: {
@@ -23,6 +24,7 @@ export default [
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
     runningMode: "loading",
+    exportable: false,
     shopping: [
     ],
     data: {
@@ -38,6 +40,7 @@ export default [
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
     runningMode: "loading",
+    exportable: false,
     shopping: [
     ],
     data: {
@@ -53,6 +56,7 @@ export default [
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
     runningMode: "loading",
+    exportable: false,
     shopping: [
     ],
     data: {
@@ -68,6 +72,7 @@ export default [
     imageSrc: images("./macbook_charge.png"),
     operationHours: 2,
     runningMode: "loading",
+    exportable: false,
     shopping: [
     ],
     data: {

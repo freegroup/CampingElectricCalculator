@@ -7,6 +7,7 @@ export default [
     name: "USB 3.6A", 
     imageSrc: images("./usb.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
     ],
     data: {
@@ -22,6 +23,7 @@ export default [
     name: "2x USB 3.6A", 
     imageSrc: images("./usb.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
     ],
     data: {
@@ -37,6 +39,7 @@ export default [
     name: "4x USB 3.6A", 
     imageSrc: images("./usb.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
     ],
     data: {

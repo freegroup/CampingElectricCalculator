@@ -13,6 +13,14 @@ export default class SolarBooster extends LeftNode {
   getErrorMessages () {
     const result = []
 
+    if ( this.mindmap ) {
+      // the "leerlaufspannung" must be smaller than the max input of the charger
+      //
+      if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
+        result.push({ type: "Error", text: `The charger do not support the used accu type (${this.mindmap.model.data.type}). Supported accu types are [${this.model.data.chargeSupport}]` })
+      }
+    }
+
     // if more than one child exists, each of them must have the same data.uuid. It is not allowed to 
     // use different kind of SolarPanels if they are configured in "parallel"
     //

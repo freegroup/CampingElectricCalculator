@@ -8,6 +8,7 @@ export default
     name: "Kill Switch 300A", 
     description: "Battery Switch Disconnect 12V 24V 48V Battery Switch 1-2-Both-OFF, 300A Main Switch Waterproof Power Switch Battery Disconnect Master for Car Truck Boat Yacht...",
     imageSrc: images("./trennschalter_1_2_both_off.png"),
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",

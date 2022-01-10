@@ -142,7 +142,6 @@ export default class LeftNode extends Node {
     }
     const rootAh = this.mindmap.calculateInputData().amperestunden
     const thisAh = this.calculateOutputData().amperestunden
-    console.log(this, thisAh, rootAh)
     if ( isNaN(rootAh) || isNaN(thisAh) ) {
       return 0
     }

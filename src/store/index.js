@@ -9,6 +9,7 @@ import fuse from './Fuse'
 import fuseBox from './FuseBox'
 import accu from './Accu'
 import killSwitch from './KillSwitch'
+import shoreBooster from './ShoreBooster'
 import solarBooster from './SolarBooster'
 import starterBooster from './StarterBooster'
 import starterAccu from './StarterAccu'
@@ -28,6 +29,7 @@ export default new Vuex.Store({
     fuseBox,
     accu,
     pressurePump,
+    shoreBooster,
     solarBooster,
     starterBooster,
     killSwitch,

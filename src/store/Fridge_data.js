@@ -7,6 +7,7 @@ export default [
     name: "Engel CK100", 
     imageSrc: images("./engel_ck100.png"),
     operationHours: 24,
+    exportable: true,
     shopping: [
     ],
     data: {

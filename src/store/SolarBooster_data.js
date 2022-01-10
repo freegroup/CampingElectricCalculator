@@ -7,6 +7,7 @@ export default [
     name: "BlueSolar 75|15", 
     imageSrc: images("./bluesolar_75_15.png"),
     operationHours: 4.5,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -33,6 +34,7 @@ export default [
     name: "BlueSolar 75|10", 
     imageSrc: images("./bluesolar_75_10.png"),
     operationHours: 4.5,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -59,6 +61,7 @@ export default [
     name: "Thlevel 30A PWM", 
     imageSrc: images("./thlevel_30A_pwm.png"),
     operationHours: 4.5,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -68,7 +71,7 @@ export default [
     ],
     data: {
       type: "PWM",
-      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      chargeSupport: ["Lithium", "Blei", "AGM"],
       nennladestrom: 30,
       spannung: 12,
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
@@ -85,6 +88,7 @@ export default [
     name: "Büttner MPP 440", 
     imageSrc: images("./buettner_mpp_440.png"),
     operationHours: 4.5,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -94,7 +98,7 @@ export default [
     ],
     data: {
       type: "MPPT",
-      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      chargeSupport: ["LiFePO4", "Gel", "Blei", "AGM"],
       nennladestrom: 32,
       spannung: 12,
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
@@ -111,6 +115,7 @@ export default [
     name: "Büttner MPP 260", 
     imageSrc: images("./buettner_mpp_260.png"),
     operationHours: 4.5,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -120,7 +125,7 @@ export default [
     ],
     data: {
       type: "MPPT",
-      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      chargeSupport: ["LiFePO4", "Gel", "Blei", "AGM"],
       nennladestrom: 16,
       spannung: 12,
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
@@ -137,6 +142,7 @@ export default [
     name: "Büttner MPP 170", 
     imageSrc: images("./buettner_mpp_170.png"),
     operationHours: 4.5,
+    exportable: true,
     shopping: [
       {
         shop: "Amazon",
@@ -146,7 +152,7 @@ export default [
     ],
     data: {
       type: "MPPT",
-      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      chargeSupport: ["LiFePO4", "Gel", "Blei", "AGM"],
       nennladestrom: 12.5,
       spannung: 12,
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein

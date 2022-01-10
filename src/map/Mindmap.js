@@ -32,7 +32,7 @@ export default class Mindmap extends GenericNode {
   }
 
   getLeftChildCandidates () {
-    return ["killSwitch", "fuse", "solarBooster", "starterBooster"] 
+    return ["shoreBooster", "killSwitch", "fuse", "solarBooster", "starterBooster"] 
   }
 
   getRightChildCandidates () {
@@ -150,6 +150,7 @@ export default class Mindmap extends GenericNode {
     node.mindmap = this
 
     this.updateStatusbar()
+    node.updateStatusIcons()
   }
 
   /**

@@ -6,7 +6,7 @@ export default class LeftFuse extends LeftNode {
   }
 
   getChildCandidates () {
-    return ["solarBooster", "starterBooster", "starterAccu"] 
+    return ["shoreBooster", "solarBooster", "starterBooster", "starterAccu"] 
   }
 
   getErrorMessages () {

@@ -7,6 +7,7 @@ const components = [
     name: "Lilie LP4142", 
     imageSrc: images("./lilie_lp4142.png"),
     operationHours: 2,
+    exportable: true,
     shopping: [
     ],
     data: {
