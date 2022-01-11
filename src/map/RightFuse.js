@@ -6,7 +6,10 @@ export default class RightFuse extends RightNode {
   }
 
   getChildCandidates () {
-    return ["killSwitch", "fuseBox"] 
+    if (this.mindmap && this.mindmap.model.data.bms === "internal") {
+      return ["killSwitch", "fuseBox"] 
+    }
+    return ["killSwitch", "fuseBox", "batteryProtect"] 
   }
 
   getErrorMessages () {

@@ -14,6 +14,7 @@ import solarBooster from './SolarBooster'
 import starterBooster from './StarterBooster'
 import starterAccu from './StarterAccu'
 import solarPanel from './SolarPanel'
+import batteryProtect from './BatteryProtect'
 import light from './Light'
 import pressurePump from './PressurePump'
 import configuration from './Configuration'
@@ -30,6 +31,7 @@ export default new Vuex.Store({
     fuseBox,
     light,
     accu,
+    batteryProtect,
     pressurePump,
     shoreBooster,
     solarBooster,

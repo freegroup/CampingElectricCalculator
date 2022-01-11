@@ -369,6 +369,11 @@ export default {
         }
       }
     }
+    .storage {
+      .error_icon {
+          bottom: 55px !important;
+        }
+    }
 
     .producer_placeholder {
       div {

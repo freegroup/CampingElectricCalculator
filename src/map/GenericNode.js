@@ -33,13 +33,13 @@ export default class GenericNode {
     if ( this.mindmap ) {
       this.mindmap.updateStatusbar()
     }
-    this.updateStatusIcons()
+    this.updateStatusIcons(true)
     if ( this.mindmap ) {
       this.mindmap.drawLines(true)
     }
   }
 
-  updateStatusIcons() {
+  updateStatusIcons(recursive) {
     const msgs = this.getErrorMessages()
     const errors = msgs.filter(msg => msg.type === "Error").length
 
@@ -52,9 +52,11 @@ export default class GenericNode {
       $(this.errorIcon).addClass("red--text text--darken-2")
       $(this.errorIcon).removeClass("yellow--text text--darken-2")
     }
-
+    if ( recursive ) {
+      this.children.forEach( child => child.updateStatusIcons(recursive))
+    }
     if ( this.parent ) {
-      this.parent.updateStatusIcons()
+      this.parent.updateStatusIcons(false)
     }
   }
 
@@ -68,7 +70,7 @@ export default class GenericNode {
   setModel(model) {
     this.model = model
     this.renderModel()
-    this.updateStatusIcons()
+    this.updateStatusIcons(true)
   }
 
   renderModel () {

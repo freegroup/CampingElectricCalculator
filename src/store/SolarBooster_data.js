@@ -102,7 +102,7 @@ export default [
     ],
     data: {
       type: "MPPT",
-      chargeSupport: ["LiFePO4", "Gel", "Blei", "AGM"],
+      chargeSupport: ["LiFePO4", "AGM", "Blei"],
       nennladestrom: 32,
       spannung: 12,
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
@@ -130,7 +130,7 @@ export default [
     ],
     data: {
       type: "MPPT",
-      chargeSupport: ["LiFePO4", "Gel", "Blei", "AGM"],
+      chargeSupport: ["LiFePO4", "AGM", "Blei"],
       nennladestrom: 16,
       spannung: 12,
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
@@ -158,7 +158,7 @@ export default [
     ],
     data: {
       type: "MPPT",
-      chargeSupport: ["LiFePO4", "Gel", "Blei", "AGM"],
+      chargeSupport: ["LiFePO4", "AGM", "Blei"],
       nennladestrom: 12.5,
       spannung: 12,
       // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein

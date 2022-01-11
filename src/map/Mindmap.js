@@ -36,7 +36,11 @@ export default class Mindmap extends GenericNode {
   }
 
   getRightChildCandidates () {
-    return ["killSwitch", "fuse", "fuseBox"] 
+    if ( this.model.data.bms === "internal") {
+      return ["killSwitch", "fuse", "fuseBox"] 
+    }
+
+    return ["batteryProtect", "killSwitch", "fuse"]
   }
 
   reset () {
@@ -124,6 +128,7 @@ export default class Mindmap extends GenericNode {
   setModel ( model ) {
     super.setModel(model)
     this.updateStatusbar()
+    this.updateStatusIcons()
   }
 
   /**
@@ -150,6 +155,7 @@ export default class Mindmap extends GenericNode {
     node.mindmap = this
 
     this.updateStatusbar()
+    this.updateStatusIcons()
     node.updateStatusIcons()
   }
 
@@ -179,6 +185,7 @@ export default class Mindmap extends GenericNode {
     }
 
     this.updateStatusbar()
+    this.updateStatusIcons()
   }
 
   /**
@@ -248,6 +255,9 @@ export default class Mindmap extends GenericNode {
               this.labelContainer.append(this.centerLabel)
             }
 
+            this.errorIcon = htmlToElement('<i aria-hidden="true" class="error_icon pl-3 v-icon mdi mdi-alert"></i>')
+            this.labelContainer.append(this.errorIcon)
+
             this.statusbarDiv = htmlToElement('<div class="balancebar"></div>')
             this.labelContainer.append(this.statusbarDiv)
             this.inputLabel = htmlToElement('<div class="input_label float-left">Input</div>')
@@ -313,6 +323,11 @@ export default class Mindmap extends GenericNode {
         event.stopPropagation()
         this.notifyListeners({ event: "addChild", component: this, leftSide: false, candidates: this.getRightChildCandidates() })
       })  
+
+      $(this.errorIcon).on("click", (event) => {
+        event.stopPropagation()
+        this.onComponentShowErrors(this)
+      })
     }
     return this.html
   }
@@ -429,6 +444,44 @@ export default class Mindmap extends GenericNode {
     this.notifyListeners({ event: "showBalance", component: component })
   }
 
+  getErrorMessages () {
+    const result = []
+    
+    // because the possible output devices are related to the used accu, we must 
+    // dynamic check the we have connected only allowed devices.
+    //
+    this.rightChildren.forEach( child => {
+      if ( !this.getRightChildCandidates().includes( child.model.type )) {
+        result.push( { type: "Error", text: `Battery of type '${this.model.data.type}' do not allow a direct connection to a device of type '${child.model.type}' ` } )
+      }
+    })
+
+    const isWrongComponent = child => {
+      // we found an BMS. perfect
+      if ( child.model.type === "batteryProtect" ) {
+        return false
+      }
+      // We found a non BMS and non allowed device type in the chain
+      if ( !this.getRightChildCandidates().includes( child.model.type )) {
+        return true
+      }
+      
+      // check if we find at least one wrong device in the recursive subchildren
+      return child.children.find( subChild => isWrongComponent(subChild))
+    }
+
+    // check that a BMS is in place if the accu do not have any
+    //
+    if ( this.model.data.bms === "none" && this.rightChildren.length > 0 ) {
+      const hasWrongChildren = this.rightChildren.find( subChild => isWrongComponent(subChild))
+      if ( hasWrongChildren ) {
+        result.push({ type: "Error", text: `Battery type (${this.model.data.type}) requires a battery protection between all consumers to avoid deep discharge and damage of the battery.` })
+      }
+    }
+
+    return result
+  }
+
   updateStatusbar () {
     // something has changed in the client config. We can recalculate the balance values for the input/output
     // labels
@@ -441,11 +494,26 @@ export default class Mindmap extends GenericNode {
     if ( diff >= 0 ) {
       runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
     } else {
-      runtimeDays = (this.model.data.amperestunden / Math.abs(diff)).toFixed(2).replace(/\.00$/, '')
+      runtimeDays = (this.model.data.effective_amperestunden / Math.abs(diff)).toFixed(2).replace(/\.00$/, '')
     }
     this.inputLabel.innerHTML = "Input<br>" + (inputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
     this.runtimeLabel.innerHTML = "Running Time<br>" + runtimeDays + " days"
     this.outputLabel.innerHTML = "Output<br>" + (outputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
+  }
+
+  updateStatusIcons() {
+    const msgs = this.getErrorMessages()
+    const errors = msgs.filter(msg => msg.type === "Error").length
+
+    this.hideError(msgs.length === 0)
+    
+    if ( errors === 0) {
+      $(this.errorIcon).removeClass("red--text text--darken-2")
+      $(this.errorIcon).addClass("yellow--text text--darken-2")
+    } else {
+      $(this.errorIcon).addClass("red--text text--darken-2")
+      $(this.errorIcon).removeClass("yellow--text text--darken-2")
+    }
   }
 
   /**
@@ -484,6 +552,7 @@ export default class Mindmap extends GenericNode {
       }
     })
     this.updateStatusbar()
+    this.updateStatusIcons()
   }
 
   toJson() {

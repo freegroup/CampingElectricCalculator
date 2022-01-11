@@ -16,9 +16,11 @@ export default [
       }
     ],
     data: {
+      bms: "internal",
       amperestunden: 100,
       spannung: 12,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      effective_amperestunden: 100 // es können die vollen 100Ah entnommen werden
     }
   },
   { 
@@ -36,9 +38,11 @@ export default [
       }
     ],
     data: {
+      bms: "internal",
       amperestunden: 200,
       spannung: 12,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      effective_amperestunden: 200 // es können die vollen 200Ah entnommen werden
     }
   },
   { 
@@ -56,9 +60,11 @@ export default [
       }
     ],
     data: {
+      bms: "internal",
       amperestunden: 150,
       spannung: 12,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      effective_amperestunden: 150 // es können die vollen 150Ah entnommen werden
     }
   },
   { 
@@ -76,9 +82,11 @@ export default [
       }
     ],
     data: {
+      bms: "internal",
       amperestunden: 30,
       spannung: 12,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      effective_amperestunden: 30 // es können die vollen 30Ah entnommen werden
     }
   },
   { 
@@ -96,9 +104,11 @@ export default [
       }
     ],
     data: {
+      bms: "internal",
       amperestunden: 50,
       spannung: 12,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      effective_amperestunden: 50 // es können die vollen 50Ah entnommen werden
     }
   },
   { 
@@ -116,9 +126,77 @@ export default [
       }
     ],
     data: {
+      bms: "internal",
       amperestunden: 100,
       spannung: 12,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      effective_amperestunden: 100 // es können die vollen 100Ah entnommen werden
+    }
+  },
+  { 
+    uuid: "42C116CF-4380-4B27-9450-3E027A9393A1", 
+    type: "accu", 
+    name: "ECTIVE 230Ah 12V AGM",
+    description: "ECTIVE 230Ah 12V AGM Versorgungsbatterie DC 230s mit LCD-Display VRLA Solar-Batterie mit integrierten Nachfüllpacks",
+    imageSrc: images("./ective_230Ah.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3tg4urq",
+        label: "ECTIVE 230Ah 12V AGM Versorgungsbatterie DC 230s mit LCD-Display VRLA Solar-Batterie mit integrierten Nachfüllpacks",
+        lastKnownPrice: 354
+      }
+    ],
+    data: {
+      bms: "none",
+      amperestunden: 230,
+      spannung: 12,
+      type: "AGM",
+      effective_amperestunden: 230 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+    }
+  },
+  { 
+    uuid: "35F28D76-AB51-4C6F-87D0-EA42D940EF9D", 
+    type: "accu", 
+    name: "ECTIVE 300Ah 12V LiFePO4",
+    description: "ECTIVE LC300L BT 12V 300Ah 3840Wh LiFePO4-Batterie mit Bluetooth-Funktion Lithium-Eisenphosphat Versorgungs-Batterie",
+    imageSrc: images("./ective_300Ah.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3HR5Uge",
+        label: "ECTIVE LC300L BT 12V 300Ah 3840Wh LiFePO4-Batterie mit Bluetooth-Funktion Lithium-Eisenphosphat Versorgungs-Batterie",
+        lastKnownPrice: 2525.50
+      }
+    ],
+    data: {
+      bms: "internal",
+      amperestunden: 300,
+      spannung: 12,
+      type: "LiFePO4",
+      effective_amperestunden: 300 // es können nur 60% der vollen Energie entnommen werden
+    }
+  },
+  { 
+    uuid: "B7CF51D7-CD05-4F11-85C5-A58036DA5FB3", 
+    type: "accu", 
+    name: "ECTIVE 230Ah Gel",
+    description: "ECTIVE 230Ah 12V Gel Frontterminal-Batterie DC230 Slim Gel Deep Cycle schmale Versorgungsbatterie",
+    imageSrc: images("./ective_slim_230Ah.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3FhieEG",
+        label: "ECTIVE 230Ah 12V Gel Frontterminal-Batterie DC230 Slim Gel Deep Cycle schmale Versorgungsbatterie",
+        lastKnownPrice: 392.62
+      }
+    ],
+    data: {
+      bms: "none",
+      amperestunden: 230,
+      spannung: 12,
+      type: "Gel",
+      effective_amperestunden: 230 * 0.6 // es können nur 60% der vollen Energie entnommen werden
     }
   }
 ]
