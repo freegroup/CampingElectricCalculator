@@ -43,8 +43,8 @@ export default [
     ],
     data: {
       watt: 70, // Watt peak
-      nennspannung: 36.19, // Nennspannung
-      leerlaufspannung: 21.50,
+      nennspannung: 21.50, // Nennspannung
+      leerlaufspannung: 36.19,
       nennstrom: 1.94, // Nennstrom
       kurzschlusstrom: 2.1
     }
@@ -67,8 +67,8 @@ export default [
     ],
     data: {
       watt: 100, // Watt peak
-      nennspannung: 36.19, // Nennspannung
-      leerlaufspannung: 21.50,
+      nennspannung: 21.50, // Nennspannung
+      leerlaufspannung: 36.19,
       nennstrom: 2.77, // Nennstrom
       kurzschlusstrom: 3.01
     }
@@ -97,10 +97,34 @@ export default [
     ],
     data: {
       watt: 210, // Watt peak
-      nennspannung: 27, // Nennspannung
-      leerlaufspannung: 22.50,
+      nennspannung: 22.50, // Nennspannung
+      leerlaufspannung: 27,
       nennstrom: 9.34, // Nennstrom
       kurzschlusstrom: 9.8
+    }
+  },
+  { 
+    uuid: "58FBABFF-C628-442C-AC1B-CEF162566074", 
+    type: "solarPanel", 
+    name: "enjoysolar Monokristallines 180W", 
+    hersteller: "enjoysolar",
+    imageSrc: images("./enjoysolar_180.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3zM45hT",
+        label: "enjoysolar® Monokristallines Solarmodul Solarpanel mit PERC Zellentechnik schwarzes Rahmen Version",
+        lastKnownPrice: 138.95
+      }
+    ],
+    data: {
+      watt: 180, // Watt peak
+      nennspannung: 19.1, // Nennspannung
+      leerlaufspannung: 23.2,
+      nennstrom: 9.43, // Nennstrom
+      kurzschlusstrom: 9.99
     }
   }
 ]

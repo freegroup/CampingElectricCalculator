@@ -57,6 +57,11 @@ export default class SolarBooster extends LeftNode {
       if ( data.leerlaufspannung > this.model.data.eingangsspannung ) {
         result.push({ type: "Error", text: `The voltage [U = ${data.leerlaufspannung} Volt] of the input sources are bigger than the maximum voltage which the charger can handle [U = ${this.model.data.eingangsspannung} Volt]` })
       }
+
+      const output = this.calculateOutputData()
+      if ( output.ladestrom > this.model.data.nennladestrom ) {
+        result.push( { type: "Error", text: `Charge current (${output.ladestrom} A) is bigger than the maximal possible charge current (${output.strom} A) of this charger` } )
+      }
     }
 
     return result
@@ -111,7 +116,7 @@ export default class SolarBooster extends LeftNode {
           result = { spannung: 12, strom: 0, watt: 0, type: this.model.data.type } 
       }
     }
-    
+    result.ladestrom = result.watt / 14.4 // 14.4 for AGM Batteries
     result.amperestunden = result.strom * this.model.operationHours
     return result
   }

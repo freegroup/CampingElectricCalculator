@@ -198,5 +198,27 @@ export default [
       type: "Gel",
       effective_amperestunden: 230 * 0.6 // es können nur 60% der vollen Energie entnommen werden
     }
+  },
+  { 
+    uuid: "30DB5D21-B21D-441F-B398-CECBFB7627AD", 
+    type: "accu", 
+    name: "Victron Energy AGM 220Ah",
+    description: "Victron Energy AGM 12V 220Ah Deep Cycle",
+    imageSrc: images("./victron_220_agm.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3FldXAh",
+        label: "Victron Energy AGM 12V 220Ah Deep Cycle",
+        lastKnownPrice: 525.90
+      }
+    ],
+    data: {
+      bms: "none",
+      amperestunden: 220,
+      spannung: 12,
+      type: "AGM",
+      effective_amperestunden: 220 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+    }
   }
 ]

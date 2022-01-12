@@ -4,26 +4,34 @@
         <DialogHeader :title="$t('dialog.addComponent.title')" :subtitle="$t('dialog.addComponent.subtitle')" icon="mdi-plus-network-outline"></DialogHeader>
 
         <v-card-text style="height: 350px;">
-          <v-list dense>
+          <v-list two-line>
             <template v-if="types.length > 1">
-              <v-list-group :value="false" v-for="type in types" :key="type" >
-                  <template v-slot:activator>
-                    <v-list-item-title>{{ $t('component.' + type)}}</v-list-item-title>
-                  </template>
-                  <template v-for="(item, index) in components(type)" >
-                    <v-list-item :key="item.uuid" >
-                        <v-img  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
-                        <v-list-item-content>
-                          <v-list-item-title  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" v-html="item.name"></v-list-item-title>
-                          <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
-                            <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
-                          </v-list-item-subtitle>
-                          <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
-                        </v-list-item-content>
+              <template v-for="type in types">
+                <v-list-group :value="false" :key="type">
+                    <template v-slot:activator>
+                      <v-list-item style="padding-left:0">
+                        <v-list-item-title >{{ $t('component.name.' + type)}}</v-list-item-title>
+                      </v-list-item>
+                    </template>
+                    <v-list-item class="amber lighten-5">
+                    <v-list-item-subtitle style="white-space: normal">{{ $t('component.description.' + type)}}</v-list-item-subtitle>
                     </v-list-item>
-                    <v-divider :key="item.uuid+'fff'" v-if="index !== (components(type).length - 1)"></v-divider>
-                  </template>
-              </v-list-group>
+                    <template v-for="(item, index) in components(type)" >
+                      <v-list-item :key="item.uuid">
+                          <v-img  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
+                          <v-list-item-content>
+                            <v-list-item-title  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" v-html="item.name"></v-list-item-title>
+                            <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
+                              <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
+                          </v-list-item-content>
+                      </v-list-item>
+                      <v-divider :key="item.uuid+'fff'" v-if="index !== (components(type).length - 1)"></v-divider>
+                    </template>
+                </v-list-group>
+                <v-divider :key="'div:'+type"></v-divider>
+              </template>
             </template>
             <template v-if="types.length === 1">
               <template  v-for="type in types">
@@ -103,6 +111,12 @@ export default {
   }
 }
 </script>
-<style>
-
+<style lang="less">
+.v-list-item--active,
+.v-list-item--active:hover  {
+  background-color: #FFF8E1 !important;
+}
+.theme--light.v-list-item--active:hover::before {
+    opacity: 0;
+}
 </style>

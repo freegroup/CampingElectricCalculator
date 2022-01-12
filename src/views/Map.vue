@@ -4,12 +4,11 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Camper Electric Configuration</v-toolbar-title>
       <v-spacer></v-spacer>
-          <!--
-          <v-btn @click="exportJson" class="ml-1">
+          
+          <!-- v-btn @click="exportJson" class="ml-1">
             <v-icon>mdi-heart</v-icon>
             <div class="d-none d-lg-block">Export Json</div>
-          </v-btn>
-          -->
+          </v-btn -->
           
           <v-btn @click="center" class="ml-1">
             <v-icon>mdi-image-filter-center-focus</v-icon>

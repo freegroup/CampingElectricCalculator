@@ -128,7 +128,7 @@ export default class Mindmap extends GenericNode {
   setModel ( model ) {
     super.setModel(model)
     this.updateStatusbar()
-    this.updateStatusIcons()
+    this.updateStatusIcons(true)
   }
 
   /**
@@ -501,7 +501,7 @@ export default class Mindmap extends GenericNode {
     this.outputLabel.innerHTML = "Output<br>" + (outputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
   }
 
-  updateStatusIcons() {
+  updateStatusIcons(recursive) {
     const msgs = this.getErrorMessages()
     const errors = msgs.filter(msg => msg.type === "Error").length
 
@@ -513,6 +513,10 @@ export default class Mindmap extends GenericNode {
     } else {
       $(this.errorIcon).addClass("red--text text--darken-2")
       $(this.errorIcon).removeClass("yellow--text text--darken-2")
+    }
+    if ( recursive ) {
+      this.leftChildren.forEach( child => child.updateStatusIcons(recursive))
+      this.rightChildren.forEach( child => child.updateStatusIcons(recursive))
     }
   }
 

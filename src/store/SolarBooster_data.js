@@ -168,5 +168,33 @@ export default [
       // Solarmodul Strom bis maximal...
       kurzschlussstrom: 10.5
     }
+  },
+  { 
+    uuid: "5920A236-17F1-46FD-9B1B-CEE42CAD0472", 
+    type: "solarBooster", 
+    name: "Victron Energy MPPT 100/50", 
+    imageSrc: images("./victron_100_50.png"),
+    operationHours: 4.5,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3tjpw8E",
+        label: "Victron Energy SCC10050210 SmartSolar MPPT Solar Charge Controller 100/50",
+        lastKnownPrice: 313.60
+      }
+    ],
+    data: {
+      type: "MPPT",
+      chargeSupport: ["LiFePO4", "AGM", "Blei"],
+      nennladestrom: 50,
+      spannung: 12,
+      // Eingangsspannung muss GÖßER als die Leerlaufspannung der Solarpanele sein
+      eingangsspannung: 100,
+      // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
+      eingangswatt: 700,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 60
+    }
   }
 ]

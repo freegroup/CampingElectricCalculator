@@ -1,6 +1,7 @@
 import Default from "./configuration/Default.json"
 import Empty from "./configuration/Empty.json"
 import SolarOnly100W from "./configuration/SolarOnly100W.json"
+import AGM600W from "./configuration/600W_agm.json"
 
 export default {
   namespaced: true,
@@ -9,6 +10,7 @@ export default {
       { id: "user", label: "User Defined Configuration", config: Default }, 
       { id: "new", label: "Empty Setup", config: Empty }, 
       { id: "default", label: "Standard", config: Default }, 
+      { id: "600w_agm", label: "600 Watt with AGM Battery", config: AGM600W }, 
       { id: "solarOnly100W", label: "100 Watt Solar", config: SolarOnly100W }
     ]
   },
