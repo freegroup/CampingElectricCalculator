@@ -6,6 +6,8 @@ export default class GenericNode {
     this.model = null
     this.errorIcon = null
     this.addChildCell = null
+    this.price = { high: 0, low: 0 } // need member variable to ensure that the "watch" in the view ist working
+
     // some components do not run the hole day. Indicate if you can switch off/on them  and this result a a differnet 
     // power consumption balance
     //
@@ -71,6 +73,9 @@ export default class GenericNode {
     this.model = model
     this.renderModel()
     this.updateStatusIcons(true)
+    if ( this.mindmap ) {
+      this.mindmap.calculateSetupPrice()
+    }
   }
 
   renderModel () {
@@ -87,7 +92,6 @@ export default class GenericNode {
   }
 
   toJson() {
-    // deep copy the data
     let operationHours = this.model.operationHours
     if ( isNaN(operationHours) ) {
       operationHours = 24
@@ -111,6 +115,30 @@ export default class GenericNode {
 
   calculateConsumptionData () {
     return { strom: 0, spannung: 12, watt: 0 }
+  }
+
+  calculateSetupPrice () {
+    if ( this.model && this.model.shopping.length > 0) {
+      this.price.low = this.model.shopping.reduce((prev, curr) => prev.lastKnownPrice < curr.lastKnownPrice ? prev : curr).lastKnownPrice
+      this.price.high = this.model.shopping.reduce((prev, curr) => prev.lastKnownPrice > curr.lastKnownPrice ? prev : curr).lastKnownPrice
+    } else {
+      this.price.low = 0
+      this.price.high = 0
+    }
+    const addSubChildren = ( children ) => {
+      if ( children ) {
+        children.forEach( child => {
+          const subPrice = child.calculateSetupPrice()
+          this.price.low = this.price.low + subPrice.low
+          this.price.high = this.price.high + subPrice.high
+        })
+      }
+    }
+    addSubChildren(this.children)
+    addSubChildren(this.leftChildren)
+    addSubChildren(this.rightChildren)
+
+    return this.price
   }
 
   // calculates the overall percentage of the MindMap flow of this node.

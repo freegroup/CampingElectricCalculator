@@ -48,8 +48,8 @@ export default class SolarBooster extends LeftNode {
 
       // calculate [P] of all pinout sources and check if the booster can handle this
       //
-      if ( data.nennstrom > this.model.data.nennladestrom ) {
-        result.push({ type: "Error", text: `[I = ${data.strom} Ampere] is bigger than the charger can handle [I = ${this.model.data.nennladestrom} Amper]` })
+      if ( data.nennstrom > this.model.data.kurzschlussstrom ) {
+        result.push({ type: "Error", text: `[I = ${data.nennstrom} Ampere] is bigger than the charger can handle [I = ${this.model.data.kurzschlussstrom} Amper]` })
       }
 
       // the "leerlaufspannung" must be smaller than the max input of the charger
@@ -60,7 +60,7 @@ export default class SolarBooster extends LeftNode {
 
       const output = this.calculateOutputData()
       if ( output.ladestrom > this.model.data.nennladestrom ) {
-        result.push( { type: "Error", text: `Charge current (${output.ladestrom} A) is bigger than the maximal possible charge current (${output.strom} A) of this charger` } )
+        result.push( { type: "Error", text: `Charge current (${output.ladestrom} A) is bigger than the maximal possible charge current (${this.model.data.nennladestrom} A) of this charger` } )
       }
     }
 
@@ -82,7 +82,7 @@ export default class SolarBooster extends LeftNode {
   }
 
   calculateOutputData () {
-    let result = { spannung: 14.8, strom: 0, watt: 0 } 
+    let result = { spannung: 12, strom: 0, watt: 0 } 
     // Berechnung der Parallelschaltung aller "parallel" angehängten Panels. 
     if ( this.children.length > 0 ) {
       const data = this.children[0].calculateOutputData()
@@ -101,7 +101,7 @@ export default class SolarBooster extends LeftNode {
           // gleicher Leistung (P=100W). Dabei ändert sich der Ladestrom – er steigt an! 
           // Die Formel dazu liefert den Beweis: I=100W/14.4V . Das ergibt einen neuen 
           // Ladestrom von 6,75A.
-          result = { spannung: 12, strom: data.watt / 12, watt: data.watt, type: this.model.data.type } 
+          result = { spannung: 12, strom: data.watt / this.mindmap.getMaxChargeVoltage(), watt: data.watt } 
           break
         case "PWM":
           // Der Kollege PWM mag es unkompliziert, und passt deswegen die Modulspannung 
@@ -110,13 +110,14 @@ export default class SolarBooster extends LeftNode {
           // du feststellen, dass diese bei 18,5V liegt. Der Regler “verschenkt” sozusagen 
           // 3,7V, weil dein Akku ja lediglich 14,8 benötigt, während der Strom (Im) gleich 
           // bleibt
-          result = { spannung: 12, strom: data.nennstrom, watt: data.nennstrom * 12, type: this.model.data.type } 
+          result = { spannung: 12, strom: data.nennstrom, watt: data.nennstrom * this.mindmap.getMaxChargeVoltage() } 
           break
         default:
-          result = { spannung: 12, strom: 0, watt: 0, type: this.model.data.type } 
+          result = { spannung: 12, strom: 0, watt: 0 } 
       }
     }
-    result.ladestrom = result.watt / 14.4 // 14.4 for AGM Batteries
+    result.ladespannung = this.mindmap.getMaxChargeVoltage()
+    result.ladestrom = result.watt / result.ladespannung
     result.amperestunden = result.strom * this.model.operationHours
     return result
   }

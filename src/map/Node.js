@@ -46,6 +46,7 @@ export default class Node extends GenericNode {
     node.updateStatusIcons()
     this.drawLines()
     this.mindmap.updateStatusbar()
+    this.mindmap.calculateSetupPrice()
   }
 
   /**

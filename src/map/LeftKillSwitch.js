@@ -6,7 +6,7 @@ export default class LeftKillSwitch extends LeftNode {
   }
 
   getChildCandidates () {
-    return ["fuse", "shoreBooster", "solarBooster", "starterBooster", "starterAccu"] 
+    return ["fuse", "shoreBooster", "solarSet", "solarBooster", "starterBooster", "starterAccu"] 
   }
 
   getErrorMessages () {

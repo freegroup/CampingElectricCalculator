@@ -7,6 +7,7 @@ export default {
         strom: "Current",
         nennladestrom: "Current",
         ladestrom: "Charge Current", // berechenter Ladestrom eines Charger in Abhängigkeit von input Watt
+        ladespannung: "Charge Voltage",
         nennstrom: "Current",
         watt: "Watt",
         strom_je_anschluss: "Current / Unit",
@@ -15,6 +16,8 @@ export default {
         type: "Type",
         gewicht: "Weight",
         zellen: "Cells",
+        controller: "Controller",
+        panel: "Panel",
         leerlaufspannung: "Open-Circuit Voltage",
         kurzschlusstrom: "Short-Circuit Current",
         eingangsspannung: "Input Voltage",
@@ -31,6 +34,9 @@ export default {
         strom: "A",
         nennladestrom: "A",
         ladestrom: "A",
+        panel: "",
+        controller: "",
+        ladespannung: "V",
         nennstrom: "A",
         bms: "",
         strom_je_anschluss: "A",
@@ -62,6 +68,7 @@ export default {
     component: {
       name: {
         solarBooster: "Solar Booster",
+        solarSet: "Solar Panel + Controller",
         killSwitch: "Power Switch",
         solarPanel: "Solar Panel",
         shoreBooster: "Shore Power Battery Charger",
@@ -80,6 +87,7 @@ export default {
       },
       description: {
         solarBooster: "Solar charge controllers sits in between the solar panels and your battery and used to convert varying voltages from solar cells to charge batteries of different types (Acid, LiFePo4,..)",
+        solarSet: "This was the easiest and quickest way to complete our solar panel setup but it's not necessarily the cheapest. If you don't want to fiddle around with solar panel too much with solar panel wiring and finding the right controller, then a solar panel kit is for you.",
         killSwitch: "Power switches are designed to cut-off electrical power, help protect against electrical fires when equipment is not in use. They also provide a reliable way to shut down electrical power during maintenance and protect batteries from excessive drain",
         solarPanel: "A solar panel is actually a collection of solar (or photovoltaic) cells, which can be used to generate electricity through photovoltaic effec",
         shoreBooster: "A shore power converter charger is another way to charge the solar system's battery. You can plug the charger into a standard 120V/220V outlet and it will rapidly recharge your battery",

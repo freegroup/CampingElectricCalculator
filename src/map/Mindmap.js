@@ -32,7 +32,7 @@ export default class Mindmap extends GenericNode {
   }
 
   getLeftChildCandidates () {
-    return ["shoreBooster", "killSwitch", "fuse", "solarBooster", "starterBooster"] 
+    return ["shoreBooster", "killSwitch", "fuse", "solarSet", "solarBooster", "starterBooster"] 
   }
 
   getRightChildCandidates () {
@@ -41,6 +41,21 @@ export default class Mindmap extends GenericNode {
     }
 
     return ["batteryProtect", "killSwitch", "fuse"]
+  }
+
+  getMaxChargeVoltage() {
+    switch ( this.model.data.type ) {
+      case "AGM":
+        return 14.4
+      case "Blei":
+        return 14.8
+      case "Gel":
+        return 14.2
+      case "LiFePO4":
+        return 14.6
+      default:
+        return 12
+    }
   }
 
   reset () {
@@ -129,6 +144,7 @@ export default class Mindmap extends GenericNode {
     super.setModel(model)
     this.updateStatusbar()
     this.updateStatusIcons(true)
+    this.calculateSetupPrice()
   }
 
   /**
@@ -157,6 +173,7 @@ export default class Mindmap extends GenericNode {
     this.updateStatusbar()
     this.updateStatusIcons()
     node.updateStatusIcons()
+    this.calculateSetupPrice()
   }
 
   /**
@@ -557,10 +574,10 @@ export default class Mindmap extends GenericNode {
     })
     this.updateStatusbar()
     this.updateStatusIcons()
+    this.calculateSetupPrice()
   }
 
   toJson() {
-    // deep copy the data
     const json = {}
     json.center = { uuid: this.model.uuid, type: this.model.type }
     json.left = []

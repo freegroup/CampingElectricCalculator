@@ -15,7 +15,7 @@
 <script>
 import MindMap from '@/map/Mindmap.js'
 import NodeFactory from '@/map/Factory.js'
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import SelectComponentDialog from '@/dialogs/SelectComponentDialog.vue'
 import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
@@ -28,7 +28,9 @@ import ConsumerDialog from '@/dialogs/ConsumerDialog.vue'
 export default {
   data() {
     return {
-      map: null
+      map: null,
+      price: { low: 0, high: 0 },
+      calcPrice: 0
     }
   },
   components: {
@@ -41,15 +43,27 @@ export default {
     TimerDialog,
     InfoDialog
   },
+  computed: mapState({
+    low() {
+      return this.price.low
+    }
+  }),
   watch: {
     '$route' (to, from) {
       const configuration = this.$store.getters["configuration/getById"](to.params.configuration)
       this.loadConfiguration(configuration)
+    },
+    low (to, from) {
+      console.log("changed")
+      console.log("xx", to, this.low)
+      this.calcPrice = to
     }
   },
   mounted() {
     const { root } = this.$refs
     this.map = new MindMap(root, 7000, 7000)
+    this.price = this.map.calculateSetupPrice()
+    console.log("price", this.price)
     this.map.on("select", event => this.handleNodeSelect(event))
     this.map.on("timer", event => this.handleNodeTimer( event))
     this.map.on("configure", event => this.handleNodeConfigure( event))
@@ -206,15 +220,7 @@ export default {
     toJson() {
       return this.map.toJson()
     }
-  },
-  computed: mapState({
-    fuse: state => {
-      return state.fuse.components
-    },
-    ...mapGetters("fuse", [
-      'getByUuid'
-    ])
-  })
+  }
 }
 </script>
 

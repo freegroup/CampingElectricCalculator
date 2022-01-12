@@ -5,6 +5,7 @@ import Light from "./Light.js"
 import Fridge from "./Fridge.js"
 import BatteryProtect from "./BatteryProtect.js"
 import SolarPanel from "./SolarPanel.js"
+import SolarSet from "./SolarSet.js"
 import ShoreBooster from "./ShoreBooster.js"
 import SolarBooster from "./SolarBooster.js"
 import StarterAccu from "./StarterAccu.js"
@@ -52,6 +53,9 @@ export default class NodeFactory {
         break
       case "solarBooster":
         node = new SolarBooster()    
+        break 
+      case "solarSet":
+        node = new SolarSet()    
         break 
       case "fuse":
         if ( leftSide ) {

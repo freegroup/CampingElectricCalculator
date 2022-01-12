@@ -25,7 +25,7 @@
           </v-btn>
   
           <template v-slot:extension>
-            <h4>{{label}}</h4>
+            <div style="width:100%">{{label}} <span class="float-right">Estimated Price: {{(price.low).toFixed(2)}} Euro</span></div>
           </template>
     </v-app-bar>
 
@@ -87,8 +87,14 @@ export default {
   data: () => ({
     drawer: false,
     label: "",
-    group: null
+    group: null,
+    price: { low: 0, high: 0 }
   }),
+  mounted() {
+    this.price = this.$refs.mindmap.price
+    this.$watch("$refs.mindmap.price.low", (newValue, oldValue) => { this.price.low = newValue } )
+    this.$watch("$refs.mindmap.price.high", (newValue, oldValue) => { this.price.high = newValue } )
+  },
   methods: {
     onConfigLoaded() {
       this.label = this.$refs.mindmap.getLabel()
