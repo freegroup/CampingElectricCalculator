@@ -82,6 +82,7 @@ export default {
         alternator: "Alternator",
         accu: "Caravan Battery",
         fridge: "Fridge",
+        heater: "Heater",
         fuse: "Fuse",
         fuseBox: "Fuse Box",
         pressurePump: "Pressure Pump",

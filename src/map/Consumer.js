@@ -1,6 +1,6 @@
 import RightNode from './RightNode'
 
-export default class PressurePump extends RightNode {
+export default class Consumer extends RightNode {
   constructor() {
     super()
     this.timerBased = true

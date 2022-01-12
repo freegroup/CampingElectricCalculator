@@ -1,7 +1,6 @@
 import Alternator from "./Alternator.js"
 import LeftKillSwitch from "./LeftKillSwitch.js"
 import RightKillSwitch from "./RightKillSwitch.js"
-import Light from "./Light.js"
 import Fridge from "./Fridge.js"
 import BatteryProtect from "./BatteryProtect.js"
 import SolarPanel from "./SolarPanel.js"
@@ -11,9 +10,8 @@ import SolarBooster from "./SolarBooster.js"
 import StarterAccu from "./StarterAccu.js"
 import StarterBooster from "./StarterBooster.js"
 import RightFuseBox from "./RightFuseBox.js"
-import PressurePump from "./PressurePump.js"
+import Consumer from "./Consumer.js"
 import Usb from "./Usb.js"
-import UsbConsumer from "./UsbConsumer.js"
 import LeftFuse from "./LeftFuse.js"
 import RightFuse from "./RightFuse.js"
 
@@ -22,10 +20,10 @@ export default class NodeFactory {
     let node = null  
     switch (model.type) {
       case "usbConsumer":
-        node = new UsbConsumer()     
+        node = new Consumer()     
         break
       case "pressurePump":
-        node = new PressurePump()     
+        node = new Consumer()     
         break
       case "usb":
         node = new Usb()     
@@ -46,7 +44,7 @@ export default class NodeFactory {
         node = new ShoreBooster()     
         break
       case "light":
-        node = new Light()     
+        node = new Consumer()     
         break
       case "starterAccu":
         node = new StarterAccu()     
@@ -56,6 +54,9 @@ export default class NodeFactory {
         break 
       case "solarSet":
         node = new SolarSet()    
+        break 
+      case "heater":
+        node = new Consumer()    
         break 
       case "fuse":
         if ( leftSide ) {

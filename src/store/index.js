@@ -7,6 +7,7 @@ import usbConsumer from './UsbConsumer'
 import fridge from './Fridge'
 import fuse from './Fuse'
 import fuseBox from './FuseBox'
+import heater from './Heater'
 import accu from './Accu'
 import killSwitch from './KillSwitch'
 import shoreBooster from './ShoreBooster'
@@ -28,6 +29,7 @@ export default new Vuex.Store({
     usb,
     usbConsumer,
     fridge,
+    heater,
     fuse,
     fuseBox,
     light,
