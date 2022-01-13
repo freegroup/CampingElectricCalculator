@@ -2,7 +2,12 @@
     <v-app>
     <v-app-bar app color="#E39623" dense dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Camper Electric Configuration</v-toolbar-title>
+      <v-toolbar-title>Camper Electric Configuration 
+        <img 
+          style="top: 4px;position: relative;padding-left: 10px;" 
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ffreegroup%2FCampingElectricCalculator&count_bg=%23E39623&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"
+        />
+      </v-toolbar-title>
       <v-spacer></v-spacer>
           
           <!-- v-btn @click="exportJson" class="ml-1">
