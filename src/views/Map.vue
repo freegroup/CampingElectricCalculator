@@ -12,21 +12,21 @@
           
           <v-btn @click="save" class="ml-1">
             <v-icon>mdi-content-save-outline</v-icon>
-            <div class="d-none d-lg-block">Save</div>
+            <div class="ml-3 d-none d-lg-block">Save</div>
           </v-btn>
           
-          <v-btn @click="center" class="ml-1">
+          <!-- v-btn @click="center" class="ml-1">
             <v-icon>mdi-image-filter-center-focus</v-icon>
             <div class="d-none d-lg-block">Center Document</div>
-          </v-btn>
+          </v-btn -->
 
           <v-btn @click="exportPdf" class="ml-1">
             <v-icon>mdi-text-box-check-outline</v-icon> 
-            <div class="d-none d-lg-block">Export Components</div>
+            <div class="ml-3 d-none d-lg-block">Component List</div>
           </v-btn>
           <v-btn @click="help" class="ml-1">
             <v-icon>mdi-help-circle-outline</v-icon>
-            <div class="d-none d-lg-block">Help</div>
+            <div class="ml-3 d-none d-lg-block">Help</div>
           </v-btn>
   
           <template v-slot:extension>
