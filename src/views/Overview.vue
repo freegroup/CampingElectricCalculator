@@ -43,7 +43,8 @@
       <template v-for="(profile, index) in profiles">
         <v-card class="mx-auto mb-10" :key="'profile' + index">
           <v-card-title><v-icon class="mr-4 pink--text">mdi-account</v-icon> {{$t('profile.' + profile.name + '.name') }}</v-card-title>
-          <v-card-subtitle style="min-height:100px">{{$t('profile.' + profile.name + '.description') }}</v-card-subtitle>
+          <v-card-subtitle>{{$t('profile.' + profile.name + '.description') }}</v-card-subtitle>
+          <v-divider></v-divider>
           <v-subheader>Suggested Setups</v-subheader>
           <v-list two-line>
             <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in profile.setups" :key="index">
@@ -53,6 +54,15 @@
               <v-list-item-content>
                 <v-list-item-title>{{configuration.label}}</v-list-item-title>
                 <v-list-item-subtitle>Estimated Cost: {{cost(configuration)}}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item :to="{path:'/map/new'}">
+              <v-list-item-avatar>
+                <v-icon class="grey yellow--text lighten-1">mdi-plus</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>Create your own.....</v-list-item-title>
+                <v-list-item-subtitle></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>

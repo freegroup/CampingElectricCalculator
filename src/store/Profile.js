@@ -1,3 +1,4 @@
+import Empty from "./configuration/Empty.json"
 import Default from "./configuration/Default.json"
 import Pure100WShore from "./configuration/pure_100w_shore.json"
 import Pure100WAlternator from "./configuration/pure_100w_alternator.json"
@@ -45,6 +46,10 @@ export default {
   },
   getters: {
     getById: (state, getters, rootState, rootGetters) => (id) => {
+      if (id === "new" ) {
+        return { id: "new", label: "New", config: Empty }
+      }
+
       if (id === "user" ) {
         if ( localStorage.getItem('configuration') ) {
           return JSON.parse( localStorage.getItem('configuration'))
@@ -63,6 +68,7 @@ export default {
       return { id: "default", label: "Standard", config: Default }
     }
   },
+  
   mutations: {
     SET_USER_CONFIGURATION (state, payload) {
       localStorage.setItem('configuration', JSON.stringify({ id: "user", label: "User", config: payload }, undefined, 2))
