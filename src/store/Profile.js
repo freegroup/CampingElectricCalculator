@@ -45,8 +45,11 @@ export default {
   },
   getters: {
     getById: (state, getters, rootState, rootGetters) => (id) => {
-      if (id === "user" && localStorage.getItem('configuration')) {
-        return JSON.parse( localStorage.getItem('configuration'))
+      if (id === "user" ) {
+        if ( localStorage.getItem('configuration') ) {
+          return JSON.parse( localStorage.getItem('configuration'))
+        }
+        return { id: "user", label: "User", config: Default }
       }
 
       let profiles = []
@@ -62,8 +65,7 @@ export default {
   },
   mutations: {
     SET_USER_CONFIGURATION (state, payload) {
-      state.all[0].config = payload
-      localStorage.setItem('configuration', JSON.stringify(state.all[0], undefined, 2))
+      localStorage.setItem('configuration', JSON.stringify({ id: "user", label: "User", config: payload }, undefined, 2))
     }
   }
 }

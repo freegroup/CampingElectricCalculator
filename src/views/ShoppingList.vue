@@ -158,7 +158,7 @@ export default {
   components: {
   },
   mounted() {
-    this.configuration = this.$store.getters["configuration/getById"](this.$route.params.configuration)
+    this.configuration = this.$store.getters["profile/getById"](this.$route.params.configuration)
   },
   data: () => ({
     configuration: {
@@ -183,7 +183,7 @@ export default {
       if ( type && uuid ) {
         return this.getComponent(type, uuid)
       }
-      return { data: { amperestunden: 0 } }
+      return { data: { amperestunden: 0 }, shopping: [] }
     },
     consumers() {
       const result = []

@@ -53,7 +53,7 @@
 
         <template v-for="(profile, index) in profiles">
           <v-divider :key="'div' + index"></v-divider>
-          <v-list-group no-action dense :key="'group_' + index">
+          <v-list-group dense :key="'group_' + index">
             <template v-slot:activator>
               <v-list-item-icon>
                 <v-icon>mdi-lan</v-icon>

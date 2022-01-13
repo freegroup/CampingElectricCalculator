@@ -204,6 +204,7 @@ export default {
     },
 
     getLabel() {
+      console.log(this.configuration)
       return this.configuration.label
     },
 
