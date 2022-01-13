@@ -5,15 +5,15 @@
       <v-toolbar-title>Camper Electric Configuration 
         <img 
           style="top: 4px;position: relative;padding-left: 10px;" 
-          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ffreegroup%2FCampingElectricCalculator&count_bg=%23E39623&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ffreegroup%2FCampingElectricCalculator2&count_bg=%23E39623&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"
         />
       </v-toolbar-title>
       <v-spacer></v-spacer>
           
-          <!-- v-btn @click="exportJson" class="ml-1">
-            <v-icon>mdi-heart</v-icon>
-            <div class="d-none d-lg-block">Export Json</div>
-          </v-btn -->
+          <v-btn @click="save" class="ml-1">
+            <v-icon>mdi-content-save-outline</v-icon>
+            <div class="d-none d-lg-block">Save</div>
+          </v-btn>
           
           <v-btn @click="center" class="ml-1">
             <v-icon>mdi-image-filter-center-focus</v-icon>
@@ -30,7 +30,7 @@
           </v-btn>
   
           <template v-slot:extension>
-            <div style="width:100%">{{label}} <span class="float-right">Estimated Price: {{(price.low).toFixed(2)}} Euro</span></div>
+            <div style="width:100%">{{label}} <span class="float-right">Estimated Cost: {{(price.low).toFixed(2)}} Euro</span></div>
           </template>
     </v-app-bar>
 
@@ -51,21 +51,23 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-divider></v-divider>
+        <template v-for="(profile, index) in profiles">
+          <v-divider :key="'div' + index"></v-divider>
+          <v-list-group no-action dense :key="'group_' + index">
+            <template v-slot:activator>
+              <v-list-item-icon>
+                <v-icon>mdi-lan</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title >{{$t('profile.' + profile.name + '.name') }}</v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in profile.setups" :key="index">
+              <v-list-item-title>{{configuration.label}}</v-list-item-title>
+            </v-list-item>
+          </v-list-group>
+        </template>
 
-        <v-list-group no-action dark dense :value="true">
-          <template v-slot:activator>
-            <v-list-item-icon>
-              <v-icon class="white--text">mdi-lan</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title class="white--text" >Example Setup</v-list-item-title>
-            </v-list-item-content>
-          </template>
-          <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in configurations" :key="index">
-            <v-list-item-title>{{configuration.label}}</v-list-item-title>
-          </v-list-item>
-        </v-list-group>
       </v-list>
     </v-navigation-drawer>
     <v-main>
@@ -111,6 +113,23 @@ export default {
       const json = this.$refs.mindmap.toJson()
       this.$refs.jsonDialog.show(json)
     },
+    async save() {
+      let json = this.$refs.mindmap.toJson()
+      json = JSON.stringify(json, undefined, 2)
+      var blob = new Blob([json], { type: "application/json;charset=utf-8" })
+      const fileHandle = await window.showSaveFilePicker({
+        _preferPolyfill: false,
+        suggestedName: 'CamperElectricConfiguration.json',
+        types: [
+          { accept: { "application/json": [".json"] } }
+        ],
+        excludeAcceptAllOption: true 
+      })
+
+      const writer = await fileHandle.createWritable()
+      await writer.write(blob)
+      await writer.close()
+    },
     help() {
       this.$refs.helpDialog.show()
     },
@@ -126,8 +145,8 @@ export default {
   },
   computed: {
     ...mapState({
-      configurations: state => {
-        return state.configuration.all
+      profiles: state => {
+        return state.profile.all
       }
     })
   }

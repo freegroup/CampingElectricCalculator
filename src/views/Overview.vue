@@ -34,59 +34,31 @@
   <v-main>
     <!-- Provides the application the proper gutter -->
     <v-container>
-      <h1>How to wire a Campervan</h1>
-      <h3>How to size your electrical system</h3>
+      <h1>How to size your electrical system</h1>
       <v-container>
-      Wiring and installing the electrical system is probably one of the most complicated and daunting 
-      tasks in a van conversion. I've spent a lot of time reading blog posts, forum comments, and watching 
-      YouTube videos to see if there are any really good how-to guides out there. In fact, there are a lot.
-      </v-container>
-      <v-container>
-      But all of them explains how to figure it all out by hand or by exel sheets. <b>But why calculate everything again and again by hand 
-      if you can use software for it</b>. I'm not really a fan of excel lists though. That's why I built a tool 
-      with which you can simply model your electrical system in a MindMap and in the background, it calculates 
-      whether the components harmonize and fit. 
+      Size of the solar system on the motorhome in practice Since not everyone knows their energy needs ahead 
+      of time, I'd like to give you a few avatars or pointers here.
       </v-container>
 
-      <v-container>
-            <v-layout row wrap>
-              <v-flex>
-                <v-card class="mx-auto" max-width="350" >
-                    <router-link  :to="{path:'/map'}" >
-                      <v-img src="@/assets/mindmap.png" height="200px" ></v-img>
-                    </router-link>
+      <template v-for="(profile, index) in profiles">
+        <v-card class="mx-auto mb-10" :key="'profile' + index">
+          <v-card-title><v-icon class="mr-4 pink--text">mdi-account</v-icon> {{$t('profile.' + profile.name + '.name') }}</v-card-title>
+          <v-card-subtitle style="min-height:100px">{{$t('profile.' + profile.name + '.description') }}</v-card-subtitle>
+          <v-subheader>Suggested Setups</v-subheader>
+          <v-list two-line>
+            <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in profile.setups" :key="index">
+              <v-list-item-avatar>
+                <v-icon class="grey yellow--text lighten-1">mdi-white-balance-sunny</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>{{configuration.label}}</v-list-item-title>
+                <v-list-item-subtitle>Estimated Cost: {{cost(configuration)}}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </template>
 
-                  <v-card-title>Get the correct sizing</v-card-title>
-                  <v-card-subtitle style="min-height:100px">Connect your components in a mindmap fashion 
-                    and check if the components are well dimensioned.</v-card-subtitle>
-
-                  <v-card-actions>
-                    <v-btn color="orange lighten-2" :to="{path:'/map'}" text>Start</v-btn>
-                    <v-spacer></v-spacer>
-                  </v-card-actions>
-                </v-card>
-              </v-flex>
-              <v-flex>
-                <v-card class="mx-auto" max-width="350">
-                  <router-link  :to="{path:'/diameter'}" >
-                    <v-img src="@/assets/wirediameter.png" height="200px" ></v-img>
-                  </router-link>
-
-                  <v-card-title>Wire size vs. Ampere</v-card-title>
-                  <v-card-subtitle  style="min-height:100px">
-                    You want to lay electricity for consumers or even install a second battery? Then you 
-                    should know exactly which cable cross-section your cables should have!
-                  </v-card-subtitle>
-
-                  <v-card-actions>
-                    <v-btn color="orange lighten-2"  :to="{path:'/diameter'}" text>Start</v-btn>
-                    <v-spacer></v-spacer>
-                  </v-card-actions>
-                </v-card>
-              </v-flex>
-            </v-layout>
-      </v-container>
-                
       <h3>Disclaimer</h3>
       <v-container>
       But as it is with software and the dear people....they 
@@ -106,10 +78,30 @@
 </v-app>
 </template>
 <script>
+import { mapState } from 'vuex'
 
 export default {
   name: 'Overview',
   components: {
+  },
+  methods: {
+    cost ( configuration ) {
+      const price = configuration.config.price
+      if ( !price ) {
+        return " - "
+      }
+      if (price.low === price.high ) {
+        return (price.low).toFixed(2) + " €"
+      }
+      return (price.low).toFixed(2) + " - " + (price.high).toFixed(2) + " €"
+    }
+  },
+  computed: {
+    ...mapState({
+      profiles: state => {
+        return state.profile.all
+      }
+    })
   }
 }
 </script>

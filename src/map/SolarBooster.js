@@ -82,7 +82,7 @@ export default class SolarBooster extends LeftNode {
   }
 
   calculateOutputData () {
-    let result = { spannung: 12, strom: 0, watt: 0 } 
+    const result = { spannung: 12, strom: 0, watt: 0, ladespannung: this.mindmap ? this.mindmap.getMaxChargeVoltage() : 12 } 
     // Berechnung der Parallelschaltung aller "parallel" angehängten Panels. 
     if ( this.children.length > 0 ) {
       const data = this.children[0].calculateOutputData()
@@ -101,7 +101,8 @@ export default class SolarBooster extends LeftNode {
           // gleicher Leistung (P=100W). Dabei ändert sich der Ladestrom – er steigt an! 
           // Die Formel dazu liefert den Beweis: I=100W/14.4V . Das ergibt einen neuen 
           // Ladestrom von 6,75A.
-          result = { spannung: 12, strom: data.watt / this.mindmap.getMaxChargeVoltage(), watt: data.watt } 
+          result.strom = data.watt / result.ladespannung
+          result.watt = data.watt
           break
         case "PWM":
           // Der Kollege PWM mag es unkompliziert, und passt deswegen die Modulspannung 
@@ -110,13 +111,12 @@ export default class SolarBooster extends LeftNode {
           // du feststellen, dass diese bei 18,5V liegt. Der Regler “verschenkt” sozusagen 
           // 3,7V, weil dein Akku ja lediglich 14,8 benötigt, während der Strom (Im) gleich 
           // bleibt
-          result = { spannung: 12, strom: data.nennstrom, watt: data.nennstrom * this.mindmap.getMaxChargeVoltage() } 
+          result.strom = data.nennstrom
+          result.watt = data.nennstrom * result.ladespannung
           break
-        default:
-          result = { spannung: 12, strom: 0, watt: 0 } 
       }
     }
-    result.ladespannung = this.mindmap.getMaxChargeVoltage()
+
     result.ladestrom = result.watt / result.ladespannung
     result.amperestunden = result.strom * this.model.operationHours
     return result

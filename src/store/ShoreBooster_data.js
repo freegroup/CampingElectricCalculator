@@ -25,6 +25,29 @@ export default [
     }
   },
   { 
+    uuid: "B5248EE2-1227-400F-A9B9-FCF112180998", 
+    type: "shoreBooster", 
+    name: "NRG Charger NXS 5.0", 
+    imageSrc: images("./ngr_nxr_5A.png"),
+    operationHours: 1,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3nnEXcp",
+        label: "NRG Charger NXS 5.0 12V Batterien Ladegerät Blei Säure AGM Gel Calcium Batterie Automatik Ladegerät Auto",
+        lastKnownPrice: 53.90
+      }
+    ],
+    data: {
+      chargeSupport: ["AGM", "Gel"],
+      eingangsspannung: 230,
+      spannung: 12,
+      strom: 5,
+      watt: 12 * 5
+    }
+  },
+  { 
     uuid: "C7950C31-70F6-48C2-BE4A-95D856276FFC", 
     type: "shoreBooster", 
     name: "Victron Energy 30A", 

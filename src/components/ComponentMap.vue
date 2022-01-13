@@ -50,12 +50,10 @@ export default {
   }),
   watch: {
     '$route' (to, from) {
-      const configuration = this.$store.getters["configuration/getById"](to.params.configuration)
+      const configuration = this.$store.getters["profile/getById"](to.params.configuration)
       this.loadConfiguration(configuration)
     },
     low (to, from) {
-      console.log("changed")
-      console.log("xx", to, this.low)
       this.calcPrice = to
     }
   },
@@ -63,7 +61,7 @@ export default {
     const { root } = this.$refs
     this.map = new MindMap(root, 7000, 7000)
     this.price = this.map.calculateSetupPrice()
-    console.log("price", this.price)
+
     this.map.on("select", event => this.handleNodeSelect(event))
     this.map.on("timer", event => this.handleNodeTimer( event))
     this.map.on("configure", event => this.handleNodeConfigure( event))
@@ -74,7 +72,7 @@ export default {
     this.map.on("removeChild", event => this.handleNodeRemoveChild( event))
     this.map.on("changed", () => this.saveConfig())
 
-    const configuration = this.$store.getters["configuration/getById"](this.$route.params.configuration)
+    const configuration = this.$store.getters["profile/getById"](this.$route.params.configuration)
     this.loadConfiguration(configuration)
   },
   methods: {
@@ -197,7 +195,7 @@ export default {
 
     saveConfig() {
       // save the changes as "user" configuration
-      this.$store.dispatch('configuration/saveUserConfiguration', this.map.toJson())
+      this.$store.dispatch('profile/saveUserConfiguration', this.map.toJson())
 
       // and load now the "user" configuration. Only the "user" configuration is changeable
       if ( this.configuration.id !== "user") {

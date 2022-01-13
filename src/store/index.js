@@ -5,6 +5,7 @@ import alternator from './Alternator'
 import usb from './Usb'
 import usbConsumer from './UsbConsumer'
 import fridge from './Fridge'
+import cooler from './Cooler'
 import fuse from './Fuse'
 import fuseBox from './FuseBox'
 import heater from './Heater'
@@ -19,7 +20,7 @@ import solarSet from './SolarSet'
 import batteryProtect from './BatteryProtect'
 import light from './Light'
 import pressurePump from './PressurePump'
-import configuration from './Configuration'
+import profile from './Profile'
 
 Vue.use(Vuex)
 
@@ -29,6 +30,7 @@ export default new Vuex.Store({
     usb,
     usbConsumer,
     fridge,
+    cooler,
     heater,
     fuse,
     fuseBox,
@@ -43,6 +45,6 @@ export default new Vuex.Store({
     killSwitch,
     starterAccu,
     solarPanel,
-    configuration
+    profile
   }
 })

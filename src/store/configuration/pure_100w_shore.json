@@ -1,0 +1,73 @@
+{
+  "price": {
+    "high": 482.07,
+    "low": 482.07
+  },
+  "center": {
+    "uuid": "A8996B36-C868-4B87-9498-31701E559E1B",
+    "type": "accu"
+  },
+  "left": [
+    {
+      "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
+      "type": "fuse",
+      "operationHours": 24,
+      "children": [
+        {
+          "uuid": "90ACB258-8AA6-41A9-8576-8368BD8C2102",
+          "type": "solarSet",
+          "operationHours": 4.5,
+          "children": []
+        }
+      ]
+    },
+    {
+      "uuid": "B5248EE2-1227-400F-A9B9-FCF112180998",
+      "type": "shoreBooster",
+      "operationHours": 0.5,
+      "children": []
+    }
+  ],
+  "right": [
+    {
+      "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
+      "type": "fuse",
+      "operationHours": 24,
+      "children": [
+        {
+          "uuid": "7FA1FD36-70DE-4364-AAD7-5CE44D1953EC",
+          "type": "batteryProtect",
+          "operationHours": 24,
+          "children": [
+            {
+              "uuid": "012D2D77-DD37-4124-8ED4-AE03522519FA",
+              "type": "fuseBox",
+              "operationHours": 24,
+              "children": [
+                {
+                  "uuid": "1w312343lk2452x",
+                  "type": "usb",
+                  "operationHours": 24,
+                  "children": [
+                    {
+                      "uuid": "1w312343lk245phone",
+                      "type": "usbConsumer",
+                      "operationHours": 1.5,
+                      "children": []
+                    },
+                    {
+                      "uuid": "6F5314FF-D1B5-448F-AD82-9CE2C20B25ED",
+                      "type": "usbConsumer",
+                      "operationHours": 2,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

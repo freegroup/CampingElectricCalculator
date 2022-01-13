@@ -1,5 +1,23 @@
 export default {
   en: {
+    profile: {
+      low: {
+        name: "Pure Camper",
+        description: "You travel mostly in the warm months, drive daily to new destinations, stay overnight from time to time on places with power supply and charge now and then, for example, your cell phone, tablet or laptop, the installed standard battery (usually 90 Ah AGM battery) and a 100 Wp solar panel is usually enough for you"
+      },
+      standard: {
+        name: "Standard Camper",
+        description: "Do you like to travel all year round and be completely free? Do you travel to new destinations (almost) every day and charge your cell phone, tablet or laptop from time to time, for example. A 100 Wp solar panel should normally be sufficient here."
+      },
+      aboveaverage: {
+        name: "Frequent User",
+        description: "Do you like to travel all year round and be completely free? You do not drive to new destinations every day and charge your cell phone, tablet or laptop and other devices, such as camera, drone and the like and would like to use a coffee maker or hair dryer?  Here I would recommend you at least 200 Wp solar as well as a lithium battery with min. 100Ah capacity."
+      },
+      power: {
+        name: "Van Lifer",
+        description: "For example, if you use your camper as a mobile office for several days, you should calculate your needs as described above. Because it is not possible to work with the laptop completely without electricity 🙂. There are no upper limits here."
+      }
+    },
     data: { 
       label: {
         amperestunden: "Ampere Hour",

@@ -6,7 +6,7 @@ export default class Usb extends RightNode {
   }
 
   getChildCandidates () {
-    return ["usbConsumer"] 
+    return ["usbConsumer", "cooler"] 
   }
 
   getErrorMessages () {

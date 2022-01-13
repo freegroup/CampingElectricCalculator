@@ -136,7 +136,7 @@ export default [
   { 
     uuid: "42C116CF-4380-4B27-9450-3E027A9393A1", 
     type: "accu", 
-    name: "ECTIVE 230Ah 12V AGM",
+    name: "ECTIVE 230Ah AGM",
     description: "ECTIVE 230Ah 12V AGM Versorgungsbatterie DC 230s mit LCD-Display VRLA Solar-Batterie mit integrierten Nachfüllpacks",
     imageSrc: images("./ective_230Ah.png"),
     shopping: [
@@ -153,6 +153,50 @@ export default [
       spannung: 12,
       type: "AGM",
       effective_amperestunden: 230 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+    }
+  },
+  { 
+    uuid: "A8996B36-C868-4B87-9498-31701E559E1B", 
+    type: "accu", 
+    name: "ECTIVE 70Ah AGM",
+    description: "ECTIVE 70Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
+    imageSrc: images("./ective_70Ah.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3tr5klo",
+        label: "ECTIVE 70Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
+        lastKnownPrice: 130.82
+      }
+    ],
+    data: {
+      bms: "none",
+      amperestunden: 70,
+      spannung: 12,
+      type: "AGM",
+      effective_amperestunden: 70 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+    }
+  },
+  { 
+    uuid: "662CD3C1-DB78-4FE2-A65F-2122E879BA5C", 
+    type: "accu", 
+    name: "ECTIVE 100Ah AGM",
+    description: "ECTIVE 100Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
+    imageSrc: images("./ective_100Ah.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3tr5klo",
+        label: "ECTIVE 100Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
+        lastKnownPrice: 169.82
+      }
+    ],
+    data: {
+      bms: "none",
+      amperestunden: 100,
+      spannung: 12,
+      type: "AGM",
+      effective_amperestunden: 100 * 0.6 // es können nur 60% der vollen Energie entnommen werden
     }
   },
   { 

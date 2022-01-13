@@ -19,6 +19,9 @@ export default class NodeFactory {
   static createNode (leftSide, model) {
     let node = null  
     switch (model.type) {
+      case "cooler":
+        node = new Consumer()     
+        break
       case "usbConsumer":
         node = new Consumer()     
         break
