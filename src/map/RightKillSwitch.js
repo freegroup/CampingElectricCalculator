@@ -6,7 +6,7 @@ export default class RightKillSwitch extends RightNode {
   }
 
   getChildCandidates () {
-    if ( this.mindmap && this.mindmap.data.bms === "internal") {
+    if ( this.mindmap && this.mindmap.model.data.bms === "internal") {
       return ["batteryProtect", "fuse", "fuseBox"] 
     }
     
