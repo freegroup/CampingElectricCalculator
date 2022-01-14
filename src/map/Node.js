@@ -24,20 +24,13 @@ export default class Node extends GenericNode {
   }
 
   /**
-   * @final
-   * @private
-   * */
-  _collapse(event) {
-    $(this.childrenContainer).toggle()
-    event.stopPropagation()
-    this.drawLines()
-  }
-
-  /**
    * @type HTMLElement
    * @final
    * */
   addNode(node) {
+    if (node.parent && node.parent !== this ) {
+      node.parent.removeNode(node)
+    }
     this.children.push(node)
     this.childContainer.append(node.getHTMLElement())
     node.parent = this
@@ -171,7 +164,7 @@ export default class Node extends GenericNode {
    *
    * */
   afterCreateHTML() {
-    $(this.addChildIcon).on('click', this.eventbinding_collapse)
+    super.afterCreateHTML()
 
     $(this.addChildIcon).on("click", event => {
       event.stopPropagation()

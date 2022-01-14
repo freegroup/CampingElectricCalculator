@@ -91,6 +91,7 @@ export default {
       name: {
         solarBooster: "Solar Booster",
         solarSet: "Solar Panel + Controller",
+        carSocket: "Car Socket",
         killSwitch: "Power Switch",
         solarPanel: "Solar Panel",
         shoreBooster: "Shore Power Battery Charger",
@@ -111,6 +112,7 @@ export default {
       description: {
         solarBooster: "Solar charge controllers sits in between the solar panels and your battery and used to convert varying voltages from solar cells to charge batteries of different types (Acid, LiFePo4,..)",
         solarSet: "This was the easiest and quickest way to complete our solar panel setup but it's not necessarily the cheapest. If you don't want to fiddle around with solar panel too much with solar panel wiring and finding the right controller, then a solar panel kit is for you.",
+        carSocket: "An automobile auxiliary power outlet (also known as power socket) in an automobile became a de facto standard DC connector to supply electrical power for portable accessories used in or near an automobile directly from the vehicle's electrical system",
         killSwitch: "Power switches are designed to cut-off electrical power, help protect against electrical fires when equipment is not in use. They also provide a reliable way to shut down electrical power during maintenance and protect batteries from excessive drain",
         solarPanel: "A solar panel is actually a collection of solar (or photovoltaic) cells, which can be used to generate electricity through photovoltaic effec",
         shoreBooster: "A shore power converter charger is another way to charge the solar system's battery. You can plug the charger into a standard 120V/220V outlet and it will rapidly recharge your battery",

@@ -17,7 +17,7 @@ export default class Mindmap extends GenericNode {
     this.html = null
     this.centerLabel = null
     this.host = $(id)
-    this.leftSide = true
+    this.leftSide = undefined
     this.leftDefaultNode = new LeftDefaultNode()
     this.rightDefaultNode = new RightDefaultNode()
 
@@ -31,16 +31,15 @@ export default class Mindmap extends GenericNode {
     this.rightChildrenHTML.append(this.rightDefaultNode.getHTMLElement())
   }
 
-  getLeftChildCandidates () {
-    return ["shoreBooster", "killSwitch", "fuse", "solarSet", "solarBooster", "starterBooster"] 
-  }
-
-  getRightChildCandidates () {
+  getChildCandidates ( leftSide ) {
+    if (leftSide) {
+      return ["shoreBooster", "killSwitch", "fuse", "solarSet", "solarBooster", "starterBooster"]
+    }
     if ( this.model.data.bms === "internal") {
       return ["killSwitch", "fuse", "fuseBox"] 
     }
 
-    return ["batteryProtect", "killSwitch", "fuse"]
+    return ["batteryProtect", "killSwitch", "fuse"] 
   }
 
   getMaxChargeVoltage() {
@@ -151,6 +150,10 @@ export default class Mindmap extends GenericNode {
    * @type HTMLElement
    * */
   addNode(node) {
+    if (node.parent && node.parent !== this ) {
+      node.parent.removeNode(node)
+    }
+
     if (node.leftSide) {
       this.leftChildrenHTML.append(node.getHTMLElement())
       this.leftChildren.push(node)
@@ -312,41 +315,47 @@ export default class Mindmap extends GenericNode {
         }
       }
 
-      $(this.centerLabel).on('click', (event) => {
-        event.stopPropagation()
-        this.setCurrentSelection(this)
-      })
-      $(this.configIcon).on("click", event => {
-        event.stopPropagation()
-        this.onComponentConfigure(this)
-      })
-  
-      $(this.infoIcon).on("click", event => {
-        event.stopPropagation()
-        this.onComponentShowInfo(this)
-      })
-
-      $(this.gaugeIcon).on("click", event => {
-        event.stopPropagation()
-        this.onComponentBalance(this)
-      })
-  
-      $(this.addLeftChildIcon).on("click", event => {
-        event.stopPropagation()
-        this.notifyListeners({ event: "addChild", component: this, leftSide: true, candidates: this.getLeftChildCandidates() })
-      })
-  
-      $(this.addRightChildIcon).on("click", event => {
-        event.stopPropagation()
-        this.notifyListeners({ event: "addChild", component: this, leftSide: false, candidates: this.getRightChildCandidates() })
-      })  
-
-      $(this.errorIcon).on("click", (event) => {
-        event.stopPropagation()
-        this.onComponentShowErrors(this)
-      })
+      this.afterCreateHTML()
     }
     return this.html
+  }
+
+  afterCreateHTML() {
+    super.afterCreateHTML()
+
+    $(this.centerLabel).on('click', (event) => {
+      event.stopPropagation()
+      this.setCurrentSelection(this)
+    })
+    $(this.configIcon).on("click", event => {
+      event.stopPropagation()
+      this.onComponentConfigure(this)
+    })
+
+    $(this.infoIcon).on("click", event => {
+      event.stopPropagation()
+      this.onComponentShowInfo(this)
+    })
+
+    $(this.gaugeIcon).on("click", event => {
+      event.stopPropagation()
+      this.onComponentBalance(this)
+    })
+
+    $(this.addLeftChildIcon).on("click", event => {
+      event.stopPropagation()
+      this.notifyListeners({ event: "addChild", component: this, leftSide: true, candidates: this.getChildCandidates(true) })
+    })
+
+    $(this.addRightChildIcon).on("click", event => {
+      event.stopPropagation()
+      this.notifyListeners({ event: "addChild", component: this, leftSide: false, candidates: this.getChildCandidates(false) })
+    })  
+
+    $(this.errorIcon).on("click", (event) => {
+      event.stopPropagation()
+      this.onComponentShowErrors(this)
+    })
   }
 
   drawLines(recursive) {
@@ -468,7 +477,7 @@ export default class Mindmap extends GenericNode {
     // dynamic check the we have connected only allowed devices.
     //
     this.rightChildren.forEach( child => {
-      if ( !this.getRightChildCandidates().includes( child.model.type )) {
+      if ( !this.getChildCandidates(false).includes( child.model.type )) {
         result.push( { type: "Error", text: `Battery of type '${this.model.data.type}' do not allow a direct connection to a device of type '${child.model.type}' ` } )
       }
     })
@@ -479,7 +488,7 @@ export default class Mindmap extends GenericNode {
         return false
       }
       // We found a non BMS and non allowed device type in the chain
-      if ( !this.getRightChildCandidates().includes( child.model.type )) {
+      if ( !this.getChildCandidates(false).includes( child.model.type )) {
         return true
       }
       

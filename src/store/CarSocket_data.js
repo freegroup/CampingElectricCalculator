@@ -2,24 +2,24 @@ const images = require.context("@/store/images/carSocket/", true, /\.png$/)
 
 export default [
   { 
-    uuid: "0CE42416-7410-40B7-BCED-ACF4F154C108", 
-    type: "usb", 
-    name: "USB 3.6A", 
-    imageSrc: images("./usb.png"),
+    uuid: "FEAA20DC-89D3-41E3-B632-87E54DDAB6E8", 
+    type: "carSocket", 
+    name: "KFZ Socket 10A", 
+    imageSrc: images("./dodolar.png"),
     operationHours: 24,
     exportable: true,
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3t9eWkF",
-        label: "ProCar 67341000 Power USB-C/A",
-        lastKnownPrice: 16.99
+        link: "https://amzn.to/3K9xJCt",
+        label: "Zigarettenanzünder Verteiler 12V Kfz zigarettenanzünder Adapter",
+        lastKnownPrice: 8.38
       }
     ],
     data: {
       spannung: 12, 
-      strom: 3.6, // I=P/U
-      watt: 3.6 * 12,
+      strom: 10, // I=P/U
+      watt: 10 * 12,
       buchsen: 1
     }
   }

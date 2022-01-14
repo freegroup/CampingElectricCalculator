@@ -43,7 +43,7 @@ export default class LeftKillSwitch extends LeftNode {
   }
 
   calculateInputData () {
-    const result = { strom: 0, spannung: 0, watt: 0, amperestunden: 0 }
+    const result = { strom: 0, spannung: 12, watt: 0, amperestunden: 0 }
     if ( this.children.length > 0 ) {
       let childData = this.children[0].calculateOutputData()
       // check that the attributes "strom" and "spannung" are in place

@@ -64,7 +64,7 @@ export default class LeftNode extends Node {
         this.leftLabel = row.insertCell()
         {
           this.leftLabel.className = 'node'
-          this.labelContainer = document.createElement('div')
+          this.labelContainer = htmlToElement(`<div draggable='true'></div>`)
           {
             this.leftLabel.append(this.labelContainer)
             
@@ -93,7 +93,7 @@ export default class LeftNode extends Node {
             }
 
             if ( this.timerBased ) {
-              this.statusbarDiv = htmlToElement('<div class="statusbar">blamperestunden blah blah</div>')
+              this.statusbarDiv = htmlToElement('<div class="statusbar"></div>')
               this.labelContainer.append(this.statusbarDiv)
             }
 

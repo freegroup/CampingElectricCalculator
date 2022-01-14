@@ -12,6 +12,7 @@ import StarterBooster from "./StarterBooster.js"
 import RightFuseBox from "./RightFuseBox.js"
 import Consumer from "./Consumer.js"
 import Usb from "./Usb.js"
+import CarSocket from "./CarSocket.js"
 import LeftFuse from "./LeftFuse.js"
 import RightFuse from "./RightFuse.js"
 
@@ -19,6 +20,9 @@ export default class NodeFactory {
   static createNode (leftSide, model) {
     let node = null  
     switch (model.type) {
+      case "carSocket":
+        node = new CarSocket()     
+        break
       case "cooler":
         node = new Consumer()     
         break

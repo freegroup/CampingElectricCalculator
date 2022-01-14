@@ -6,7 +6,7 @@ export default class RightFuseBox extends RightNode {
   }
 
   getChildCandidates () {
-    return ["pressurePump", "fridge", "usb", "light", "heater"] 
+    return ["pressurePump", "fridge", "usb", "light", "heater", "carSocket"] 
   }
 
   getErrorMessages () {

@@ -18,6 +18,7 @@ import starterAccu from './StarterAccu'
 import solarPanel from './SolarPanel'
 import solarSet from './SolarSet'
 import batteryProtect from './BatteryProtect'
+import carSocket from './CarSocket'
 import light from './Light'
 import pressurePump from './PressurePump'
 import profile from './Profile'
@@ -28,6 +29,7 @@ export default new Vuex.Store({
   modules: {
     alternator,
     usb,
+    carSocket,
     usbConsumer,
     fridge,
     cooler,

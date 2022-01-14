@@ -204,7 +204,6 @@ export default {
     },
 
     getLabel() {
-      console.log(this.configuration)
       return this.configuration.label
     },
 
@@ -285,7 +284,7 @@ export default {
         position: relative;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         border-radius: 5px;
-        border: 1px dotted transparent;
+        border: 2px solid transparent;
         background: white;
         .toolbar {
           height: 26px;
