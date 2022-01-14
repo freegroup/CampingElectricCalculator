@@ -1,6 +1,6 @@
 import Node from './Node'
 import $ from "jquery"
-import { createCanvas, htmlToElement, CANVAS_WIDTH, ARROW_STROKE, drawArrowLine } from "./utils.js"
+import { drawLine, htmlToElement, ARROW_STROKE, CANVAS_WIDTH, createSvg } from "./utils.js"
 
 export default class RightNode extends Node {
   constructor() {
@@ -75,7 +75,7 @@ export default class RightNode extends Node {
             {
               const cell = innerRow.insertCell()
               {
-                this.canvas = createCanvas(cell)
+                this.canvas = createSvg(cell)
                 {
                   this.canvas.setAttribute('width', CANVAS_WIDTH)
                   this.canvas.setAttribute('height', '30')
@@ -103,12 +103,10 @@ export default class RightNode extends Node {
   drawLines (recursive) {
     if ( recursive ) {
       if (this.childrenVisible) {
+        this.canvas.innerHTML = ""
         const height = this.adjustCanvasHeight()
         const thisAnchor = $(this.canvas).offset()
-        const ctx = this.canvas.getContext('2d')
-        ctx.clearRect(0, 0, CANVAS_WIDTH, height)
-        ctx.strokeStyle = '#C2185B'
-        ctx.fillStyle = '#C2185B'
+
         this.children.forEach((child) => {
           // the child node can't have more percentage than the parent
           // The parent is the limitation factor. E.g. a USB-socket can't deliver more power even if the charging
@@ -117,9 +115,12 @@ export default class RightNode extends Node {
           const percentage = Math.min(this.getPercentageOfAh(), child.getPercentageOfAh())
           const anchor = child.getAbsoluteAnchor()
           const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-          ctx.lineWidth = Math.max(1, ARROW_STROKE * percentage)
+          const lineWidth = Math.max(3, ARROW_STROKE * percentage)
 
-          drawArrowLine(ctx, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 }, 15, false, false)
+          const line = drawLine(this.canvas, '#C2185B', lineWidth, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 })
+          $(line).on('click', () => { 
+            // alert(child.id)
+          })
           child.drawLines(true)
         })
       }

@@ -9,6 +9,10 @@
     <AccuBalanceDialog ref="accuBalanceDialog"/>
     <ConsumerDialog ref="consumerDialog"/>
     <TimerDialog ref="timerDialog"/>
+    
+    <v-card style="position:absolute; bottom:20px; right:20px;padding-left:10px;padding-right:10px" width="250" height="30">
+      <v-slider v-model="zoom" step="5" min="30" max="170" dense></v-slider>
+    </v-card>
   </div>
 </template>
 
@@ -30,7 +34,8 @@ export default {
     return {
       map: null,
       price: { low: 0, high: 0 },
-      calcPrice: 0
+      calcPrice: 0,
+      zoom: 100
     }
   },
   components: {
@@ -55,6 +60,10 @@ export default {
     },
     low (to, from) {
       this.calcPrice = to
+    },
+    zoom (to, from) {
+      this.$refs.root.style.zoom = to / 100
+      this.map.center()
     }
   },
   mounted() {
@@ -252,8 +261,11 @@ export default {
       background-image: #effeff6b;
     }
 
-    canvas {
+    svg {
       display: block;
+      .node_line {
+        cursor: pointer;
+      }
     }
 
     table {

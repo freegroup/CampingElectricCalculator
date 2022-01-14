@@ -12,11 +12,30 @@ function createCanvas(parent) {
   return canvas
 }
 
+function createSvg(parent) {
+  const canvas = htmlToElement(`<svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>`)
+  parent.append(canvas)
+  return canvas
+}
+
 function disableSelection(element) {
   element.onselectstart = () => false
   element.unselectable = "on"
   element.style.MozUserSelect = "none"
   element.style.cursor = "default"
+}
+function drawLine(svg, color, stroke, p0, p1, p2, p3) {
+  // http://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html
+  const path = `M${p0.x},${p0.y} C${p1.x},${p1.y} ${p2.x},${p2.y} ${p3.x},${p3.y}`
+  const newpath = document.createElementNS('http://www.w3.org/2000/svg', "path")
+  newpath.setAttributeNS(null, "d", path)
+  newpath.setAttributeNS(null, "class", "node_line")
+  newpath.setAttributeNS(null, "fill", "none")
+  newpath.setAttributeNS(null, "stroke", color)
+  newpath.setAttributeNS(null, "stroke-linecap", "round" )
+  newpath.setAttributeNS(null, "stroke-width", stroke)
+  svg.append(newpath)
+  return newpath
 }
 
 function drawCircle(ctx, centerX, centerY, radius) {
@@ -87,16 +106,9 @@ function drawArrowLine(ctx, p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndAr
     ctx.closePath()
     ctx.fill()
   }
-
-  // ctx.lineWidth = ctx.lineWidth + 2
-  // const c = ctx.strokeStyle
-  // ctx.strokeStyle = "gray"
-  // ctx.stroke()
-  // ctx.strokeStyle = c
-  // ctx.lineWidth = ctx.lineWidth - 2
   ctx.stroke()
 }
 
 const CANVAS_WIDTH = 80
 const ARROW_STROKE = 10
-export { createCanvas, disableSelection, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH, ARROW_STROKE }
+export { createSvg, createCanvas, disableSelection, drawLine, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH, ARROW_STROKE }

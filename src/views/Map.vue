@@ -22,7 +22,7 @@
 
           <v-btn @click="exportPdf" class="ml-1">
             <v-icon>mdi-text-box-check-outline</v-icon> 
-            <div class="ml-3 d-none d-lg-block">Component List</div>
+            <div class="ml-3 d-none d-lg-block">Parts</div>
           </v-btn>
 
           <v-btn @click="help" class="ml-1">

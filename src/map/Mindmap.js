@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { disableSelection, createCanvas, htmlToElement, CANVAS_WIDTH, ARROW_STROKE, drawArrowLine } from "./utils.js"
+import { drawLine, disableSelection, htmlToElement, ARROW_STROKE, CANVAS_WIDTH, createSvg } from "./utils.js"
 import GenericNode from './GenericNode'
 import LeftDefaultNode from './LeftDefaultNode'
 import RightDefaultNode from './RightDefaultNode'
@@ -233,12 +233,10 @@ export default class Mindmap extends GenericNode {
           this.leftLines.style.width = `${this.lineCanvasWidth}px`
           this.leftLines.style.height = `${this.height}px`
           this.leftLines.style.display = `none`
-          this.leftCanvas = createCanvas(this.leftLines)
-          {
-            this.leftCanvas.style.height = `${this.height}px`
-            this.leftCanvas.setAttribute('width', this.lineCanvasWidth)
-            this.leftCanvas.setAttribute('height', this.height)
-          }
+          this.leftCanvas = createSvg(this.leftLines) // createCanvas(this.leftLines)
+          this.leftCanvas.style.height = `${this.height}px`
+          this.leftCanvas.setAttribute('width', this.lineCanvasWidth)
+          this.leftCanvas.setAttribute('height', this.height)
         }
 
         const addLeftChildCell = row.insertCell()
@@ -302,7 +300,8 @@ export default class Mindmap extends GenericNode {
           this.rightLines.style.width = `${this.lineCanvasWidth}px`
           this.rightLines.style.height = `${this.height}px`
           this.rightLines.style.display = `none`
-          this.rightCanvas = createCanvas(this.rightLines)
+          // this.rightCanvas = createCanvas(this.rightLines)
+          this.rightCanvas = createSvg(this.rightLines)
           this.rightCanvas.style.height = `${this.height}px`
           this.rightCanvas.setAttribute('width', this.lineCanvasWidth)
           this.rightCanvas.setAttribute('height', this.height)
@@ -361,37 +360,28 @@ export default class Mindmap extends GenericNode {
   drawLines(recursive) {
     this.adjustCanvasHeight()
 
-    let ctx = this.leftCanvas.getContext('2d')
     let thisAnchor = $(this.leftCanvas).offset()
-    ctx.clearRect(0, 0, this.lineCanvasWidth, this.height)
-
-    ctx.strokeStyle = '#5CC9FA'
-    ctx.fillStyle = '#5CC9FA'
+    this.leftCanvas.innerHTML = ""
     this.leftChildren.forEach((child) => {
       const percentage = child.getPercentageOfAh()
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-      ctx.lineWidth = Math.max(1, ARROW_STROKE * percentage)
-      drawArrowLine(ctx, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 }, 15, false, false)
+      const lineWidth = Math.max(3, ARROW_STROKE * percentage)
+      drawLine(this.leftCanvas, '#5CC9FA', lineWidth, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 })
       if ( recursive ) {
         child.drawLines(recursive)
       }
     })
 
-    ctx = this.rightCanvas.getContext('2d')
     thisAnchor = $(this.rightCanvas).offset()
-    ctx.clearRect(0, 0, this.lineCanvasWidth, this.height)
+    this.rightCanvas.innerHTML = ""
 
-    ctx.strokeStyle = '#C2185B'
-    ctx.fillStyle = '#C2185B'
     this.rightChildren.forEach((child) => {
       const percentage = child.getPercentageOfAh()
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-      ctx.lineWidth = Math.max(1, ARROW_STROKE * percentage)
-      drawArrowLine(ctx, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
-      // drawCircle(ctx, CANVAS_WIDTH / 2, this.height / 2, 10)
-      // drawCircle(ctx, CANVAS_WIDTH / 2, top, 10)
+      const lineWidth = Math.max(1, ARROW_STROKE * percentage)
+      drawLine(this.rightCanvas, '#C2185B', lineWidth, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
       if ( recursive ) {
         child.drawLines(recursive)
       }
