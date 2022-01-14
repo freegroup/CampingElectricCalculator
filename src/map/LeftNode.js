@@ -2,6 +2,8 @@ import Node from './Node'
 import $ from "jquery"
 import { createCanvas, htmlToElement, CANVAS_WIDTH, ARROW_STROKE, drawArrowLine } from "./utils.js"
 
+// require("jcanvas")
+
 export default class LeftNode extends Node {
   constructor() {
     super()
@@ -122,6 +124,16 @@ export default class LeftNode extends Node {
         ctx.clearRect(0, 0, CANVAS_WIDTH, height)
         ctx.strokeStyle = '#5CC9FA'
         ctx.fillStyle = '#5CC9FA'
+        /*
+        $(this.canvas).drawPolygon({
+          draggable: true,
+          fillStyle: "#6c3",
+          x: 100, 
+          y: 100,
+          radius: 50, 
+          sides: 5
+        })
+        */
         this.children.forEach((child) => {
           const percentage = child.getPercentageOfAh()
           const anchor = child.getAbsoluteAnchor()

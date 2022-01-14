@@ -24,11 +24,17 @@
             <v-icon>mdi-text-box-check-outline</v-icon> 
             <div class="ml-3 d-none d-lg-block">Component List</div>
           </v-btn>
+
           <v-btn @click="help" class="ml-1">
             <v-icon>mdi-help-circle-outline</v-icon>
             <div class="ml-3 d-none d-lg-block">Help</div>
           </v-btn>
-  
+
+          <v-btn href="https://www.paypal.com/paypalme/freegroup/2.50" target="_blank" class="teal accent-4 ml-1">
+            <v-icon>mdi-coffee-outline</v-icon>
+            <div class="ml-3 d-none d-lg-block">Send Me a Coffee</div>
+          </v-btn>
+
           <template v-slot:extension>
             <div style="width:100%">{{label}} <span class="float-right">Estimated Cost: {{(price.low).toFixed(2)}} Euro</span></div>
           </template>

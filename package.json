@@ -12,6 +12,7 @@
     "@mdi/font": "5.9.55",
     "core-js": "^3.6.5",
     "file-saver": "^2.0.5",
+    "jcanvas": "^21.0.1",
     "jquery": "^3.6.0",
     "native-file-system-adapter": "^2.0.1",
     "ponyfills": "^0.13.5",
