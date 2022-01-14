@@ -56,7 +56,11 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onCloseButtonClick">{{$t("dialog.addComponent.okButton")}}</v-btn>
+          <v-btn color="primary" outlined href="https://github.com/freegroup/CampingElectricCalculator/issues/new/choose" target="_blank">
+            <v-icon>mdi-lightbulb-on-outline</v-icon>
+            {{$t("dialog.addComponent.suggestComponent")}}
+          </v-btn>
+          <v-btn color="primary" @click="onCloseButtonClick">{{$t("dialog.addComponent.okButton")}}</v-btn>
         </v-card-actions>
 
       </v-card>

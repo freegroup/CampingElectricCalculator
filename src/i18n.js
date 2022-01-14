@@ -147,6 +147,7 @@ export default {
         okButton: "Close",
         title: "Add Component",
         shopLabel: "Shops",
+        suggestComponent: "Suggest new Component",
         subtitle: "Add a new component to the diagram which will be included in the total calculation.",
         lastKnownPrice: "Last known price"
       },
