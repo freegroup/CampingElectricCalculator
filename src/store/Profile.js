@@ -6,6 +6,7 @@ import Standard100wSmallCooler from "./configuration/standard_100w_small_cooler.
 import Standard160wSmallCooler from "./configuration/standard_160w_small_cooler.json"
 import Aboveaverage200wLightCooler from "./configuration/aboveaverage_200w_light_cooler.json"
 import Power540Watt from "./configuration/power_540w.json"
+import Power720Watt from "./configuration/power_720w.json"
 
 export default {
   namespaced: true,
@@ -34,7 +35,8 @@ export default {
       {
         name: "power",
         setups: [
-          { id: "Power540Watt", label: "540 Watt Solar with AGM Battery, Fridge, Water Pump,...", config: Power540Watt }
+          { id: "Power540Watt", label: "540 Watt Solar with AGM Battery, Fridge, Water Pump,...", config: Power540Watt },
+          { id: "Power720Watt", label: "720 Watt Solar with LiFePO4 Battery, Fridge, Water Pump,...", config: Power720Watt }
         ]
       }
     ]
@@ -68,7 +70,7 @@ export default {
       return { id: "default", label: "Standard", config: Default }
     }
   },
-  
+
   mutations: {
     SET_USER_CONFIGURATION (state, payload) {
       localStorage.setItem('configuration', JSON.stringify({ id: "user", label: "User", config: payload }, undefined, 2))

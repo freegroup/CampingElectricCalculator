@@ -1,0 +1,149 @@
+{
+  "price": {
+    "high": 4226.27,
+    "low": 4226.27
+  },
+  "center": {
+    "uuid": "BD79BE1F-AEF9-467E-A0B7-7270080AF600",
+    "type": "accu"
+  },
+  "left": [
+    {
+      "uuid": "5920A236-17F1-46FD-9B1B-CEE42CAD0472",
+      "type": "solarBooster",
+      "operationHours": 4.5,
+      "children": [
+        {
+          "uuid": "58FBABFF-C628-442C-AC1B-CEF162566074",
+          "type": "solarPanel",
+          "operationHours": 24,
+          "children": [
+            {
+              "uuid": "58FBABFF-C628-442C-AC1B-CEF162566074",
+              "type": "solarPanel",
+              "operationHours": 24,
+              "children": []
+            }
+          ]
+        },
+        {
+          "uuid": "58FBABFF-C628-442C-AC1B-CEF162566074",
+          "type": "solarPanel",
+          "operationHours": 24,
+          "children": [
+            {
+              "uuid": "58FBABFF-C628-442C-AC1B-CEF162566074",
+              "type": "solarPanel",
+              "operationHours": 24,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "uuid": "B522FFA9-0D08-4A82-9399-65B9D74A4B28",
+      "type": "starterBooster",
+      "operationHours": 3,
+      "children": [
+        {
+          "uuid": "1w345iuiouh3245",
+          "type": "alternator",
+          "operationHours": 24,
+          "children": []
+        }
+      ]
+    },
+    {
+      "uuid": "C7950C31-70F6-48C2-BE4A-95D856276FFC",
+      "type": "shoreBooster",
+      "operationHours": 0.5,
+      "children": []
+    }
+  ],
+  "right": [
+    {
+      "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
+      "type": "fuse",
+      "operationHours": 24,
+      "children": [
+        {
+          "uuid": "012D2D77-DD37-4124-8ED4-AE03522519FA",
+          "type": "fuseBox",
+          "operationHours": 24,
+          "children": [
+            {
+              "uuid": "1w3453lk245",
+              "type": "fridge",
+              "operationHours": 24,
+              "children": []
+            },
+            {
+              "uuid": "1w312343lk245",
+              "type": "usb",
+              "operationHours": 24,
+              "children": [
+                {
+                  "uuid": "1w312343lk245phone",
+                  "type": "usbConsumer",
+                  "operationHours": 10.5,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "uuid": "1w312343lk2452x",
+              "type": "usb",
+              "operationHours": 24,
+              "children": [
+                {
+                  "uuid": "4D17FAB4-DA63-4ED0-879F-DF34EF6BDFFA",
+                  "type": "usbConsumer",
+                  "operationHours": 10,
+                  "children": []
+                },
+                {
+                  "uuid": "6F5314FF-D1B5-448F-AD82-9CE2C20B25ED",
+                  "type": "usbConsumer",
+                  "operationHours": 10,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "uuid": "1w3123pump43lk245",
+              "type": "pressurePump",
+              "operationHours": 2,
+              "children": []
+            }
+          ]
+        },
+        {
+          "uuid": "432DED45-0BB0-4060-A788-43B0DDDDEC4F",
+          "type": "fuseBox",
+          "operationHours": 24,
+          "children": [
+            {
+              "uuid": "EA27D7A1-55A7-403A-8CB1-00A3D90830ED",
+              "type": "light",
+              "operationHours": 2,
+              "children": []
+            },
+            {
+              "uuid": "EA27D7A1-55A7-403A-8CB1-00A3D90830ED",
+              "type": "light",
+              "operationHours": 2,
+              "children": []
+            },
+            {
+              "uuid": "EA27D7A1-55A7-403A-8CB1-00A3D90830ED",
+              "type": "light",
+              "operationHours": 2,
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
