@@ -127,7 +127,8 @@ export default class LeftNode extends Node {
           const lineWidth = Math.max(3, ARROW_STROKE * percentage)
           const line = drawLine(this.canvas, '#5CC9FA', lineWidth, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 5, y: height / 2 })
           $(line).on('click', () => { 
-            // alert(child.id)
+            console.log(child)
+            this.mindmap.notifyListeners({ event: "wireSettings", component: child })
           })
           child.drawLines(true)
         })

@@ -367,7 +367,10 @@ export default class Mindmap extends GenericNode {
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       const lineWidth = Math.max(3, ARROW_STROKE * percentage)
-      drawLine(this.leftCanvas, '#5CC9FA', lineWidth, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 })
+      const line = drawLine(this.leftCanvas, '#5CC9FA', lineWidth, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 })
+      $(line).on('click', () => { 
+        this.notifyListeners({ event: "wireSettings", component: child })
+      })
       if ( recursive ) {
         child.drawLines(recursive)
       }
@@ -381,7 +384,10 @@ export default class Mindmap extends GenericNode {
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       const lineWidth = Math.max(1, ARROW_STROKE * percentage)
-      drawLine(this.rightCanvas, '#C2185B', lineWidth, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
+      const line = drawLine(this.rightCanvas, '#C2185B', lineWidth, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
+      $(line).on('click', () => { 
+        this.notifyListeners({ event: "wireSettings", component: child })
+      })
       if ( recursive ) {
         child.drawLines(recursive)
       }

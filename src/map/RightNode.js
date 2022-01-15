@@ -119,7 +119,7 @@ export default class RightNode extends Node {
 
           const line = drawLine(this.canvas, '#C2185B', lineWidth, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 })
           $(line).on('click', () => { 
-            // alert(child.id)
+            this.mindmap.notifyListeners({ event: "wireSettings", component: child })
           })
           child.drawLines(true)
         })

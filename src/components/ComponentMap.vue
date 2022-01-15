@@ -9,6 +9,7 @@
     <AccuBalanceDialog ref="accuBalanceDialog"/>
     <ConsumerDialog ref="consumerDialog"/>
     <TimerDialog ref="timerDialog"/>
+    <WireDialog ref="wireDialog"/>
     
     <v-card style="position:absolute; bottom:20px; right:20px;padding-left:10px;padding-right:10px" width="250" height="30">
       <v-slider v-model="zoom" step="5" min="30" max="170" dense></v-slider>
@@ -23,6 +24,7 @@ import { mapState } from 'vuex'
 import SelectComponentDialog from '@/dialogs/SelectComponentDialog.vue'
 import AddComponentDialog from '@/dialogs/AddComponentDialog.vue'
 import ErrorDialog from '@/dialogs/ErrorDialog.vue'
+import WireDialog from '@/dialogs/WireSettingsDialog.vue'
 import InfoDialog from '@/dialogs/InfoDialog.vue'
 import TimerDialog from '@/dialogs/TimerDialog.vue'
 import AccuBalanceDialog from '@/dialogs/AccuBalanceDialog.vue'
@@ -41,6 +43,7 @@ export default {
   components: {
     AddComponentDialog,
     SelectComponentDialog,
+    WireDialog,
     ErrorDialog,
     InOutBalanceDialog,
     AccuBalanceDialog,
@@ -74,6 +77,7 @@ export default {
     this.map.on("select", event => this.handleNodeSelect(event))
     this.map.on("timer", event => this.handleNodeTimer( event))
     this.map.on("configure", event => this.handleNodeConfigure( event))
+    this.map.on("wireSettings", event => this.handleWireSettings( event))
     this.map.on("showError", event => this.handleNodeShowError( event))
     this.map.on("addChild", event => this.handleNodeAddChild( event))
     this.map.on("showInfo", event => this.handleNodeShowInfo( event))
@@ -172,6 +176,11 @@ export default {
         node.setModel(data)
         this.saveConfig()
       }
+    },
+
+    async handleWireSettings (event) {
+      const node = event.component
+      this.$refs.wireDialog.show(node)
     },
 
     async handleNodeShowError (event) {
