@@ -154,7 +154,7 @@ export default {
       wire: {
         okButton: "Close",
         title: "Wire Settings",
-        suggest: "we recommend to use at least a wire diameter of <span class='font-weight-bold'>{d} mm</span> for the given connection.",
+        suggest: "we recommend to use at least a wire diameter of <span class='font-weight-bold'>{d} mm&#178;</span> for the given connection.",
         subtitle: "Calculation of the cable diameter between the affected components"
       },
       error: {
