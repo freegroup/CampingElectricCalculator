@@ -1,12 +1,6 @@
 import $ from 'jquery'
 import GenericNode from './GenericNode'
 
-/**
- *
- * @version @VERSION@
- * @author Andreas Herz
- * @constructor
- */
 export default class Node extends GenericNode {
   constructor() {
     super()
@@ -28,6 +22,7 @@ export default class Node extends GenericNode {
    * @final
    * */
   addNode(node) {
+    $(this.childrenContainer).show()
     if (node.parent && node.parent !== this ) {
       node.parent.removeNode(node)
     }
@@ -54,6 +49,9 @@ export default class Node extends GenericNode {
     this.updateStatusIcons()
     this.drawLines()
     this.mindmap.updateStatusbar()
+    if (this.children.length === 0 ) {
+      $(this.childrenContainer).hide()
+    }
   }
 
   /**
@@ -78,14 +76,6 @@ export default class Node extends GenericNode {
 
   set hidden(flag) {
     $(this.html).css('display', flag === true ? "none" : 'block')
-  }
-
-  /**
-   *
-   * @private
-   * */
-  get childrenVisible() {
-    return $(this.childrenContainer).css('visibility') !== 'hidden'
   }
 
   /**

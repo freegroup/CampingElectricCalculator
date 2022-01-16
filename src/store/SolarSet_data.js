@@ -23,7 +23,7 @@ export default [
         nennspannung: 18, // Nennspannung
         leerlaufspannung: 21.8,
         nennstrom: 5.56, // Nennstrom
-        kurzschlusstrom: 5.98
+        kurzschlussstrom: 5.98
       },
 
       // Controller Data

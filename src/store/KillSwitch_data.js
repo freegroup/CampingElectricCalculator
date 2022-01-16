@@ -21,5 +21,85 @@ export default
       strom: 300,
       spannung: 12
     }
+  },
+  { 
+    uuid: "13219DB7-D470-42F2-B326-BB981AAB9A7F", 
+    type: "killSwitch", 
+    name: "Kill Switch 300A", 
+    description: "Batteriehauptschalter Batterie Hauptschalter Batterieschalter, 12-36 V BEIDES/AUS Doppel Batterieschalter Batterie Wahlschalter",
+    imageSrc: images("./dweekiy_300A.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3A5lSRh",
+        label: "Batteriehauptschalter Batterie Hauptschalter 300A, 12-36 V BEIDES/AUS Doppel",
+        lastKnownPrice: 62.99
+      }
+    ],
+    data: {
+      strom: 300,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "DD36D098-7AC8-488A-BE4A-F944E9753F54", 
+    type: "killSwitch", 
+    name: "CoCar automatic Switch 100A", 
+    description: "Cocar Auto Kfz 12V Elektromagnetisch Batterietrennschalter",
+    imageSrc: images("./cocar_100A.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/33gCeL3",
+        label: "Cocar Auto Kfz 12V Elektromagnetisch Batterietrennschalter",
+        lastKnownPrice: 55.99
+      }
+    ],
+    data: {
+      strom: 100,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "74AC7D08-F937-4916-815F-09FD65A78960", 
+    type: "killSwitch", 
+    name: "WakAuto remote Switch 180A", 
+    description: "Wakauto Fernbedienung Batterietrennschalter Schnitt 12 V Auto Auto Fahrzeug Elektromagnetische Trennschalter",
+    imageSrc: images("./wakauto_180A.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/33gCeL3",
+        label: "Wakauto Fernbedienung Batterietrennschalter Schnitt 12 V Auto Auto Fahrzeug Elektromagnetische Trennschalter",
+        lastKnownPrice: 56.99
+      }
+    ],
+    data: {
+      strom: 180,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "6FA6B3A0-5E11-481D-BFB8-E12BB214F8B9", 
+    type: "killSwitch", 
+    name: "Hella Switch 1000A", 
+    description: "HELLA 6EK 002 843-003 Hauptschalter, Batterie - S33 - Drehbetätigung",
+    imageSrc: images("./hella_1000A.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3rmUg6j",
+        label: "HELLA 6EK 002 843-003 Hauptschalter, Batterie - S33 - Drehbetätigung",
+        lastKnownPrice: 20.91
+      }
+    ],
+    data: {
+      strom: 1000,
+      spannung: 12
+    }
   }
 ]

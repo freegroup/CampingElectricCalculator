@@ -15,7 +15,7 @@
                     <v-col class="ma-0 pa-0" cols="12">Wire Length: {{length}} cm</v-col>
                   </v-row>
                 </v-container>
-                <v-slider class="lengthSlider" v-model="length" step="1" min="50" max="700" dense></v-slider>
+                <v-slider class="lengthSlider" v-model="wireLength" step="1" min="50" max="700" dense></v-slider>
               </v-col>
               <v-col cols="2"> <v-img :src="targetImg"></v-img></v-col>
             </v-row>
@@ -26,7 +26,7 @@
               <v-col align="center" align-self="center" class="pa-0">
                 <v-container class="pa-0 text-no-wrap">L * 2 * I <span class="index">max</span></v-container>
                 <v-divider class="black darken-1 ma-1"></v-divider>
-                <v-container class="pa-0 text-no-wrap">&#916; * U * &#947;</v-container>
+                <v-container class="pa-0 text-no-wrap">&#916;<span class="index">U</span> * U * &#947;</v-container>
               </v-col>
               <v-col cols="1" align="center" align-self="center" class="pa-0">=</v-col>
               <v-col align="center" align-self="center" class="pa-0">
@@ -35,11 +35,11 @@
                 <v-container class="pa-0 text-no-wrap">{{delta*100}}% * {{spannung}}V * {{gamma}}</v-container>
               </v-col>
               <v-col cols="1" align="center" align-self="center" class="pa-0" >=</v-col>
-              <v-col align="start" align-self="center" class="text-no-wrap text-h6" >{{querschnitt}} mm&#178;</v-col>
+              <v-col align="start" align-self="center" class="text-no-wrap text-h6" >{{querschnitt.toFixed(2)}} mm&#178;</v-col>
               <v-col></v-col>
             </v-row>
           </v-container>
-          <v-alert dense type="info" v-html='$t("dialog.wire.suggest", { d: kabelquerschnitt })'>
+          <v-alert dense type="info" v-html='$t("dialog.wire.suggest", { d: kabelquerschnitt.toFixed(2) })'>
             
           </v-alert>
         </v-card-text>
@@ -55,6 +55,7 @@
 
 <script>
 import DialogHeader from "@/components/DialogHeader.vue"
+import { delta, gamma, kabelquerschnitt, querschnitt } from "@/utils/Wire.js"
 
 export default {
   name: "WireSettingsDialog",
@@ -62,9 +63,9 @@ export default {
     return {
       showFlag: false,
       resolve: null,
-      length: 2,
-      delta: 0.02,
-      gamma: 57.18,
+      length: 1,
+      delta: delta,
+      gamma: gamma,
       component: null
     }
   },
@@ -72,22 +73,26 @@ export default {
     DialogHeader
   },
   computed: {
+    wireLength: {
+      get: function () {
+        return this.component?.model?.wireLength
+      },
+      set: function (value) {
+        this.component.model.wireLength = value
+        this.length = value
+      }
+    },
     strom () {
-      console.log(this.component)
       return this.component?.calculateOutputData()?.strom?.toFixed(2)
     },
     spannung () {
       return this.component?.calculateOutputData()?.spannung?.toFixed(2)
     },
     kabelquerschnitt () {
-      const q = this.querschnitt * 1.12 // 12% Sicherheit dazurechnen
-      let diameters = [1, 2.5, 4, 6, 8, 10, 16, 25, 35, 50, 60, 100, 150, 200, 500, q]
-      diameters = diameters.sort( (a, b) => a - b )
-      const index = diameters.indexOf(q)
-      return diameters[index + 1]
+      return kabelquerschnitt(this.length, this.strom, this.spannung)
     },
     querschnitt () {
-      return (((this.length / 100) * 2 * this.strom) / ( this.delta * this.spannung * this.gamma)).toFixed(2)
+      return querschnitt(this.length, this.strom, this.spannung)
     },
     sourceImg () {
       return this.component?.model?.imageSrc
@@ -102,6 +107,7 @@ export default {
         this.resolve = resolve
         this.showFlag = true
         this.component = component
+        this.length = this.component.model.wireLength
       })
     },
     onOkButtonClick() {
@@ -122,7 +128,7 @@ export default {
     }
   }
   .index {
-    top: 7px;
+    top: 5px;
     position: relative;
     font-size:60%;
   }

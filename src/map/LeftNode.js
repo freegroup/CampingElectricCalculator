@@ -10,10 +10,13 @@ export default class LeftNode extends Node {
 
   getHTMLElement() {
     if (this.html === null) {
-      this.html = document.createElement('table')
+      this.html = htmlToElement("<div></div>")
       this.html.className = 'child_node'
 
-      const row = this.html.insertRow()
+      this.table = document.createElement('table')
+      this.html.append(this.table)
+
+      const row = this.table.insertRow()
       {
         // FILLER
         // ===============================
@@ -28,11 +31,12 @@ export default class LeftNode extends Node {
         this.childrenContainer = row.insertCell()
         {
           this.childrenContainer.className = 'children'
+          $(this.childrenContainer).hide()
 
-          const innerTable = document.createElement('table')
+          this.childrenTable = document.createElement('table')
           {
-            this.childrenContainer.append(innerTable)
-            const innerRow = innerTable.insertRow()
+            this.childrenContainer.append(this.childrenTable)
+            const innerRow = this.childrenTable.insertRow()
             {
               this.childContainer = innerRow.insertCell()
 
@@ -111,28 +115,24 @@ export default class LeftNode extends Node {
   /**
    * Draw all required lines to the children nodes.<br>
    * Called by the framework.
-   *
    * */
   drawLines (recursive) {
     if ( recursive ) {
-      if (this.childrenVisible) {
-        this.canvas.innerHTML = ""
-        const height = this.adjustCanvasHeight()
-        const thisAnchor = $(this.canvas).offset()
+      this.canvas.innerHTML = ""
+      const height = this.adjustCanvasHeight()
+      const thisAnchor = $(this.canvas).offset()
 
-        this.children.forEach((child) => {
-          const percentage = child.getPercentageOfAh()
-          const anchor = child.getAbsoluteAnchor()
-          const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-          const lineWidth = Math.max(3, ARROW_STROKE * percentage)
-          const line = drawLine(this.canvas, '#5CC9FA', lineWidth, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 5, y: height / 2 })
-          $(line).on('click', () => { 
-            console.log(child)
-            this.mindmap.notifyListeners({ event: "wireSettings", component: child })
-          })
-          child.drawLines(true)
+      this.children.forEach((child) => {
+        const percentage = child.getPercentageOfAh()
+        const anchor = child.getAbsoluteAnchor()
+        const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
+        const lineWidth = Math.max(3, ARROW_STROKE * percentage)
+        const line = drawLine(this.canvas, '#5CC9FA', lineWidth, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 5, y: height / 2 })
+        $(line).on('click', () => { 
+          this.mindmap.notifyListeners({ event: "wireSettings", component: child })
         })
-      }
+        child.drawLines(true)
+      })
     } else {
       this.mindmap !== null && this.mindmap.drawLines(true)
     }

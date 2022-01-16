@@ -1,4 +1,7 @@
 import LeftNode from './LeftNode'
+import $ from "jquery"
+import { htmlToElement } from "./utils.js"
+const images = require.context("@/assets/", true, /\.png$/)
 
 export default class SolarBooster extends LeftNode {
   constructor() {
@@ -60,7 +63,7 @@ export default class SolarBooster extends LeftNode {
 
       const output = this.calculateOutputData()
       if ( output.ladestrom > this.model.data.nennladestrom ) {
-        result.push( { type: "Error", text: `Charge current (${output.ladestrom} A) is bigger than the maximal possible charge current (${this.model.data.nennladestrom} A) of this charger` } )
+        result.push( { type: "Error", text: `Charge current (${output.ladestrom.toFixed(2)} A) is bigger than the maximal possible charge current (${this.model.data.nennladestrom} A) of this charger` } )
       }
     }
 
@@ -72,7 +75,7 @@ export default class SolarBooster extends LeftNode {
       const data = this.children[0].calculateOutputData()
       this.children.slice(1).forEach( child => {
         data.nennstrom += child.calculateOutputData().nennstrom 
-        data.kurzschlusstrom += child.calculateOutputData().kurzschlusstrom 
+        data.kurzschlussstrom += child.calculateOutputData().kurzschlussstrom 
         data.watt += child.calculateOutputData().watt 
       })
       return data
@@ -120,5 +123,29 @@ export default class SolarBooster extends LeftNode {
     result.ladestrom = result.watt / result.ladespannung
     result.amperestunden = result.strom * this.model.operationHours
     return result
+  }
+
+  drawLines(recursive) {
+    super.drawLines(recursive)
+
+    // check if we have a seriel configuration (a child has at least one child)
+    //
+    this.children.forEach( child => {
+      $(child.html).find('.serialIcon').remove()
+      if ( child.children.length > 0 ) {
+        $(child.html).append(htmlToElement(`<img src='${images("./serial.png")}' class='serialIcon'></img>`))
+        $(child.html).addClass("serialPanels")
+      } else {
+        $(child.html).removeClass("serialPanels")
+      }
+    })
+
+    $(this.childrenContainer).find('.parallelIcon').remove()
+    if ( this.children.length > 1 ) {
+      $(this.childrenContainer).append(htmlToElement(`<img src='${images("./parallel.png")}' class='parallelIcon'></img>`))
+      $(this.childrenTable).addClass("parallelPanels")
+    } else {
+      $(this.childrenTable).removeClass("parallelPanels")
+    }
   }
 }

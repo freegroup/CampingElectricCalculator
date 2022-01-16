@@ -38,8 +38,9 @@ export default {
         zellen: "Cells",
         controller: "Controller",
         panel: "Panel",
+        laenge: "Length",
         leerlaufspannung: "Open-Circuit Voltage",
-        kurzschlusstrom: "Short-Circuit Current",
+        kurzschlussstrom: "Short-Circuit Current",
         eingangsspannung: "Input Voltage",
         eingangsstrom: "Input Current",
         eingangswatt: "Input Watt",
@@ -67,8 +68,9 @@ export default {
         type: "",
         gewicht: "Gramm",
         zellen: "",
+        laenge: "Meter",
         leerlaufspannung: "Volt",
-        kurzschlusstrom: "A",
+        kurzschlussstrom: "A",
         eingangsspannung: "Volt",
         eingangsstrom: "A",
         eingangswatt: "Watt",
@@ -131,6 +133,14 @@ export default {
       }
     },
     dialog: {
+      serial: {
+        title: "Serial Connection",
+        subtitle: "Connecting Solar Panels Together in Series"
+      },
+      parallel: {
+        title: "Parallel Connection",
+        subtitle: "Connecting Solar Panels Together in Parallel"
+      },
       selectComponent: {
         title: "Exchange Component",
         subtitle: "Replace the component with one of the same type but different characteristics"

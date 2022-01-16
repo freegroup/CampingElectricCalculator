@@ -165,7 +165,7 @@ export default class GenericNode {
     if ( DRAGGING_NODE.isChildOfMe(this)) {
       return false
     }
-    
+
     if (this.getChildCandidates(DRAGGING_NODE.leftSide).includes(DRAGGING_NODE.model.type)) {
       return true
     }
@@ -175,15 +175,20 @@ export default class GenericNode {
 
   toJson() {
     let operationHours = this.model.operationHours
-    if ( isNaN(operationHours) ) {
-      operationHours = 24
+    operationHours ||= 24
+
+    let wireLength = this.model.wireLength
+    wireLength ||= 100 // cm
+ 
+    const json = { 
+      uuid: this.model.uuid, 
+      type: this.model.type, 
+      operationHours: operationHours, 
+      wireLength: wireLength 
     }
 
-    const json = { uuid: this.model.uuid, type: this.model.type, operationHours: operationHours }
     json.children = []
-    this.children.forEach( child => {
-      json.children.push(child.toJson())
-    })
+    this.children.forEach( child => json.children.push(child.toJson()))
     return json
   }
 

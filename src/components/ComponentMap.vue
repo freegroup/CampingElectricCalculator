@@ -10,6 +10,8 @@
     <ConsumerDialog ref="consumerDialog"/>
     <TimerDialog ref="timerDialog"/>
     <WireDialog ref="wireDialog"/>
+    <SerialDialog ref="serialDialog"/>
+    <ParallelDialog ref="parallelDialog"/>
     
     <v-card style="position:absolute; bottom:20px; right:20px;padding-left:10px;padding-right:10px" width="250" height="30">
       <v-slider v-model="zoom" step="5" min="30" max="170" dense></v-slider>
@@ -30,6 +32,9 @@ import TimerDialog from '@/dialogs/TimerDialog.vue'
 import AccuBalanceDialog from '@/dialogs/AccuBalanceDialog.vue'
 import InOutBalanceDialog from '@/dialogs/InOutBalanceDialog.vue'
 import ConsumerDialog from '@/dialogs/ConsumerDialog.vue'
+import SerialDialog from '@/dialogs/SerialDialog.vue'
+import ParallelDialog from '@/dialogs/ParallelDialog.vue'
+import $ from "jquery"
 
 export default {
   data() {
@@ -49,7 +54,9 @@ export default {
     AccuBalanceDialog,
     ConsumerDialog,
     TimerDialog,
-    InfoDialog
+    InfoDialog,
+    ParallelDialog,
+    SerialDialog
   },
   computed: mapState({
     low() {
@@ -84,6 +91,12 @@ export default {
     this.map.on("showBalance", event => this.handleNodeBalance( event))
     this.map.on("removeChild", event => this.handleNodeRemoveChild( event))
     this.map.on("changed", () => this.saveConfig())
+    $( ".canvas" ).on( "click", ".serialIcon", () => {
+      this.$refs.serialDialog.show()
+    })
+    $( ".canvas" ).on( "click", ".parallelIcon", () => {
+      this.$refs.parallelDialog.show()
+    })
 
     const configuration = this.$store.getters["profile/getById"](this.$route.params.configuration)
     this.loadConfiguration(configuration)
@@ -121,12 +134,14 @@ export default {
     createLeftComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
         const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
-        let operationHours = componentRef.operationHours
-        if ( isNaN(operationHours) ) {
-          operationHours = 24
-        }
+
         const node = NodeFactory.createNode(true, data)
-        node.model.operationHours = operationHours
+        node.model.operationHours = componentRef.operationHours
+        node.model.operationHours ||= 24
+
+        node.model.wireLength = componentRef.wireLength
+        node.model.wireLength ||= 100 // cm
+ 
         parentComponentHost.addNode(node)
         this.createLeftComponents(node, componentRef.children) 
       })
@@ -135,12 +150,14 @@ export default {
     createRightComponents (parentComponentHost, childComponents) {
       childComponents.forEach(componentRef => {
         const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
-        let operationHours = componentRef.operationHours
-        if ( isNaN(operationHours) ) {
-          operationHours = 24
-        }
         const node = NodeFactory.createNode(false, data)
-        node.model.operationHours = operationHours
+        
+        node.model.operationHours = componentRef.operationHours
+        node.model.operationHours ||= 24
+
+        node.model.wireLength = componentRef.wireLength
+        node.model.wireLength ||= 100 // cm
+        
         parentComponentHost.addNode(node)
         this.createRightComponents(node, componentRef.children) 
       })
@@ -270,8 +287,40 @@ export default {
       background-image: #effeff6b;
     }
 
+    .serialPanels {
+        border:1px solid #FFB74D;
+        background-color: #FFE0B2;
+        border-radius: 5px;
+        border-collapse: separate;
+        right: -20px;
+        position: relative;
+        padding-right: 20px;
+        margin-top:5px;
+        margin-bottom:5px;
+    }
+    .parallelPanels {
+      border:1px solid #29B6F6;
+      background-color: #81D4FA;
+      border-radius: 5px;
+      border-collapse: separate;
+    }
+    .parallelIcon, .serialIcon {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      cursor: pointer;
+      width:20px;
+      height:20px;
+      border:1px solid rgba(0,0,0,0.3);
+      background-color: rgb(248, 240, 240);
+      border-radius:5px;
+      padding:2px;
+      z-index: 2;
+    }
     svg {
       display: block;
+      z-index: 1;
+      position: relative;
       .node_line {
         cursor: pointer;
       }
@@ -294,8 +343,12 @@ export default {
       display: block;
     }
     .child_node {
+      position: relative;
       .filler {
         width: 100%;
+      }
+      .children{
+        position: relative;
       }
     }
     .node {
@@ -360,6 +413,7 @@ export default {
         }
         .container{
           padding:10px;
+          position: relative;
           .input_button {
             cursor: pointer;
             background-color:rgba(0,0,0,0.05);

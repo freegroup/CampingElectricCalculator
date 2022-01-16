@@ -22,7 +22,7 @@ export default [
       nennspannung: 18.20,
       leerlaufspannung: 21.50,
       nennstrom: 4.40,
-      kurzschlusstrom: 4.91
+      kurzschlussstrom: 4.91
     }
   },
   { 
@@ -46,7 +46,7 @@ export default [
       nennspannung: 21.50, // Nennspannung
       leerlaufspannung: 36.19,
       nennstrom: 1.94, // Nennstrom
-      kurzschlusstrom: 2.1
+      kurzschlussstrom: 2.1
     }
   },
   { 
@@ -70,7 +70,7 @@ export default [
       nennspannung: 21.50, // Nennspannung
       leerlaufspannung: 36.19,
       nennstrom: 2.77, // Nennstrom
-      kurzschlusstrom: 3.01
+      kurzschlussstrom: 3.01
     }
   },
   { 
@@ -100,7 +100,7 @@ export default [
       nennspannung: 22.50, // Nennspannung
       leerlaufspannung: 27,
       nennstrom: 9.34, // Nennstrom
-      kurzschlusstrom: 9.8
+      kurzschlussstrom: 9.8
     }
   },
   { 
@@ -124,7 +124,7 @@ export default [
       nennspannung: 19.1, // Nennspannung
       leerlaufspannung: 23.2,
       nennstrom: 9.43, // Nennstrom
-      kurzschlusstrom: 9.99
+      kurzschlussstrom: 9.99
     }
   }
 ]

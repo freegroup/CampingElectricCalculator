@@ -43,7 +43,7 @@ export default class SolarPanel extends LeftNode {
             nennspannung: 18.20,
             leerlaufspannung: 21.50,
             nennstrom: 4.40,
-            kurzschlusstrom: 4.91
+            kurzschlussstrom: 4.91
           }
       */
       result.watt += childData.watt
@@ -51,10 +51,10 @@ export default class SolarPanel extends LeftNode {
       result.leerlaufspannung += childData.leerlaufspannung
       // in "Reihe" geschaltet SolarPanel addieren sich die Spannung und die Ströme bleiben gleich
       //
-      // 'nennstrom' und 'kurzschlusstrom' verändern sich somit nicht.
+      // 'nennstrom' und 'kurzschlussstrom' verändern sich somit nicht.
       // siehe: https://www.youtube.com/watch?v=xItbVw-IPzI
     }
-    result.strom = result.kurzschlusstrom
+    result.strom = result.kurzschlussstrom
     result.spannung = result.leerlaufspannung
     return result
   }

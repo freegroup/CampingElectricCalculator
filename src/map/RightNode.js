@@ -66,12 +66,13 @@ export default class RightNode extends Node {
         this.childrenContainer = row.insertCell()
         {
           this.childrenContainer.className = 'children'
+          $(this.childrenContainer).hide()
 
-          const innerTable = document.createElement('table')
+          this.childrenTable = document.createElement('table')
           {
-            this.childrenContainer.append(innerTable)
+            this.childrenContainer.append(this.childrenTable)
  
-            const innerRow = innerTable.insertRow()
+            const innerRow = this.childrenTable.insertRow()
             {
               const cell = innerRow.insertCell()
               {
@@ -102,28 +103,26 @@ export default class RightNode extends Node {
   * */
   drawLines (recursive) {
     if ( recursive ) {
-      if (this.childrenVisible) {
-        this.canvas.innerHTML = ""
-        const height = this.adjustCanvasHeight()
-        const thisAnchor = $(this.canvas).offset()
+      this.canvas.innerHTML = ""
+      const height = this.adjustCanvasHeight()
+      const thisAnchor = $(this.canvas).offset()
 
-        this.children.forEach((child) => {
-          // the child node can't have more percentage than the parent
-          // The parent is the limitation factor. E.g. a USB-socket can't deliver more power even if the charging
-          // device can draw more
-          //
-          const percentage = Math.min(this.getPercentageOfAh(), child.getPercentageOfAh())
-          const anchor = child.getAbsoluteAnchor()
-          const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-          const lineWidth = Math.max(3, ARROW_STROKE * percentage)
+      this.children.forEach((child) => {
+        // the child node can't have more percentage than the parent
+        // The parent is the limitation factor. E.g. a USB-socket can't deliver more power even if the charging
+        // device can draw more
+        //
+        const percentage = Math.min(this.getPercentageOfAh(), child.getPercentageOfAh())
+        const anchor = child.getAbsoluteAnchor()
+        const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
+        const lineWidth = Math.max(3, ARROW_STROKE * percentage)
 
-          const line = drawLine(this.canvas, '#C2185B', lineWidth, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 })
-          $(line).on('click', () => { 
-            this.mindmap.notifyListeners({ event: "wireSettings", component: child })
-          })
-          child.drawLines(true)
+        const line = drawLine(this.canvas, '#C2185B', lineWidth, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 })
+        $(line).on('click', () => { 
+          this.mindmap.notifyListeners({ event: "wireSettings", component: child })
         })
-      }
+        child.drawLines(true)
+      })
     } else {
       this.mindmap !== null && this.mindmap.drawLines(true)
     }
