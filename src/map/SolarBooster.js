@@ -20,7 +20,7 @@ export default class SolarBooster extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
-        result.push({ type: "Error", text: `The charger do not support the used accu type (${this.mindmap.model.data.type}). Supported accu types are [${this.model.data.chargeSupport}]` })
+        result.push({ type: "Error", text: `The charger do not support the used accu type <b>${this.mindmap.model.data.type}</b>. Supported accu types are <b>${this.model.data.chargeSupport.join(", ")}</b>` })
       }
     }
 
@@ -52,18 +52,18 @@ export default class SolarBooster extends LeftNode {
       // calculate [P] of all pinout sources and check if the booster can handle this
       //
       if ( data.nennstrom > this.model.data.kurzschlussstrom ) {
-        result.push({ type: "Error", text: `[I = ${data.nennstrom} Ampere] is bigger than the charger can handle [I = ${this.model.data.kurzschlussstrom} Amper]` })
+        result.push({ type: "Error", text: `<b>[${data.nennstrom}A]</b> is bigger than the charger can handle <b>[${this.model.data.kurzschlussstrom}A]</b>` })
       }
 
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.leerlaufspannung > this.model.data.eingangsspannung ) {
-        result.push({ type: "Error", text: `The voltage [U = ${data.leerlaufspannung} Volt] of the input sources are bigger than the maximum voltage which the charger can handle [U = ${this.model.data.eingangsspannung} Volt]` })
+        result.push({ type: "Error", text: `The voltage <b>[${data.leerlaufspannung}V]</b> of the input sources are bigger than the maximum voltage which the charger can handle <b>[${this.model.data.eingangsspannung}V]</b>` })
       }
 
       const output = this.calculateOutputData()
       if ( output.ladestrom > this.model.data.nennladestrom ) {
-        result.push( { type: "Error", text: `Charge current (${output.ladestrom.toFixed(2)} A) is bigger than the maximal possible charge current (${this.model.data.nennladestrom} A) of this charger` } )
+        result.push( { type: "Error", text: `Charge current <b>[${parseInt(output.ladestrom)}A]</b> is bigger than the maximal possible charge current <b>[${this.model.data.nennladestrom}A]</b> of this charger` } )
       }
     }
 

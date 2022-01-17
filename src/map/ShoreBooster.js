@@ -17,7 +17,7 @@ export default class ShoreBooster extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
-        result.push({ type: "Error", text: `The charger do not support the used accu type (${this.mindmap.model.data.type}). Supported accu types are [${this.model.data.chargeSupport}]` })
+        result.push({ type: "Error", text: `The charger do not support the used battery type <b>${this.mindmap.model.data.type}</b>. Supported battery types are <b>${this.model.data.chargeSupport.join(", ")}</b>` })
       }
     }
 

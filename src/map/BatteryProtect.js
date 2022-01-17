@@ -18,7 +18,7 @@ export default class BatteryProtect extends RightNode {
     const checkParent = node => {
       if ( node.parent && node.parent.model.type === "fuse") {
         if ( node.parent.model.data.strom > node.model.data.strom ) {
-          result.push( { type: "Warning", text: `Battery Protection with a maximum load of ${this.model.data.strom}A is breaking before the used fuse with ${node.parent.model.data.strom}A can protect the circuit` } )
+          result.push( { type: "Warning", text: `Battery Protection with a maximum load of <b>[${this.model.data.strom}A]</b> is breaking before the used fuse with <b>[${node.parent.model.data.strom}A]</b> can protect the circuit` } )
           return false
         }
         return true
@@ -42,7 +42,7 @@ export default class BatteryProtect extends RightNode {
       }
     }
     
-    // Calculate if the accumulated "strom"
+    // Berechnen den tatsächlichen Strom der Consumenten
     //
     if ( this.children.length > 0 ) {
       const data = this.children[0].calculateConsumptionData()
@@ -54,9 +54,26 @@ export default class BatteryProtect extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The power [I= ${data.strom} Ampere] of the input sources are bigger than the maximum power which the battery protect can handle (${this.model.data.strom} )` })
+        result.push({ type: "Error", text: `The power <b>[${parseInt(data.strom)}A]</b> of the input sources are bigger than the maximum power which the battery protect can handle <b>[${this.model.data.strom}]</b>` })
       }
     }
+
+    // Berechnen den maximal möglichen Strom laut spezifikation
+    //
+    if ( this.children.length > 0 ) {
+      const data = this.children[0].calculateOutputData()
+      // skip the first element, because we have already the data of the first element in charge
+      // ( slice(1) )
+      this.children.slice(1).forEach( child => {
+        data.strom += child.calculateOutputData().strom 
+      })
+      // the "leerlaufspannung" must be smaller than the max input of the charger
+      //
+      if ( data.strom > this.model.data.strom ) {
+        result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)}A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom}A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
+      }
+    }
+
     return result
   }
 

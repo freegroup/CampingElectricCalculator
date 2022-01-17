@@ -17,13 +17,13 @@ export default class StarterBooster extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
-        result.push({ type: "Error", text: `The charger do not support the used accu type (${this.mindmap.model.data.type}). Supported accu types are [${this.model.data.chargeSupport}]` })
+        result.push({ type: "Error", text: `The charger do not support the used battery type <b>${this.mindmap.model.data.type}</b>. Supported battery types are <b>[${this.model.data.chargeSupport.joind(", ")}]</b>` })
       }
     }
 
     this.children.forEach( child => {
       if ( child.model.data.spannung !== this.model.data.eingangsspannung) {
-        result.push({ type: "Error", text: `The charger requires input voltage of [ ${this.model.data.eingangsspannung} Volt] and do not support input of [${child.model.data.spannung} Volt] from alternator.` })
+        result.push({ type: "Error", text: `The charger requires input voltage of <b>[${this.model.data.eingangsspannung}V]</b> and do not support input of <b>[${child.model.data.spannung}V]</b> from alternator.` })
       }
     })
     return result
