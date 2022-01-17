@@ -57,7 +57,7 @@ export default [
   }, 
   { 
     uuid: "B5F979A2-5D7F-44F9-8BEE-BB1AE257D51F", 
-    name: "Thlevel 30A PWM", 
+    name: "Thlevel PWM", 
     imageSrc: images("./thlevel_30A_pwm.png"),
     operationHours: 4.5,
     exportable: true,

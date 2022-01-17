@@ -2,14 +2,14 @@
 import components from "./SolarBooster_data.js"
 
 function sortComponents (payload) {
-  return payload.sort((a, b) => a.data.nennladestrom - b.data.nennladestrom)
+  return payload.sort((a, b) => a.data.eingangswatt - b.data.eingangswatt)
 }
 
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "solarBooster"
     element.data.chargeSupport = element.data.chargeSupport.sort()
-    element.name = element.name + " (" + element.data.nennladestrom + "A, " + element.data.chargeSupport.join(", ") + " )"
+    element.name = element.name + " (" + element.data.eingangswatt + " Watt)"
   })
   return payload
 }
