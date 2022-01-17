@@ -3,7 +3,6 @@ const images = require.context("@/store/images/pressurePump/", true, /\.png$/)
 export default [
   { 
     uuid: "1w3123pump43lk245", 
-    type: "pressurePump", 
     name: "Lilie LP4142", 
     imageSrc: images("./lilie_lp4142.png"),
     operationHours: 2,
@@ -20,13 +19,11 @@ export default [
       durchfluss: 11.7,
       druck: 2.1,
       spannung: 12, 
-      strom: 5,
-      watt: 5 * 12 // P=I*U
+      strom: 5
     }
   },
   { 
     uuid: "CEBC581C-B3F3-45C8-895A-BDBD1F3E35D5", 
-    type: "pressurePump", 
     name: "Shurflo Soft-Serie", 
     imageSrc: images("./shurflo_soft.png"),
     operationHours: 2,
@@ -43,8 +40,7 @@ export default [
       durchfluss: 11.3,
       druck: 2.1,
       spannung: 12, 
-      strom: 3.5,
-      watt: 3.5 * 12 // P=I*U
+      strom: 3.5
     }
   }
 ]

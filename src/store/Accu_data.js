@@ -3,8 +3,7 @@ const images = require.context("@/store/images/accu/", true, /\.png$/)
 export default [
   { 
     uuid: "6473ECD0-5189-4DB0-8E31-480975998729", 
-    type: "accu", 
-    name: "LIONTRON 100Ah",
+    name: "LIONTRON",
     description: "LIONTRON LiFePO4 12,8V 100Ah LX Smart BMS mit Bluetooth",
     imageSrc: images("./liotron_100ah.png"),
     shopping: [
@@ -25,8 +24,7 @@ export default [
   },
   { 
     uuid: "BD79BE1F-AEF9-467E-A0B7-7270080AF600", 
-    type: "accu", 
-    name: "LIONTRON 200Ah",
+    name: "LIONTRON",
     description: "LIONTRON LiFePO4 12,8V 200Ah LX Smart BMS mit Bluetooth",
     imageSrc: images("./liotron_200ah.png"),
     shopping: [
@@ -47,8 +45,7 @@ export default [
   },
   { 
     uuid: "FFF2A576-2AB2-4C0D-8982-C2053E83DC73", 
-    type: "accu", 
-    name: "LIONTRON 150Ah",
+    name: "LIONTRON",
     description: "LIONTRON LiFePO4 12,8V 150Ah LX Smart BMS mit Bluetooth",
     imageSrc: images("./liotron_150ah.png"),
     shopping: [
@@ -69,8 +66,7 @@ export default [
   },
   { 
     uuid: "10A62DB5-3195-47CC-9DCE-E249DD8F7789", 
-    type: "accu", 
-    name: "ECO-WORTHY 12V 30Ah LiFePO4",
+    name: "ECO-WORTHY",
     description: "ECO-WORTHY 12V 30Ah LiFePO4 with BMS",
     imageSrc: images("./eco_worthy_30Ah.png"),
     shopping: [
@@ -91,8 +87,7 @@ export default [
   },
   { 
     uuid: "00DB77EB-C014-43BE-890F-251BE9F9859E", 
-    type: "accu", 
-    name: "ECO-WORTHY 12V 50Ah LiFePO4",
+    name: "ECO-WORTHY",
     description: "ECO-WORTHY 12V 50Ah LiFePO4 with BMS",
     imageSrc: images("./eco_worthy_50Ah.png"),
     shopping: [
@@ -113,8 +108,7 @@ export default [
   },
   { 
     uuid: "A1DBFC5E-8900-4AD4-8ED7-392B0F470AE0", 
-    type: "accu", 
-    name: "ECO-WORTHY 12V 100Ah LiFePO4",
+    name: "ECO-WORTHY ",
     description: "ECO-WORTHY 12V 100Ah LiFePO4 with BMS",
     imageSrc: images("./eco_worthy_100Ah.png"),
     shopping: [
@@ -135,8 +129,7 @@ export default [
   },
   { 
     uuid: "42C116CF-4380-4B27-9450-3E027A9393A1", 
-    type: "accu", 
-    name: "ECTIVE 230Ah AGM",
+    name: "ECTIVE",
     description: "ECTIVE 230Ah 12V AGM Versorgungsbatterie DC 230s mit LCD-Display VRLA Solar-Batterie mit integrierten Nachfüllpacks",
     imageSrc: images("./ective_230Ah.png"),
     shopping: [
@@ -157,8 +150,7 @@ export default [
   },
   { 
     uuid: "A8996B36-C868-4B87-9498-31701E559E1B", 
-    type: "accu", 
-    name: "ECTIVE 70Ah AGM",
+    name: "ECTIVE",
     description: "ECTIVE 70Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
     imageSrc: images("./ective_70Ah.png"),
     shopping: [
@@ -179,8 +171,7 @@ export default [
   },
   { 
     uuid: "662CD3C1-DB78-4FE2-A65F-2122E879BA5C", 
-    type: "accu", 
-    name: "ECTIVE 100Ah AGM",
+    name: "ECTIVE",
     description: "ECTIVE 100Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
     imageSrc: images("./ective_100Ah.png"),
     shopping: [
@@ -201,8 +192,7 @@ export default [
   },
   { 
     uuid: "35F28D76-AB51-4C6F-87D0-EA42D940EF9D", 
-    type: "accu", 
-    name: "ECTIVE 300Ah 12V LiFePO4",
+    name: "ECTIVE",
     description: "ECTIVE LC300L BT 12V 300Ah 3840Wh LiFePO4-Batterie mit Bluetooth-Funktion Lithium-Eisenphosphat Versorgungs-Batterie",
     imageSrc: images("./ective_300Ah.png"),
     shopping: [
@@ -223,8 +213,7 @@ export default [
   },
   { 
     uuid: "B7CF51D7-CD05-4F11-85C5-A58036DA5FB3", 
-    type: "accu", 
-    name: "ECTIVE 230Ah Gel",
+    name: "ECTIVE",
     description: "ECTIVE 230Ah 12V Gel Frontterminal-Batterie DC230 Slim Gel Deep Cycle schmale Versorgungsbatterie",
     imageSrc: images("./ective_slim_230Ah.png"),
     shopping: [
@@ -245,8 +234,7 @@ export default [
   },
   { 
     uuid: "30DB5D21-B21D-441F-B398-CECBFB7627AD", 
-    type: "accu", 
-    name: "Victron Energy AGM 220Ah",
+    name: "Victron Energy",
     description: "Victron Energy AGM 12V 220Ah Deep Cycle",
     imageSrc: images("./victron_220_agm.png"),
     shopping: [

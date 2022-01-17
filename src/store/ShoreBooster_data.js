@@ -4,7 +4,7 @@ export default [
   { 
     uuid: "C574D3F2-0164-46DF-BC2F-C558BA54599D", 
     type: "shoreBooster", 
-    name: "Victron Energy 20A", 
+    name: "Victron Energy", 
     imageSrc: images("./victron_20A.png"),
     operationHours: 1,
     exportable: true,
@@ -20,14 +20,13 @@ export default [
       chargeSupport: ["LiFePO4"],
       eingangsspannung: 230,
       spannung: 12,
-      strom: 20,
-      watt: 12 * 20
+      strom: 20
     }
   },
   { 
     uuid: "B5248EE2-1227-400F-A9B9-FCF112180998", 
     type: "shoreBooster", 
-    name: "NRG Charger NXS 5.0", 
+    name: "NRG Charger NXS", 
     imageSrc: images("./ngr_nxr_5A.png"),
     operationHours: 1,
     exportable: true,
@@ -43,14 +42,13 @@ export default [
       chargeSupport: ["AGM", "Gel"],
       eingangsspannung: 230,
       spannung: 12,
-      strom: 5,
-      watt: 12 * 5
+      strom: 5
     }
   },
   { 
     uuid: "C7950C31-70F6-48C2-BE4A-95D856276FFC", 
     type: "shoreBooster", 
-    name: "Victron Energy 30A", 
+    name: "Victron Energy", 
     imageSrc: images("./victron_30A.png"),
     operationHours: 1,
     exportable: true,
@@ -66,14 +64,13 @@ export default [
       chargeSupport: ["LiFePO4"],
       eingangsspannung: 230,
       spannung: 12,
-      strom: 30,
-      watt: 12 * 30
+      strom: 30
     }
   },
   { 
     uuid: "E74C9F12-B3A1-4654-9F83-04077138DECA", 
     type: "shoreBooster", 
-    name: "H-TronicAutomatic 0.3A", 
+    name: "H-TronicAutomatic", 
     imageSrc: images("./htronic_03A.png"),
     operationHours: 1,
     exportable: true,
@@ -89,8 +86,7 @@ export default [
       chargeSupport: ["Blei"],
       eingangsspannung: 230,
       spannung: 12,
-      strom: 0.3,
-      watt: 12 * 0.3
+      strom: 0.3
     }
   }
 ]

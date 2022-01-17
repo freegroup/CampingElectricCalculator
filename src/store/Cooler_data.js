@@ -3,8 +3,7 @@ const images = require.context("@/store/images/cooler/", true, /\.png$/)
 export default [
   { 
     uuid: "F40CF4A7-6381-4ECC-9C3B-4A64C493C20B", 
-    type: "cooler", 
-    name: "Dino KRAFTPAKET 28L", 
+    name: "Dino KRAFTPAKET", 
     imageSrc: images("./dino_28l.png"),
     operationHours: 24,
     exportable: true,
@@ -19,14 +18,12 @@ export default [
     data: {
       spannung: 12, 
       strom: 48 / 12, // I=P/U
-      watt: 48,
       liter: 28
     }
   },
   { 
     uuid: "2FF46743-7B05-4DB3-954A-C2CE12DF82AE", 
-    type: "cooler", 
-    name: "Dino KRAFTPAKET 40L", 
+    name: "Dino KRAFTPAKET", 
     imageSrc: images("./dino_40l.png"),
     operationHours: 24,
     exportable: true,
@@ -41,8 +38,7 @@ export default [
     data: {
       spannung: 12, 
       strom: 48 / 12, // I=P/U
-      watt: 48,
-      liter: 28
+      liter: 40
     }
   }
 ]

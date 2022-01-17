@@ -13,7 +13,7 @@
     <SerialDialog ref="serialDialog"/>
     <ParallelDialog ref="parallelDialog"/>
     
-    <v-card style="position:absolute; bottom:20px; right:20px;padding-left:10px;padding-right:10px" width="250" height="30">
+    <v-card style="z-index:2; position:absolute; bottom:20px; right:20px;padding-left:10px;padding-right:10px" width="250" height="30">
       <v-slider v-model="zoom" step="5" min="30" max="170" dense></v-slider>
     </v-card>
   </div>

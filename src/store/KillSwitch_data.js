@@ -4,8 +4,7 @@ export default
 [
   { 
     uuid: "CE4E06EA-2E15-4938-AFC5-0C7DA036E876", 
-    type: "killSwitch", 
-    name: "Kill Switch 300A", 
+    name: "Kill Switch", 
     description: "Battery Switch Disconnect 12V 24V 48V Battery Switch 1-2-Both-OFF, 300A Main Switch Waterproof Power Switch Battery Disconnect Master for Car Truck Boat Yacht...",
     imageSrc: images("./trennschalter_1_2_both_off.png"),
     exportable: true,
@@ -24,8 +23,7 @@ export default
   },
   { 
     uuid: "13219DB7-D470-42F2-B326-BB981AAB9A7F", 
-    type: "killSwitch", 
-    name: "Kill Switch 300A", 
+    name: "Kill Switch", 
     description: "Batteriehauptschalter Batterie Hauptschalter Batterieschalter, 12-36 V BEIDES/AUS Doppel Batterieschalter Batterie Wahlschalter",
     imageSrc: images("./dweekiy_300A.png"),
     exportable: true,
@@ -44,8 +42,7 @@ export default
   },
   { 
     uuid: "DD36D098-7AC8-488A-BE4A-F944E9753F54", 
-    type: "killSwitch", 
-    name: "CoCar automatic Switch 100A", 
+    name: "CoCar automatic Switch", 
     description: "Cocar Auto Kfz 12V Elektromagnetisch Batterietrennschalter",
     imageSrc: images("./cocar_100A.png"),
     exportable: true,
@@ -64,8 +61,7 @@ export default
   },
   { 
     uuid: "74AC7D08-F937-4916-815F-09FD65A78960", 
-    type: "killSwitch", 
-    name: "WakAuto remote Switch 180A", 
+    name: "WakAuto remote Switch", 
     description: "Wakauto Fernbedienung Batterietrennschalter Schnitt 12 V Auto Auto Fahrzeug Elektromagnetische Trennschalter",
     imageSrc: images("./wakauto_180A.png"),
     exportable: true,
@@ -84,8 +80,7 @@ export default
   },
   { 
     uuid: "6FA6B3A0-5E11-481D-BFB8-E12BB214F8B9", 
-    type: "killSwitch", 
-    name: "Hella Switch 1000A", 
+    name: "Hella Switch", 
     description: "HELLA 6EK 002 843-003 Hauptschalter, Batterie - S33 - Drehbetätigung",
     imageSrc: images("./hella_1000A.png"),
     exportable: true,

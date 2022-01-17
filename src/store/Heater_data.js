@@ -3,7 +3,6 @@ const images = require.context("@/store/images/heater/", true, /\.png$/)
 export default [
   { 
     uuid: "E93F0D45-1F8D-4340-BE22-1276CF0176E3", 
-    type: "heater", 
     name: "Autoterm Planar 2D", 
     imageSrc: images("./planar_2d.png"),
     operationHours: 8,
@@ -18,13 +17,12 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 2.42, // I=P/U
-      watt: 2.42 * 12
+      strom: 2.42,
+      heizleistung: 2000 
     }
   },
   { 
     uuid: "F773661B-67F6-4CAE-BBD6-85C484EAE51E", 
-    type: "heater", 
     name: "Tseipoaoi Standheizung", 
     imageSrc: images("./tseipoaoi.png"),
     operationHours: 8,
@@ -40,7 +38,7 @@ export default [
     data: {
       spannung: 12, 
       strom: 5, // I=P/U
-      watt: 5 * 12
+      heizleistung: 5000
     }
   }
 ]

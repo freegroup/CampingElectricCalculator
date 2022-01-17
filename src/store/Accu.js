@@ -5,10 +5,18 @@ function sortComponents (payload) {
   return payload.sort((a, b) => a.data.amperestunden - b.data.amperestunden)
 }
 
+function enrichComponents (payload) {
+  payload.forEach(element => {
+    element.type = "accu"
+    element.name = element.name + " (" + element.data.amperestunden + "Ah, " + element.data.type + ")"
+  })
+  return payload
+}
+
 export default {
   namespaced: true,
   state: {
-    components: sortComponents(components)
+    components: enrichComponents(sortComponents(components))
   },
   actions: {
   },

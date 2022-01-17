@@ -2,13 +2,21 @@
 import components from "./SolarSet_data.js"
 
 function sortComponents (payload) {
-  return payload.sort((a, b) => a.data.watt - b.data.watt)
+  return payload.sort((a, b) => a.data.panel.watt - b.data.panel.watt)
+}
+
+function enrichComponents (payload) {
+  payload.forEach(element => {
+    element.type = "solarSet"
+    element.noteableAttributes = []
+  })
+  return payload
 }
 
 export default {
   namespaced: true,
   state: {
-    components: sortComponents(components)
+    components: enrichComponents(sortComponents(components))
   },
   actions: {
   },

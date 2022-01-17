@@ -4,8 +4,7 @@ export default
 [
   { 
     uuid: "7asdf", 
-    type: "fuseBox", 
-    name: "Fusebox 12-slots", 
+    name: "Fusebox", 
     imageSrc: images("./mictuning_12.png"),
     operationHours: 24,
     exportable: true,
@@ -26,7 +25,6 @@ export default
   },
   { 
     uuid: "012D2D77-DD37-4124-8ED4-AE03522519FA", 
-    type: "fuseBox", 
     name: "MareTeam 6-slots", 
     imageSrc: images("./mareteam_6.png"),
     operationHours: 24,
@@ -48,7 +46,6 @@ export default
   },
   { 
     uuid: "50FF3B1D-FF3F-43C5-8C48-D01B694EC2DF", 
-    type: "fuseBox", 
     name: "Philippi - STV 106", 
     imageSrc: images("./philipi_stv106.png"),
     operationHours: 24,
@@ -70,7 +67,6 @@ export default
   },
   { 
     uuid: "30ED8CBE-A6F5-4ABA-AEF0-3D6A7389D3E0", 
-    type: "fuseBox", 
     name: "Philippi - STV 110", 
     imageSrc: images("./philipi_stv110.png"),
     operationHours: 24,
@@ -92,8 +88,7 @@ export default
   },
   { 
     uuid: "432DED45-0BB0-4060-A788-43B0DDDDEC4F", 
-    type: "fuseBox", 
-    name: "Simple Fusebox 8x", 
+    name: "Simple Fusebox", 
     imageSrc: images("./sicherungsfach_8.png"),
     operationHours: 24,
     exportable: true,

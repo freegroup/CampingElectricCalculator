@@ -3,8 +3,7 @@ const images = require.context("@/store/images/solarPanel/", true, /\.png$/)
 export default [
   { 
     uuid: "6676406A-45EA-4B45-98A9-6118ADF47CD6", 
-    type: "solarPanel", 
-    name: "ECTIVE MSP 80", 
+    name: "ECTIVE MSP", 
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp80.png"),
     operationHours: 24,
@@ -27,8 +26,7 @@ export default [
   },
   { 
     uuid: "578D8BAA-EF41-47E9-A25E-45995B7E4F14", 
-    type: "solarPanel", 
-    name: "ECTIVE MSP 70", 
+    name: "ECTIVE MSP", 
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp70.png"),
     operationHours: 24,
@@ -51,8 +49,7 @@ export default [
   },
   { 
     uuid: "9E01A0BE-BBE5-4421-B52E-2DFE25D79C03", 
-    type: "solarPanel", 
-    name: "ECTIVE MSP 100", 
+    name: "ECTIVE MSP", 
     hersteller: "ECTIVE",
     imageSrc: images("./ectivemsp100.png"),
     operationHours: 24,
@@ -75,8 +72,7 @@ export default [
   },
   { 
     uuid: "22C85112-E95E-4185-B2E7-EB2CB2D35BA1", 
-    type: "solarPanel", 
-    name: "Büttner Power Line 210", 
+    name: "Büttner Power Line", 
     hersteller: "Büttner",
     imageSrc: images("./buettner210.png"),
     operationHours: 24,
@@ -105,8 +101,7 @@ export default [
   },
   { 
     uuid: "58FBABFF-C628-442C-AC1B-CEF162566074", 
-    type: "solarPanel", 
-    name: "enjoysolar Monokristallines 180W", 
+    name: "enjoysolar Monokristallines", 
     hersteller: "enjoysolar",
     imageSrc: images("./enjoysolar_180.png"),
     operationHours: 24,

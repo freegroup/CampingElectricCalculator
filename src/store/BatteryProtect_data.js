@@ -4,8 +4,7 @@ export default
 [
   { 
     uuid: "7FA1FD36-70DE-4364-AAD7-5CE44D1953EC", 
-    type: "batteryProtect", 
-    name: "Victron Battery Protect 65A", 
+    name: "Victron Battery Protect", 
     description: "The BatteryProtect function disconnects the battery from the (less important) consumers before it is completely discharged, which would damage it.",
     imageSrc: images("./victron_65A.png"),
     exportable: true,

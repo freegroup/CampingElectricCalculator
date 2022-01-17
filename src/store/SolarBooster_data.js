@@ -3,7 +3,6 @@ const images = require.context("@/store/images/solarBooster/", true, /\.png$/)
 export default [
   { 
     uuid: "17302EE5-08AC-4E2C-882B-F30EA9536B07", 
-    type: "solarBooster", 
     name: "BlueSolar 75|15", 
     imageSrc: images("./bluesolar_75_15.png"),
     operationHours: 4.5,
@@ -31,7 +30,6 @@ export default [
   }, 
   { 
     uuid: "F9AB426A-5166-4B4E-8FB5-ACB7687BE78E", 
-    type: "solarBooster", 
     name: "BlueSolar 75|10", 
     imageSrc: images("./bluesolar_75_10.png"),
     operationHours: 4.5,
@@ -59,7 +57,6 @@ export default [
   }, 
   { 
     uuid: "B5F979A2-5D7F-44F9-8BEE-BB1AE257D51F", 
-    type: "solarBooster", 
     name: "Thlevel 30A PWM", 
     imageSrc: images("./thlevel_30A_pwm.png"),
     operationHours: 4.5,
@@ -87,7 +84,6 @@ export default [
   },
   { 
     uuid: "E9C5518A-B503-4C00-94F6-F16929A6DFDE", 
-    type: "solarBooster", 
     name: "Büttner MPP 440", 
     imageSrc: images("./buettner_mpp_440.png"),
     operationHours: 4.5,
@@ -115,7 +111,6 @@ export default [
   },
   { 
     uuid: "CF70B8A2-B4EC-4639-BBD7-63D17D8BD39E", 
-    type: "solarBooster", 
     name: "Büttner MPP 260", 
     imageSrc: images("./buettner_mpp_260.png"),
     operationHours: 4.5,
@@ -143,7 +138,6 @@ export default [
   },
   { 
     uuid: "0E276659-6695-4900-821B-A1D23D29B8AA", 
-    type: "solarBooster", 
     name: "Büttner MPP 170", 
     imageSrc: images("./buettner_mpp_170.png"),
     operationHours: 4.5,
@@ -171,7 +165,6 @@ export default [
   },
   { 
     uuid: "5920A236-17F1-46FD-9B1B-CEE42CAD0472", 
-    type: "solarBooster", 
     name: "Victron Energy MPPT 100/50", 
     imageSrc: images("./victron_100_50.png"),
     operationHours: 4.5,
