@@ -10,7 +10,7 @@ function enrichComponents (payload) {
     element.type = "starterBooster"
     element.data.watt = element.data.strom * element.data.spannung
     element.data.chargeSupport = element.data.chargeSupport.sort()
-    element.name = element.name + " (" + element.data.strom + "A, " + element.data.chargeSupport.join(", ") + " )"
+    element.name = element.name + " (" + element.data.strom + "A)"
   })
   return payload
 }
