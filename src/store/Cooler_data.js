@@ -40,5 +40,85 @@ export default [
       strom: 48 / 12, // I=P/U
       liter: 40
     }
+  },
+  { 
+    uuid: "86F70CE9-9F47-45BC-AB3C-F24CC33A565B", 
+    name: "DOMETIC Tropicool TCX 07", 
+    imageSrc: images("./dometic_tropicool_tcx_07.png"),
+    operationHours: 12,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3GCVVLm",
+        label: "DOMETIC Tropicool TCX 07",
+        lastKnownPrice: 214.90
+      }
+    ],
+    data: {
+      spannung: 12, 
+      strom: 36 / 12, // I=P/U
+      liter: 7
+    }
+  },
+  { 
+    uuid: "64010CEC-A57D-4C29-AA64-CECA927E5D89", 
+    name: "DOMETIC Tropicool TCX 14", 
+    imageSrc: images("./dometic_tropicool_tcx_14.png"),
+    operationHours: 12,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3GFYjks",
+        label: "DOMETIC Tropicool TCX 14",
+        lastKnownPrice: 187
+      }
+    ],
+    data: {
+      spannung: 12, 
+      strom: 46 / 12, // I=P/U
+      liter: 14
+    }
+  },
+  { 
+    uuid: "C8CC6F48-52C8-43A0-83B5-5CA2CAB6E1A2", 
+    name: "DOMETIC Tropicool TCX 21", 
+    imageSrc: images("./dometic_tropicool_tcx_21.png"),
+    operationHours: 12,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3IgUH95",
+        label: "DOMETIC Tropicool TCX 21",
+        lastKnownPrice: 212.90
+      }
+    ],
+    data: {
+      spannung: 12, 
+      strom: 46 / 12, // I=P/U
+      liter: 21
+    }
+  },
+  { 
+    uuid: "81C5A751-C7BC-4B95-AEF4-DA5E8E4E25EC", 
+    name: "DOMETIC Tropicool TCX 35", 
+    imageSrc: images("./dometic_tropicool_tcx_35.png"),
+    operationHours: 12,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3Klbw4k",
+        label: "DOMETIC Tropicool TCX 35",
+        lastKnownPrice: 259.00
+      }
+    ],
+    data: {
+      spannung: 12, 
+      strom: 46 / 12, // I=P/U
+      liter: 33
+    }
   }
 ]
