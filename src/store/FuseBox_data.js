@@ -25,7 +25,7 @@ export default
   },
   { 
     uuid: "012D2D77-DD37-4124-8ED4-AE03522519FA", 
-    name: "MareTeam 6-slots", 
+    name: "MareTeam", 
     imageSrc: images("./mareteam_6.png"),
     operationHours: 24,
     exportable: true,

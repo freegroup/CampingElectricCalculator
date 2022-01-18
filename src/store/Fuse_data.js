@@ -101,5 +101,110 @@ export default
       strom: 200,
       spannung: 12
     }
+  },
+  { 
+    uuid: "6841A63B-7D6A-44E0-9D22-3BCC5530A156", 
+    name: "Mega Fuse", 
+    description: "Fuse holder for the MEGA fuses",
+    imageSrc: images("./generic.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/350lCHR",
+        label: "Fuse holder for the MEGA fuses",
+        lastKnownPrice: 4.99
+      }
+    ],
+    data: {
+      type: "Melting",
+      strom: 40,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "4CF4DF81-05AD-48BF-BAE7-C743C6E4BEAC", 
+    name: "Mega Fuse", 
+    description: "Fuse holder for the MEGA fuses",
+    imageSrc: images("./generic.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/350lCHR",
+        label: "Fuse holder for the MEGA fuses",
+        lastKnownPrice: 4.99
+      }
+    ],
+    data: {
+      type: "Melting",
+      strom: 50,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "3680222D-EF80-4AB7-8172-9DE3D862C66E", 
+    name: "Mega Fuse", 
+    description: "Fuse holder for the MEGA fuses",
+    imageSrc: images("./generic.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/350lCHR",
+        label: "Fuse holder for the MEGA fuses",
+        lastKnownPrice: 4.99
+      }
+    ],
+    data: {
+      type: "Melting",
+      strom: 70,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "F5859568-8B95-4EF9-A063-41540BF4F864", 
+    name: "Mega Fuse", 
+    description: "Fuse holder for the MEGA fuses",
+    imageSrc: images("./generic.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/350lCHR",
+        label: "Fuse holder for the MEGA fuses",
+        lastKnownPrice: 4.99
+      }
+    ],
+    data: {
+      type: "Melting",
+      strom: 100,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "00B45BD4-D8F3-44BD-8EED-FF3E9C68370D", 
+    name: "Mega Fuse", 
+    description: "Fuse holder for the MEGA fuses",
+    imageSrc: images("./generic.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/350lCHR",
+        label: "Fuse holder for the MEGA fuses",
+        lastKnownPrice: 4.99
+      }
+    ],
+    data: {
+      type: "Melting",
+      strom: 200,
+      spannung: 12
+    }
   }
 ]

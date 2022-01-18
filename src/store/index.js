@@ -20,6 +20,7 @@ import solarSet from './SolarSet'
 import batteryProtect from './BatteryProtect'
 import carSocket from './CarSocket'
 import light from './Light'
+import switchPanel from './SwitchPanel'
 import pressurePump from './PressurePump'
 import profile from './Profile'
 
@@ -34,6 +35,7 @@ export default new Vuex.Store({
     fridge,
     cooler,
     heater,
+    switchPanel,
     fuse,
     fuseBox,
     light,

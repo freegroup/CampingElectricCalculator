@@ -1,12 +1,12 @@
 import RightNode from './RightNode'
 
-export default class RightFuseBox extends RightNode {
+export default class SwitchPanel extends RightNode {
   constructor() {
     super()
   }
 
   getChildCandidates () {
-    return ["switchPanel", "pressurePump", "fridge", "usb", "light", "heater", "carSocket"] 
+    return ["fuseBox", "pressurePump", "fridge", "usb", "light", "heater", "carSocket"] 
   }
 
   getErrorMessages () {
@@ -20,25 +20,19 @@ export default class RightFuseBox extends RightNode {
       //
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
       if ( this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
+        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the switch panel` })
       }
     }
     
-    // Calculate if the accumulated "strom"
+    // calculate if each consumer is less than a switch can handle
     //
-    if ( this.children.length > 0 ) {
-      const data = this.children[0].calculateConsumptionData()
-      // skip the first element, because we have already the data of the first element in charge
-      // ( slice(1) )
-      this.children.slice(1).forEach( child => {
-        data.strom += child.calculateConsumptionData().strom 
-      })
-      // the "leerlaufspannung" must be smaller than the max input of the charger
-      //
-      if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The currents <b>[${parseInt(data.strom)}A]</b> of the consumer are bigger than the maximum power which the fuse can handle <b>[${this.model.data.strom}A]</b>` })
+
+    this.children.forEach( child => {
+      const data = child.calculateConsumptionData()
+      if (data.strom > this.model.data.strom_je_anschluss ) {
+        result.push({ type: "Error", text: `The currents <b>[${parseInt(data.strom)}A]</b> of the input consumer is bigger than the power switch can handle <b>[${this.model.data.ststrom_je_anschlussrom}A]</b>` })
       }
-    }
+    })
 
     return result
   }

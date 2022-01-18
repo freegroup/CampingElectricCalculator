@@ -1,7 +1,7 @@
 <template>
     <v-app>
     <v-app-bar app color="#E39623" dense dark>
-      <v-toolbar-title>Configuration: {{configuration.label}}</v-toolbar-title>
+      <v-toolbar-title>Configuration: {{configuration.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
 
     </v-app-bar>

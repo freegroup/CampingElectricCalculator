@@ -14,29 +14,29 @@ export default {
     all: [
       {
         name: "low",
-        setups: [
-          { id: "Pure100WShore", label: "100 Watt Solar + Charger", config: Pure100WShore }, 
-          { id: "Pure100WAlternator", label: "100 Watt Solar + Alternator", config: Pure100WAlternator }
+        children: [
+          { id: "Pure100WShore", name: "100 Watt Solar + Charger", config: Pure100WShore }, 
+          { id: "Pure100WAlternator", name: "100 Watt Solar + Alternator", config: Pure100WAlternator }
         ]
       },
       {
         name: "standard",
-        setups: [
-          { id: "Standard100wSmallCooler", label: "100 Watt Solar with small cooler", config: Standard100wSmallCooler },
-          { id: "Standard160wSmallCooler", label: "160 Watt Solar with small cooler, light", config: Standard160wSmallCooler }
+        children: [
+          { id: "Standard100wSmallCooler", name: "100 Watt Solar with small cooler", config: Standard100wSmallCooler },
+          { id: "Standard160wSmallCooler", name: "160 Watt Solar with small cooler, light", config: Standard160wSmallCooler }
         ]
       },
       {
         name: "aboveaverage",
-        setups: [
-          { id: "Aboveaverage200wLightCooler", label: "200 Watt Solar with small cooler, light", config: Aboveaverage200wLightCooler }
+        children: [
+          { id: "Aboveaverage200wLightCooler", name: "200 Watt Solar with small cooler, light", config: Aboveaverage200wLightCooler }
         ]
       },
       {
         name: "power",
-        setups: [
-          { id: "Power540Watt", label: "540 Watt Solar with AGM Battery, Fridge, Water Pump,...", config: Power540Watt },
-          { id: "Power720Watt", label: "720 Watt Solar with LiFePO4 Battery, Fridge, Water Pump,...", config: Power720Watt }
+        children: [
+          { id: "Power540Watt", name: "540 Watt Solar with AGM Battery, Fridge, Water Pump,...", config: Power540Watt },
+          { id: "Power720Watt", name: "720 Watt Solar with LiFePO4 Battery, Fridge, Water Pump,...", config: Power720Watt }
         ]
       }
     ]
@@ -49,31 +49,31 @@ export default {
   getters: {
     getById: (state, getters, rootState, rootGetters) => (id) => {
       if (id === "new" ) {
-        return { id: "new", label: "New", config: Empty }
+        return { id: "new", name: "New", config: Empty }
       }
 
       if (id === "user" ) {
         if ( localStorage.getItem('configuration') ) {
           return JSON.parse( localStorage.getItem('configuration'))
         }
-        return { id: "user", label: "User", config: Default }
+        return { id: "user", name: "User", config: Default }
       }
 
       let profiles = []
       state.all.forEach( profile => {
-        profiles = profiles.concat( ...profile.setups)
+        profiles = profiles.concat( ...profile.children)
       })
       const entry = profiles.find( entry => entry.id === id )
       if ( entry ) {
         return entry
       }
-      return { id: "default", label: "Standard", config: Default }
+      return { id: "default", name: "Standard", config: Default }
     }
   },
 
   mutations: {
     SET_USER_CONFIGURATION (state, payload) {
-      localStorage.setItem('configuration', JSON.stringify({ id: "user", label: "User", config: payload }, undefined, 2))
+      localStorage.setItem('configuration', JSON.stringify({ id: "user", name: "User", config: payload }, undefined, 2))
     }
   }
 }

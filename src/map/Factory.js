@@ -15,6 +15,7 @@ import Usb from "./Usb.js"
 import CarSocket from "./CarSocket.js"
 import LeftFuse from "./LeftFuse.js"
 import RightFuse from "./RightFuse.js"
+import SwitchPanel from "./SwitchPanel.js"
 
 export default class NodeFactory {
   static createNode (leftSide, model) {
@@ -55,6 +56,9 @@ export default class NodeFactory {
         break
       case "starterAccu":
         node = new StarterAccu()     
+        break
+      case "switchPanel":
+        node = new SwitchPanel()     
         break
       case "solarBooster":
         node = new SolarBooster()    

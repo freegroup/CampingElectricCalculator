@@ -47,12 +47,12 @@
           <v-divider></v-divider>
           <v-subheader>Suggested Setups</v-subheader>
           <v-list two-line>
-            <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in profile.setups" :key="index">
+            <v-list-item :to="{path:'/map/'+configuration.id}" v-for="(configuration, index) in profile.children" :key="index">
               <v-list-item-avatar>
                 <v-icon class="grey yellow--text lighten-1">mdi-white-balance-sunny</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>{{configuration.label}}</v-list-item-title>
+                <v-list-item-title>{{configuration.name}}</v-list-item-title>
                 <v-list-item-subtitle>Estimated Cost: {{cost(configuration)}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
