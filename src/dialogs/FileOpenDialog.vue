@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showFlag" width="800" scrollable>
       <v-card>
-        <DialogHeader :title="$t('dialog.serial.title')" :subtitle="$t('dialog.serial.subtitle')" icon="mdi-eye-outline"></DialogHeader>
+        <DialogHeader :title="$t('dialog.fileOpen.title')" :subtitle="$t('dialog.fileOpen.subtitle')" icon="mdi-open-in-app"></DialogHeader>
         <v-card-text style="height: 350px;" >
           <v-treeview hoverable open-on-click rounded :items="profiles" activatable @update:active="loadProfile">
           </v-treeview>

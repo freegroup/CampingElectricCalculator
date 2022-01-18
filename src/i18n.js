@@ -135,6 +135,10 @@ export default {
       }
     },
     dialog: {
+      fileOpen: {
+        title: "Open Example Configuration",
+        subtitle: "We have a few sample configuration which adapt to different needs"
+      },
       serial: {
         title: "Serial Connection",
         subtitle: "Connecting Solar Panels Together in Series"
