@@ -15,11 +15,11 @@ export default [
       }
     ],
     data: {
-      bms: "internal",
       amperestunden: 100,
+      effective_amperestunden: 100, // es können die vollen 100Ah entnommen werden
+      bms: "internal",
       spannung: 12,
-      type: "LiFePO4",
-      effective_amperestunden: 100 // es können die vollen 100Ah entnommen werden
+      type: "LiFePO4"
     }
   },
   { 

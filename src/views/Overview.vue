@@ -36,8 +36,9 @@
     <v-container>
       <h1>How to size your electrical system</h1>
       <v-container>
-      Size of the solar system on the motorhome in practice Since not everyone knows their energy needs ahead 
-      of time, I'd like to give you a few avatars or pointers here.
+      To determine the size of a solar system for a camper is not very easy in practice, because 
+      you can not always estimate your needs. Here I would like to give a few standard suggestions 
+      to make this easier and to see the impact of the cost.
       </v-container>
 
       <template v-for="(profile, index) in profiles">

@@ -137,7 +137,7 @@ export default {
     dialog: {
       fileOpen: {
         title: "Open Example Configuration",
-        subtitle: "We have a few sample configuration which adapt to different needs"
+        subtitle: "Standard suggestions for laying out the electrical system in a camper according to the user profiles"
       },
       serial: {
         title: "Serial Connection",
