@@ -26,5 +26,18 @@ export default [
       spannung: 24, 
       strom: 80
     }
+  },
+  { 
+    uuid: "FDEF0164-4B71-4033-8F6D-9CB19E0FD0D4", 
+    name: "Alternator", 
+    imageSrc: images("./alternator.png"),
+    operationHours: 24,
+    exportable: false,
+    shopping: [
+    ],
+    data: {
+      spannung: 28, 
+      strom: 80
+    }
   }
 ]

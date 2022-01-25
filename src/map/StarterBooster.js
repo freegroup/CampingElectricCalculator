@@ -22,8 +22,8 @@ export default class StarterBooster extends LeftNode {
     }
 
     this.children.forEach( child => {
-      if ( child.model.data.spannung !== this.model.data.eingangsspannung) {
-        result.push({ type: "Error", text: `The charger requires input voltage of <b>[${this.model.data.eingangsspannung}V]</b> and do not support input of <b>[${child.model.data.spannung}V]</b> from alternator.` })
+      if ( child.model.data.spannung > this.model.data.eingangsspannung_max || child.model.data.spannung < this.model.data.eingangsspannung_min ) {
+        result.push({ type: "Error", text: `The charger requires input voltage of <b>[${this.model.data.eingangsspannung_min}..${this.model.data.eingangsspannung_max}V]</b> and do not support input of <b>[${child.model.data.spannung}V]</b> from alternator.` })
       }
     })
     return result
@@ -45,7 +45,8 @@ export default class StarterBooster extends LeftNode {
   calculateOutputData () {
     const input = this.calculateInputData()
     const data = JSON.parse(JSON.stringify(this.model.data)) // deep copy
-    delete data.eingangsspannung
+    delete data.eingangsspannung_min
+    delete data.eingangsspannung_max
     delete data.eingangsstrom
 
     // the booster can't deliver more than the possible input 

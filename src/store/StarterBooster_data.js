@@ -18,7 +18,8 @@ export default [
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
       type: "DC-DC Converter",
-      eingangsspannung: 12,
+      eingangsspannung_min: 12,
+      eingangsspannung_max: 15,
       eingangsstrom: 15,
       spannung: 12,
       strom: 15
@@ -41,7 +42,8 @@ export default [
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
       type: "DC-DC Converter",
-      eingangsspannung: 24,
+      eingangsspannung_min: 20,
+      eingangsspannung_max: 35,
       eingangsstrom: 10,
       spannung: 12,
       strom: 20
@@ -64,7 +66,8 @@ export default [
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
       type: "DC-DC Converter",
-      eingangsspannung: 24,
+      eingangsspannung_min: 20,
+      eingangsspannung_max: 35,
       eingangsstrom: 15,
       spannung: 12,
       strom: 30
@@ -72,7 +75,7 @@ export default [
   },
   { 
     uuid: "E64B8FC5-353F-40C5-942C-A5055E2A66C8", 
-    name: "VOTRONIC VCC 1212", 
+    name: "VOTRONIC VCC 12/12", 
     imageSrc: images("./votronic_20A.png"),
     operationHours: 1,
     exportable: true,
@@ -87,7 +90,8 @@ export default [
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
       type: "DC-DC Converter",
-      eingangsspannung: 12,
+      eingangsspannung_min: 10,
+      eingangsspannung_max: 16.5,
       eingangsstrom: 20,
       spannung: 12,
       strom: 20
