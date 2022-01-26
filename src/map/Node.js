@@ -186,13 +186,12 @@ export default class Node extends GenericNode {
       this.mindmap.onComponentShowErrors(this)
     })
 
-    $(this.infoIcon).on("click", (event) => {
+    $(this.labelDiv).on("click", (event) => {
       event.stopPropagation()
       this.mindmap.onComponentShowInfo(this)
     })
 
     this.setSelected(false)
-
     this.setOperationHours(this.model.operationHours)
   }
 }

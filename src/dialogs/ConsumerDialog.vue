@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showFlag" :width="700" scrollable>
       <v-card>
-        <DialogHeader :title="$t('dialog.consumer.title')" :subtitle="$t('dialog.consumer.subtitle')" icon="mdi-battery-charging-outline"></DialogHeader>
+        <DialogHeader :title="$t('dialog.consumer.title')" :subtitle="$t('dialog.consumer.subtitle')" icon="mdi-gauge"></DialogHeader>
 
         <v-card-text style="height: 350px;">
              <v-row class="mt-5">

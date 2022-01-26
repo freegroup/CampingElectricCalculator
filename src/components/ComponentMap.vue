@@ -503,16 +503,12 @@ export default {
       font-size: 12px;
       padding-bottom: 5px;
     }
+    
     .component_icon {
       display: block;
       margin-left: auto;
       margin-right: auto;
-    }
-    
-    .component_accu.component_icon{
-      max-height: 90px;
-    }
-    .component_icon{
+      cursor: pointer;
       max-height: 70px;
     }
   }

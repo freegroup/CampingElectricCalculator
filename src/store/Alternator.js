@@ -16,7 +16,8 @@ function enrichComponents (payload) {
 export default {
   namespaced: true,
   state: {
-    components: enrichComponents(sortComponents(components))
+    components: enrichComponents(sortComponents(components)).filter( element => element.uuid !== "template"),
+    template: enrichComponents(components).find( element => element.uuid === "template")
   },
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (uuid) => {

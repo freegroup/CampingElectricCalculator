@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showFlag" width="900" scrollable>
       <v-card>
-        <DialogHeader :title="$t('dialog.balance.title')" :subtitle="$t('dialog.balance.subtitle')" icon="mdi-lightning-bolt-outline"></DialogHeader>
+        <DialogHeader :title="$t('dialog.balance.title')" :subtitle="$t('dialog.balance.subtitle')" icon="mdi-gauge"></DialogHeader>
 
         <v-card-text style="height: 350px;" v-if="output && input">
           <template>

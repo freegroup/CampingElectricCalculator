@@ -88,8 +88,8 @@ export default class GenericNode {
       this.getComponentContainer().innerHTML = 
       `
       <div class="component">
-        <div class="component_${this.model.type} component_label">${this.model.name}</div>
-        <img draggable="false" class="component_${this.model.type} component_icon" src="${this.model.imageSrc}"></img>
+        <div class="component_label">${this.model.name}</div>
+        <img draggable="false" class="component_icon" src="${this.model.imageSrc}"></img>
       </div>
       `
       this.drawLines()

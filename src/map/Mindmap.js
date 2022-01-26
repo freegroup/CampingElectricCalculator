@@ -260,10 +260,7 @@ export default class Mindmap extends GenericNode {
               this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-gauge"></i>')
               this.toolbarDiv.append(this.gaugeIcon)
 
-              this.infoIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-information-outline"></i>')
-              this.toolbarDiv.append(this.infoIcon)
-
-              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon pr-8 v-icon mdi mdi-pencil"></i>')
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon pr-8 v-icon mdi mdi-widgets-outline"></i>')
               this.toolbarDiv.append(this.configIcon)
             }
 
@@ -331,7 +328,7 @@ export default class Mindmap extends GenericNode {
       this.onComponentConfigure(this)
     })
 
-    $(this.infoIcon).on("click", event => {
+    $(this.centerLabel).on("click", event => {
       event.stopPropagation()
       this.onComponentShowInfo(this)
     })
