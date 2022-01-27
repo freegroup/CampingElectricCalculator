@@ -30,7 +30,7 @@ export default
       }
     ],
     data: {
-      type: "Automatic",
+      type: "automatic",
       strom: 40,
       spannung: 12
     }
@@ -49,7 +49,7 @@ export default
       }
     ],
     data: {
-      type: "Automatic",
+      type: "automatic",
       strom: 50,
       spannung: 12
     }
@@ -69,7 +69,7 @@ export default
       }
     ],
     data: {
-      type: "Automatic",
+      type: "automatic",
       strom: 70,
       spannung: 12
     }
@@ -89,7 +89,7 @@ export default
       }
     ],
     data: {
-      type: "Automatic",
+      type: "automatic",
       strom: 100,
       spannung: 12
     }
@@ -110,7 +110,7 @@ export default
       }
     ],
     data: {
-      type: "Automatic",
+      type: "automatic",
       strom: 200,
       spannung: 12
     }
@@ -131,7 +131,7 @@ export default
       }
     ],
     data: {
-      type: "Melting",
+      type: "melt",
       strom: 40,
       spannung: 12
     }
@@ -152,7 +152,7 @@ export default
       }
     ],
     data: {
-      type: "Melting",
+      type: "melt",
       strom: 50,
       spannung: 12
     }
@@ -173,7 +173,7 @@ export default
       }
     ],
     data: {
-      type: "Melting",
+      type: "melt",
       strom: 70,
       spannung: 12
     }
@@ -194,7 +194,7 @@ export default
       }
     ],
     data: {
-      type: "Melting",
+      type: "melt",
       strom: 100,
       spannung: 12
     }
@@ -215,7 +215,7 @@ export default
       }
     ],
     data: {
-      type: "Melting",
+      type: "melt",
       strom: 200,
       spannung: 12
     }

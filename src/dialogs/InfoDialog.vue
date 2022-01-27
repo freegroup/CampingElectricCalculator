@@ -17,8 +17,14 @@
                   <tbody>
                     <tr :key="key" v-for="key in Object.keys(model.data)" >
                       <td class="text-no-wrap">{{ $t("data.label."+key)}}</td>
-                      <td v-if="editMode">{{model.data[key] | toFixed}} {{ $t("data.unit."+key)}}</td> 
-                      <td v-if="!editMode"><v-text-field :hide-details="true" :disabled="isNaN(model.data[key])" dense type="number" v-model.number="model.data[key]" :suffix='$t("data.unit."+key)'></v-text-field></td> 
+                      <template v-if="editable">
+                        <td v-if="isNumber(key)"><v-text-field :hide-details="true" dense type="number" v-model.number="model.data[key]" :suffix='$t("data.unit."+key)'></v-text-field></td> 
+                        <td v-else-if="isStringValue(key)"><v-select :hide-details="true" dense :items="items(key)" v-model="model.data[key]"></v-select></td> 
+                        <td v-else-if="isArrayValue(key)"><v-select :multiple="true" :hide-details="true" :items="items(key)" dense v-model="model.data[key]" ></v-select></td> 
+                      </template>
+                      <template v-else>
+                        <td>{{model.data[key]}} {{$t("data.unit."+key)}}</td> 
+                      </template>
                     </tr>
                   </tbody>
               </table>
@@ -57,13 +63,13 @@
 
 <script>
 import DialogHeader from "@/components/DialogHeader.vue"
+import enums from "@/enums.js"
 
 export default {
   name: "InfoDialog",
   data() {
     return {
       showFlag: false,
-      editMode: false,
       valueChanged: false,
       resolve: null,
       component: null,
@@ -88,6 +94,10 @@ export default {
     }
   },
   computed: {
+    editable () {
+      // it is only editable if we have a "custom" item in the collection of the type. This is the template.
+      return !!this.$store.getters[this.component.type + "/getByUuid"]("custom")
+    }
   },
   methods: {
     async show( component ) {
@@ -103,13 +113,36 @@ export default {
         this.$nextTick( () => { this.showFlag = true } )
       })
     },
-
-    inputType ( value ) {
-      if ( isNaN(value )) {
-        return "text"
+    isNumber (key) {
+      return !isNaN(this.model.data[key])
+    },
+    isArrayValue (key) {
+      if ( this.model.type in enums) {
+        if ( key in enums[this.model.type]) {
+          if ( enums[this.model.type][key].type === "array") {
+            return true
+          }
+          console.log("false")
+          return false
+        }
       }
-      return "number"
-    },    
+      return true
+    }, 
+    isStringValue (key) {
+      if ( this.model.type in enums) {
+        if ( key in enums[this.model.type]) {
+          if ( enums[this.model.type][key].type === "string") {
+            return true
+          }
+          console.log("false")
+          return false
+        }
+      }
+      return true
+    },
+    items (key) {
+      return enums[this.model.type][key].values
+    },
     onCloseButtonClick() {
       this.showFlag = false
       this.resolve && this.resolve()
