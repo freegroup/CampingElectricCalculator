@@ -1,3 +1,4 @@
+import { toFixed } from "@/utils/Wire.js"
 const images = require.context("@/store/images/fridge/", true, /\.png$/)
 
 export default [
@@ -30,7 +31,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 32 / 12, // I=P/U
+      strom: toFixed(32 / 12),
       liter: 80
     }
   }

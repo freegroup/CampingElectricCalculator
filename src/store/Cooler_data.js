@@ -1,3 +1,4 @@
+import { toFixed } from "@/utils/Wire.js"
 const images = require.context("@/store/images/cooler/", true, /\.png$/)
 
 export default [
@@ -30,7 +31,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 48 / 12, // I=P/U
+      strom: toFixed(48 / 12),
       liter: 28
     }
   },
@@ -50,7 +51,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 48 / 12, // I=P/U
+      strom: toFixed(48 / 12),
       liter: 40
     }
   },
@@ -70,7 +71,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 36 / 12, // I=P/U
+      strom: toFixed(36 / 12),
       liter: 7
     }
   },
@@ -90,7 +91,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 46 / 12, // I=P/U
+      strom: toFixed(46 / 12),
       liter: 14
     }
   },
@@ -110,7 +111,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 46 / 12, // I=P/U
+      strom: toFixed(46 / 12),
       liter: 21
     }
   },
@@ -130,7 +131,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 46 / 12, // I=P/U
+      strom: toFixed(46 / 12),
       liter: 33
     }
   }

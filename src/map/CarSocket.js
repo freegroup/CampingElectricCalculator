@@ -18,7 +18,7 @@ export default class Usb extends RightNode {
     if ( this.children.length > 0 ) {
       this.children.forEach( child => {
         if ( child.model.data.strom > this.model.data.strom ) {
-          result.push({ type: "Error", text: `The power <b>[${toFixed(child.model.data.strom)}A]</b> of the input sources are bigger than the maximum power which the socket can handle <b>[${this.model.data.strom}A]</b>` })
+          result.push({ type: "Error", text: `The power <b>[${toFixed(child.model.data.strom)} A]</b> of the input sources are bigger than the maximum power which the socket can handle <b>[${this.model.data.strom} A]</b>` })
         }
       })
     }

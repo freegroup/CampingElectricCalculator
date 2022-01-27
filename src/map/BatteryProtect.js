@@ -18,7 +18,7 @@ export default class BatteryProtect extends RightNode {
     const checkParent = node => {
       if ( node.parent && node.parent.model.type === "fuse") {
         if ( node.parent.model.data.strom > node.model.data.strom ) {
-          result.push( { type: "Error", text: `Battery Protection with a maximum currents of <b>[${this.model.data.strom}A]</b> is breaking before the used fuse with <b>[${node.parent.model.data.strom}A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
+          result.push( { type: "Error", text: `Battery Protection with a maximum currents of <b>[${this.model.data.strom} A]</b> is breaking before the used fuse with <b>[${node.parent.model.data.strom} A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
           return false
         }
         return true
@@ -54,7 +54,7 @@ export default class BatteryProtect extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The power <b>[${parseInt(data.strom)}A]</b> of the input sources are bigger than the maximum power which the battery protect can handle <b>[${this.model.data.strom}]</b>` })
+        result.push({ type: "Error", text: `The power <b>[${parseInt(data.strom)} A]</b> of the input sources are bigger than the maximum power which the battery protect can handle <b>[${this.model.data.strom}]</b>` })
       }
     }
 
@@ -70,7 +70,7 @@ export default class BatteryProtect extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)}A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom}A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
+        result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
       }
     }
 

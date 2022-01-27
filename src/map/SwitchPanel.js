@@ -1,4 +1,5 @@
 import RightNode from './RightNode'
+import { toFixed } from "@/utils/Wire.js"
 
 export default class SwitchPanel extends RightNode {
   constructor() {
@@ -30,7 +31,7 @@ export default class SwitchPanel extends RightNode {
     this.children.forEach( child => {
       const data = child.calculateConsumptionData()
       if (data.strom > this.model.data.strom_je_anschluss ) {
-        result.push({ type: "Error", text: `The currents <b>[${parseInt(data.strom)}A]</b> of the input consumer is bigger than the power switch can handle <b>[${this.model.data.ststrom_je_anschlussrom}A]</b>` })
+        result.push({ type: "Error", text: `The currents <b>[${toFixed(data.strom)} A]</b> of the input consumer is bigger than the power switch can handle <b>[${toFixed(this.model.data.strom_je_anschlussrom)} A]</b>` })
       }
     })
 

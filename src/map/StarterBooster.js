@@ -23,7 +23,7 @@ export default class StarterBooster extends LeftNode {
 
     this.children.forEach( child => {
       if ( child.model.data.spannung > this.model.data.eingangsspannung_max || child.model.data.spannung < this.model.data.eingangsspannung_min ) {
-        result.push({ type: "Error", text: `The charger requires input voltage of <b>[${this.model.data.eingangsspannung_min}..${this.model.data.eingangsspannung_max}V]</b> and do not support input of <b>[${child.model.data.spannung}V]</b> from alternator.` })
+        result.push({ type: "Error", text: `The charger requires input voltage of <b>[${this.model.data.eingangsspannung_min}..${this.model.data.eingangsspannung_max} V]</b> and do not support input of <b>[${child.model.data.spannung} V]</b> from alternator.` })
       }
     })
     return result

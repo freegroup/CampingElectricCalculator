@@ -44,7 +44,7 @@ export default class RightFuseBox extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The currents <b>[${parseInt(data.strom)}A]</b> of the consumer are bigger than the maximum power which the fuse can handle <b>[${this.model.data.strom}A]</b>` })
+        result.push({ type: "Error", text: `The currents <b>[${toFixed(data.strom)} A]</b> of the consumer are bigger than the maximum power which the fuse can handle <b>[${toFixed(this.model.data.strom)} A]</b>` })
       }
     }
 

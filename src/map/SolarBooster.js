@@ -1,6 +1,7 @@
 import LeftNode from './LeftNode'
 import $ from "jquery"
 import { htmlToElement } from "./utils.js"
+import { toFixed } from "@/utils/Wire.js"
 const images = require.context("@/assets/", true, /\.png$/)
 
 export default class SolarBooster extends LeftNode {
@@ -52,18 +53,18 @@ export default class SolarBooster extends LeftNode {
       // calculate [P] of all pinout sources and check if the booster can handle this
       //
       if ( data.nennstrom > this.model.data.kurzschlussstrom ) {
-        result.push({ type: "Error", text: `<b>[${data.nennstrom}A]</b> is bigger than the charger can handle <b>[${this.model.data.kurzschlussstrom}A]</b>` })
+        result.push({ type: "Error", text: `<b>[${toFixed(data.nennstrom)} A]</b> is bigger than the charger can handle <b>[${toFixed(this.model.data.kurzschlussstrom)} A]</b>` })
       }
 
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.leerlaufspannung > this.model.data.eingangsspannung ) {
-        result.push({ type: "Error", text: `The voltage <b>[${data.leerlaufspannung}V]</b> of the input sources are bigger than the maximum voltage which the charger can handle <b>[${this.model.data.eingangsspannung}V]</b>` })
+        result.push({ type: "Error", text: `The voltage <b>[${toFixed(data.leerlaufspannung)} V]</b> of the input sources are bigger than the maximum voltage which the charger can handle <b>[${toFixed(this.model.data.eingangsspannung)} V]</b>` })
       }
 
       const output = this.calculateOutputData()
       if ( output.ladestrom > this.model.data.nennladestrom ) {
-        result.push( { type: "Error", text: `Charge current <b>[${parseInt(output.ladestrom)}A]</b> is bigger than the maximal possible charge current <b>[${this.model.data.nennladestrom}A]</b> of this charger` } )
+        result.push( { type: "Error", text: `Charge current <b>[${toFixed(output.ladestrom)} A]</b> is bigger than the maximal possible charge current <b>[${toFixed(this.model.data.nennladestrom)} A]</b> of this charger` } )
       }
     }
 

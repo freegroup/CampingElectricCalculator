@@ -1,3 +1,4 @@
+import { toFixed } from "@/utils/Wire.js"
 const images = require.context("@/store/images/usbConsumer/", true, /\.png$/)
 
 export default [
@@ -39,7 +40,7 @@ export default [
     ],
     data: {
       spannung: 5, 
-      strom: 87 / 5
+      strom: toFixed(87 / 5)
     }
   },
   { 
@@ -53,7 +54,7 @@ export default [
     ],
     data: {
       spannung: 5, 
-      strom: 61 / 5
+      strom: toFixed(61 / 5)
     }
   },
   { 
@@ -67,7 +68,7 @@ export default [
     ],
     data: {
       spannung: 5, 
-      strom: 30 / 5
+      strom: toFixed(30 / 5)
     }
   },
   { 
@@ -81,7 +82,7 @@ export default [
     ],
     data: {
       spannung: 5, 
-      strom: 30 / 5
+      strom: toFixed(30 / 5)
     }
   }
 ]

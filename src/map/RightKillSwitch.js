@@ -1,4 +1,5 @@
 import RightNode from './RightNode'
+import { toFixed } from "@/utils/Wire.js"
 
 export default class RightKillSwitch extends RightNode {
   constructor() {
@@ -22,7 +23,7 @@ export default class RightKillSwitch extends RightNode {
     const checkParent = node => {
       if ( node.parent && node.parent.model.type === "fuse") {
         if ( node.parent.model.data.strom > node.model.data.strom ) {
-          result.push( { type: "Error", text: `Switch with a maximum currents of <b>[${this.model.data.strom}A]</b> is breaking before the used fuse with <b>[${node.parent.model.data.strom}A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
+          result.push( { type: "Error", text: `Switch with a maximum currents of <b>[${toFixed(this.model.data.strom)} A]</b> is breaking before the used fuse with <b>[${toFixed(node.parent.model.data.strom)} A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
           return false
         }
         return true
