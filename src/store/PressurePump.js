@@ -1,6 +1,10 @@
 
 import components from "./PressurePump_data.js"
 
+function longname(model) {
+  return model.name + " (" + model.data.durchfluss + " l/m, " + model.data.druck + " bar)"
+}
+
 function sortComponents (payload) {
   return payload.sort((a, b) => a.data.durchfluss - b.data.durchfluss)
 }
@@ -8,8 +12,8 @@ function sortComponents (payload) {
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "pressurePump"
+    element.longname = longname(element)
     element.data.watt = element.data.strom * element.data.spannung
-    element.name = element.name + " (" + element.data.durchfluss + " l/m, " + element.data.druck + " bar)"
   })
   return payload
 }
@@ -22,6 +26,9 @@ export default {
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (uuid) => {
       return state.components.find(component => component.uuid === uuid)
+    },
+    longname: (state, getters, rootState, rootGetters) => (model) => {
+      return longname(model)
     }
   }
 }

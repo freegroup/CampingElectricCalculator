@@ -2,6 +2,22 @@ const images = require.context("@/store/images/starterBooster/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Alternator Charger", 
+    imageSrc: images("./custom.png"),
+    operationHours: 1,
+    exportable: true,
+    shopping: [],
+    data: {
+      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      eingangsspannung_min: 0,
+      eingangsspannung_max: 0,
+      eingangsstrom: 0,
+      spannung: 0,
+      strom: 0
+    }
+  },
+  { 
     uuid: "B522FFA9-0D08-4A82-9399-65B9D74A4B28", 
     name: "Schaudt WA121525", 
     imageSrc: images("./schaudt_wa121525.png"),
@@ -17,7 +33,6 @@ export default [
     ],
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
-      type: "DC-DC Converter",
       eingangsspannung_min: 12,
       eingangsspannung_max: 15,
       eingangsstrom: 15,
@@ -41,7 +56,6 @@ export default [
     ],
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
-      type: "DC-DC Converter",
       eingangsspannung_min: 20,
       eingangsspannung_max: 35,
       eingangsstrom: 10,
@@ -65,7 +79,6 @@ export default [
     ],
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
-      type: "DC-DC Converter",
       eingangsspannung_min: 20,
       eingangsspannung_max: 35,
       eingangsstrom: 15,
@@ -89,7 +102,6 @@ export default [
     ],
     data: {
       chargeSupport: ["LiFePO4", "Blei", "AGM"],
-      type: "DC-DC Converter",
       eingangsspannung_min: 10,
       eingangsspannung_max: 16.5,
       eingangsstrom: 20,

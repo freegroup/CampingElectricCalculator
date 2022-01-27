@@ -582,7 +582,7 @@ export default class Mindmap extends GenericNode {
   toJson() {
     const json = {}
     json.price = this.calculateSetupPrice()
-    json.center = { uuid: this.model.uuid, type: this.model.type }
+    json.center = { uuid: this.model.uuid, type: this.model.type, customData: this.model.customData || null }
     json.left = []
     json.right = []
     this.leftChildren.forEach( child => {

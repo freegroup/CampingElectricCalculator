@@ -2,6 +2,20 @@ const images = require.context("@/store/images/accu/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic",
+    description: "Generic Battery with user defined properties",
+    imageSrc: images("./custom.png"),
+    shopping: [],
+    data: {
+      amperestunden: 0,
+      effective_amperestunden: 0, // es können die vollen 100Ah entnommen werden
+      bms: "internal",
+      spannung: 0,
+      type: "LiFePO4"
+    }
+  },
+  { 
     uuid: "6473ECD0-5189-4DB0-8E31-480975998729", 
     name: "LIONTRON",
     description: "LIONTRON LiFePO4 12,8V 100Ah LX Smart BMS mit Bluetooth",

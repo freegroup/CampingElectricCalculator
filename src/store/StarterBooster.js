@@ -1,6 +1,10 @@
 
 import components from "./StarterBooster_data.js"
 
+function longname(model) {
+  return model.name + " (" + model.data.strom + " A)"
+}
+
 function sortComponents (payload) {
   return payload.sort((a, b) => a.data.strom - b.data.strom)
 }
@@ -8,9 +12,9 @@ function sortComponents (payload) {
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "starterBooster"
+    element.longname = longname(element)
     element.data.watt = element.data.strom * element.data.spannung
     element.data.chargeSupport = element.data.chargeSupport.sort()
-    element.name = element.name + " (" + element.data.strom + "A)"
   })
   return payload
 }
@@ -23,6 +27,9 @@ export default {
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (id) => {
       return state.components.find(component => component.uuid === id)
+    },
+    longname: (state, getters, rootState, rootGetters) => (model) => {
+      return longname(model)
     }
   }
 }

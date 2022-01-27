@@ -2,8 +2,21 @@ const images = require.context("@/store/images/shoreBooster/", true, /\.png$/)
 
 export default [
   { 
-    uuid: "C574D3F2-0164-46DF-BC2F-C558BA54599D", 
-    type: "shoreBooster", 
+    uuid: "custom",
+    name: "Generic Shore Power Charger", 
+    imageSrc: images("./custom.png"),
+    operationHours: 1,
+    exportable: true,
+    shopping: [],
+    data: {
+      chargeSupport: ["LiFePO4"],
+      eingangsspannung: 0,
+      spannung: 0,
+      strom: 0
+    }
+  },
+  { 
+    uuid: "C574D3F2-0164-46DF-BC2F-C558BA54599D",
     name: "Victron Energy", 
     imageSrc: images("./victron_20A.png"),
     operationHours: 1,
@@ -24,8 +37,7 @@ export default [
     }
   },
   { 
-    uuid: "B5248EE2-1227-400F-A9B9-FCF112180998", 
-    type: "shoreBooster", 
+    uuid: "B5248EE2-1227-400F-A9B9-FCF112180998",
     name: "NRG Charger NXS", 
     imageSrc: images("./ngr_nxr_5A.png"),
     operationHours: 1,
@@ -46,8 +58,7 @@ export default [
     }
   },
   { 
-    uuid: "C7950C31-70F6-48C2-BE4A-95D856276FFC", 
-    type: "shoreBooster", 
+    uuid: "C7950C31-70F6-48C2-BE4A-95D856276FFC",
     name: "Victron Energy", 
     imageSrc: images("./victron_30A.png"),
     operationHours: 1,
@@ -68,8 +79,7 @@ export default [
     }
   },
   { 
-    uuid: "E74C9F12-B3A1-4654-9F83-04077138DECA", 
-    type: "shoreBooster", 
+    uuid: "E74C9F12-B3A1-4654-9F83-04077138DECA",
     name: "H-TronicAutomatic", 
     imageSrc: images("./htronic_03A.png"),
     operationHours: 1,

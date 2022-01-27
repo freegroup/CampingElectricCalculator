@@ -2,6 +2,20 @@ const images = require.context("@/store/images/usb/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "USB", 
+    imageSrc: images("./custom.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [],
+    data: {
+      spannung: 0, 
+      strom: 0, // I=P/U
+      buchsen: 0,      
+      strom_je_anschluss: 0
+    }
+  },
+  { 
     uuid: "1w312343lk245", 
     name: "USB", 
     imageSrc: images("./usb.png"),

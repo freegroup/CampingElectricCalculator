@@ -2,16 +2,15 @@ const images = require.context("@/store/images/alternator/", true, /\.png$/)
 
 export default [
   { 
-    uuid: "template", 
-    name: "Custom Alternator", 
-    imageSrc: images("./alternator.png"),
+    uuid: "custom", 
+    name: "Alternator", 
+    imageSrc: images("./custom.png"),
     operationHours: 24,
     exportable: false,
-    shopping: [
-    ],
+    shopping: [],
     data: {
-      spannung: 12, 
-      strom: 80
+      spannung: 0, 
+      strom: 0
     }
   },
   { 

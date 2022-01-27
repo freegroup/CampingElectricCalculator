@@ -55,10 +55,11 @@ export default class RightKillSwitch extends RightNode {
       this.children.slice(1).forEach( child => {
         data.strom += child.calculateOutputData().strom 
       })
-      // the "leerlaufspannung" must be smaller than the max input of the charger
+
+      // accumulated "strom" must be less than the max allowed of this device
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)}A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom}A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
+        result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
       }
     }
     return result

@@ -2,6 +2,26 @@ const images = require.context("@/store/images/solarBooster/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Solar Booster", 
+    imageSrc: images("./custom.png"),
+    operationHours: 4.5,
+    exportable: true,
+    shopping: [],
+    data: {
+      type: "MPPT",
+      chargeSupport: ["LiFePO4", "Blei", "AGM"],
+      nennladestrom: 0,
+      spannung: 0,
+      // Eingangsspannung muss GÖßER als die Leewrlaufspannung der Solarpanele sein
+      eingangsspannung: 0,
+      // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
+      eingangswatt: 0,
+      // Solarmodul Strom bis maximal...
+      kurzschlussstrom: 105
+    }
+  },
+  { 
     uuid: "17302EE5-08AC-4E2C-882B-F30EA9536B07", 
     name: "BlueSolar 75|15", 
     imageSrc: images("./bluesolar_75_15.png"),

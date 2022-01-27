@@ -2,6 +2,20 @@ const images = require.context("@/store/images/fuseBox/", true, /\.png$/)
 
 export default 
 [
+  {
+    uuid: "custom", 
+    name: "Generic Fusebox", 
+    imageSrc: images("./custom.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [],
+    data: {
+      strom: 0,
+      spannung: 0,
+      strom_je_anschluss: 0,
+      anschluesse: 0
+    }
+  },
   { 
     uuid: "7asdf", 
     name: "Fusebox", 

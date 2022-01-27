@@ -2,6 +2,20 @@ const images = require.context("@/store/images/pressurePump/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Water Pump", 
+    imageSrc: images("./custom.png"),
+    operationHours: 2,
+    exportable: true,
+    shopping: [],
+    data: {
+      durchfluss: 0,
+      druck: 0,
+      spannung: 0, 
+      strom: 0
+    }
+  },
+  { 
     uuid: "1w3123pump43lk245", 
     name: "Lilie LP4142", 
     imageSrc: images("./lilie_lp4142.png"),

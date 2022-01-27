@@ -112,6 +112,9 @@ export default {
       const data = this.$store.getters[config.center.type + "/getByUuid"]( config.center.uuid)
       this.map.setModel(data)
       this.map.model.operationHours = 24
+      if ( config.center.customData ) {
+        this.map.setCustomData(config.center.customData)
+      }
       this.createLeftComponents(this.map, config.left)
       this.createRightComponents(this.map, config.right)
 
@@ -142,6 +145,10 @@ export default {
         node.model.wireLength = componentRef.wireLength
         node.model.wireLength ||= 100 // cm
  
+        if ( componentRef.customData ) {
+          node.setCustomData(componentRef.customData)
+        }
+
         parentComponentHost.addNode(node)
         this.createLeftComponents(node, componentRef.children) 
       })
@@ -158,6 +165,10 @@ export default {
         node.model.wireLength = componentRef.wireLength
         node.model.wireLength ||= 100 // cm
         
+        if ( componentRef.customData ) {
+          node.setCustomData(componentRef.customData)
+        }
+
         parentComponentHost.addNode(node)
         this.createRightComponents(node, componentRef.children) 
       })
@@ -182,15 +193,14 @@ export default {
     },
     
     async handleNodeSelect (event) {
-      // console.log("NODE selected", event.component)
     },
 
     async handleNodeConfigure (event) {
       const node = event.component
       const uuid = await this.$refs.selectDialog.show(node.type)
       if (uuid) {
-        const data = this.$store.getters[node.type + "/getByUuid"](uuid)
-        node.setModel(data)
+        const model = this.$store.getters[node.type + "/getByUuid"](uuid)
+        node.setModel(model)
         this.saveConfig()
       }
     },
@@ -208,7 +218,13 @@ export default {
 
     async handleNodeShowInfo (event) {
       const node = event.component
-      this.$refs.infoDialog.show(node)
+      const data = await this.$refs.infoDialog.show(node)
+      if ( data ) {
+        const model = this.$store.getters[node.type + "/getByUuid"]("custom")
+        node.setModel(model)
+        node.setCustomData(data)
+        this.saveConfig()
+      }
     },
 
     async handleNodeTimer (event) {
@@ -232,7 +248,7 @@ export default {
       // save the changes as "user" configuration
       this.$store.dispatch('profile/saveUserConfiguration', this.map.toJson())
 
-      // and load now the "user" configuration. Only the "user" configuration is changeable
+      // and switch from the predefined setup to the "user" configuration by "#" routing.
       if ( this.configuration.id !== "user") {
         this.$router.push({ path: '/map/user' })
       }
@@ -503,7 +519,7 @@ export default {
       font-size: 12px;
       padding-bottom: 5px;
     }
-    
+
     .component_icon {
       display: block;
       margin-left: auto;

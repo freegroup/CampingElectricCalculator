@@ -1,5 +1,8 @@
-
 import components from "./BatteryProtect_data.js"
+
+function longname(model) {
+  return model.name + " (" + model.data.strom + " A)"
+}
 
 function sortComponents (payload) {
   return payload.sort((a, b) => a.data.strom - b.data.strom)
@@ -8,7 +11,7 @@ function sortComponents (payload) {
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "batteryProtect"
-    element.name = element.name + " (" + element.data.strom + "A)"
+    element.longname = longname(element)
   })
   return payload
 }
@@ -21,6 +24,9 @@ export default {
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (id) => {
       return state.components.find(component => component.uuid === id)
+    },
+    longname: (state, getters, rootState, rootGetters) => (model) => {
+      return longname(model)
     }
   }
 }

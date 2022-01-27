@@ -2,6 +2,19 @@ const images = require.context("@/store/images/usbConsumer/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic USB Device", 
+    imageSrc: images("./custom.png"),
+    operationHours: 2,
+    runningMode: "loading",
+    exportable: false,
+    shopping: [],
+    data: {
+      spannung: 0, 
+      strom: 0
+    }
+  },
+  { 
     uuid: "1w312343lk245phone", 
     name: "SmartPhone", 
     imageSrc: images("./phone_charge.png"),

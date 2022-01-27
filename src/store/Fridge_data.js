@@ -2,6 +2,19 @@ const images = require.context("@/store/images/fridge/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Fridge", 
+    imageSrc: images("./custom.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [],
+    data: {
+      spannung: 0, 
+      strom: 0, // I=P/U
+      liter: 0
+    }
+  },
+  { 
     uuid: "1w3453lk245", 
     name: "Engel CK100", 
     imageSrc: images("./engel_ck100.png"),

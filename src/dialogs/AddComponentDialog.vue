@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     components(type) {
-      return this.$store.state[type].components
+      return this.$store.state[type].components.filter( element => element.uuid !== "custom" )
     },
     async show( types) {
       this.types = types

@@ -3,6 +3,18 @@ const images = require.context("@/store/images/killSwitch/", true, /\.png$/)
 export default
 [
   { 
+    uuid: "custom", 
+    name: "Generic Main Switch", 
+    description: "Bettery disconnect switch",
+    imageSrc: images("./custom.png"),
+    exportable: true,
+    shopping: [],
+    data: {
+      strom: 0,
+      spannung: 0
+    }
+  },
+  { 
     uuid: "CE4E06EA-2E15-4938-AFC5-0C7DA036E876", 
     name: "Kill Switch", 
     description: "Battery Switch Disconnect 12V 24V 48V Battery Switch 1-2-Both-OFF, 300A Main Switch Waterproof Power Switch Battery Disconnect Master for Car Truck Boat Yacht...",

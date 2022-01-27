@@ -2,6 +2,22 @@ const images = require.context("@/store/images/solarPanel/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Solar Panel", 
+    hersteller: "Generic",
+    imageSrc: images("./custom.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [],
+    data: {
+      watt: 0, // Watt peak
+      nennspannung: 0,
+      leerlaufspannung: 0,
+      nennstrom: 0,
+      kurzschlussstrom: 0
+    }
+  },
+  { 
     uuid: "6676406A-45EA-4B45-98A9-6118ADF47CD6", 
     name: "ECTIVE MSP", 
     hersteller: "ECTIVE",

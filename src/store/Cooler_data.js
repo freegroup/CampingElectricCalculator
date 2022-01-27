@@ -2,6 +2,19 @@ const images = require.context("@/store/images/cooler/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Cooler", 
+    imageSrc: images("./custom.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [],
+    data: {
+      spannung: 0, 
+      strom: 0, // I=P/U
+      liter: 0
+    }
+  },
+  { 
     uuid: "F40CF4A7-6381-4ECC-9C3B-4A64C493C20B", 
     name: "Dino KRAFTPAKET", 
     imageSrc: images("./dino_28l.png"),

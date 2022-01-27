@@ -8,8 +8,7 @@
               <v-img class="pt-10" :src="model.imageSrc" contain></v-img>
             </v-col>
             <v-col cols="8"  class="mt-5 pl-10">
-              <v-simple-table flat dense style="font-size:50%">
-                <template v-slot:default>
+              <table>
                   <thead>
                     <tr>
                       <th width="200" class="text-left">Name</th>
@@ -18,10 +17,11 @@
                   <tbody>
                     <tr :key="key" v-for="key in Object.keys(model.data)" >
                       <td class="text-no-wrap">{{ $t("data.label."+key)}}</td>
-                      <td>{{model.data[key] | toFixed}} {{ $t("data.unit."+key)}}</td> </tr>
+                      <td v-if="editMode">{{model.data[key] | toFixed}} {{ $t("data.unit."+key)}}</td> 
+                      <td v-if="!editMode"><v-text-field :hide-details="true" :disabled="isNaN(model.data[key])" dense type="number" v-model.number="model.data[key]" :suffix='$t("data.unit."+key)'></v-text-field></td> 
+                    </tr>
                   </tbody>
-                </template>
-              </v-simple-table>
+              </table>
             </v-col>
           </v-row>
           <v-row>
@@ -47,7 +47,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onCloseButtonClick">Close</v-btn>
+          <v-btn                      color="primary" text @click="onCloseButtonClick">Close</v-btn>
+          <v-btn v-if="valueChanged"  color="primary"      @click="onSaveButtonClick">Save</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -62,24 +63,64 @@ export default {
   data() {
     return {
       showFlag: false,
+      editMode: false,
+      valueChanged: false,
       resolve: null,
+      component: null,
       model: { shopping: [], data: {} }
     }
   },
   components: {
     DialogHeader
   },
+  watch: {
+    "model.data": {
+      handler(val) {
+        if (this.showFlag) {
+          this.valueChanged = true
+          const model = this.$store.getters[this.component.type + "/getByUuid"]("custom")
+          const data = this.model.data
+          this.model = model
+          this.model.data = data
+        }
+      },
+      deep: true
+    }
+  },
+  computed: {
+  },
   methods: {
     async show( component ) {
       return new Promise((resolve) => {
+        this.component = component
+        this.model = JSON.parse(JSON.stringify(component.model)) // deep copy
+ 
         this.resolve = resolve
-        this.showFlag = true
-        this.model = component.model
+        this.valueChanged = false
+        // just to ensure that the "showFlag" happen in the next cycle and the "watch"
+        // can determine if the value-change happens by user interaction or by the intial dialog.show
+        //
+        this.$nextTick( () => { this.showFlag = true } )
       })
     },
+
+    inputType ( value ) {
+      if ( isNaN(value )) {
+        return "text"
+      }
+      return "number"
+    },    
     onCloseButtonClick() {
       this.showFlag = false
       this.resolve && this.resolve()
+      this.component = null
+      this.model = { shopping: [], data: {} }
+    },
+    onSaveButtonClick() {
+      this.showFlag = false
+      this.resolve && this.resolve(this.model.data)
+      this.component = null
+      this.model = { shopping: [], data: {} }
     }
   }
 }

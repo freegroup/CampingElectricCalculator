@@ -2,8 +2,23 @@ const images = require.context("@/store/images/carSocket/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Car Socket", 
+    imageSrc: images("./custom.png"),
+    operationHours: 24,
+    exportable: true,
+    shopping: [],
+    data: {
+      spannung: 0, 
+      strom: 0, // I=P/U
+      watt: 0,
+      strom_je_anschluss: 0,
+      buchsen: 0
+    }
+  },
+  { 
     uuid: "FEAA20DC-89D3-41E3-B632-87E54DDAB6E8", 
-    name: "KFZ Socket", 
+    name: "Car Socket", 
     imageSrc: images("./dodolar.png"),
     operationHours: 24,
     exportable: true,
@@ -25,7 +40,7 @@ export default [
   },
   { 
     uuid: "71349955-D0FC-4BBB-A418-B85D5D84674E", 
-    name: "KFZ Socket", 
+    name: "Car Socket", 
     imageSrc: images("./enisina_dual.png"),
     operationHours: 24,
     exportable: true,

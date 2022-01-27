@@ -23,8 +23,15 @@ export default class RightFuseBox extends RightNode {
         result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
       }
     }
-    
-    // Calculate if the accumulated "strom"
+
+    this.children.forEach( child => {
+      const data = child.calculateConsumptionData()
+      if ( this.model.data.strom_je_anschluss <= data.strom ) {
+        result.push({ type: "Error", text: `Consumer draws more current (${data.strom.toFixed(2)} A) than the maximal allowed (${this.model.data.strom_je_anschluss} A)` })
+      }
+    })
+
+    // Calculate if the accumulated "strom" is bigger than the max possible
     //
     if ( this.children.length > 0 ) {
       const data = this.children[0].calculateConsumptionData()

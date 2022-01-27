@@ -1,5 +1,6 @@
 import $ from "jquery"
 import { v4 as uuidv4 } from 'uuid'
+import store from "@/store/index"
 
 let DRAGGING_COUNTER = 0
 let DRAGGING_NODE = null
@@ -39,11 +40,25 @@ export default class GenericNode {
 
     if ( this.mindmap ) {
       this.mindmap.updateStatusbar()
-    }
-    this.updateStatusIcons(true)
-    if ( this.mindmap ) {
       this.mindmap.drawLines(true)
     }
+    this.updateStatusIcons(true)
+  }
+
+  setCustomData( data ) {
+    this.model.customData = JSON.parse(JSON.stringify(data)) // deep copy
+    // if we have customData, we should use them....
+    // We can asign the data direct withot any sideeffect to other components because
+    // we have a deep copy of the model...no other refrneces within the overall model
+    //
+    this.model.data = data
+    this.model.longname = store.getters[this.model.type + "/longname"](this.model)
+    this.renderModel()
+    if ( this.mindmap ) {
+      this.mindmap.updateStatusbar()
+      this.mindmap.drawLines(true)
+    }
+    this.updateStatusIcons(true)
   }
 
   updateStatusIcons(recursive) {
@@ -75,7 +90,7 @@ export default class GenericNode {
   }
 
   setModel(model) {
-    this.model = model
+    this.model = JSON.parse(JSON.stringify(model)) // deep copy to avoid cuustomData side effects
     this.renderModel()
     this.updateStatusIcons(true)
     if ( this.mindmap ) {
@@ -88,7 +103,7 @@ export default class GenericNode {
       this.getComponentContainer().innerHTML = 
       `
       <div class="component">
-        <div class="component_label">${this.model.name}</div>
+        <div class="component_label">${this.model.longname}</div>
         <img draggable="false" class="component_icon" src="${this.model.imageSrc}"></img>
       </div>
       `
@@ -184,7 +199,8 @@ export default class GenericNode {
       uuid: this.model.uuid, 
       type: this.model.type, 
       operationHours: operationHours, 
-      wireLength: wireLength 
+      wireLength: wireLength,
+      customData: this.model.customData || null 
     }
 
     json.children = []

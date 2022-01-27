@@ -3,6 +3,19 @@ const images = require.context("@/store/images/fuse/", true, /\.png$/)
 export default
 [
   { 
+    uuid: "custom", 
+    name: "Generic Main Fuse", 
+    description: "Generic MEGA-Fuse",
+    imageSrc: images("./custom.png"),
+    exportable: true,
+    shopping: [],
+    data: {
+      type: "melt",
+      strom: 0,
+      spannung: 0
+    }
+  },
+  { 
     uuid: "FBB6A004-FDC3-4937-A08C-30DED8119B66", 
     name: "Red Wulf", 
     description: "Automatic wear-free fuse for the motorhome electrical system. In case of overload or when you press the emergency stop button, the fuse switches off and can be switched on again manually when you press the latch again.",

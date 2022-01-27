@@ -1,6 +1,10 @@
 
 import components from "./Accu_data.js"
 
+function longname(model) {
+  return model.name + " (" + model.data.amperestunden + "Ah, " + model.data.type + ")"
+}
+
 function sortComponents (payload) {
   return payload.sort((a, b) => a.data.amperestunden - b.data.amperestunden)
 }
@@ -8,7 +12,7 @@ function sortComponents (payload) {
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "accu"
-    element.name = element.name + " (" + element.data.amperestunden + "Ah, " + element.data.type + ")"
+    element.longname = longname(element)
     // bring the attributes in a good oder for the user. We render this attributes in the UI in the order
     // they are named.
     element.data = {
@@ -27,13 +31,12 @@ export default {
   state: {
     components: enrichComponents(sortComponents(components))
   },
-  actions: {
-  },
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (uuid) => {
       return state.components.find(component => component.uuid === uuid)
+    },
+    longname: (state, getters, rootState, rootGetters) => (model) => {
+      return longname(model)
     }
-  },
-  mutations: {
   }
 }

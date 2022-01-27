@@ -1,6 +1,10 @@
 
 import components from "./FuseBox_data.js"
 
+function longname(model) {
+  return model.name + " (" + model.data.anschluesse + " x " + model.data.strom_je_anschluss + "A)"
+}
+
 function sortComponents (payload) {
   return payload.sort((a, b) => a.data.anschluesse - b.data.anschluesse)
 }
@@ -8,7 +12,7 @@ function sortComponents (payload) {
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "fuseBox"
-    element.name = element.name + " (" + element.data.anschluesse + "x" + element.data.strom_je_anschluss + "A)"
+    element.longname = longname(element)
   })
   return payload
 }
@@ -21,6 +25,9 @@ export default {
   getters: {
     getByUuid: (state, getters, rootState, rootGetters) => (id) => {
       return state.components.find(component => component.uuid === id)
+    },
+    longname: (state, getters, rootState, rootGetters) => (model) => {
+      return longname(model)
     }
   }
 }

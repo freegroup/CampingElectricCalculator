@@ -2,6 +2,19 @@ const images = require.context("@/store/images/light/", true, /\.png$/)
 
 export default [
   { 
+    uuid: "custom", 
+    name: "Generic Light", 
+    imageSrc: images("./custom.png"),
+    operationHours: 2,
+    exportable: true,
+    shopping: [],
+    data: {
+      spannung: 0, 
+      strom: 0,
+      laenge: 0
+    }
+  },
+  { 
     uuid: "EA27D7A1-55A7-403A-8CB1-00A3D90830ED", 
     name: "Lamomo Warm 5m", 
     imageSrc: images("./lamomo_led_strip_2m.png"),
