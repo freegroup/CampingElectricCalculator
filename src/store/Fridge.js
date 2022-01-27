@@ -1,8 +1,9 @@
 
 import components from "./Fridge_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.liter + " Litert)"
+  return model.name + " (" + toFixed(model.data.liter) + " Liter)"
 }
 
 function sortComponents (payload) {

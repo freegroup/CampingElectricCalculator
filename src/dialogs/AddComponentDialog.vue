@@ -69,6 +69,7 @@
 
 <script>
 import DialogHeader from "@/components/DialogHeader.vue"
+import { toFixed } from "@/utils/Wire.js"
 
 export default {
   name: "AddComponentDialog",
@@ -100,9 +101,9 @@ export default {
       const low = item.shopping.reduce((prev, curr) => prev.lastKnownPrice < curr.lastKnownPrice ? prev : curr)
       const high = item.shopping.reduce((prev, curr) => prev.lastKnownPrice > curr.lastKnownPrice ? prev : curr)
       if (low.lastKnownPrice === high.lastKnownPrice ) {
-        return (low.lastKnownPrice).toFixed(2) + " €"
+        return toFixed(low.lastKnownPrice) + " €"
       }
-      return (low.lastKnownPrice).toFixed(2) + " - " + (high.lastKnownPrice).toFixed(2) + " €"
+      return toFixed(low.lastKnownPrice) + " - " + toFixed(high.lastKnownPrice) + " €"
     },
     onItemSelected(type, uuid) {
       this.showFlag = false

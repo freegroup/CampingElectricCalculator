@@ -1,8 +1,9 @@
 
 import components from "./UsbConsumer_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + parseInt(model.data.strom) + " A)"
+  return model.name + " (" + toFixed(model.data.strom) + " A)"
 }
 
 function sortComponents (payload) {

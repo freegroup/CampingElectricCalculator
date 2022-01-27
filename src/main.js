@@ -7,6 +7,7 @@ import store from './store'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 import messages from "@/i18n.js"
+import { toFixed } from "@/utils/Wire.js"
 
 Vue.config.productionTip = true
 Vue.use(VueI18n)
@@ -16,12 +17,7 @@ const i18n = new VueI18n({
   messages
 })
 
-Vue.filter('toFixed', function (value) {
-  if ( isNaN(value) ) {
-    return value
-  }
-  return value.toFixed(2).replace(/\.00$/, '')
-})
+Vue.filter('toFixed', toFixed)
 
 new Vue({
   router,

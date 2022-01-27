@@ -1,7 +1,8 @@
 import components from "./ShoreBooster_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.strom + "A, " + model.data.chargeSupport.join(", ") + " )"
+  return model.name + " (" + toFixed(model.data.strom) + " A, " + model.data.chargeSupport.join(", ") + " )"
 }
 
 function sortComponents (payload) {

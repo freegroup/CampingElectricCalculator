@@ -1,4 +1,5 @@
 import RightNode from './RightNode'
+import { toFixed } from "@/utils/Wire.js"
 
 export default class RightFuse extends RightNode {
   constructor() {
@@ -39,7 +40,7 @@ export default class RightFuse extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The current <b>[${data.strom.toFixed(2)}A]</b> of the input sources are bigger than the maximum power which the fuse can handle <b>[${this.model.data.strom}A]</b>` })
+        result.push({ type: "Error", text: `The current <b>[${toFixed(data.strom)}A]</b> of the input sources are bigger than the maximum power which the fuse can handle <b>[${this.model.data.strom}A]</b>` })
       }
     }
     return result

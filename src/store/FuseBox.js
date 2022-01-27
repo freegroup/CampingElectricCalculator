@@ -1,8 +1,9 @@
 
 import components from "./FuseBox_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.anschluesse + " x " + model.data.strom_je_anschluss + "A)"
+  return model.name + " (" + model.data.anschluesse + " x " + toFixed(model.data.strom_je_anschluss) + " A)"
 }
 
 function sortComponents (payload) {

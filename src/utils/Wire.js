@@ -13,4 +13,12 @@ function kabelquerschnitt (laengeInMeter, strom, spannung) {
   return diameters[index + 1]
 }
 
-export { kabelquerschnitt, delta, gamma, querschnitt }
+function toFixed(value) {
+  if ( isNaN(value) ) {
+    return value
+  }
+  // return value.toFixed(2).replace(/\.00$/, '')
+  return value.toFixed(2).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1')
+}
+
+export { kabelquerschnitt, delta, gamma, querschnitt, toFixed }

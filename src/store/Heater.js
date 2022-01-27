@@ -1,8 +1,9 @@
 
 import components from "./Heater_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + (model.data.heizleistung / 1000).toFixed(2) + " kW)"
+  return model.name + " (" + toFixed(model.data.heizleistung / 1000) + " kW)"
 }
 
 function sortComponents (payload) {

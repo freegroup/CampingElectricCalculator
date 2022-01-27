@@ -1,8 +1,9 @@
 
 import components from "./SwitchPanel_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.schalter + "x" + model.data.strom_je_anschluss + "A)"
+  return model.name + " (" + model.data.schalter + " x " + toFixed(model.data.strom_je_anschluss) + " A)"
 }
 
 function sortComponents (payload) {

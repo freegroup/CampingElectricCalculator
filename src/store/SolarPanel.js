@@ -1,8 +1,9 @@
 
 import components from "./SolarPanel_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.watt + " Watt)"
+  return model.name + " (" + toFixed(model.data.watt) + " Watt)"
 }
 
 function sortComponents (payload) {

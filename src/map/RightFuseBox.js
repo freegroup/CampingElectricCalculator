@@ -1,4 +1,5 @@
 import RightNode from './RightNode'
+import { toFixed } from "@/utils/Wire.js"
 
 export default class RightFuseBox extends RightNode {
   constructor() {
@@ -27,7 +28,7 @@ export default class RightFuseBox extends RightNode {
     this.children.forEach( child => {
       const data = child.calculateConsumptionData()
       if ( this.model.data.strom_je_anschluss <= data.strom ) {
-        result.push({ type: "Error", text: `Consumer draws more current (${data.strom.toFixed(2)} A) than the maximal allowed (${this.model.data.strom_je_anschluss} A)` })
+        result.push({ type: "Error", text: `Consumer draws more current (${toFixed(data.strom)} A) than the maximal allowed (${this.model.data.strom_je_anschluss} A)` })
       }
     })
 

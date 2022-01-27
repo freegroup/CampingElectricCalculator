@@ -1,8 +1,9 @@
 
 import components from "./Fuse_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.strom + " A)"
+  return model.name + " (" + toFixed(model.data.strom) + " A)"
 }
 
 function sortComponents (payload) {

@@ -3,6 +3,7 @@ import { drawLine, disableSelection, htmlToElement, ARROW_STROKE, CANVAS_WIDTH, 
 import GenericNode from './GenericNode'
 import LeftDefaultNode from './LeftDefaultNode'
 import RightDefaultNode from './RightDefaultNode'
+import { toFixed } from "@/utils/Wire.js"
 
 export default class Mindmap extends GenericNode {
   constructor(id, width, height) {
@@ -513,11 +514,11 @@ export default class Mindmap extends GenericNode {
     if ( diff >= 0 ) {
       runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
     } else {
-      runtimeDays = (this.model.data.effective_amperestunden / Math.abs(diff)).toFixed(2).replace(/\.00$/, '')
+      runtimeDays = (this.model.data.effective_amperestunden / toFixed(Math.abs(diff))).replace(/\.00$/, '')
     }
-    this.inputLabel.innerHTML = "Input<br>" + (inputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
+    this.inputLabel.innerHTML = "Input<br>" + toFixed(inputAh) + " Ah"
     this.runtimeLabel.innerHTML = "Running Time<br>" + runtimeDays + " days"
-    this.outputLabel.innerHTML = "Output<br>" + (outputAh).toFixed(2).replace(/\.00$/, '') + " Ah"
+    this.outputLabel.innerHTML = "Output<br>" + toFixed(outputAh) + " Ah"
   }
 
   updateStatusIcons(recursive) {

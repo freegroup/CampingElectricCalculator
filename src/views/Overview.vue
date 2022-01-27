@@ -90,6 +90,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import { toFixed } from "@/utils/Wire.js"
 
 export default {
   name: 'Overview',
@@ -102,9 +103,9 @@ export default {
         return " - "
       }
       if (price.low === price.high ) {
-        return (price.low).toFixed(2) + " €"
+        return toFixed(price.low) + " €"
       }
-      return (price.low).toFixed(2) + " - " + (price.high).toFixed(2) + " €"
+      return toFixed(price.low) + " - " + toFixed(price.high) + " €"
     }
   },
   computed: {

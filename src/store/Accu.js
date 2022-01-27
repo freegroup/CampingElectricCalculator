@@ -1,8 +1,9 @@
 
 import components from "./Accu_data.js"
+import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.amperestunden + "Ah, " + model.data.type + ")"
+  return model.name + " (" + toFixed(model.data.amperestunden) + " Ah, " + model.data.type + ")"
 }
 
 function sortComponents (payload) {
