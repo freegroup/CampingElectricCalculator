@@ -13,8 +13,7 @@ export default class Consumer extends RightNode {
   calculateConsumptionData () {
     return { 
       strom: this.model.data.strom, 
-      spannung: this.model.data.spannung, 
-      watt: this.model.data.watt,
+      spannung: this.model.data.spannung,
       operationHours: this.model.operationHours,
       amperestunden: this.model.data.strom * this.model.operationHours
     }

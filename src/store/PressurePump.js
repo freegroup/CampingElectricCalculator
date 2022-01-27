@@ -13,7 +13,6 @@ function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "pressurePump"
     element.longname = longname(element)
-    element.data.watt = element.data.strom * element.data.spannung
   })
   return payload
 }

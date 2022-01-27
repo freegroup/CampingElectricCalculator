@@ -217,7 +217,7 @@ export default class GenericNode {
   }
 
   calculateConsumptionData () {
-    return { strom: 0, spannung: 12, watt: 0 }
+    return { strom: 0, spannung: 0, watt: 0 }
   }
 
   calculateSetupPrice () {

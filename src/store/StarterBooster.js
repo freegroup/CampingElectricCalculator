@@ -13,7 +13,6 @@ function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "starterBooster"
     element.longname = longname(element)
-    element.data.watt = element.data.strom * element.data.spannung
     element.data.chargeSupport = element.data.chargeSupport.sort()
   })
   return payload

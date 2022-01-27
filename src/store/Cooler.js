@@ -2,7 +2,7 @@
 import components from "./Cooler_data.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.liter + " Liter, " + model.data.watt + " Watt)"
+  return model.name + " (" + model.data.liter + " Liter)"
 }
 
 function sortComponents (payload) {
@@ -12,7 +12,6 @@ function sortComponents (payload) {
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "cooler"
-    element.data.watt = element.data.strom * element.data.spannung
     element.longname = longname(element)
   })
   return payload

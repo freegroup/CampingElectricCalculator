@@ -17,10 +17,10 @@
                   <tbody>
                     <tr :key="key" v-for="key in Object.keys(model.data)" >
                       <td class="text-no-wrap">{{ $t("data.label."+key)}}</td>
-                      <template v-if="editable">
-                        <td v-if="isNumber(key)"><v-text-field :hide-details="true" dense type="number" v-model.number="model.data[key]" :suffix='$t("data.unit."+key)'></v-text-field></td> 
-                        <td v-else-if="isStringValue(key)"><v-select :hide-details="true" dense :items="items(key)" v-model="model.data[key]"></v-select></td> 
-                        <td v-else-if="isArrayValue(key)"><v-select :multiple="true" :hide-details="true" :items="items(key)" dense v-model="model.data[key]" ></v-select></td> 
+                      <template v-if="modelEditable">
+                        <td v-if="isNumber(key)"><v-text-field :disabled="!attributeEditable(key)" :hide-details="true" dense type="number" v-model.number="model.data[key]" :suffix='$t("data.unit."+key)'></v-text-field></td> 
+                        <td v-else-if="isStringValue(key)"><v-select :disabled="!attributeEditable(key)" :hide-details="true" dense :items="items(key)" v-model="model.data[key]"></v-select></td> 
+                        <td v-else-if="isArrayValue(key)"><v-select :disabled="!attributeEditable(key)" :multiple="true" :hide-details="true" :items="items(key)" dense v-model="model.data[key]" ></v-select></td> 
                       </template>
                       <template v-else>
                         <td>{{model.data[key]}} {{$t("data.unit."+key)}}</td> 
@@ -94,7 +94,7 @@ export default {
     }
   },
   computed: {
-    editable () {
+    modelEditable () {
       // it is only editable if we have a "custom" item in the collection of the type. This is the template.
       return !!this.$store.getters[this.component.type + "/getByUuid"]("custom")
     }
@@ -122,7 +122,6 @@ export default {
           if ( enums[this.model.type][key].type === "array") {
             return true
           }
-          console.log("false")
           return false
         }
       }
@@ -134,8 +133,17 @@ export default {
           if ( enums[this.model.type][key].type === "string") {
             return true
           }
-          console.log("false")
           return false
+        }
+      }
+      return true
+    },
+    attributeEditable (key) {
+      if ( this.model.type in enums) {
+        if ( key in enums[this.model.type]) {
+          if ( "editable" in enums[this.model.type][key]) {
+            return enums[this.model.type][key].editable
+          }
         }
       }
       return true

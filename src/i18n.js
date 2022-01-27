@@ -24,7 +24,7 @@ export default {
         effective_amperestunden: "Usable Ampere Hour",
         strom: "Current",
         durchfluss: "Flow Rate",
-        liter: "Liter",
+        liter: "Volume",
         druck: "Pressure",
         nennladestrom: "Current",
         ladestrom: "Charge Current", // berechenter Ladestrom eines Charger in Abhängigkeit von input Watt
@@ -58,7 +58,7 @@ export default {
         effective_amperestunden: "Ah",
         strom: "A",
         durchfluss: "L/min",
-        liter: "L",
+        liter: "Liter",
         druck: "bar",
         nennladestrom: "A",
         ladestrom: "A",

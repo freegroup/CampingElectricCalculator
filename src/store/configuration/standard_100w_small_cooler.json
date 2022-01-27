@@ -1,27 +1,34 @@
 {
   "price": {
-    "high": 718.0799999999999,
-    "low": 718.0799999999999
+    "high": 709.47,
+    "low": 709.47
   },
   "center": {
     "uuid": "00DB77EB-C014-43BE-890F-251BE9F9859E",
-    "type": "accu"
+    "type": "accu",
+    "customData": null
   },
   "left": [
     {
       "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
       "type": "fuse",
       "operationHours": 24,
+      "wireLength": 100,
+      "customData": null,
       "children": [
         {
           "uuid": "F9AB426A-5166-4B4E-8FB5-ACB7687BE78E",
           "type": "solarBooster",
           "operationHours": 4.5,
+          "wireLength": 100,
+          "customData": null,
           "children": [
             {
               "uuid": "9E01A0BE-BBE5-4421-B52E-2DFE25D79C03",
               "type": "solarPanel",
               "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
               "children": []
             }
           ]
@@ -30,11 +37,15 @@
           "uuid": "B522FFA9-0D08-4A82-9399-65B9D74A4B28",
           "type": "starterBooster",
           "operationHours": 2.5,
+          "wireLength": 100,
+          "customData": null,
           "children": [
             {
               "uuid": "1w345iuiouh3245",
               "type": "alternator",
               "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
               "children": []
             }
           ]
@@ -47,40 +58,54 @@
       "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
       "type": "fuse",
       "operationHours": 24,
+      "wireLength": 100,
+      "customData": null,
       "children": [
         {
           "uuid": "432DED45-0BB0-4060-A788-43B0DDDDEC4F",
           "type": "fuseBox",
           "operationHours": 24,
+          "wireLength": 100,
+          "customData": null,
           "children": [
             {
               "uuid": "1w312343lk2452x",
               "type": "usb",
               "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
               "children": [
                 {
                   "uuid": "1w312343lk245phone",
                   "type": "usbConsumer",
                   "operationHours": 2,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 },
                 {
                   "uuid": "6F5314FF-D1B5-448F-AD82-9CE2C20B25ED",
                   "type": "usbConsumer",
                   "operationHours": 1,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 }
               ]
             },
             {
-              "uuid": "1w312343lk245",
-              "type": "usb",
+              "uuid": "FEAA20DC-89D3-41E3-B632-87E54DDAB6E8",
+              "type": "carSocket",
               "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
               "children": [
                 {
                   "uuid": "F40CF4A7-6381-4ECC-9C3B-4A64C493C20B",
                   "type": "cooler",
                   "operationHours": 12,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 }
               ]

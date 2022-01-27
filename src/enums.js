@@ -1,4 +1,10 @@
 export default {
+  usbConsumer: {
+    spannung: {
+      type: "number",
+      editable: false
+    }
+  },
   accu: {
     type: {
       values: ["LiFePO4", "Blei", "Gel", "AGM"],

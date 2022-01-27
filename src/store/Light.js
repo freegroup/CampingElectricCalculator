@@ -2,18 +2,17 @@
 import components from "./Light_data.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.watt + " Watt)"
+  return model.name + " (" + model.data.strom + " A)"
 }
 
 function sortComponents (payload) {
-  return payload.sort((a, b) => a.data.watt - b.data.watt)
+  return payload.sort((a, b) => a.data.strom - b.data.strom)
 }
 
 function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "light"
     element.longname = longname(element)
-    element.data.watt = element.data.strom * element.data.spannung
   })
   return payload
 }

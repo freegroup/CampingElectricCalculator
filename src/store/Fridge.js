@@ -2,7 +2,7 @@
 import components from "./Fridge_data.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.liter + " Liter, " + model.data.watt + " Watt)"
+  return model.name + " (" + model.data.liter + " Litert)"
 }
 
 function sortComponents (payload) {
@@ -13,8 +13,6 @@ function enrichComponents (payload) {
   payload.forEach(element => {
     element.type = "fridge"
     element.longname = longname(element)
-    element.data.watt = element.data.strom * element.data.spannung
-    element.longname = element.name + " (" + element.data.liter + " Liter, " + element.data.watt + " Watt)"
   })
   return payload
 }
