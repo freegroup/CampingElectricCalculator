@@ -1,7 +1,7 @@
 {
   "price": {
-    "high": 4781.66,
-    "low": 4781.66
+    "high": 4221.66,
+    "low": 4221.66
   },
   "center": {
     "uuid": "BD79BE1F-AEF9-467E-A0B7-7270080AF600",
@@ -169,14 +169,6 @@
                   "uuid": "EA27D7A1-55A7-403A-8CB1-00A3D90830ED",
                   "type": "light",
                   "operationHours": 2,
-                  "wireLength": 100,
-                  "customData": null,
-                  "children": []
-                },
-                {
-                  "uuid": "E93F0D45-1F8D-4340-BE22-1276CF0176E3",
-                  "type": "heater",
-                  "operationHours": 8,
                   "wireLength": 100,
                   "customData": null,
                   "children": []
