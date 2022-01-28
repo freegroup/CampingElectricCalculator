@@ -9,6 +9,7 @@ import ShoreBooster from "./ShoreBooster.js"
 import SolarBooster from "./SolarBooster.js"
 import StarterAccu from "./StarterAccu.js"
 import StarterBooster from "./StarterBooster.js"
+import DCDCBooster from "./DCDCBooster.js"
 import RightFuseBox from "./RightFuseBox.js"
 import Consumer from "./Consumer.js"
 import Usb from "./Usb.js"
@@ -41,6 +42,9 @@ export default class NodeFactory {
         break
       case "batteryProtect":
         node = new BatteryProtect()     
+        break
+      case "dcdcBooster":
+        node = new DCDCBooster()     
         break
       case "alternator":
         node = new Alternator()     

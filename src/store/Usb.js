@@ -1,9 +1,11 @@
 
 import components from "./Usb_data.js"
-import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.buchsen + " x " + toFixed(model.data.strom_je_anschluss) + " A)"
+  if ( model.data.spannung_min === model.data.spannung_max ) {
+    return `${model.name} (${model.data.spannung_min} V)`
+  }
+  return `${model.name} (${model.data.spannung_min}-${model.data.spannung_max} V)`
 }
 
 function sortComponents (payload) {

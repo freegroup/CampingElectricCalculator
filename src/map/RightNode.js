@@ -8,6 +8,12 @@ export default class RightNode extends Node {
     this.leftSide = false
   }
 
+  calculateOutputData () {
+    const data = JSON.parse(JSON.stringify(this.model.data))
+    data.spannung = this.parent?.getBaseVoltage()
+    return data
+  }
+
   getHTMLElement () {
     if (this.html === null) {
       this.html = document.createElement('table')

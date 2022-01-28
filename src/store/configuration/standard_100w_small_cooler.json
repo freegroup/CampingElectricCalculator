@@ -1,7 +1,7 @@
 {
   "price": {
-    "high": 709.47,
-    "low": 709.47
+    "high": 818.36,
+    "low": 818.36
   },
   "center": {
     "uuid": "00DB77EB-C014-43BE-890F-251BE9F9859E",
@@ -69,7 +69,24 @@
           "customData": null,
           "children": [
             {
-              "uuid": "1w312343lk2452x",
+              "uuid": "FEAA20DC-89D3-41E3-B632-87E54DDAB6E8",
+              "type": "carSocket",
+              "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
+              "children": [
+                {
+                  "uuid": "64010CEC-A57D-4C29-AA64-CECA927E5D89",
+                  "type": "cooler",
+                  "operationHours": 12,
+                  "wireLength": 100,
+                  "customData": null,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "uuid": "1w312343lk245",
               "type": "usb",
               "operationHours": 24,
               "wireLength": 100,
@@ -84,26 +101,9 @@
                   "children": []
                 },
                 {
-                  "uuid": "6F5314FF-D1B5-448F-AD82-9CE2C20B25ED",
+                  "uuid": "901D2C87-35EE-4EBD-96AE-A890F62DF45A",
                   "type": "usbConsumer",
-                  "operationHours": 1,
-                  "wireLength": 100,
-                  "customData": null,
-                  "children": []
-                }
-              ]
-            },
-            {
-              "uuid": "FEAA20DC-89D3-41E3-B632-87E54DDAB6E8",
-              "type": "carSocket",
-              "operationHours": 24,
-              "wireLength": 100,
-              "customData": null,
-              "children": [
-                {
-                  "uuid": "F40CF4A7-6381-4ECC-9C3B-4A64C493C20B",
-                  "type": "cooler",
-                  "operationHours": 12,
+                  "operationHours": 2,
                   "wireLength": 100,
                   "customData": null,
                   "children": []

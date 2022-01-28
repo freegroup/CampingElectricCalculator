@@ -86,7 +86,7 @@ export default class SolarBooster extends LeftNode {
   }
 
   calculateOutputData () {
-    const result = { spannung: 12, strom: 0, watt: 0, ladespannung: this.mindmap ? this.mindmap.getMaxChargeVoltage() : 12 } 
+    const result = { spannung: this.mindmap?.getMaxChargeVoltage(), strom: 0, watt: 0, ladespannung: this.mindmap?.getMaxChargeVoltage() } 
     // Berechnung der Parallelschaltung aller "parallel" angehängten Panels. 
     if ( this.children.length > 0 ) {
       const data = this.children[0].calculateOutputData()
@@ -123,6 +123,7 @@ export default class SolarBooster extends LeftNode {
 
     result.ladestrom = result.watt / result.ladespannung
     result.amperestunden = result.strom * this.model.operationHours
+    console.log(result)
     return result
   }
 

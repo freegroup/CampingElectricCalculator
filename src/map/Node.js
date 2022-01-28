@@ -4,8 +4,8 @@ import GenericNode from './GenericNode'
 export default class Node extends GenericNode {
   constructor() {
     super()
-    this._parent = null
-    this._mindmap = null
+    this.parent = null
+    this.mindmap = null
 
     this.children = []
     this.leftSide = false
@@ -28,8 +28,8 @@ export default class Node extends GenericNode {
     }
     this.children.push(node)
     this.childContainer.append(node.getHTMLElement())
-    node.parent = this
-    node.mindmap = this.mindmap
+    node.setParent(this)
+    node.setMindmap(this.mindmap)
     this.updateStatusIcons()
     node.updateStatusIcons()
     this.drawLines()
@@ -44,8 +44,8 @@ export default class Node extends GenericNode {
   removeNode(node) {
     this.children = $.grep(this.children, (element) => element !== node)
     node.html.remove()
-    node.parent = null
-    node.mindmap = null
+    node.setParent(null)
+    node.setMindmap(null)
     this.updateStatusIcons()
     this.drawLines()
     this.mindmap.updateStatusbar()
@@ -58,20 +58,11 @@ export default class Node extends GenericNode {
    * Set the parent node of this element.
    * @param {Node} parent
    */
-  set parent(parent) {
-    this._parent = parent
-    this._parent !== null && this.drawLines()
+  setParent(parent) {
+    this.parent = parent
+    this.parent !== null && this.drawLines()
     this.renderModel()
     this.updateStatusIcons()
-  }
-
-  /**
-   * Returns the parent node of this object.<br>
-   *
-   * @type map.Node
-   * */
-  get parent() {
-    return this._parent
   }
 
   set hidden(flag) {
@@ -83,14 +74,10 @@ export default class Node extends GenericNode {
    *
    * @param {Mindmap} mindmap the mindmap of the element
    * */
-  set mindmap(mindmap) {
-    this._mindmap = mindmap
-    this.children.forEach((child) => (child.mindmap = mindmap))
+  setMindmap(mindmap) {
+    this.mindmap = mindmap
+    this.children.forEach((child) => (child.setMindmap(mindmap)))
     this.renderModel()
-  }
-
-  get mindmap() {
-    return this._mindmap
   }
 
   /**

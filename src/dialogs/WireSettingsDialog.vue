@@ -55,7 +55,7 @@
 
 <script>
 import DialogHeader from "@/components/DialogHeader.vue"
-import { delta, gamma, kabelquerschnitt, querschnitt } from "@/utils/Wire.js"
+import { delta, gamma, kabelquerschnitt, querschnitt, toFixed } from "@/utils/Wire.js"
 
 export default {
   name: "WireSettingsDialog",
@@ -83,10 +83,10 @@ export default {
       }
     },
     strom () {
-      return this.component?.calculateOutputData()?.strom?.toFixed(2)
+      return toFixed(this.component?.calculateOutputData()?.strom)
     },
     spannung () {
-      return this.component?.calculateOutputData()?.spannung?.toFixed(2)
+      return toFixed(this.component?.calculateOutputData()?.spannung)
     },
     kabelquerschnitt () {
       return kabelquerschnitt(this.length, this.strom, this.spannung)

@@ -3,7 +3,7 @@ import components from "./CarSocket_data.js"
 import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + model.data.buchsen + " x " + toFixed(model.data.strom_je_anschluss) + " Ah)"
+  return model.name + " (" + model.data.buchsen + " x " + toFixed(model.data.strom_je_buchse) + " A)"
 }
 
 function sortComponents (payload) {

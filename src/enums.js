@@ -5,6 +5,12 @@ export default {
       editable: false
     }
   },
+  usb: {
+    spannung_je_buchse: {
+      type: "number",
+      editable: false
+    }
+  },
   accu: {
     type: {
       values: ["LiFePO4", "Blei", "Gel", "AGM"],

@@ -53,6 +53,7 @@ export default class StarterBooster extends LeftNode {
     delete data.eingangsspannung_max
     delete data.eingangsstrom
 
+    data.spannung = this.mindmap?.getMaxChargeVoltage()
     // the booster can't deliver more than the possible input 
     // power
     data.strom = Math.min(data.strom, input.strom)

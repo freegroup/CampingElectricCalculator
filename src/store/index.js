@@ -22,6 +22,7 @@ import carSocket from './CarSocket'
 import light from './Light'
 import switchPanel from './SwitchPanel'
 import pressurePump from './PressurePump'
+import dcdcBooster from './DCDCBooster'
 import profile from './Profile'
 
 Vue.use(Vuex)
@@ -44,6 +45,7 @@ export default new Vuex.Store({
     pressurePump,
     shoreBooster,
     solarBooster,
+    dcdcBooster,
     solarSet,
     starterBooster,
     killSwitch,

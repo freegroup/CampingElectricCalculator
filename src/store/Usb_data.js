@@ -9,10 +9,11 @@ export default [
     exportable: true,
     shopping: [],
     data: {
-      spannung: 0, 
-      strom: 0, // I=P/U
+      spannung_min: 0, 
+      spannung_max: 0,
       buchsen: 0,      
-      strom_je_anschluss: 0
+      spannung_je_buchse: 0,
+      strom_je_buchse: 0
     }
   },
   { 
@@ -30,52 +31,33 @@ export default [
       }
     ],
     data: {
-      spannung: 12, 
-      strom: 3.6, // I=P/U
-      buchsen: 1,      
-      strom_je_anschluss: 3.6
+      spannung_min: 12, 
+      spannung_max: 12,
+      buchsen: 1,
+      spannung_je_buchse: 5,
+      strom_je_buchse: 3.6
     }
   },
   { 
-    uuid: "1w312343lk2452x", 
+    uuid: "EDACC5FF-10E2-4D4A-BEA7-34423E5EA813", 
     name: "USB", 
-    imageSrc: images("./usb.png"),
+    imageSrc: images("./usb_12_24_front.png"),
     operationHours: 24,
     exportable: true,
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3t9eWkF",
-        label: "ProCar 67341000 Power USB-C/A",
-        lastKnownPrice: 16.99
+        link: "https://amzn.to/3ue7CVz",
+        label: "Auto Dual USB Stecker",
+        lastKnownPrice: 15.39
       }
     ],
     data: {
-      spannung: 12, 
-      strom: 2 * 3.6, // I=P/U
-      buchsen: 2,
-      strom_je_anschluss: 3.6
-    }
-  },
-  { 
-    uuid: "1w312343lk2454x", 
-    name: "USB", 
-    imageSrc: images("./usb.png"),
-    operationHours: 24,
-    exportable: true,
-    shopping: [
-      {
-        shop: "Amazon",
-        link: "https://amzn.to/3t9eWkF",
-        label: "ProCar 67341000 Power USB-C/A",
-        lastKnownPrice: 16.99
-      }
-    ],
-    data: {
-      spannung: 12, 
-      strom: 4 * 3.6, // I=P/U
-      buchsen: 4,
-      strom_je_anschluss: 3.6
+      spannung_min: 12, 
+      spannung_max: 24,
+      buchsen: 1,
+      spannung_je_buchse: 5,
+      strom_je_buchse: 3.6
     }
   }
 ]

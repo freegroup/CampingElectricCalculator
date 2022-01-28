@@ -11,7 +11,8 @@ export default
     shopping: [],
     data: {
       strom: 0,
-      spannung: 0,
+      spannung_min: 12,
+      spannung_max: 48,
       strom_je_anschluss: 0,
       anschluesse: 0
     }
@@ -32,7 +33,8 @@ export default
     ],
     data: {
       strom: 100,
-      spannung: 12,
+      spannung_min: 12,
+      spannung_max: 12,
       strom_je_anschluss: 15,
       anschluesse: 12
     }
@@ -53,7 +55,8 @@ export default
     ],
     data: {
       strom: 6 * 4,
-      spannung: 12,
+      spannung_min: 12,
+      spannung_max: 12,
       strom_je_anschluss: 4,
       anschluesse: 6
     }
@@ -74,7 +77,8 @@ export default
     ],
     data: {
       strom: 6 * 8,
-      spannung: 12,
+      spannung_min: 12,
+      spannung_max: 12,
       strom_je_anschluss: 8,
       anschluesse: 6
     }
@@ -95,7 +99,8 @@ export default
     ],
     data: {
       strom: 10 * 8,
-      spannung: 12,
+      spannung_min: 12,
+      spannung_max: 12,
       strom_je_anschluss: 8,
       anschluesse: 10
     }
@@ -116,7 +121,8 @@ export default
     ],
     data: {
       strom: 8 * 15,
-      spannung: 35,
+      spannung_min: 12,
+      spannung_max: 35,
       strom_je_anschluss: 15,
       anschluesse: 8
     }

@@ -13,6 +13,16 @@ export default class Usb extends RightNode {
     return 5
   }
 
+  setParent(parent) {
+    super.setParent(parent)
+    // strom anhand der verwendet Eingangsspannung berechnen. Der Strom in model.data gibt ja nur an
+    // wie viel Strom der Anschluß bei 5V bereitstellen kann. Er gibt gibt nicht an wie viel Strom das
+    // Teil selber zieht.
+    // Da das model eine "deep copy" ist, können wir die Daten direkt verändern
+    //
+    this.model.data.strom = ( (this.model.data.strom_je_buchse * this.model.data.buchsen) * this.getBaseVoltage() ) / parent?.getBaseVoltage()
+  }
+
   getErrorMessages () {
     const result = []
 
@@ -38,8 +48,13 @@ export default class Usb extends RightNode {
 
     if ( this.parent ) {
       // Spannungen müssen passen
-      if ( this.model.data.spannung !== this.parent.getBaseVoltage() ) {
-        result.push({ type: "Error", text: `The USB unit requires a supply voltage of <b>[${this.model.data.spannung} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+      const base = this.parent.getBaseVoltage()
+      if ( this.model.data.spannung_min > base || this.model.data.spannung_max < base ) {
+        if ( this.model.data.spannung_min !== this.model.data.spannung_max ) {
+          result.push({ type: "Error", text: `The USB unit requires a supply voltage of <b>[${this.model.data.spannung_min}-${this.model.data.spannung_max} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+        } else {
+          result.push({ type: "Error", text: `The USB unit requires a supply voltage of <b>[${this.model.data.spannung_min} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+        }
       }            
     }
  
@@ -47,10 +62,10 @@ export default class Usb extends RightNode {
   }
 
   calculateConsumptionData () {
-    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0, amperestunden: 0, operationHours: 0 }
+    // the car socket uses the voltage provided by the parent (getBaseVoltage)
+    // ...even if this component breaks. Check the warnings in the UI
+    const result = { strom: 0, spannung: this.parent?.getBaseVoltage(), watt: 0, amperestunden: 0, operationHours: 0 }
     if ( this.children.length > 0 ) {
-      // Der Konsumer kann nur so viel Strom verbrauchen wie die Dose ihm zur verfügung stellen kann
-      //
       result.strom = this.model.data.strom
       result.operationHours = this.children[0].calculateConsumptionData().operationHours
      
@@ -59,7 +74,8 @@ export default class Usb extends RightNode {
       })
     }
     result.amperestunden = result.strom * result.operationHours
-    result.watt = result.strom * 5 // USB is 5Volt only as output In this case we must calculate with 5Volt
+    result.watt = result.strom * this.getBaseVoltage() // USB is 5Volt only as output In this case we must calculate with 5Volt
+
     return result
   }
 }

@@ -48,6 +48,7 @@ export default class Mindmap extends GenericNode {
   }
 
   getMaxChargeVoltage() {
+    console.log(this.model?.data)
     return this.model?.data.ladespannung
   }
 
@@ -164,8 +165,8 @@ export default class Mindmap extends GenericNode {
 
     // The mindmap is parent and to root element of this node
     //
-    node.parent = this
-    node.mindmap = this
+    node.setParent(this)
+    node.setMindmap(this)
 
     this.updateStatusbar()
     this.updateStatusIcons()
@@ -183,8 +184,8 @@ export default class Mindmap extends GenericNode {
 
     // The mindmap is parent and to root element of this node
     //
-    node.parent = null
-    node.mindmap = null
+    node.setParent(null)
+    node.setMindmap(null)
     this.drawLines()
 
     if ( this.leftChildren.length === 0 && node.leftSide === true) {

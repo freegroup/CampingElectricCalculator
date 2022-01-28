@@ -11,7 +11,7 @@ export default [
     data: {
       spannung: 0, 
       strom: 0, // I=P/U
-      strom_je_anschluss: 0,
+      strom_je_buchse: 0,
       buchsen: 0
     }
   },
@@ -31,8 +31,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: 10, // I=P/U
-      strom_je_anschluss: 10,
+      strom_je_buchse: 10,
       buchsen: 1
     }
   },
@@ -51,9 +50,8 @@ export default [
       }
     ],
     data: {
-      spannung: 12, 
-      strom: 2 * 10,
-      strom_je_anschluss: 10,
+      spannung: 12,
+      strom_je_buchse: 10,
       buchsen: 2
     }
   }

@@ -10,6 +10,11 @@ export default class Usb extends RightNode {
     return ["cooler"] 
   }
 
+  setParent(parent) {
+    super.setParent(parent)
+    this.model.data.strom = (this.model.data.strom_je_buchse * this.model.data.buchsen)
+  }
+
   getErrorMessages () {
     const result = []
 
@@ -43,11 +48,19 @@ export default class Usb extends RightNode {
       }
     }
 
+    // Spannungen müssen passen
+    const base = this.getBaseVoltage()
+    if ( this.model.data.spannung !== base ) {
+      result.push({ type: "Error", text: `The USB unit requires a supply voltage of <b>[${this.model.data.spannung} V]</b>. Input voltage of <b>[${this.getBaseVoltage()} V]</b> is not supported.` })
+    }
+ 
     return result
   }
 
   calculateConsumptionData () {
-    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0, amperestunden: 0 }
+    // the car socket uses the voltage provided by the parent (getBaseVoltage)
+    // ...even if this component breaks. Check the warnings in the UI
+    const result = { strom: 0, spannung: this.parent?.getBaseVoltage(), watt: 0, amperestunden: 0 }
     if ( this.children.length > 0 ) {
       result.strom = this.children[0].calculateConsumptionData().strom
       result.amperestunden = this.children[0].calculateConsumptionData().amperestunden

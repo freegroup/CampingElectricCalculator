@@ -7,7 +7,7 @@ export default class RightFuseBox extends RightNode {
   }
 
   getChildCandidates () {
-    return ["switchPanel", "pressurePump", "fridge", "usb", "light", "heater", "carSocket"] 
+    return ["switchPanel", "pressurePump", "fridge", "usb", "light", "heater", "carSocket", "dcdcBooster"] 
   }
 
   getErrorMessages () {
@@ -20,8 +20,9 @@ export default class RightFuseBox extends RightNode {
       // all direct children must have the same voltage
       //
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
-      if ( this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
+      const nonMatching = this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung)
+      if ( nonMatching ) {
+        result.push({ type: "Warning", text: `Wiring differnet voltages [${firstSpannung}, ${nonMatching.calculateConsumptionData().spannung}] in the fuse box can be run in problems with the common ground within the box.` })
       }
     }
 
@@ -47,18 +48,25 @@ export default class RightFuseBox extends RightNode {
         result.push({ type: "Error", text: `The currents <b>[${toFixed(data.strom)} A]</b> of the consumer are bigger than the maximum power which the fuse can handle <b>[${toFixed(this.model.data.strom)} A]</b>` })
       }
     }
+
     if ( this.parent ) {
       // Spannungen müssen passen
-      if ( this.model.data.spannung < this.parent.getBaseVoltage() ) {
-        result.push({ type: "Error", text: `The fuse box supports voltage up to <b>[${this.model.data.spannung} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+      const base = this.parent.getBaseVoltage()
+      if ( this.model.data.spannung_min > base || this.model.data.spannung_max < base ) {
+        if ( this.model.data.spannung_min !== this.model.data.spannung_max ) {
+          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min}-${this.model.data.spannung_max} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+        } else {
+          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+        }
       }            
     }
- 
+
     return result
   }
 
   calculateConsumptionData () {
-    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0, amperestunden: 0 }
+    // FuxeBox is always providing the Voltage which the parent provides (baseVoltage)
+    const result = { strom: 0, spannung: this.getBaseVoltage(), watt: 0, amperestunden: 0 }
     if ( this.children.length > 0 ) {
       // check that the attributes "strom" and "spannung" are in place
       result.strom = this.children[0].calculateConsumptionData().strom

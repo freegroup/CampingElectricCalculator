@@ -7,7 +7,7 @@ export default class SwitchPanel extends RightNode {
   }
 
   getChildCandidates () {
-    return ["fuseBox", "pressurePump", "fridge", "usb", "light", "heater", "carSocket"] 
+    return ["fuseBox", "pressurePump", "fridge", "usb", "light", "heater", "carSocket", "dcdcBooster"] 
   }
 
   getErrorMessages () {

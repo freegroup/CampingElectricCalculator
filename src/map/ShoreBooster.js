@@ -38,7 +38,7 @@ export default class ShoreBooster extends LeftNode {
   calculateOutputData () {
     const data = JSON.parse(JSON.stringify(this.model.data)) // deep copy
     delete data.eingangsspannung
-    
+    data.spannung = this.mindmap?.getMaxChargeVoltage()
     data.amperestunden = data.strom * this.model.operationHours
     return data
   }

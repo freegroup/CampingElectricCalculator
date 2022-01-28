@@ -12,7 +12,8 @@ export default
     data: {
       type: "melt",
       strom: 0,
-      spannung: 0
+      spannung_min: 0,
+      spannung_max: 0
     }
   },
   { 
@@ -32,7 +33,8 @@ export default
     data: {
       type: "automatic",
       strom: 40,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 48
     }
   },
   { 
@@ -51,7 +53,8 @@ export default
     data: {
       type: "automatic",
       strom: 50,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 48
     }
   },
   { 
@@ -71,7 +74,8 @@ export default
     data: {
       type: "automatic",
       strom: 70,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 48
     }
   },
   { 
@@ -91,7 +95,8 @@ export default
     data: {
       type: "automatic",
       strom: 100,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 48
     }
   },
   { 
@@ -112,7 +117,8 @@ export default
     data: {
       type: "automatic",
       strom: 200,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 48
     }
   },
   { 
@@ -133,7 +139,8 @@ export default
     data: {
       type: "melt",
       strom: 40,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 35
     }
   },
   { 
@@ -154,7 +161,8 @@ export default
     data: {
       type: "melt",
       strom: 50,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 35
     }
   },
   { 
@@ -175,7 +183,8 @@ export default
     data: {
       type: "melt",
       strom: 70,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 35
     }
   },
   { 
@@ -196,7 +205,8 @@ export default
     data: {
       type: "melt",
       strom: 100,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 35
     }
   },
   { 
@@ -217,7 +227,8 @@ export default
     data: {
       type: "melt",
       strom: 200,
-      spannung: 12
+      spannung_min: 12,
+      spannung_max: 35
     }
   }
 ]

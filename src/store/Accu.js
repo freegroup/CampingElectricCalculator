@@ -21,7 +21,8 @@ function enrichComponents (payload) {
       amperestunden: element.data.amperestunden,
       effective_amperestunden: element.data.effective_amperestunden, // es können die vollen 100Ah entnommen werden
       bms: element.data.bms,
-      spannung: element.data.spannung
+      spannung: element.data.spannung,
+      ladespannung: element.data.ladespannung
     }
   })
   return payload

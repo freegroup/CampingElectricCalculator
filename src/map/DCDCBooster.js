@@ -1,16 +1,17 @@
 import RightNode from './RightNode'
 import { toFixed } from "@/utils/Wire.js"
 
-export default class RightFuse extends RightNode {
+export default class DCDCBooster extends RightNode {
   constructor() {
     super()
   }
 
   getChildCandidates () {
-    if (this.mindmap && this.mindmap.model.data.bms === "internal") {
-      return ["killSwitch", "fuseBox"] 
-    }
-    return ["killSwitch", "fuseBox", "batteryProtect", "dcdcBooster"] 
+    return ["switchPanel", "pressurePump", "fridge", "usb", "light", "heater", "carSocket"] 
+  }
+
+  getBaseVoltage () {
+    return this.model?.data.spannung_out
   }
 
   getErrorMessages () {
@@ -23,9 +24,8 @@ export default class RightFuse extends RightNode {
       // all direct children must have the same voltage
       //
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
-      const nonMatching = this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung)
-      if ( nonMatching ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages [${firstSpannung}, ${nonMatching.calculateConsumptionData().spannung}] on the consumer side of the fuse.` })
+      if ( this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung) ) {
+        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
       }
     }
     
@@ -61,7 +61,7 @@ export default class RightFuse extends RightNode {
   }
 
   calculateConsumptionData () {
-    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0, amperestunden: 0 }
+    const result = { strom: 0, spannung: this.model.data.spannung_in, watt: 0, amperestunden: 0 }
     if ( this.children.length > 0 ) {
       // check that the attributes "strom" and "spannung" are in place
       result.strom = this.children[0].calculateConsumptionData().strom
@@ -71,6 +71,11 @@ export default class RightFuse extends RightNode {
         result.amperestunden += child.calculateConsumptionData().amperestunden 
       })
     }
+    // Umrechnen von der Ausgangsspannung zu der Eingangsspannung. Da ändert sich der Strom
+    //
+    result.strom = toFixed( (result.strom * this.model.data.spannung_out ) / this.model.data.spannung_in )
+    result.amperestunden = toFixed( (result.amperestunden * this.model.data.spannung_out ) / this.model.data.spannung_in )
+    
     result.watt = (result.strom * result.spannung)
     return result
   }

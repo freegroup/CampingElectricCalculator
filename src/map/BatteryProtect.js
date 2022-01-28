@@ -6,7 +6,7 @@ export default class BatteryProtect extends RightNode {
   }
 
   getChildCandidates () {
-    return ["killSwitch", "fuse", "fuseBox"] 
+    return ["killSwitch", "fuse", "fuseBox", "dcdcBooster"] 
   }
 
   getErrorMessages () {

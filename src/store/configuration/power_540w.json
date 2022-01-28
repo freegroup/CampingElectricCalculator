@@ -1,32 +1,41 @@
 {
   "price": {
-    "high": 2479.69,
-    "low": 2479.69
+    "high": 2546.79,
+    "low": 2546.79
   },
   "center": {
     "uuid": "30DB5D21-B21D-441F-B398-CECBFB7627AD",
-    "type": "accu"
+    "type": "accu",
+    "customData": null
   },
   "left": [
     {
       "uuid": "5920A236-17F1-46FD-9B1B-CEE42CAD0472",
       "type": "solarBooster",
       "operationHours": 4.5,
+      "wireLength": 100,
+      "customData": null,
       "children": [
         {
           "uuid": "58FBABFF-C628-442C-AC1B-CEF162566074",
           "type": "solarPanel",
           "operationHours": 24,
+          "wireLength": 100,
+          "customData": null,
           "children": [
             {
               "uuid": "58FBABFF-C628-442C-AC1B-CEF162566074",
               "type": "solarPanel",
               "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
               "children": [
                 {
                   "uuid": "58FBABFF-C628-442C-AC1B-CEF162566074",
                   "type": "solarPanel",
                   "operationHours": 24,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 }
               ]
@@ -41,32 +50,44 @@
       "uuid": "7FA1FD36-70DE-4364-AAD7-5CE44D1953EC",
       "type": "batteryProtect",
       "operationHours": 24,
+      "wireLength": 100,
+      "customData": null,
       "children": [
         {
           "uuid": "FBB6A004-FDC3-4937-A08C-30DED8119B66",
           "type": "fuse",
           "operationHours": 24,
+          "wireLength": 100,
+          "customData": null,
           "children": [
             {
-              "uuid": "012D2D77-DD37-4124-8ED4-AE03522519FA",
+              "uuid": "50FF3B1D-FF3F-43C5-8C48-D01B694EC2DF",
               "type": "fuseBox",
               "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
               "children": [
                 {
                   "uuid": "1w3453lk245",
                   "type": "fridge",
                   "operationHours": 24,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 },
                 {
                   "uuid": "1w312343lk245",
                   "type": "usb",
                   "operationHours": 24,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": [
                     {
                       "uuid": "1w312343lk245phone",
                       "type": "usbConsumer",
                       "operationHours": 10.5,
+                      "wireLength": 100,
+                      "customData": null,
                       "children": []
                     }
                   ]
@@ -75,11 +96,15 @@
                   "uuid": "1w312343lk245",
                   "type": "usb",
                   "operationHours": 24,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": [
                     {
                       "uuid": "4D17FAB4-DA63-4ED0-879F-DF34EF6BDFFA",
                       "type": "usbConsumer",
                       "operationHours": 15,
+                      "wireLength": 100,
+                      "customData": null,
                       "children": []
                     }
                   ]
@@ -88,6 +113,8 @@
                   "uuid": "1w3123pump43lk245",
                   "type": "pressurePump",
                   "operationHours": 2,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 }
               ]
@@ -96,17 +123,23 @@
               "uuid": "432DED45-0BB0-4060-A788-43B0DDDDEC4F",
               "type": "fuseBox",
               "operationHours": 24,
+              "wireLength": 100,
+              "customData": null,
               "children": [
                 {
                   "uuid": "EA27D7A1-55A7-403A-8CB1-00A3D90830ED",
                   "type": "light",
                   "operationHours": 2,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 },
                 {
                   "uuid": "EA27D7A1-55A7-403A-8CB1-00A3D90830ED",
                   "type": "light",
                   "operationHours": 2,
+                  "wireLength": 100,
+                  "customData": null,
                   "children": []
                 }
               ]
