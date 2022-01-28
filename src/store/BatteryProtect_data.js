@@ -51,5 +51,81 @@ export default
       strom: 40,
       spannung: 12
     }
+  },
+  { 
+    uuid: "918E0563-E85C-4156-B4C8-2693547BB287", 
+    name: "VOTRONIC Battery Protector", 
+    description: "VOTRONIC 4250683611260 3075 Battery Protector 100A",
+    imageSrc: images("./votronic_12_100.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3G4DDkV",
+        label: "VOTRONIC 4250683611260 3075 Battery Protector 100A",
+        lastKnownPrice: 130.14
+      }
+    ],
+    data: {
+      strom: 100,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "4CC440B8-6702-4D4B-9E6D-D8F96FE4732E", 
+    name: "VOTRONIC Battery Protector", 
+    description: "VOTRONIC 4250683611260 3075 Battery Protector 100A",
+    imageSrc: images("./votronic_24_100.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3G4DDkV",
+        label: "VOTRONIC 4250683611260 3075 Battery Protector 100A",
+        lastKnownPrice: 130.14
+      }
+    ],
+    data: {
+      strom: 100,
+      spannung: 24
+    }
+  },
+  { 
+    uuid: "66D84D84-59AB-4419-A2E8-15EE79E285C9", 
+    name: "Kemo M148", 
+    description: "Kemo M148-24",
+    imageSrc: images("./kemo_12V_10A.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3o7fe8k",
+        label: "Kemo M148-24 Batteriewächter",
+        lastKnownPrice: 34.99
+      }
+    ],
+    data: {
+      strom: 10,
+      spannung: 12
+    }
+  },
+  { 
+    uuid: "66D84D84-59AB-4419-A2E8-15EE79E285C9", 
+    name: "Kemo M148", 
+    description: "Kemo M148-24",
+    imageSrc: images("./kemo_24V_10A.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3o7fe8k",
+        label: "Kemo M148-24 Batteriewächter",
+        lastKnownPrice: 34.99
+      }
+    ],
+    data: {
+      strom: 10,
+      spannung: 24
+    }
   }
 ]

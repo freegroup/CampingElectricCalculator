@@ -2,7 +2,7 @@ import components from "./BatteryProtect_data.js"
 import { toFixed } from "@/utils/Wire.js"
 
 function longname(model) {
-  return model.name + " (" + toFixed(model.data.strom) + " A)"
+  return `${model.name} (${toFixed(model.data.strom)}A/${toFixed(model.data.spannung)}V)`
 }
 
 function sortComponents (payload) {
