@@ -119,5 +119,26 @@ export default [
       spannung: 24,
       strom: 24
     }
+  },
+  { 
+    uuid: "B2D09015-4850-4F40-B2C7-4E38F33FEF4B",
+    name: "Victron Energy ", 
+    imageSrc: images("./victron_8A_24V.png"),
+    operationHours: 1,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3KSbdOU",
+        label: "Victron Blue Smart IP22 Acculader24/8 ",
+        lastKnownPrice: 134.53
+      }
+    ],
+    data: {
+      chargeSupport: ["LiFePO4", "Blei", "AMG"],
+      eingangsspannung: 230,
+      spannung: 24,
+      strom: 8
+    }
   }
 ]
