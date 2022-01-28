@@ -300,7 +300,7 @@ export default [
       }
     ],
     data: {
-      bms: "intern",
+      bms: "internal",
       amperestunden: 100,
       spannung: 24,
       type: "LiFePO4",

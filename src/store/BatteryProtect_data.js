@@ -32,5 +32,24 @@ export default
       strom: 65,
       spannung: 12
     }
+  },
+  { 
+    uuid: "56332EB9-6752-40C2-80E0-9840DDE77CAA", 
+    name: "VOTRONIC Battery Protector", 
+    description: "VOTRONIC 4250683611260 3075 Battery Protector 40A",
+    imageSrc: images("./votronic_12_40.png"),
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3g7BUAQ",
+        label: "VOTRONIC 4250683611260 3075 Battery Protector 40A",
+        lastKnownPrice: 67.14
+      }
+    ],
+    data: {
+      strom: 40,
+      spannung: 12
+    }
   }
 ]

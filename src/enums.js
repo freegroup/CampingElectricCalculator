@@ -17,7 +17,7 @@ export default {
       type: "string"
     },
     bms: {
-      values: ["intern", "none"],
+      values: ["internal", "none"],
       type: "string"
     }
   },

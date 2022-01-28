@@ -116,6 +116,7 @@ export default {
     component: {
       name: {
         solarBooster: "Solar Booster",
+        dcdcBooster: "DC/DC Converter",
         solarSet: "Solar Panel + Controller",
         carSocket: "Car Socket",
         killSwitch: "Power Switch",
@@ -138,6 +139,7 @@ export default {
       },
       description: {
         switchPanel: "Install a switch panel to operate several appliances from one location in your camper. These switch panels.",
+        dcdcBooster: "A DC-to-DC converter is an electronic circuit or electromechanical device that converts a source of direct current (DC) from one voltage level to another. ",
         solarBooster: "Solar charge controllers sits in between the solar panels and your battery and used to convert varying voltages from solar cells to charge batteries of different types (Acid, LiFePo4,..)",
         solarSet: "This was the easiest and quickest way to complete our solar panel setup but it's not necessarily the cheapest. If you don't want to fiddle around with solar panel too much with solar panel wiring and finding the right controller, then a solar panel kit is for you.",
         carSocket: "An automobile auxiliary power outlet (also known as power socket) in an automobile became a de facto standard DC connector to supply electrical power for portable accessories used in or near an automobile directly from the vehicle's electrical system",
