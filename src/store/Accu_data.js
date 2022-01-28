@@ -12,7 +12,8 @@ export default [
       effective_amperestunden: 0, // es können die vollen 100Ah entnommen werden
       bms: "internal",
       spannung: 0,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      ladespannung: 14.6
     }
   },
   {
@@ -33,7 +34,8 @@ export default [
       effective_amperestunden: 100, // es können die vollen 100Ah entnommen werden
       bms: "internal",
       spannung: 12,
-      type: "LiFePO4"
+      type: "LiFePO4",
+      ladespannung: 14.6
     }
   },
   {
@@ -54,7 +56,8 @@ export default [
       amperestunden: 200,
       spannung: 12,
       type: "LiFePO4",
-      effective_amperestunden: 200 // es können die vollen 200Ah entnommen werden
+      effective_amperestunden: 200,
+      ladespannung: 14.6
     }
   },
   {
@@ -75,7 +78,8 @@ export default [
       amperestunden: 150,
       spannung: 12,
       type: "LiFePO4",
-      effective_amperestunden: 150 // es können die vollen 150Ah entnommen werden
+      effective_amperestunden: 150,
+      ladespannung: 14.6
     }
   },
   {
@@ -96,7 +100,8 @@ export default [
       amperestunden: 30,
       spannung: 12,
       type: "LiFePO4",
-      effective_amperestunden: 30 // es können die vollen 30Ah entnommen werden
+      effective_amperestunden: 30,
+      ladespannung: 14.6
     }
   },
   {
@@ -117,7 +122,8 @@ export default [
       amperestunden: 50,
       spannung: 12,
       type: "LiFePO4",
-      effective_amperestunden: 50 // es können die vollen 50Ah entnommen werden
+      effective_amperestunden: 50,
+      ladespannung: 14.6
     }
   },
   {
@@ -138,7 +144,8 @@ export default [
       amperestunden: 100,
       spannung: 12,
       type: "LiFePO4",
-      effective_amperestunden: 100 // es können die vollen 100Ah entnommen werden
+      effective_amperestunden: 100,
+      ladespannung: 14.6
     }
   },
   {
@@ -161,7 +168,8 @@ export default [
       amperestunden: 230,
       spannung: 12,
       type: "AGM",
-      effective_amperestunden: 230 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+      effective_amperestunden: 230 * 0.6,
+      ladespannung: 14.4
     }
   },
   {
@@ -182,7 +190,8 @@ export default [
       amperestunden: 70,
       spannung: 12,
       type: "AGM",
-      effective_amperestunden: 70 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+      effective_amperestunden: 70 * 0.6,
+      ladespannung: 14.4
     }
   },
   {
@@ -203,7 +212,8 @@ export default [
       amperestunden: 100,
       spannung: 12,
       type: "AGM",
-      effective_amperestunden: 100 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+      effective_amperestunden: 100 * 0.6,
+      ladespannung: 14.4
     }
   },
   {
@@ -226,7 +236,8 @@ export default [
       amperestunden: 300,
       spannung: 12,
       type: "LiFePO4",
-      effective_amperestunden: 300 // es können nur 60% der vollen Energie entnommen werden
+      effective_amperestunden: 300,
+      ladespannung: 14.6
     }
   },
   {
@@ -249,7 +260,8 @@ export default [
       amperestunden: 230,
       spannung: 12,
       type: "Gel",
-      effective_amperestunden: 230 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+      effective_amperestunden: 230 * 0.6,
+      ladespannung: 14.2
     }
   },
   {
@@ -270,7 +282,30 @@ export default [
       amperestunden: 220,
       spannung: 12,
       type: "AGM",
-      effective_amperestunden: 220 * 0.6 // es können nur 60% der vollen Energie entnommen werden
+      effective_amperestunden: 220 * 0.6,
+      ladespannung: 14.4
+    }
+  },
+  {
+    uuid: "6AB59672-1A9E-4D78-9CC4-529FAA850F87",
+    name: "LIONTRON",
+    description: "LIONTRON LiFePO4 Smart BMS 25.6V 100Ah",
+    imageSrc: images("./liotron_100ah_24v.png"),
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3INvSlp",
+        label: "LIONTRON LiFePO4 Smart BMS 25.6V 100Ah",
+        lastKnownPrice: 1935.9
+      }
+    ],
+    data: {
+      bms: "internal",
+      amperestunden: 100,
+      spannung: 24,
+      type: "LiFePO4",
+      effective_amperestunden: 100,
+      ladespannung: 28.8
     }
   }
 ]

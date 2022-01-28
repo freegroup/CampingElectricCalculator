@@ -47,7 +47,13 @@ export default class RightFuseBox extends RightNode {
         result.push({ type: "Error", text: `The currents <b>[${toFixed(data.strom)} A]</b> of the consumer are bigger than the maximum power which the fuse can handle <b>[${toFixed(this.model.data.strom)} A]</b>` })
       }
     }
-
+    if ( this.parent ) {
+      // Spannungen müssen passen
+      if ( this.model.data.spannung < this.parent.getBaseVoltage() ) {
+        result.push({ type: "Error", text: `The fuse box supports voltage up to <b>[${this.model.data.spannung} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+      }            
+    }
+ 
     return result
   }
 

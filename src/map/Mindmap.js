@@ -43,19 +43,12 @@ export default class Mindmap extends GenericNode {
     return ["batteryProtect", "killSwitch", "fuse"] 
   }
 
+  getBaseVoltage () {
+    return this.model?.data.spannung
+  }
+
   getMaxChargeVoltage() {
-    switch ( this.model.data.type ) {
-      case "AGM":
-        return 14.4
-      case "Blei":
-        return 14.8
-      case "Gel":
-        return 14.2
-      case "LiFePO4":
-        return 14.6
-      default:
-        return 12
-    }
+    return this.model?.data.ladespannung
   }
 
   reset () {
@@ -511,10 +504,10 @@ export default class Mindmap extends GenericNode {
     const outputAh = output.amperestunden
     const diff = inputAh - outputAh
     let runtimeDays = ""
-    if ( diff >= 0 ) {
+    if ( diff >= 0 || this.model === null ) {
       runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
     } else {
-      runtimeDays = (this.model.data.effective_amperestunden / toFixed(Math.abs(diff))).replace(/\.00$/, '')
+      runtimeDays = toFixed(this.model.data.effective_amperestunden / Math.abs(diff))
     }
     this.inputLabel.innerHTML = "Input<br>" + toFixed(inputAh) + " Ah"
     this.runtimeLabel.innerHTML = "Running Time<br>" + runtimeDays + " days"

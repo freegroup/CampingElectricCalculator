@@ -19,6 +19,10 @@ export default class StarterBooster extends LeftNode {
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
         result.push({ type: "Error", text: `The charger do not support the used battery type <b>${this.mindmap.model.data.type}</b>. Supported battery types are <b>[${this.model.data.chargeSupport.joind(", ")}]</b>` })
       }
+
+      if ( this.model.data.spannung !== this.mindmap.getBaseVoltage()) {
+        result.push({ type: "Error", text: `The charger with <b>[${this.model.data.spannung} V]</b> do not support the used battery voltage of <b>[${this.parent.getBaseVoltage()} V]</b>.` })
+      }
     }
 
     this.children.forEach( child => {

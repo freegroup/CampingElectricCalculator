@@ -98,5 +98,26 @@ export default [
       spannung: 12,
       strom: 0.3
     }
+  },
+  { 
+    uuid: "20671AA5-CEBF-4366-89D9-D62A7F75E67F",
+    name: "Victron Energy ", 
+    imageSrc: images("./victron_24A_24V.png"),
+    operationHours: 1,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3KSbdOU",
+        label: "Victron Energy BPC241642002 Blue Smart IP22 Ladegerät 24/161 230V CEE 7/7, 24V/16A",
+        lastKnownPrice: 179.90
+      }
+    ],
+    data: {
+      chargeSupport: ["LiFePO4", "Blei", "AMG"],
+      eingangsspannung: 230,
+      spannung: 24,
+      strom: 24
+    }
   }
 ]

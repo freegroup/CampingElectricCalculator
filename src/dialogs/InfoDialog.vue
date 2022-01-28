@@ -4,7 +4,7 @@
         <DialogHeader :title="model.name" :subtitle="$t('dialog.info.subtitle')" icon="mdi-eye-outline"></DialogHeader>
         <v-card-text style="height: 350px;">
           <v-row>
-            <v-col cols="4" align="center" align-self="center">
+            <v-col cols="3" align="center" align-self="center">
               <v-img class="pt-10" :src="model.imageSrc" contain></v-img>
             </v-col>
             <v-col cols="8"  class="mt-5 pl-10">

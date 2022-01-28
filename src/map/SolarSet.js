@@ -17,6 +17,10 @@ export default class SolarSet extends LeftNode {
       if ( !this.model.data.controller.chargeSupport.includes(this.mindmap.model.data.type) ) {
         result.push({ type: "Error", text: `The charger do not support the used battery type <b>${this.mindmap.model.data.type}</b>. Supported accu types are <b>[${this.model.data.controller.chargeSupport.join(", ")}]</b>` })
       }
+
+      if ( this.model.data.controller.spannung !== this.mindmap.getBaseVoltage()) {
+        result.push({ type: "Error", text: `The solar controller with <b>[${this.model.data.controller.spannung} V]</b> do not support the used battery voltage of <b>[${this.parent.getBaseVoltage()} V]</b>.` })
+      }
     }
     
     return result

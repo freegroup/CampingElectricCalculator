@@ -22,6 +22,13 @@ export default class LeftKillSwitch extends LeftNode {
       if ( this.children.find( child => child.calculateOutputData().spannung !== firstSpannung) ) {
         result.push({ type: "Error", text: `It is not allowed to mix different voltages on the switch.` })
       }
+
+      this.children.forEach( child => {
+        const data = child.calculateOutputData().spannung
+        if ( data.spannung > this.model.data.spannung ) {
+          result.push({ type: "Error", text: `Child delivers power of <b>[${data.spannung} V]</b> but switch can handle only up to <b>[${this.model.data.spannung} V]</b>` })
+        }
+      })
     }
     
     // Calculate if the accumulated "strom"

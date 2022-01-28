@@ -116,7 +116,7 @@ export default
     ],
     data: {
       strom: 8 * 15,
-      spannung: 12,
+      spannung: 35,
       strom_je_anschluss: 15,
       anschluesse: 8
     }

@@ -30,6 +30,12 @@ export default class BatteryProtect extends RightNode {
     }
     checkParent(this)
 
+    if ( this.parent ) {
+      // Spannungen müssen passen
+      if ( this.model.data.spannung !== this.parent.getBaseVoltage() ) {
+        result.push({ type: "Error", text: `The battery protection unit with <b>[${this.model.data.spannung} V]</b> do not support the used battery voltage of <b>[${this.parent.getBaseVoltage()} V]</b>.` })
+      }      
+    }
     // if more than one child exists, each of them must have the same "spannung". It is not allowed 
     // to mix up the voltage
     //

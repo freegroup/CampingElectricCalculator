@@ -36,7 +36,8 @@ export default [
         // Muß größer/gleich als die Watt Leistung von den Solarpanelen sein
         eingangswatt: 200,
         // Solarmodul Strom bis maximal...
-        kurzschlussstrom: 15
+        kurzschlussstrom: 15,
+        spannung: 12
       }
     }
   }

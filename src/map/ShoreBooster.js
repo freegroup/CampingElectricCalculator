@@ -13,8 +13,15 @@ export default class ShoreBooster extends LeftNode {
   getErrorMessages () {
     const result = []
 
+    if ( this.parent ) {
+      // Ladespannungen müssen passen
+      if ( this.model.data.spannung !== this.parent.getBaseVoltage() ) {
+        result.push({ type: "Error", text: `The charger with <b>[${this.model.data.spannung} V]</b> do not support the used battery voltage of <b>[${this.parent.getBaseVoltage()} V]</b>.` })
+      }
+    }
+     
     if ( this.mindmap ) {
-      // the "leerlaufspannung" must be smaller than the max input of the charger
+      // ladekurve muß mit dem Batterietype zusammenpassen
       //
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
         result.push({ type: "Error", text: `The charger do not support the used battery type <b>${this.mindmap.model.data.type}</b>. Supported battery types are <b>${this.model.data.chargeSupport.join(", ")}</b>` })

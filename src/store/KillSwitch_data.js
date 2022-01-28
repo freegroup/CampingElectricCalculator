@@ -30,7 +30,7 @@ export default
     ],
     data: {
       strom: 300,
-      spannung: 12
+      spannung: 48
     }
   },
   { 
@@ -49,7 +49,7 @@ export default
     ],
     data: {
       strom: 300,
-      spannung: 12
+      spannung: 36
     }
   },
   { 
@@ -106,7 +106,7 @@ export default
     ],
     data: {
       strom: 1000,
-      spannung: 12
+      spannung: 48
     }
   }
 ]

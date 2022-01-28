@@ -208,6 +208,13 @@ export default class GenericNode {
     return json
   }
 
+  getBaseVoltage () {
+    if ( this.parent ) {
+      return this.parent.getBaseVoltage()
+    }
+    return 0
+  }
+
   calculateOutputData () {
     return JSON.parse(JSON.stringify(this.model.data)) // deep copy
   }

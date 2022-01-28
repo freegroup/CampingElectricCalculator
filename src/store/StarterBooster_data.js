@@ -108,5 +108,28 @@ export default [
       spannung: 12,
       strom: 20
     }
+  },
+  { 
+    uuid: "39593B7D-A54F-46E0-B652-7BBA2182BCCA", 
+    name: "Victron 24/24", 
+    imageSrc: images("./victron_smart_24_24_12.png"),
+    operationHours: 1,
+    exportable: true,
+    shopping: [
+      {
+        shop: "Amazon",
+        link: "https://amzn.to/3u3mlT2",
+        label: "Victron Orion-Tr Smart 24/24-12A (280W) DC DC Wandler",
+        lastKnownPrice: 173.90
+      }
+    ],
+    data: {
+      chargeSupport: ["LiFePO4", "Blei"],
+      eingangsspannung_min: 16,
+      eingangsspannung_max: 35,
+      eingangsstrom: 12,
+      spannung: 24,
+      strom: 12
+    }
   }
 ]
