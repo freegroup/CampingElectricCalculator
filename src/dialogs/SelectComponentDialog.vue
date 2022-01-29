@@ -11,10 +11,10 @@
                     <v-img style="cursor:pointer" @click="onItemSelected(item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" contain :src="item.imageSrc"></v-img>
                     <v-list-item-content>
                         <v-list-item-title style="cursor:pointer" @click="onItemSelected(item.uuid)"  v-html="item.longname"></v-list-item-title>
-                        <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
-                          <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
-                        </v-list-item-subtitle>
                         <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
+                        <v-list-item-subtitle v-if="item.shopping.length>0">
+                          <a :href="item.shopping[0].link" target="_blank">More Details...</a>
+                        </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
                 </template>

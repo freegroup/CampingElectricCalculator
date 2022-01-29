@@ -4,8 +4,9 @@
         <DialogHeader :title="model.name" :subtitle="$t('dialog.info.subtitle')" icon="mdi-eye-outline"></DialogHeader>
         <v-card-text style="height: 350px;">
           <v-row>
-            <v-col cols="3" align="center" align-self="center">
-              <v-img class="pt-10" :src="model.imageSrc" contain></v-img>
+            <v-col cols="1"></v-col>
+            <v-col cols="2" align="center" align-self="center">
+              <v-img class="pt-10" max-height="150" :src="model.imageSrc" contain></v-img>
             </v-col>
             <v-col cols="8"  class="mt-5 pl-10">
               <table>
@@ -26,25 +27,11 @@
                         <td>{{model.data[key]}} {{$t("data.unit."+key)}}</td> 
                       </template>
                     </tr>
+                    <tr v-if="model.shopping.length>0">
+                      <td></td><td class="text-right pt-4"><a :href="model.shopping[0].link" target="_blank">More Details...</a></td>
+                    </tr>
                   </tbody>
               </table>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <template v-if="model.shopping.length > 0">
-                <v-row class="mt-0">
-                  <v-icon class="mr-2" >mdi-cart-outline</v-icon> {{ $t("view.shopping.shops")}}
-                </v-row>
-                <v-row  :key="index+'shop'" v-for="(shop, index) in model.shopping" >
-                  <v-col cols="2">
-                    {{ shop.shop}}
-                  </v-col>
-                  <v-col align="start">
-                    <a target="_blank" class="darken-1" :href="shop.link"> {{shop.label}} <v-icon class="ml-4" small >mdi-open-in-new</v-icon></a>
-                  </v-col>
-                </v-row>
-              </template>
             </v-col>
           </v-row>
         </v-card-text>
