@@ -15,20 +15,10 @@ export default class BatteryProtect extends RightNode {
     // In case one parent is a fuse, it must have a lower "ampere" than this device.
     // If not, this device is burned before the fuse can protect the circuit
     //
-    const checkParent = node => {
-      if ( node.parent && node.parent.model.type === "fuse") {
-        if ( node.parent.model.data.strom > node.model.data.strom ) {
-          result.push( { type: "Error", text: `Battery Protection with a maximum currents of <b>[${this.model.data.strom} A]</b> is breaking before the used fuse with <b>[${node.parent.model.data.strom} A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
-          return false
-        }
-        return true
-      }
-      if ( node.parent ) {
-        return checkParent(node.parent)
-      }
-      return true
+    const amp = this.getFuseAmp()
+    if ( amp === undefined || amp > this.model.data.strom ) {
+      result.push( { type: "Error", text: `Battery Protection with a maximum currents of <b>[${this.model.data.strom} A]</b> is breaking before the used fuse with <b>[${amp} A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
     }
-    checkParent(this)
 
     if ( this.parent ) {
       // Spannungen müssen passen

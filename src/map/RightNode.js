@@ -8,6 +8,13 @@ export default class RightNode extends Node {
     this.leftSide = false
   }
 
+  /**
+   * Returns the fuse which is in place of the wire track or "undefined" if no fuse is in place
+   */
+  getFuseAmp() {
+    return this.parent?.getFuseAmp()
+  }
+
   calculateOutputData () {
     const data = JSON.parse(JSON.stringify(this.model.data))
     data.spannung = this.parent?.getBaseVoltage()

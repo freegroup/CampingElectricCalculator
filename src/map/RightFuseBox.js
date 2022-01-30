@@ -10,6 +10,10 @@ export default class RightFuseBox extends RightNode {
     return ["switchPanel", "pressurePump", "fridge", "usb", "light", "heater", "carSocket", "dcdcBooster"] 
   }
 
+  getFuseAmp() {
+    return this.model?.data?.strom_je_anschluss
+  }
+
   getErrorMessages () {
     const result = []
 

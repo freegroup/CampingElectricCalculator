@@ -43,6 +43,13 @@ export default class Mindmap extends GenericNode {
     return ["batteryProtect", "killSwitch", "fuse"] 
   }
 
+  /**
+   * The battery do not have any build in fuse.
+   */
+  getFuseAmp() {
+    return undefined
+  }
+
   getBaseVoltage () {
     return this.model?.data.spannung
   }

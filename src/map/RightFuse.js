@@ -13,6 +13,10 @@ export default class RightFuse extends RightNode {
     return ["killSwitch", "fuseBox", "batteryProtect", "dcdcBooster"] 
   }
 
+  getFuseAmp() {
+    return this.model?.data?.strom
+  }
+
   getErrorMessages () {
     const result = []
 
@@ -25,7 +29,7 @@ export default class RightFuse extends RightNode {
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
       const nonMatching = this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung)
       if ( nonMatching ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages [${firstSpannung}, ${nonMatching.calculateConsumptionData().spannung}] on the consumer side of the fuse.` })
+        result.push({ type: "Error", text: `It is not allowed to mix different voltages <b>[${firstSpannung}V, ${nonMatching.calculateConsumptionData().spannung}V]</b> on the consumer side of the fuse.` })
       }
     }
     

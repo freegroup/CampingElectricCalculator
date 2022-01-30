@@ -28,7 +28,17 @@ export default class DCDCBooster extends RightNode {
         result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
       }
     }
-    
+
+    // In case one parent is a fuse, it must have a lower "ampere" than this device.
+    // If not, this device is burned before the fuse can protect the circuit
+    //
+    /*
+    const amp = this.getFuseAmp()
+    if ( amp === undefined || amp > this.model.data.strom_in ) {
+      result.push( { type: "Error", text: `DC-DC converter with a maximum currents of <b>[${this.model.data.strom_in} A]</b> can break before the used fuse with <b>[${amp} A]</b> can protect the circuit. Choose a fuse with a lower amperage value to avoid a damage by accident of this component.` } )
+    }
+    */
+
     // Calculate if the accumulated "strom"
     //
     if ( this.children.length > 0 ) {
@@ -49,7 +59,7 @@ export default class DCDCBooster extends RightNode {
       // Spannungen müssen passen
       const base = this.parent.getBaseVoltage()
       if ( this.model.data.spannung_in !== base) {
-        result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_in} V]</b>. Input voltage of <b>[${base} V]</b> is not supported.` })
+        result.push({ type: "Error", text: `The DC-DC converter operates with a supply voltage of <b>[${this.model.data.spannung_in} V]</b>. Input voltage of <b>[${base} V]</b> is not supported.` })
       }            
     }
  
