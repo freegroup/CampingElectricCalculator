@@ -8,7 +8,7 @@ export default class RightFuse extends RightNode {
 
   getChildCandidates () {
     if (this.mindmap && this.mindmap.model.data.bms === "internal") {
-      return ["killSwitch", "fuseBox"] 
+      return ["killSwitch", "fuseBox", "dcdcBooster"] 
     }
     return ["killSwitch", "fuseBox", "batteryProtect", "dcdcBooster"] 
   }

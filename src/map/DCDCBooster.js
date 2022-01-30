@@ -48,16 +48,22 @@ export default class DCDCBooster extends RightNode {
     if ( this.parent ) {
       // Spannungen müssen passen
       const base = this.parent.getBaseVoltage()
-      if ( this.model.data.spannung_min > base || this.model.data.spannung_max < base ) {
-        if ( this.model.data.spannung_min !== this.model.data.spannung_max ) {
-          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min}-${this.model.data.spannung_max} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
-        } else {
-          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
-        }
+      if ( this.model.data.spannung_in !== base) {
+        result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_in} V]</b>. Input voltage of <b>[${base} V]</b> is not supported.` })
       }            
     }
  
     return result
+  }
+
+  calculateOutputData () {
+    const data = super.calculateOutputData()
+    // required for the wire calculation and the parents needs this two attributes for the 
+    // overall current/watt calculation
+    data.strom = data.strom_in
+    data.spannung = data.spannung_in
+
+    return data
   }
 
   calculateConsumptionData () {
@@ -77,6 +83,7 @@ export default class DCDCBooster extends RightNode {
     result.amperestunden = toFixed( (result.amperestunden * this.model.data.spannung_out ) / this.model.data.spannung_in )
     
     result.watt = (result.strom * result.spannung)
+
     return result
   }
 }
