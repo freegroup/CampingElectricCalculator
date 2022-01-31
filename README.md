@@ -1,26 +1,10 @@
-# mind-manager
+# Camper Van Electricity
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## How to size your electrical system
 
 
+To determine the size of a solar system for a camper is not very easy in practice, because 
+      you can not always estimate your needs. Here I would like to give a few standard suggestions 
+      to make this easier and to see the impact of the cost.
+
+![overview](./images/overview.png)
