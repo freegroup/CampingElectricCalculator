@@ -26,7 +26,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3r6cTuS",
+        link: "https://amzn.to/3ue2u3u",
         label: "Schaudt 9990359 Booster WA 121525",
         lastKnownPrice: 146
       }
@@ -49,7 +49,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/33HdZW9",
+        link: "https://amzn.to/3INkp5e",
         label: "Victron Orion-Tr Smart 24/12-20A (240W) DC DC Wandler Ladebooster B2B Lader",
         lastKnownPrice: 162.46
       }
@@ -72,7 +72,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3fup5Ak",
+        link: "https://amzn.to/3Gboa2B",
         label: "Victron Orion-Tr Smart 24/12-30A (360W) DC DC Wandler Ladebooster B2B Lader",
         lastKnownPrice: 226.50
       }
@@ -95,7 +95,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3IdufNr",
+        link: "https://amzn.to/3udhoa9",
         label: "VOTRONIC Lade-Wandler VCC 1212",
         lastKnownPrice: 201.50
       }
@@ -118,7 +118,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3u3mlT2",
+        link: "https://amzn.to/3gb1tBi",
         label: "Victron Orion-Tr Smart 24/24-12A (280W) DC DC Wandler",
         lastKnownPrice: 173.90
       }

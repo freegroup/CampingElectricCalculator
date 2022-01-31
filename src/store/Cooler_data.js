@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3GpLaMo",
+        link: "https://amzn.to/3KVpMkK",
         label: "Dino KRAFTPAKET 131001 Kühlbox 12V 230V (WÄRMT & KÜHLT) HÖHE: 44cm GRÖSSE: 32-Liter (28L netto)",
         lastKnownPrice: 78.11
       }
@@ -44,7 +44,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3GrCXaq",
+        link: "https://amzn.to/3g8suVM",
         label: "Dino KRAFTPAKET 131002 Kühlbox 12V 230V (WÄRMT & KÜHLT) HÖHE: 42cm GRÖSSE: 45-Liter (40L netto)",
         lastKnownPrice: 111.19
       }
@@ -64,7 +64,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3GCVVLm",
+        link: "https://amzn.to/3gghiX2",
         label: "DOMETIC Tropicool TCX 07",
         lastKnownPrice: 214.90
       }
@@ -84,7 +84,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3GFYjks",
+        link: "https://amzn.to/32Lgd6B",
         label: "DOMETIC Tropicool TCX 14",
         lastKnownPrice: 187
       }
@@ -104,7 +104,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3IgUH95",
+        link: "https://amzn.to/3ATaYP2",
         label: "DOMETIC Tropicool TCX 21",
         lastKnownPrice: 212.90
       }
@@ -124,7 +124,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3Klbw4k",
+        link: "https://amzn.to/3HhOrhc",
         label: "DOMETIC Tropicool TCX 35",
         lastKnownPrice: 259.00
       }

@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3K9xJCt",
+        link: "https://amzn.to/3ocUSdH",
         label: "Zigarettenanzünder Verteiler 12V Kfz zigarettenanzünder Adapter",
         lastKnownPrice: 8.38
       }
@@ -44,7 +44,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3FxdP0O",
+        link: "https://amzn.to/3ASc9Oz",
         label: "Zigarettenanzünder-Verteiler,12V/24V DoppelSteckdose,Wasserdicht",
         lastKnownPrice: 9.99
       }

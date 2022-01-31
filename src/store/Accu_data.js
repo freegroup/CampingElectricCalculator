@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3t0bMQc",
+        link: "https://amzn.to/3rejt3Z",
         label: "LIONTRON LiFePO4 12,8V 100Ah",
         lastKnownPrice: 994
       }
@@ -46,7 +46,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3mUKjeY",
+        link: "https://amzn.to/3AKKy1D",
         label: "LIONTRON LiFePO4 12,8V 200Ah",
         lastKnownPrice: 1796
       }
@@ -68,7 +68,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3sX9xNx",
+        link: "https://amzn.to/3ALvO2v",
         label: "LIONTRON LiFePO4 12,8V 150Ah",
         lastKnownPrice: 1386
       }
@@ -90,7 +90,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3tc7Uvq",
+        link: "https://amzn.to/3IR1aHX",
         label: "ECO-WORTHY 12V 30Ah LiFePO4 Akku wiederaufladbare Lithiumbatterie",
         lastKnownPrice: 115
       }
@@ -112,7 +112,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3qb8kQP",
+        link: "https://amzn.to/3saJu3w",
         label: "ECO-WORTHY 12V 50Ah LiFePO4 Akku wiederaufladbare Lithiumbatterie",
         lastKnownPrice: 219
       }
@@ -134,7 +134,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3qcaGz2",
+        link: "https://amzn.to/3IWk40h",
         label: "ECO-WORTHY 12V 100Ah LiFePO4 Akku wiederaufladbare Lithiumbatterie",
         lastKnownPrice: 429
       }
@@ -157,7 +157,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3tg4urq",
+        link: "https://amzn.to/3s4eKB1",
         label:
           "ECTIVE 230Ah 12V AGM Versorgungsbatterie DC 230s mit LCD-Display VRLA Solar-Batterie mit integrierten Nachfüllpacks",
         lastKnownPrice: 354
@@ -180,7 +180,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3tr5klo",
+        link: "https://amzn.to/3HeM5zB",
         label: "ECTIVE 70Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
         lastKnownPrice: 130.82
       }
@@ -202,7 +202,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3tr5klo",
+        link: "https://amzn.to/3grZetv",
         label: "ECTIVE 100Ah 12V AGM Batterie DC 70 VRLA Versorgungsbatterie",
         lastKnownPrice: 169.82
       }
@@ -225,7 +225,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3HR5Uge",
+        link: "https://amzn.to/3rcCjIt",
         label:
           "ECTIVE LC300L BT 12V 300Ah 3840Wh LiFePO4-Batterie mit Bluetooth-Funktion Lithium-Eisenphosphat Versorgungs-Batterie",
         lastKnownPrice: 2525.5
@@ -249,7 +249,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3FhieEG",
+        link: "https://amzn.to/3KYU0Di",
         label:
           "ECTIVE 230Ah 12V Gel Frontterminal-Batterie DC230 Slim Gel Deep Cycle schmale Versorgungsbatterie",
         lastKnownPrice: 392.62
@@ -272,7 +272,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3FldXAh",
+        link: "https://amzn.to/3rcAlI7",
         label: "Victron Energy AGM 12V 220Ah Deep Cycle",
         lastKnownPrice: 525.9
       }
@@ -294,7 +294,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3INvSlp",
+        link: "https://amzn.to/34rcGeo",
         label: "LIONTRON LiFePO4 Smart BMS 25.6V 100Ah",
         lastKnownPrice: 1935.9
       }

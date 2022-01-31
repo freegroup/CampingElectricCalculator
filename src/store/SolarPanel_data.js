@@ -27,7 +27,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3G6QxQs",
+        link: "https://amzn.to/34lRN3U",
         label: "ECTIVE 24V 70W Monokristallines Solarmodul Black Edition",
         lastKnownPrice: 86
       }
@@ -50,7 +50,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3G6QxQs",
+        link: "https://amzn.to/3obvzsI",
         label: "ECTIVE 24V 70W Monokristallines Solarmodul Black Edition",
         lastKnownPrice: 86
       }
@@ -73,7 +73,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/34BKl5b",
+        link: "https://amzn.to/3saKzs6",
         label: "ECTIVE 24V 100W Monokristallines Solarmodul Black Edition",
         lastKnownPrice: 102
       }
@@ -125,7 +125,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3zM45hT",
+        link: "https://amzn.to/3KWW3rB",
         label: "enjoysolar® Monokristallines Solarmodul Solarpanel mit PERC Zellentechnik schwarzes Rahmen Version",
         lastKnownPrice: 138.95
       }

@@ -23,7 +23,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3JVQVTX",
+        link: "https://amzn.to/3Hi9pMH",
         label: "Battery Switch Disconnect 12V 24V 48V, Switch 1-2-Both-OFF, 300A",
         lastKnownPrice: 20.29
       }
@@ -61,7 +61,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/33gCeL3",
+        link: "https://amzn.to/3ATbs7O",
         label: "Cocar Auto Kfz 12V Elektromagnetisch Batterietrennschalter",
         lastKnownPrice: 55.99
       }
@@ -80,7 +80,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/33gCeL3",
+        link: "https://amzn.to/3obY5dQ",
         label: "Wakauto Fernbedienung Batterietrennschalter Schnitt 12 V Auto Auto Fahrzeug Elektromagnetische Trennschalter",
         lastKnownPrice: 56.99
       }
@@ -99,7 +99,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3rmUg6j",
+        link: "https://amzn.to/3GgmFjR",
         label: "HELLA 6EK 002 843-003 Hauptschalter, Batterie - S33 - Drehbetätigung",
         lastKnownPrice: 20.91
       }

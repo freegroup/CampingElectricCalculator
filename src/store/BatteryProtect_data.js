@@ -23,7 +23,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3nbmm2P",
+        link: "https://amzn.to/3s2HD0y",
         label: "Victron Battery Protect 12/24V 65A programmierbar für Wohnmobil und Yacht",
         lastKnownPrice: 41.47
       }
@@ -42,7 +42,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3g7BUAQ",
+        link: "https://amzn.to/3ub8vhx",
         label: "VOTRONIC 4250683611260 3075 Battery Protector 40A",
         lastKnownPrice: 67.14
       }
@@ -61,7 +61,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3G4DDkV",
+        link: "https://amzn.to/34lQUIC",
         label: "VOTRONIC 4250683611260 3075 Battery Protector 100A",
         lastKnownPrice: 130.14
       }
@@ -99,7 +99,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3o7fe8k",
+        link: "https://amzn.to/3reNikO",
         label: "Kemo M148-24 Batteriewächter",
         lastKnownPrice: 34.99
       }
@@ -118,7 +118,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3o7fe8k",
+        link: "https://amzn.to/3KQOTVT",
         label: "Kemo M148-24 Batteriewächter",
         lastKnownPrice: 34.99
       }

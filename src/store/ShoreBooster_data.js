@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3zJaNVC",
+        link: "https://amzn.to/3uhW2Zl",
         label: "Victron Energy Blue Smart IP22 Lader 12/20(1) 230V",
         lastKnownPrice: 160
       }
@@ -45,7 +45,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3nnEXcp",
+        link: "https://amzn.to/3Hk0N8s",
         label: "NRG Charger NXS 5.0 12V Batterien Ladegerät Blei Säure AGM Gel Calcium Batterie Automatik Ladegerät Auto",
         lastKnownPrice: 53.90
       }
@@ -66,7 +66,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3tgWV3Q",
+        link: "https://amzn.to/3AScX63",
         label: "Victron Energy Blue Smart IP22 Lader 12/30(1) 230V",
         lastKnownPrice: 190
       }
@@ -87,7 +87,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3qbQ9ui",
+        link: "https://amzn.to/34lRBSe",
         label: "H-TronicAutomatic lead-acid battery wall socket charger",
         lastKnownPrice: 16.90
       }
@@ -108,7 +108,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3KSbdOU",
+        link: "https://amzn.to/3IRMcla",
         label: "Victron Energy BPC241642002 Blue Smart IP22 Ladegerät 24/161 230V CEE 7/7, 24V/16A",
         lastKnownPrice: 179.90
       }
@@ -129,7 +129,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3KSbdOU",
+        link: "https://amzn.to/3g8HJOv",
         label: "Victron Blue Smart IP22 Acculader24/8 ",
         lastKnownPrice: 134.53
       }

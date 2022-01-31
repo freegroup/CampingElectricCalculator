@@ -26,7 +26,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/331M0QM",
+        link: "https://amzn.to/3obCT7J",
         label: "MICTUNING 12-Fach Fusebox, ATO Sicherungskasten mit LED-Anzeige",
         lastKnownPrice: 19.90
       }
@@ -48,7 +48,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3f72ZDE",
+        link: "https://amzn.to/3AZ4u1b",
         label: "Mareteam Sicherungspaneel mit Beleuchtung - 2 x 3 A, 2 x 6 A, 1 x 8 A, 1 x 10 A",
         lastKnownPrice: 52.90
       }
@@ -70,7 +70,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/33jQ2Um",
+        link: "https://amzn.to/3s2OqY2",
         label: "Philippi - Stromkreisverteiler STV 106",
         lastKnownPrice: 120
       }
@@ -92,7 +92,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/33mpCBm",
+        link: "https://amzn.to/3IKNZbs",
         label: "Philippi - Stromkreisverteiler STV 110",
         lastKnownPrice: 180
       }
@@ -114,7 +114,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3GfwUWe",
+        link: "https://amzn.to/3GesdeC",
         label: "Simple Fusebox 8x",
         lastKnownPrice: 11.99
       }

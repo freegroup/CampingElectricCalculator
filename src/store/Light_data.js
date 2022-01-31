@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3fauKeA",
+        link: "https://amzn.to/3Hab2fv",
         label: "Lamomo LED Strip Warmweiss, 12V Dimmbar, 5M Wasserdicht 3000K LED Lichtband, Silikon Lichtleiste mit Netzteil und Controller",
         lastKnownPrice: 43
       }

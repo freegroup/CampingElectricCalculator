@@ -10,7 +10,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3zUdIel",
+        link: "https://amzn.to/3G8YROI",
         label: "Autoterm Air 2D (ehemals Planar 2D) 2KW 12V Diesel - Standheizung mit Bedienteil PU-27",
         lastKnownPrice: 560.00
       }
@@ -30,7 +30,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3rkqhvQ",
+        link: "https://amzn.to/3s7j42e",
         label: "Tseipoaoi Standheizung,12V 5KW Diesel Standheizung",
         lastKnownPrice: 175.90
       }

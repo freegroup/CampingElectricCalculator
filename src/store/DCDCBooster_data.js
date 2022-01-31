@@ -16,7 +16,7 @@ export default
     }
   },
   { 
-    uuid: "FBB6A004-FDC3-4937-A08C-30DED8119B66", 
+    uuid: "E7477671-FFBF-4BE4-807F-485E1C1CD2CC", 
     name: "Victron Energy", 
     description: "Victron Energy Orion-Tr 24/12-10 DC/DC-Wandler 24 V/DC - 12.5 V/DC/12 A 120 W",
     imageSrc: images("./orion_tr_24_12_10.png"),
@@ -24,7 +24,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3G8YrYJ",
+        link: "https://amzn.to/3obMJpQ",
         label: "Victron Energy Orion-Tr 24/12-10 DC/DC-Wandler 24 V/DC - 12.5 V/DC/12 A 120 W",
         lastKnownPrice: 37.90
       }

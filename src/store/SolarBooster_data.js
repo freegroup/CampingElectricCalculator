@@ -30,7 +30,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/32PDkgo",
+        link: "https://amzn.to/35rqiGK",
         label: "Victron Energy BlueSolar MPPT 75/15 12V 24V 15A",
         lastKnownPrice: 91
       }
@@ -57,7 +57,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3sYrHyk",
+        link: "https://amzn.to/3Gd1ij9",
         label: "Victron Energy BlueSolar MPPT 75/10 12V 24V 10A",
         lastKnownPrice: 81
       }
@@ -84,7 +84,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3n0xKi5",
+        link: "https://amzn.to/32KHWo5",
         label: "Thlevel 30A 12V/24V Solar Laderegler",
         lastKnownPrice: 18.90
       }
@@ -138,7 +138,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3qVYBNC",
+        link: "https://amzn.to/3ANfHkZ",
         label: "Büttner MT-Solarregler MPP 260 inkl. Temperaturfühler",
         lastKnownPrice: 252
       }
@@ -165,7 +165,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3n3xj6v",
+        link: "https://amzn.to/3ue2kJq",
         label: "Büttner MT-Solarregler MPP 170 inkl. Temperaturfühler",
         lastKnownPrice: 205
       }
@@ -192,7 +192,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3tjpw8E",
+        link: "https://amzn.to/3s13zZL",
         label: "Victron Energy SCC10050210 SmartSolar MPPT Solar Charge Controller 100/50",
         lastKnownPrice: 313.60
       }

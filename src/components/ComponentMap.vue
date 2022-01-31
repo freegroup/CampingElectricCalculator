@@ -526,6 +526,11 @@ export default {
       margin-right: auto;
       cursor: pointer;
       max-height: 70px;
+      transition: all 150ms ease-in-out;
+      &:hover{
+        filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+        transform: scale(1.05);
+      }
     }
   }
 

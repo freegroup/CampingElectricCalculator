@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3nbrZ1j",
+        link: "https://amzn.to/3GezoU0",
         label: "Lilie WhiteYellow Soft Serie Membran Water pump",
         lastKnownPrice: 105
       }
@@ -45,7 +45,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3nmtxFv",
+        link: "https://amzn.to/3oc8WnW",
         label: "Shurflo Druckwasserpumpe Soft-Serie 11,3 l/min",
         lastKnownPrice: 151
       }

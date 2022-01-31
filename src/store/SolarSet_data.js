@@ -11,7 +11,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3qiNIpJ",
+        link: "https://amzn.to/33X79wh",
         label: "100W 12V Solarpanel Solarmodul Solarpanel-Set",
         lastKnownPrice: 139.99
       }

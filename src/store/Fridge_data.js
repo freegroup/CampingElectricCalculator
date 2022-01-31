@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3HUxwBf",
+        link: "https://amzn.to/3GgZmq1",
         label: "Engel SAWSD90F-D-B Kompressorkühlschrank CK-100",
         lastKnownPrice: 869
       }

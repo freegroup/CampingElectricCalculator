@@ -25,7 +25,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3zuCba8",
+        link: "https://amzn.to/3L7RYB4",
         label: "Red Wulf Fuse Switch 40A",
         lastKnownPrice: 23
       }
@@ -45,7 +45,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3mZ6yAi",
+        link: "https://amzn.to/3s2vj03",
         label: "Red Wulf Fuse Switch 50A",
         lastKnownPrice: 15.99
       }
@@ -66,7 +66,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3EYBpmy",
+        link: "https://amzn.to/34lCgBg",
         label: "Red Wulf Fuse Switch 70A",
         lastKnownPrice: 24
       }
@@ -87,7 +87,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3zpOh4d",
+        link: "https://amzn.to/3AMjJKx",
         label: "Red Wulf Fuse Switch 100A",
         lastKnownPrice: 16
       }
@@ -109,7 +109,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3mXGeGQ",
+        link: "https://amzn.to/3udKIxj",
         label: "Red Wulf Fuse Switch 200A",
         lastKnownPrice: 16
       }
@@ -131,7 +131,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/350lCHR",
+        link: "https://amzn.to/3KUht8J",
         label: "Fuse holder for the MEGA fuses",
         lastKnownPrice: 4.99
       }
@@ -153,7 +153,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/350lCHR",
+        link: "https://amzn.to/34lpP8L",
         label: "Fuse holder for the MEGA fuses",
         lastKnownPrice: 4.99
       }
@@ -175,7 +175,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/350lCHR",
+        link: "https://amzn.to/3G9ABff",
         label: "Fuse holder for the MEGA fuses",
         lastKnownPrice: 4.99
       }
@@ -197,7 +197,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/350lCHR",
+        link: "https://amzn.to/3Gemd5B",
         label: "Fuse holder for the MEGA fuses",
         lastKnownPrice: 4.99
       }
@@ -219,7 +219,7 @@ export default
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/350lCHR",
+        link: "https://amzn.to/34gezKF",
         label: "Fuse holder for the MEGA fuses",
         lastKnownPrice: 4.99
       }

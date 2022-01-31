@@ -55,7 +55,6 @@ export default class Mindmap extends GenericNode {
   }
 
   getMaxChargeVoltage() {
-    console.log(this.model?.data)
     return this.model?.data.ladespannung
   }
 

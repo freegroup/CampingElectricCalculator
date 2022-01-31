@@ -65,10 +65,18 @@ export default class BatteryProtect extends RightNode {
       this.children.slice(1).forEach( child => {
         data.strom += child.calculateOutputData().strom 
       })
+
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
-      if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
+      const fuseAmp = this.getFuseAmp()
+      if ( fuseAmp ) {
+        if ( fuseAmp > this.model.data.strom ) {
+          result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that the used fuse amp is lower than <b>[${this.model.data.strom} A]</b>` })
+        }
+      } else {
+        if ( data.strom > this.model.data.strom ) {
+          result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
+        }
       }
     }
 

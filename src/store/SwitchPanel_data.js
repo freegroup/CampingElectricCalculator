@@ -24,7 +24,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3ny0krr",
+        link: "https://amzn.to/3s45rkv",
         label: "Meipire 5 Switch Panel with LED",
         lastKnownPrice: 12.99
       }

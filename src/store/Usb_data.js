@@ -25,7 +25,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3t9eWkF",
+        link: "https://amzn.to/3ob2nSu",
         label: "ProCar 67341000 Power USB-C/A",
         lastKnownPrice: 16.99
       }
@@ -47,7 +47,7 @@ export default [
     shopping: [
       {
         shop: "Amazon",
-        link: "https://amzn.to/3ue7CVz",
+        link: "https://amzn.to/3ueSrLO",
         label: "Auto Dual USB Stecker",
         lastKnownPrice: 15.39
       }

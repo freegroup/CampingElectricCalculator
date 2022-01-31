@@ -123,7 +123,6 @@ export default class SolarBooster extends LeftNode {
 
     result.ladestrom = result.watt / result.ladespannung
     result.amperestunden = result.strom * this.model.operationHours
-    console.log(result)
     return result
   }
 
