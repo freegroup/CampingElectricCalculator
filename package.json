@@ -15,7 +15,7 @@
     "jquery": "^3.7.1",
     "roboto-fontface": "*",
     "uuid": "^9.0.1",
-    "vue": "^2.6.11",
+    "vue": "^2.7.16",
     "vue-i18n": "^8.26.8",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
@@ -40,7 +40,7 @@
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.4.5",
-    "vue-template-compiler": "^2.6.11",
+    "vue-template-compiler": "^2.7.16",
     "vuetify-loader": "^1.7.0"
   }
 }

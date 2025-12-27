@@ -228,10 +228,229 @@ export default {
     message: {
       hello: 'Hallo Welt'
     },
+    profile: {
+      low: {
+        name: "Der Purist",
+        description: "Du reist meist in den warmen Monaten, fährst täglich zu neuen Zielen, übernachtest ab und zu auf Plätzen mit Stromanschluss und lädst hin und wieder z.B. Handy, Tablet oder Laptop. Die verbaute Standardbatterie (meist 90 Ah AGM) und ein 100 Wp Solarpanel reichen dir meistens."
+      },
+      standard: {
+        name: "Standard Camper",
+        description: "Reist du gerne das ganze Jahr über und bist völlig frei? Fährst du (fast) jeden Tag neue Ziele an und lädst ab und zu Handy, Tablet oder Laptop? Ein 100 Wp Solarpanel sollte hier normalerweise ausreichen."
+      },
+      aboveaverage: {
+        name: "Vielnutzer",
+        description: "Reist du gerne das ganze Jahr über und bist völlig frei? Du fährst nicht jeden Tag neue Ziele an, lädst Handy, Tablet, Laptop und andere Geräte wie Kamera, Drohne u.ä. und möchtest Kaffeemaschine oder Föhn nutzen? Hier empfehle ich dir mindestens 200 Wp Solar sowie eine Lithium-Batterie mit mind. 100Ah Kapazität."
+      },
+      power: {
+        name: "Van Lifer",
+        description: "Wenn du deinen Camper zum Beispiel mehrere Tage als mobiles Büro nutzt, solltest du deinen Bedarf wie oben beschrieben berechnen. Denn ganz ohne Strom mit dem Laptop arbeiten ist nicht möglich 🙂. Hier gibt es keine Obergrenzen."
+      }
+    },
+    data: { 
+      label: {
+        amperestunden: "Amperestunden",
+        effective_amperestunden: "Nutzbare Amperestunden",
+        strom: "Stromaufnahme",
+        durchfluss: "Durchflussrate",
+        liter: "Volumen",
+        druck: "Druck",
+        nennladestrom: "Strom",
+        ladestrom: "Ladestrom", 
+        ladespannung: "Ladespannung",
+        nennstrom: "Strom",
+        watt: "Watt",
+        spannung_je_buchse: "Ausgangsspannung",
+        strom_je_buchse: "Ausgangsstrom",
+        strom_je_anschluss: "Strom/Anschluss",
+        strom_out: "Strom (aus)",
+        strom_in: "Strom (ein)",
+        anschluesse: "Anschlüsse",
+        buchsen: "Buchsen",
+        bms: "Entladeschutz (BMS)",
+        type: "Typ",
+        gewicht: "Gewicht",
+        zellen: "Zellen",
+        controller: "Regler",
+        panel: "Panel",
+        laenge: "Länge",
+        leerlaufspannung: "Leerlaufspannung",
+        kurzschlussstrom: "Kurzschlussstrom",
+        eingangsspannung: "Eingangsspannung",
+        eingangsspannung_min: "Eingangsspannung (min)",
+        eingangsspannung_max: "Eingangsspannung (max)",
+        eingangsstrom: "Eingangsstrom",
+        eingangswatt: "Eingangsleistung (Watt)",
+        chargeSupport: "Batterietypen",
+        spannung: "Spannung",
+        spannung_in: "Spannung (ein)",
+        spannung_out: "Spannung (aus)",
+        spannung_min: "Spannung (min)",
+        spannung_max: "Spannung (max)",
+        operationHours: "Betriebsstunden",
+        nennspannung: "Nennspannung"
+      },
+      unit: {
+        amperestunden: "Ah",
+        effective_amperestunden: "Ah",
+        strom: "A",
+        durchfluss: "L/min",
+        liter: "Liter",
+        druck: "bar",
+        nennladestrom: "A",
+        ladestrom: "A",
+        panel: "",
+        controller: "",
+        ladespannung: "V",
+        nennstrom: "A",
+        bms: "",
+        spannung_je_buchse: "V",
+        strom_je_buchse: "A",
+        strom_je_anschluss: "A",
+        strom_out: "A",
+        strom_in: "A",
+        watt: "Watt",
+        anschluesse: "",
+        buchsen: "",
+        type: "",
+        gewicht: "Gramm",
+        zellen: "",
+        laenge: "Meter",
+        leerlaufspannung: "V",
+        kurzschlussstrom: "A",
+        eingangsspannung: "V",
+        eingangsspannung_min: "V",
+        eingangsspannung_max: "V",
+        eingangsstrom: "A",
+        eingangswatt: "Watt",
+        spannung: "V",
+        spannung_in: "V",
+        spannung_out: "V",
+        spannung_min: "V",
+        spannung_max: "V",
+        nennspannung: "V",
+        operationHours: "Stunden",
+        chargeSupport: ""
+      }
+    },
+    view: {
+      shopping: {
+        battery: "Batterie",
+        charge: "Ladeseite",
+        factsheet: "Datenblatt",
+        shops: "Online Shops",
+        consumer: "Verbraucherseite"
+      }
+    },
+    component: {
+      name: {
+        solarBooster: "Solar-Laderegler",
+        dcdcBooster: "DC/DC Wandler",
+        solarSet: "Solar Set",
+        carSocket: "KFZ Steckdose",
+        killSwitch: "Trennschalter",
+        switchPanel: "Schaltpanel",
+        solarPanel: "Solarpanel",
+        shoreBooster: "Landstrom-Ladegerät",
+        batteryProtect: "Batterieschutz",
+        starterBooster: "Ladebooster",
+        starterAccu: "Starterbatterie",
+        alternator: "Lichtmaschine",
+        accu: "Versorgungsbatterie",
+        fridge: "Kühlschrank",
+        heater: "Standheizung",
+        fuse: "Sicherung",
+        fuseBox: "Sicherungskasten",
+        pressurePump: "Druckwasserpumpe",
+        usb: "USB Steckdose",
+        usbConsumer: "USB Verbraucher",
+        light: "Licht"
+      },
+      description: {
+        switchPanel: "Installiere ein Schaltpanel, um mehrere Geräte von einem Ort in deinem Camper aus zu bedienen.",
+        dcdcBooster: "Ein Gleichspannungswandler (DC-DC-Wandler) ist eine elektrische Schaltung, die eine am Eingang zugeführte Gleichspannung in eine Gleichspannung mit höherem, niedrigerem oder invertiertem Spannungsniveau umwandelt.",
+        solarBooster: "Solar-Laderegler sitzen zwischen den Solarmodulen und der Batterie. Sie wandeln die schwankende Spannung der Solarzellen um, um Batterien verschiedener Typen (Blei, LiFePo4,..) optimal zu laden.",
+        solarSet: "Dies ist der einfachste und schnellste Weg, dein Solar-Setup zu vervollständigen, aber nicht unbedingt der günstigste. Wenn du dich nicht zu sehr mit der Verkabelung und der Suche nach dem richtigen Regler beschäftigen willst, ist ein Solar-Kit das Richtige für dich.",
+        carSocket: "Eine KFZ-Bordspannungssteckdose (Zigarettenanzünder) ist ein Standard-Gleichstromanschluss zur Versorgung tragbarer Geräte, die im oder am Fahrzeug verwendet werden, direkt aus dem Bordnetz.",
+        killSwitch: "Trennschalter dienen dazu, den Stromfluss zu unterbrechen und helfen, Kabelbrände zu vermeiden, wenn die Ausrüstung nicht in Gebrauch ist. Sie bieten auch eine zuverlässige Möglichkeit, den Strom während Wartungsarbeiten abzuschalten und schützen Batterien vor übermäßiger Entladung.",
+        solarPanel: "Ein Solarmodul ist eine Ansammlung von Solarzellen (Photovoltaikzellen), die zur Stromerzeugung durch den photovoltaischen Effekt genutzt werden können.",
+        shoreBooster: "Ein Landstrom-Ladegerät ist eine weitere Möglichkeit, die Batterie des Solarsystems zu laden. Du kannst das Ladegerät an eine normale 230V-Steckdose anschließen und deine Batterie schnell aufladen.",
+        batteryProtect: "Wenn die Batterie unter die empfohlene Entladeschlussspannung entladen wird, verschlechtert sich die Gesamtleistung, die Lebensdauer verkürzt sich und die Batterie kann vorzeitig ausfallen. Wenn die Batterie diese Funktion nicht integriert hat, solltest du diesen Schutz hinzufügen.",
+        starterBooster: "Ein Ladebooster ist ein intelligentes Ladegerät, das mit 12 Volt betrieben wird. Es nutzt die Leistung der Lichtmaschine und erzeugt eine Ausgangsspannung und einen Strom, der ideal zum Laden und/oder Erhalten deiner Zusatzbatterie geeignet ist.",
+        starterAccu: "Die Starterbatterie (bei Kraftfahrzeugen: Autobatterie) ist ein Akkumulator, der den elektrischen Strom für den Anlasser eines Verbrennungsmotors liefert.",
+        alternator: "Eine Lichtmaschine ist ein Generator, der insbesondere in Autos verwendet wird, um elektrischen Strom zu erzeugen. Diese Software benötigt die Daten der Lichtmaschine, um sicherzustellen, dass der Stromfluss perfekt zu deinem Ladebooster passt.",
+        accu: "Eine Zusatzbatterie im Camper dient dazu, die Starterbatterie zu isolieren, wenn der Motor nicht läuft – so wird verhindert, dass sie entladen wird und das Fahrzeug nicht mehr startet. Bei abgestelltem Motor versorgt die Zusatzbatterie alle Verbraucher im Innenraum (Licht, Radio, 12V-Kühlschrank usw.).",
+        fridge: "Ein Camping-Kühlschrank kühlt deine Lebensmittel auf eine sichere Lagertemperatur, genau wie zu Hause. Oft ist er kleiner, um in den Camper zu passen, und hat spezielle Funktionen wie verriegelbare Türen und die Möglichkeit, mit verschiedenen Energiequellen betrieben zu werden.",
+        fuse: "Ein häufiges Problem in elektrischen Systemen ist ein zu hoher Stromfluss. Dieser kann Schäden verursachen. Um dich und dein System davor zu schützen, gibt es Sicherungen und Schutzschalter.",
+        fuseBox: "Sicherungskästen werden verwendet, um kleine Endgeräte einzeln abzusichern. Dies verhindert, dass bei einem kleinen Schaden die Leitungen zu den Endverbrauchern beschädigt werden oder gar das gesamte Bordnetz ausfällt. Aus Sicherheitsgründen musst du einen Sicherungskasten hinzufügen, bevor du Verbraucher anschließen kannst.",
+        pressurePump: "Die Wasserpumpe setzt die Wasserleitungen im Wohnmobil unter Druck. Wenn du einen Wasserhahn öffnest, entweicht der Druck und die Pumpe springt an. Sie hält den Druck aufrecht, solange Wasser fließt, bis du den Hahn wieder schließt.",
+        usb: "Eine USB-Steckdose ist ideal zum Laden tragbarer Geräte wie Smartphone oder Tablet.",
+        usbConsumer: "Du kannst deinen Laptop, dein Smartphone und andere Geräte hinzufügen, die über USB geladen werden. Dies hilft, deinen Gesamtstromverbrauch zu berechnen.",
+        light: "Verschiedene Lichtquellen wie LED-Streifen, LED-Birnen oder Strahler im Außenbereich des Fahrzeugs."
+      }
+    },
     dialog: {
+      fileOpen: {
+        title: "Beispielkonfiguration öffnen",
+        subtitle: "Standardvorschläge für die Auslegung der Elektrik in einem Camper basierend auf Nutzerprofilen"
+      },
+      serial: {
+        title: "Reihenschaltung",
+        subtitle: "Verbindung von Solarmodulen in Reihe"
+      },
+      parallel: {
+        title: "Parallelschaltung",
+        subtitle: "Verbindung von Solarmodulen parallel"
+      },
       selectComponent: {
+        title: "Komponente austauschen",
+        subtitle: "Ersetze die Komponente durch eine des gleichen Typs, aber mit anderen Eigenschaften",
         header: "Bauteil auswählen"
-      }  
+      },
+      consumer: {
+        title: "Energieverbrauch",
+        subtitle: "Zeigt den gesamten Energieverbrauch an, der durch diese Komponente fließt"
+      },
+      balance: {
+        title: "Energiebilanz",
+        subtitle: "Eine Übersicht über die Energie, die in und aus der Komponente fließt"
+      },
+      addComponent: {
+        okButton: "Schließen",
+        title: "Komponente hinzufügen",
+        shopLabel: "Shops",
+        suggestComponent: "Neue Komponente vorschlagen",
+        subtitle: "Füge eine neue Komponente zum Diagramm hinzu, die in die Gesamtberechnung einbezogen wird.",
+        lastKnownPrice: "Letzter bekannter Preis"
+      },
+      wire: {
+        okButton: "Schließen",
+        title: "Kabel-Einstellungen",
+        suggest: "Wir empfehlen, einen Kabelquerschnitt von mindestens <span class='font-weight-bold'>{d} mm&#178;</span> für die gewählte Verbindung zu verwenden.",
+        subtitle: "Berechnung des Kabelquerschnitts zwischen den betroffenen Komponenten"
+      },
+      error: {
+        okButton: "Schließen",
+        title: "Komponenten-Fehler",
+        subtitle: "Zeigt Fehler in der Konfiguration der Komponenten oder ihrer untergeordneten Elemente an"
+      },
+      info: {
+        okButton: "Schließen",
+        title: "Komponenten-Information",
+        subtitle: "Technische Details zur Komponente"
+      },
+      timer: {
+        okButton: "Übernehmen",
+        title: "Timer-Einstellungen",
+        subtitle: "Stelle die durchschnittliche Zeit pro Tag ein, die das Gerät in Betrieb ist oder geladen wird.",
+        sliderLabel: "Stunden/Tag",
+        sliderDescription: "Betriebsstunden pro Tag",
+        description: "Nicht alle Geräte sind 24 Stunden am Tag angeschlossen und verbrauchen oder liefern Strom. <b>Hier kannst du einstellen, wie lange das betroffene Gerät deiner Meinung nach durchschnittlich pro Tag in Betrieb ist.</b> Das betrifft Dinge wie Handys, Akkus, Wasserpumpen usw. Im Grunde alles, was man lädt oder einschaltet und dann wieder trennt/ausschaltet."
+      },
+      help: {
+        okButton: "Schließen",
+        title: "Was macht das Tool?",
+        subtitle: "Vereinfacht die Berechnung deiner Ströme und des Verbrauchs deiner Elektrik"
+      }
     }
   }
 }

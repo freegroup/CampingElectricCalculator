@@ -12,8 +12,12 @@ import { toFixed } from "@/utils/Wire.js"
 Vue.config.productionTip = true
 Vue.use(VueI18n)
 
+const userLang = navigator.language || navigator.userLanguage
+const locale = userLang.startsWith('de') ? 'de' : 'en'
+
 const i18n = new VueI18n({
-  locale: 'en', // set locale
+  locale,
+  fallbackLocale: 'en',
   messages
 })
 
