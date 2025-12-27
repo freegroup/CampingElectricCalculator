@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import JsonDialog from '@/dialogs/JsonDialog.vue'
+import JsonDialog from '@/dialogs/JSONDialog.vue'
 import HelpDialog from '@/dialogs/HelpDialog.vue'
 import FileOpenDialog from '@/dialogs/FileOpenDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'

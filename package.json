@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --dest ./docs",
+    "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build --dest ./docs",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.16.7",
     "@mdi/font": "5.9.55",
+    "chokidar": "^3.6.0",
     "core-js": "^3.6.5",
     "file-saver": "^2.0.5",
     "jcanvas": "^21.0.1",
