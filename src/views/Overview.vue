@@ -184,6 +184,49 @@
           </v-col>
         </v-row>
 
+        <!-- Tools Section -->
+        <v-row justify="center" class="mt-12 mb-4">
+          <v-col cols="12">
+            <h2 class="text-h4 font-weight-bold grey--text text--darken-3 mb-2">Tools & Hilfsmittel</h2>
+            <p class="subtitle-1 grey--text text--darken-1">Nützliche Werkzeuge für deinen Camperausbau</p>
+          </v-col>
+        </v-row>
+
+        <v-row justify="center" class="mb-8 px-2">
+          <v-col cols="12">
+            <v-card class="rounded-xl transition-swing hover-card elevation-4" :to="{ path: '/wire-calculator' }">
+              <v-row no-gutters>
+                <v-col cols="12" md="8" class="d-flex align-center">
+                  <v-card-text class="py-6 px-8">
+                    <div class="d-flex align-center mb-3">
+                      <v-avatar color="purple lighten-5" size="60" class="mr-4">
+                        <v-icon large color="purple darken-2">mdi-cable-data</v-icon>
+                      </v-avatar>
+                      <div>
+                        <h3 class="text-h5 font-weight-bold black--text mb-1">Kabelquerschnitt Rechner</h3>
+                        <div class="body-1 grey--text">Berechnen Sie den optimalen Kabelquerschnitt für Ihre Installation</div>
+                      </div>
+                    </div>
+                    <div class="body-2 grey--text text--darken-1 ml-15 pl-4">
+                      Wenn du lieber alles selbst ausrechnen willst und kannst, dann nutze doch einfach den Kabelberechner, 
+                      um schnell den richtigen Kabelquerschnitt zu finden. Gib Kabellänge, Stromstärke und Spannung ein und 
+                      erhalte sofort den empfohlenen Kabelquerschnitt inklusive Spannungsabfall und Leistungsverlust. 
+                      Perfekt für einzelne Verbindungen!
+                    </div>
+                  </v-card-text>
+                </v-col>
+                <v-col cols="12" md="4" class="purple lighten-5 d-flex align-center justify-center">
+                  <div class="text-center pa-6">
+                    <v-icon size="80" color="purple darken-2" class="mb-3">mdi-calculator-variant</v-icon>
+                    <div class="font-weight-bold purple--text text--darken-2">Jetzt berechnen</div>
+                    <v-icon color="purple darken-2" class="mt-2">mdi-arrow-right</v-icon>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+
         <!-- Disclaimer & Footer Info -->
         <v-row class="mt-8 mb-4">
           <v-col cols="12">

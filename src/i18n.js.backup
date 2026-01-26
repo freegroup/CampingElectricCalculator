@@ -1,32 +1,119 @@
 export default {
   en: {
-    units: {
-      ampere: "A",
-      ampereFull: "Ampere",
-      volt: "V",
-      voltFull: "Volt",
-      watt: "W",
-      wattFull: "Watt",
-      millimeter: "mm",
-      millimeterFull: "Millimeter",
-      meter: "m",
-      meterFull: "Meter",
-      percent: "%",
-      percentFull: "Percent",
-      squareMillimeter: "mm²",
-      squareMillimeterFull: "Square Millimeter"
-    },
     wireCalculator: {
+      title: "Wire Cross-Section Calculator",
+      source: {
+        title: "Power Source",
+        systemVoltage: "System Voltage"
+      },
+      cable: {
+        length: "Length",
+        minCrossSection: "Minimum Cross-Section",
+        recommendedCrossSection: "Recommended Cross-Section",
+        voltageDrop: "Voltage Drop",
+        loss: "Loss",
+        powerLoss: "Power Loss"
+      },
+      consumer: {
+        title: "Consumer",
+        current: "Current",
+        power: "Power",
+        powerConsumption: "Power Consumption"
+      },
+      recommendation: {
+        optimal: "Optimal Configuration!",
+        good: "Good Configuration",
+        acceptable: "Acceptable for Camping",
+        warning: "Warning: High Voltage Drop!",
+        optimalText: "The voltage drop is {percent}% - optimal for camping applications.",
+        thinnerText: "The selected cross-section is thinner than recommended. Recommended: {size} mm² for optimal performance.",
+        goodText: "The voltage drop is {percent}% - good for most camping applications.",
+        acceptableText: "The voltage drop is {percent}% - still acceptable for non-critical consumers, but a thicker cable would be better.",
+        warningText: "The voltage drop is {percent}% - too high! Use a thicker cable or shorten the distance.",
+        recommendedLabel: "Recommended Cross-Section",
+        apply: "Apply"
+      },
+      examples: {
+        title: "Quick Selection: Typical Applications"
+      },
+      notes: {
+        title: "Important Notes on Calculation",
+        basis: "Calculation Basis",
+        basisText: "Maximum voltage drop: 2% | Forward and return lines considered (Factor 2)",
+        standards: "Standard Cross-Sections",
+        standardsText: "1, 2.5, 4, 6, 8, 10, 16, 25, 35, 50, 60, 100, 150, 200, 500 mm²",
+        safety: "Safety Margin",
+        safetyText: "Recommended cross-section includes 12% safety margin",
+        important: "Important",
+        importantText: "Guideline only! Consult a professional for installation."
+      },
+      footer: {
+        openSource: "Open Source Project",
+        reportBug: "Report a Bug"
+      },
+      info: {
+  de: {
+    wireCalculator: {
+      title: "Kabelquerschnitt Rechner",
+      source: {
+        title: "Spannungsquelle",
+        systemVoltage: "Systemspannung"
+      },
+      cable: {
+        length: "Länge",
+        minCrossSection: "Minimaler Querschnitt",
+        recommendedCrossSection: "Empfohlener Querschnitt",
+        voltageDrop: "Spannungsabfall",
+        loss: "Verlust",
+        powerLoss: "Leistungsverlust"
+      },
+      consumer: {
+        title: "Verbraucher",
+        current: "Stromstärke",
+        power: "Leistung",
+        powerConsumption: "Leistungsaufnahme"
+      },
+      recommendation: {
+        optimal: "Optimale Konfiguration!",
+        good: "Gute Konfiguration",
+        acceptable: "Akzeptabel für Camping",
+        warning: "Achtung: Hoher Spannungsabfall!",
+        optimalText: "Der Spannungsabfall liegt bei {percent}% - optimal für Camping-Anwendungen.",
+        thinnerText: "Der gewählte Querschnitt ist dünner als empfohlen. Empfohlen: {size} mm² für optimale Leistung.",
+        goodText: "Der Spannungsabfall liegt bei {percent}% - gut für die meisten Camping-Anwendungen.",
+        acceptableText: "Der Spannungsabfall liegt bei {percent}% - noch akzeptabel für unkritische Verbraucher, aber ein dickeres Kabel wäre besser.",
+        warningText: "Der Spannungsabfall liegt bei {percent}% - zu hoch! Verwenden Sie ein dickeres Kabel oder verkürzen Sie die Strecke.",
+        recommendedLabel: "Empfohlener Querschnitt",
+        apply: "Übernehmen"
+      },
+      examples: {
+        title: "Schnellauswahl: Typische Anwendungen"
+      },
+      notes: {
+        title: "Wichtige Hinweise zur Berechnung",
+        basis: "Berechnungsgrundlage",
+        basisText: "Maximaler Spannungsabfall: 2% | Hin- und Rückleitung berücksichtigt (Faktor 2)",
+        standards: "Standardquerschnitte",
+        standardsText: "1, 2.5, 4, 6, 8, 10, 16, 25, 35, 50, 60, 100, 150, 200, 500 mm²",
+        safety: "Sicherheitszuschlag",
+        safetyText: "Empfohlener Querschnitt enthält 12% Sicherheit",
+        important: "Wichtig",
+        importantText: "Nur Richtwert! Konsultieren Sie einen Fachmann für die Installation."
+      },
+      footer: {
+        openSource: "Open Source Project",
+        reportBug: "Report a Bug"
+      },
       info: {
         title: "How does the calculation work?",
         description: "This tool helps you find the optimal wire cross-section for your camping installation. The cross-section determines how efficiently current flows from the consumer to the source. The longer the cable and the higher the current, the thicker the cable should be to keep energy losses low.",
         formulaTitle: "Calculation Formula",
         formulaDescription: "The minimum wire cross-section is calculated using the following formula:",
         variables: {
-          crossSection: "Cross-section",
-          length: "Cable length",
-          current: "Current",
-          voltage: "Voltage",
+          crossSection: "Cross-section [mm²]",
+          length: "Cable length [m]",
+          current: "Current [A]",
+          voltage: "Voltage [V]",
           voltageDrop: "Max. voltage drop (2%)",
           conductivity: "Copper conductivity (56 m/Ω·mm²)"
         },
@@ -60,10 +147,11 @@ export default {
         durchfluss: "Flow Rate",
         liter: "Volume",
         druck: "Pressure",
-        nennladestrom: "Rated Charge Current",
+        nennladestrom: "Current",
         ladestrom: "Charge Current", // berechenter Ladestrom eines Charger in Abhängigkeit von input Watt
         ladespannung: "Charge Voltage",
-        nennstrom: "Rated Current",
+        nennstrom: "Current",
+        watt: "Watt",
         spannung_je_buchse: "Supplied Voltage",
         strom_je_buchse: "Supplied Current",
         strom_je_anschluss: "Current/Slot",
@@ -113,20 +201,20 @@ export default {
         strom_je_anschluss: "A",
         strom_out: "A",
         strom_in: "A",
-        watt: "W",
+        watt: "Watt",
         anschluesse: "",
         buchsen: "",
         type: "",
         gewicht: "Gramm",
         zellen: "",
-        laenge: "m",
+        laenge: "Meter",
         leerlaufspannung: "V",
         kurzschlussstrom: "A",
         eingangsspannung: "V",
         eingangsspannung_min: "V",
         eingangsspannung_max: "V",
         eingangsstrom: "A",
-        eingangswatt: "W",
+        eingangswatt: "Watt",
         spannung: "V",
         spannung_in: "V",
         spannung_out: "V",
@@ -258,22 +346,6 @@ export default {
     }
   },
   de: {
-    units: {
-      ampere: "A",
-      ampereFull: "Ampere",
-      volt: "V",
-      voltFull: "Volt",
-      watt: "W",
-      wattFull: "Watt",
-      millimeter: "mm",
-      millimeterFull: "Millimeter",
-      meter: "m",
-      meterFull: "Meter",
-      percent: "%",
-      percentFull: "Prozent",
-      squareMillimeter: "mm²",
-      squareMillimeterFull: "Quadratmillimeter"
-    },
     wireCalculator: {
       info: {
         title: "Wie funktioniert die Berechnung?",
@@ -281,10 +353,10 @@ export default {
         formulaTitle: "Berechnungsformel",
         formulaDescription: "Der minimale Kabelquerschnitt wird nach folgender Formel berechnet:",
         variables: {
-          crossSection: "Querschnitt",
-          length: "Kabellänge",
-          current: "Stromstärke",
-          voltage: "Spannung",
+          crossSection: "Querschnitt [mm²]",
+          length: "Kabellänge [m]",
+          current: "Stromstärke [A]",
+          voltage: "Spannung [V]",
           voltageDrop: "Max. Spannungsabfall (2%)",
           conductivity: "Leitfähigkeit Kupfer (56 m/Ω·mm²)"
         },
@@ -321,10 +393,11 @@ export default {
         durchfluss: "Durchflussrate",
         liter: "Volumen",
         druck: "Druck",
-        nennladestrom: "Nennladestrom",
+        nennladestrom: "Strom",
         ladestrom: "Ladestrom", 
         ladespannung: "Ladespannung",
-        nennstrom: "Nennstrom",
+        nennstrom: "Strom",
+        watt: "Watt",
         spannung_je_buchse: "Ausgangsspannung",
         strom_je_buchse: "Ausgangsstrom",
         strom_je_anschluss: "Strom/Anschluss",
@@ -374,20 +447,20 @@ export default {
         strom_je_anschluss: "A",
         strom_out: "A",
         strom_in: "A",
-        watt: "W",
+        watt: "Watt",
         anschluesse: "",
         buchsen: "",
         type: "",
         gewicht: "Gramm",
         zellen: "",
-        laenge: "m",
+        laenge: "Meter",
         leerlaufspannung: "V",
         kurzschlussstrom: "A",
         eingangsspannung: "V",
         eingangsspannung_min: "V",
         eingangsspannung_max: "V",
         eingangsstrom: "A",
-        eingangswatt: "W",
+        eingangswatt: "Watt",
         spannung: "V",
         spannung_in: "V",
         spannung_out: "V",

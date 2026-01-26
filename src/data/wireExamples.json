@@ -1,0 +1,42 @@
+[
+  {
+    "name": "LED Strip",
+    "length": 3,
+    "current": 2,
+    "voltage": 12,
+    "icon": "mdi-lightbulb",
+    "color": "yellow darken-2"
+  },
+  {
+    "name": "USB",
+    "length": 2,
+    "current": 2,
+    "voltage": 12,
+    "icon": "mdi-usb",
+    "color": "blue"
+  },
+  {
+    "name": "Kühlbox",
+    "length": 3,
+    "current": 4,
+    "voltage": 12,
+    "icon": "mdi-fridge",
+    "color": "light-blue"
+  },
+  {
+    "name": "Wechselrichter",
+    "length": 1,
+    "current": 50,
+    "voltage": 12,
+    "icon": "mdi-power-plug",
+    "color": "orange darken-2"
+  },
+  {
+    "name": "Wasserpumpe",
+    "length": 2,
+    "current": 8,
+    "voltage": 12,
+    "icon": "mdi-water-pump",
+    "color": "cyan"
+  }
+]
