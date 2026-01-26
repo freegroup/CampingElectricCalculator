@@ -1,5 +1,6 @@
 import RightNode from './RightNode'
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class RightFuse extends RightNode {
   constructor() {
@@ -29,7 +30,13 @@ export default class RightFuse extends RightNode {
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
       const nonMatching = this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung)
       if ( nonMatching ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages <b>[${firstSpannung}V, ${nonMatching.calculateConsumptionData().spannung}V]</b> on the consumer side of the fuse.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('mixedVoltagesOnFuse', {
+            voltage1: firstSpannung,
+            voltage2: nonMatching.calculateConsumptionData().spannung
+          })
+        })
       }
     }
     
@@ -45,7 +52,14 @@ export default class RightFuse extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The current <b>[${toFixed(data.strom)} A]</b> of the input sources are bigger than the maximum power which the fuse can handle <b>[${this.model.data.strom} A]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentTooHigh', {
+            component: 'fuse',
+            actual: toFixed(data.strom),
+            max: this.model.data.strom
+          })
+        })
       }
     }
 
@@ -54,18 +68,34 @@ export default class RightFuse extends RightNode {
       const base = this.parent.getBaseVoltage()
       if ( this.model.data.spannung_min > base || this.model.data.spannung_max < base ) {
         if ( this.model.data.spannung_min !== this.model.data.spannung_max ) {
-          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min}-${this.model.data.spannung_max} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('voltageRangeNotSupported', {
+              component: 'fuse',
+              min: this.model.data.spannung_min,
+              max: this.model.data.spannung_max,
+              actual: this.parent.getBaseVoltage()
+            })
+          })
         } else {
-          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('fuseVoltageNotSupported', {
+              required: this.model.data.spannung_min,
+              actual: this.parent.getBaseVoltage()
+            })
+          })
         }
-      }            
+      }
     }
  
     return result
   }
 
   calculateConsumptionData () {
-    const result = { strom: 0, spannung: this.model.data.spannung, watt: 0, amperestunden: 0 }
+    // Get voltage from parent (battery) since fuse doesn't have a single spannung value
+    const spannung = this.parent ? this.parent.getBaseVoltage() : 0
+    const result = { strom: 0, spannung: spannung, watt: 0, amperestunden: 0 }
     if ( this.children.length > 0 ) {
       // check that the attributes "strom" and "spannung" are in place
       result.strom = this.children[0].calculateConsumptionData().strom

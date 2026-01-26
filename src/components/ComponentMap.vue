@@ -213,7 +213,7 @@ export default {
     async handleNodeShowError (event) {
       const node = event.component
       const errors = node.getErrorMessages()
-      this.$refs.errorDialog.show(errors)
+      this.$refs.errorDialog.show(errors, node)
     },
 
     async handleNodeShowInfo (event) {

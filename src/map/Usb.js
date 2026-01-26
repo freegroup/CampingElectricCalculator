@@ -1,4 +1,5 @@
 import RightNode from './RightNode'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class Usb extends RightNode {
   constructor() {
@@ -39,9 +40,19 @@ export default class Usb extends RightNode {
       //
       if ( (data.operationHours / this.model.data.buchsen) > 24 ) {
         if ( this.model.data.buchse > 1 ) {
-          result.push({ type: "Warning", text: `The USB ports are occupied more than 24 hours a day. Install an additional socket.` })
+          result.push({ 
+            type: "Warning", 
+            text: errorMessages.t('socketsOccupiedTooLong', { 
+              component: 'USB ports' 
+            })
+          })
         } else {
-          result.push({ type: "Warning", text: `The USB port is occupied more than 24 hours a day. Install an additional socket.` })
+          result.push({ 
+            type: "Warning", 
+            text: errorMessages.t('socketOccupiedTooLong', { 
+              component: 'USB port' 
+            })
+          })
         }
       }
     }
@@ -51,11 +62,26 @@ export default class Usb extends RightNode {
       const base = this.parent.getBaseVoltage()
       if ( this.model.data.spannung_min > base || this.model.data.spannung_max < base ) {
         if ( this.model.data.spannung_min !== this.model.data.spannung_max ) {
-          result.push({ type: "Error", text: `The USB unit requires a supply voltage of <b>[${this.model.data.spannung_min}-${this.model.data.spannung_max} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('voltageRangeNotSupported', {
+              component: 'USB unit',
+              min: this.model.data.spannung_min,
+              max: this.model.data.spannung_max,
+              actual: this.parent.getBaseVoltage()
+            })
+          })
         } else {
-          result.push({ type: "Error", text: `The USB unit requires a supply voltage of <b>[${this.model.data.spannung_min} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('voltageNotSupported', {
+              component: 'USB unit',
+              required: this.model.data.spannung_min,
+              actual: this.parent.getBaseVoltage()
+            })
+          })
         }
-      }            
+      }
     }
  
     return result

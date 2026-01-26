@@ -1,6 +1,6 @@
 import LeftNode from './LeftNode'
 
-export default class StarterBooster extends LeftNode {
+export default class Alternator extends LeftNode {
   constructor() {
     super()
   }

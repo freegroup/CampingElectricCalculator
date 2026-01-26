@@ -1,4 +1,5 @@
 import RightNode from './RightNode'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class BatteryProtect extends RightNode {
   constructor() {
@@ -18,15 +19,27 @@ export default class BatteryProtect extends RightNode {
     /*
     const amp = this.getFuseAmp()
     if ( amp === undefined || amp > this.model.data.strom ) {
-      result.push( { type: "Error", text: `Battery Protection with a maximum currents of <b>[${this.model.data.strom} A]</b> is breaking before the used fuse with <b>[${amp} A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
+      result.push({ 
+        type: "Error", 
+        text: errorMessages.t('batteryProtectBreaksBeforeFuse', {
+          protectCurrent: this.model.data.strom,
+          fuseCurrent: amp
+        })
+      })
     }
     */
 
     if ( this.parent ) {
       // Spannungen müssen passen
       if ( this.model.data.spannung !== this.parent.getBaseVoltage() ) {
-        result.push({ type: "Error", text: `The battery protection unit with <b>[${this.model.data.spannung} V]</b> do not support the used battery voltage of <b>[${this.parent.getBaseVoltage()} V]</b>.` })
-      }      
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('chargerVoltageNotSupported', {
+            chargerVoltage: this.model.data.spannung,
+            batteryVoltage: this.parent.getBaseVoltage()
+          })
+        })
+      }
     }
     // if more than one child exists, each of them must have the same "spannung". It is not allowed 
     // to mix up the voltage
@@ -36,7 +49,12 @@ export default class BatteryProtect extends RightNode {
       //
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
       if ( this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('mixedVoltagesNotAllowed', {
+            component: 'fuse'
+          })
+        })
       }
     }
     
@@ -52,7 +70,14 @@ export default class BatteryProtect extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The power <b>[${parseInt(data.strom)} A]</b> of the input sources are bigger than the maximum power which the battery protect can handle <b>[${this.model.data.strom}]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentTooHigh', {
+            component: 'battery protect',
+            actual: parseInt(data.strom),
+            max: this.model.data.strom
+          })
+        })
       }
     }
 
@@ -71,11 +96,23 @@ export default class BatteryProtect extends RightNode {
       const fuseAmp = this.getFuseAmp()
       if ( fuseAmp ) {
         if ( fuseAmp > this.model.data.strom ) {
-          result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that the used fuse amp is lower than <b>[${this.model.data.strom} A]</b>` })
+          result.push({ 
+            type: "Warning", 
+            text: errorMessages.t('batteryProtectCurrentWarning', {
+              actual: parseInt(data.strom),
+              max: this.model.data.strom
+            })
+          })
         }
       } else {
         if ( data.strom > this.model.data.strom ) {
-          result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
+          result.push({ 
+            type: "Warning", 
+            text: errorMessages.t('consumerCurrentWarning', {
+              actual: parseInt(data.strom),
+              max: this.model.data.strom
+            })
+          })
         }
       }
     }

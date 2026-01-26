@@ -31,7 +31,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: toFixed(48 / 12),
+      strom: toFixed(48 / 12), // I=P/U
       liter: 28
     }
   },
@@ -51,7 +51,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: toFixed(48 / 12),
+      strom: toFixed(48 / 12), // I=P/U
       liter: 40
     }
   },
@@ -71,7 +71,7 @@ export default [
     ],
     data: {
       spannung: 12, 
-      strom: toFixed(36 / 12),
+      strom: toFixed(36 / 12), // I=P/U
       liter: 7
     }
   },

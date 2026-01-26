@@ -4,6 +4,7 @@ import GenericNode from './GenericNode'
 import LeftDefaultNode from './LeftDefaultNode'
 import RightDefaultNode from './RightDefaultNode'
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class Mindmap extends GenericNode {
   constructor(id, width, height) {
@@ -472,7 +473,13 @@ export default class Mindmap extends GenericNode {
     //
     this.rightChildren.forEach( child => {
       if ( !this.getChildCandidates(false).includes( child.model.type )) {
-        result.push( { type: "Error", text: `Battery of type <b>'${this.model.data.type}'</b> do not allow a direct connection to a device of type <b>'${child.model.type}'</b>` } )
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('batteryDirectConnectionNotAllowed', {
+            batteryType: this.model.data.type,
+            deviceType: child.model.type
+          })
+        })
       }
     })
 
@@ -495,7 +502,12 @@ export default class Mindmap extends GenericNode {
     if ( this.model.data.bms === "none" && this.rightChildren.length > 0 ) {
       const hasWrongChildren = this.rightChildren.find( subChild => isWrongComponent(subChild))
       if ( hasWrongChildren ) {
-        result.push({ type: "Error", text: `Battery type <b>${this.model.data.type}</b> requires a battery protection between all consumers to avoid deep discharge and damage of the battery.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('batteryTypeRequiresProtection', {
+            batteryType: this.model.data.type
+          })
+        })
       }
     }
 

@@ -7,40 +7,52 @@
         </v-avatar>
 
       </router-link>
-        <v-toolbar-title>Camper Electric Configuration 
-          <img 
-            style="top: 4px;position: relative;padding-left: 10px;" 
-            src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ffreegroup%2FCampingElectricCalculator&count_bg=%23E39623&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"
-          />
-        </v-toolbar-title>
+        <v-toolbar-title>Camper Electric Configuration</v-toolbar-title>
       <v-spacer></v-spacer>
           <v-btn @click="load" class="ml-1" small>
             <v-icon>mdi-open-in-app</v-icon>
-            <div class="ml-3 d-none d-lg-block">Open</div>
+            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.open') }}</div>
           </v-btn>
                     
           <v-btn @click="save" class="ml-1" small>
             <v-icon>mdi-content-save-outline</v-icon>
-            <div class="ml-3 d-none d-lg-block">Save</div>
+            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.save') }}</div>
           </v-btn>
           
           <v-btn @click="exportPdf" class="ml-1" small>
             <v-icon>mdi-text-box-check-outline</v-icon> 
-            <div class="ml-3 d-none d-lg-block">Parts</div>
+            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.parts') }}</div>
           </v-btn>
 
           <v-btn @click="help" class="ml-1" small>
             <v-icon>mdi-help-circle-outline</v-icon>
-            <div class="ml-3 d-none d-lg-block">Help</div>
+            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.help') }}</div>
           </v-btn>
+
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn class="ml-1" small v-bind="attrs" v-on="on">
+                <v-icon>mdi-translate</v-icon>
+                <div class="ml-3 d-none d-lg-block">{{ currentLanguage.toUpperCase() }}</div>
+              </v-btn>
+            </template>
+            <v-list dense>
+              <v-list-item @click="changeLanguage('de')">
+                <v-list-item-title>🇩🇪 Deutsch</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="changeLanguage('en')">
+                <v-list-item-title>🇬🇧 English</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
 
           <v-btn href="https://www.paypal.com/paypalme/freegroup/2.50" target="_blank" class="teal accent-4 ml-1" small>
             <v-icon>mdi-coffee-outline</v-icon>
-            <div class="ml-3 d-none d-lg-block">Send Me a Coffee</div>
+            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.coffee') }}</div>
           </v-btn>
 
           <template v-slot:extension>
-            <div style="width:100%">{{name}} <span class="float-right">Estimated Cost: {{(price.low).toFixed(2)}} Euro</span></div>
+            <div style="width:100%">{{name}} <span class="float-right">{{ $t('toolbar.estimatedCost') }}: {{(price.low).toFixed(2)}} Euro</span></div>
           </template>
     </v-app-bar>
     <v-main>
@@ -58,6 +70,7 @@ import HelpDialog from '@/dialogs/HelpDialog.vue'
 import FileOpenDialog from '@/dialogs/FileOpenDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'
 import { mapState } from 'vuex'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default {
   name: 'Map',
@@ -134,6 +147,16 @@ export default {
     exportPdf() {
       const routeData = this.$router.resolve({ path: '/list/' + this.$refs.mindmap.getConfiguration().id })
       window.open(routeData.href, '_blank')
+    },
+    changeLanguage(lang) {
+      this.$i18n.locale = lang
+      localStorage.setItem('userLanguage', lang)
+      // Update ErrorMessages for native JS components
+      errorMessages.setLocale(lang)
+      // Force re-render of error messages
+      if (this.$refs.mindmap && this.$refs.mindmap.updateStatusIcons) {
+        this.$refs.mindmap.updateStatusIcons(true)
+      }
     }
   },
   watch: {
@@ -146,7 +169,10 @@ export default {
       profiles: state => {
         return state.profile.all
       }
-    })
+    }),
+    currentLanguage() {
+      return this.$i18n.locale
+    }
   }
 }
 </script>

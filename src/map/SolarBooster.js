@@ -2,6 +2,7 @@ import LeftNode from './LeftNode'
 import $ from "jquery"
 import { htmlToElement } from "./utils.js"
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 const images = require.context("@/assets/", true, /\.png$/)
 
 export default class SolarBooster extends LeftNode {
@@ -21,7 +22,13 @@ export default class SolarBooster extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
-        result.push({ type: "Error", text: `The charger do not support the used accu type <b>${this.mindmap.model.data.type}</b>. Supported accu types are <b>${this.model.data.chargeSupport.join(", ")}</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('batteryTypeNotSupported', {
+            actual: this.mindmap.model.data.type,
+            supported: this.model.data.chargeSupport.join(", ")
+          })
+        })
       }
     }
 
@@ -33,14 +40,14 @@ export default class SolarBooster extends LeftNode {
       //
       const firstUUID = this.children[0].model.uuid
       if ( this.children.find( child => child.model.uuid !== firstUUID) ) {
-        result.push({ type: "Error", text: "It is only allowd to add panels in 'parallel' mode of the same kind" })
+        result.push({ type: "Error", text: errorMessages.t('panelsSameKindParallel') })
       }
 
       // all direct children must deliver the same voltage. Voltage can be differe if on panel has an child panel (serial)
       //
       const firstVoltage = this.children[0].calculateOutputData().nennspannung
       if ( this.children.find( child => child.calculateOutputData().nennspannung !== firstVoltage) ) {
-        result.push({ type: "Error", text: "Direct child panels delivers different voltages" })
+        result.push({ type: "Error", text: errorMessages.t('panelsDifferentVoltages') })
       }
     }
     
@@ -53,18 +60,36 @@ export default class SolarBooster extends LeftNode {
       // calculate [P] of all pinout sources and check if the booster can handle this
       //
       if ( data.nennstrom > this.model.data.kurzschlussstrom ) {
-        result.push({ type: "Error", text: `<b>[${toFixed(data.nennstrom)} A]</b> is bigger than the charger can handle <b>[${toFixed(this.model.data.kurzschlussstrom)} A]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentBiggerThanCharger', {
+            actual: toFixed(data.nennstrom),
+            max: toFixed(this.model.data.kurzschlussstrom)
+          })
+        })
       }
 
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.leerlaufspannung > this.model.data.eingangsspannung ) {
-        result.push({ type: "Error", text: `The voltage <b>[${toFixed(data.leerlaufspannung)} V]</b> of the input sources are bigger than the maximum voltage which the charger can handle <b>[${toFixed(this.model.data.eingangsspannung)} V]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('voltageTooBig', {
+            actual: toFixed(data.leerlaufspannung),
+            max: toFixed(this.model.data.eingangsspannung)
+          })
+        })
       }
 
       const output = this.calculateOutputData()
       if ( output.ladestrom > this.model.data.nennladestrom ) {
-        result.push( { type: "Error", text: `Charge current <b>[${toFixed(output.ladestrom)} A]</b> is bigger than the maximal possible charge current <b>[${toFixed(this.model.data.nennladestrom)} A]</b> of this charger` } )
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('chargeCurrentTooHigh', {
+            actual: toFixed(output.ladestrom),
+            max: toFixed(this.model.data.nennladestrom)
+          })
+        })
       }
     }
 

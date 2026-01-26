@@ -1,5 +1,6 @@
 import RightNode from './RightNode'
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class SwitchPanel extends RightNode {
   constructor() {
@@ -21,7 +22,12 @@ export default class SwitchPanel extends RightNode {
       //
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
       if ( this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the switch panel` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('mixedVoltagesNotAllowed', {
+            component: 'switch panel'
+          })
+        })
       }
     }
     
@@ -31,7 +37,14 @@ export default class SwitchPanel extends RightNode {
     this.children.forEach( child => {
       const data = child.calculateConsumptionData()
       if (data.strom > this.model.data.strom_je_anschluss ) {
-        result.push({ type: "Error", text: `The currents <b>[${toFixed(data.strom)} A]</b> of the input consumer is bigger than the power switch can handle <b>[${toFixed(this.model.data.strom_je_anschlussrom)} A]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentTooHigh', {
+            component: 'switch',
+            actual: toFixed(data.strom),
+            max: toFixed(this.model.data.strom_je_anschluss)
+          })
+        })
       }
     })
 

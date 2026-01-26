@@ -1,4 +1,5 @@
 import LeftNode from './LeftNode'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class StarterBooster extends LeftNode {
   constructor() {
@@ -17,17 +18,36 @@ export default class StarterBooster extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
-        result.push({ type: "Error", text: `The charger do not support the used battery type <b>${this.mindmap.model.data.type}</b>. Supported battery types are <b>[${this.model.data.chargeSupport.joind(", ")}]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('batteryTypeNotSupported', {
+            actual: this.mindmap.model.data.type,
+            supported: this.model.data.chargeSupport.join(", ")
+          })
+        })
       }
 
       if ( this.model.data.spannung !== this.mindmap.getBaseVoltage()) {
-        result.push({ type: "Error", text: `The charger with <b>[${this.model.data.spannung} V]</b> do not support the used battery voltage of <b>[${this.parent.getBaseVoltage()} V]</b>.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('chargerVoltageNotSupported', {
+            chargerVoltage: this.model.data.spannung,
+            batteryVoltage: this.parent.getBaseVoltage()
+          })
+        })
       }
     }
 
     this.children.forEach( child => {
       if ( child.model.data.spannung > this.model.data.eingangsspannung_max || child.model.data.spannung < this.model.data.eingangsspannung_min ) {
-        result.push({ type: "Error", text: `The charger requires input voltage of <b>[${this.model.data.eingangsspannung_min}..${this.model.data.eingangsspannung_max} V]</b> and do not support input of <b>[${child.model.data.spannung} V]</b> from alternator.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('inputVoltageOutOfRange', {
+            min: this.model.data.eingangsspannung_min,
+            max: this.model.data.eingangsspannung_max,
+            actual: child.model.data.spannung
+          })
+        })
       }
     })
     return result

@@ -12,8 +12,15 @@ import { toFixed } from "@/utils/Wire.js"
 Vue.config.productionTip = true
 Vue.use(VueI18n)
 
+// Check for saved language preference, otherwise use browser language
+const savedLanguage = localStorage.getItem('userLanguage')
 const userLang = navigator.language || navigator.userLanguage
-const locale = userLang.startsWith('de') ? 'de' : 'en'
+const locale = savedLanguage || (userLang.startsWith('de') ? 'de' : 'en')
+
+// Save detected language if not already saved
+if (!savedLanguage) {
+  localStorage.setItem('userLanguage', locale)
+}
 
 const i18n = new VueI18n({
   locale,

@@ -1,5 +1,6 @@
 import RightNode from './RightNode'
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class RightFuseBox extends RightNode {
   constructor() {
@@ -26,14 +27,26 @@ export default class RightFuseBox extends RightNode {
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
       const nonMatching = this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung)
       if ( nonMatching ) {
-        result.push({ type: "Warning", text: `Wiring differnet voltages [${firstSpannung}, ${nonMatching.calculateConsumptionData().spannung}] in the fuse box can be run in problems with the common ground within the box.` })
+        result.push({ 
+          type: "Warning", 
+          text: errorMessages.t('fuseBoxMixedVoltagesWarning', {
+            voltage1: firstSpannung,
+            voltage2: nonMatching.calculateConsumptionData().spannung
+          })
+        })
       }
     }
 
     this.children.forEach( child => {
       const data = child.calculateConsumptionData()
       if ( this.model.data.strom_je_anschluss <= data.strom ) {
-        result.push({ type: "Error", text: `Consumer draws more current (${toFixed(data.strom)} A) than the maximal allowed (${this.model.data.strom_je_anschluss} A)` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('consumerCurrentTooHigh', {
+            actual: toFixed(data.strom),
+            max: this.model.data.strom_je_anschluss
+          })
+        })
       }
     })
 
@@ -49,7 +62,14 @@ export default class RightFuseBox extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The currents <b>[${toFixed(data.strom)} A]</b> of the consumer are bigger than the maximum power which the fuse can handle <b>[${toFixed(this.model.data.strom)} A]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentTooHigh', {
+            component: 'fuse',
+            actual: toFixed(data.strom),
+            max: toFixed(this.model.data.strom)
+          })
+        })
       }
     }
 
@@ -58,11 +78,25 @@ export default class RightFuseBox extends RightNode {
       const base = this.parent.getBaseVoltage()
       if ( this.model.data.spannung_min > base || this.model.data.spannung_max < base ) {
         if ( this.model.data.spannung_min !== this.model.data.spannung_max ) {
-          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min}-${this.model.data.spannung_max} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('voltageRangeNotSupported', {
+              component: 'fuse',
+              min: this.model.data.spannung_min,
+              max: this.model.data.spannung_max,
+              actual: this.parent.getBaseVoltage()
+            })
+          })
         } else {
-          result.push({ type: "Error", text: `The fuse operates with a supply voltage of <b>[${this.model.data.spannung_min} V]</b>. Input voltage of <b>[${this.parent.getBaseVoltage()} V]</b> is not supported.` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('fuseVoltageNotSupported', {
+              required: this.model.data.spannung_min,
+              actual: this.parent.getBaseVoltage()
+            })
+          })
         }
-      }            
+      }
     }
 
     return result

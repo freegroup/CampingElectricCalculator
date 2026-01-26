@@ -12,9 +12,6 @@
                     <v-list-item-content>
                         <v-list-item-title style="cursor:pointer" @click="onItemSelected(item.uuid)"  v-html="item.longname"></v-list-item-title>
                         <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
-                        <v-list-item-subtitle v-if="item.shopping.length>0">
-                          <a :href="item.shopping[0].link" target="_blank">More Details...</a>
-                        </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
                 </template>
@@ -29,7 +26,7 @@
             <v-icon>mdi-lightbulb-on-outline</v-icon>
             {{$t("dialog.addComponent.suggestComponent")}}
           </v-btn>
-          <v-btn color="primary" @click="onCloseButtonClick">Close</v-btn>
+          <v-btn color="primary" @click="onCloseButtonClick">{{ $t('dialog.common.close') }}</v-btn>
         </v-card-actions>
 
       </v-card>

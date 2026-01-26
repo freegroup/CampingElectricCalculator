@@ -19,7 +19,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onOkButtonClick">Close</v-btn>
+          <v-btn color="primary" text @click="onOkButtonClick">{{ $t('dialog.error.okButton') }}</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -35,26 +35,38 @@ export default {
     return {
       showFlag: false,
       resolve: null,
-      errors: []
+      errors: [],
+      node: null
     }
   },
   components: {
     DialogHeader
   },
+  watch: {
+    '$i18n.locale'() {
+      // Reload error messages when language changes
+      if (this.node && this.showFlag) {
+        this.errors = this.node.getErrorMessages()
+      }
+    }
+  },
   methods: {
-    async show( errors ) {
+    async show( errors, node ) {
       return new Promise((resolve) => {
         this.resolve = resolve
         this.showFlag = true
         this.errors = errors
+        this.node = node // Store node reference to reload messages on language change
       })
     },
     onOkButtonClick() {
       this.showFlag = false
+      this.node = null
       this.resolve && this.resolve(this.uuid)
     },
     onCancelButtonClick() {
       this.showFlag = false
+      this.node = null
       this.resolve && this.resolve(false)
     }
   }

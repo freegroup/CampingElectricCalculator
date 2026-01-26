@@ -12,7 +12,7 @@
                 <v-divider style="border: 2px solid white" class="grey darken-3 ma-1"></v-divider> 
                 <v-container class="ma-0 pa-0 mb-5">
                   <v-row cols="12" class="ma-0 pa-0">
-                    <v-col class="ma-0 pa-0" cols="12">Wire Length: {{length}} cm</v-col>
+                    <v-col class="ma-0 pa-0" cols="12">{{ $t('data.label.laenge') }}: {{length}} cm</v-col>
                   </v-row>
                 </v-container>
                 <v-slider class="lengthSlider" v-model="wireLength" step="1" min="50" max="700" dense></v-slider>
@@ -46,7 +46,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onOkButtonClick">Close</v-btn>
+          <v-btn color="primary" text @click="onOkButtonClick">{{ $t('dialog.wire.okButton') }}</v-btn>
         </v-card-actions>
 
       </v-card>

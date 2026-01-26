@@ -9,7 +9,16 @@
                 <v-simple-table flat dense>
                   <template v-slot:default>
                     <tbody>
-                      <tr :key="key" v-for="key in Object.keys(consumption)" ><td>{{ $t("data.label."+key)}}</td><td>{{consumption[key]|toFixed}} {{ $t("data.unit."+key)}}</td> </tr>
+                      <!-- All values except amperestunden -->
+                      <tr :key="key" v-for="key in consumptionKeysWithoutAh">
+                        <td>{{ $t("data.label."+key)}}</td>
+                        <td>{{consumption[key]|toFixed}} {{ $t("data.unit."+key)}}</td>
+                      </tr>
+                      <!-- Amperestunden as final result with separator line -->
+                      <tr v-if="consumption.amperestunden !== undefined" style="font-weight: bold; border-top: 2px solid #000;">
+                        <td style="padding-top: 12px;">{{ $t("data.label.amperestunden")}}</td>
+                        <td style="padding-top: 12px;">{{consumption.amperestunden|toFixed}} {{ $t("data.unit.amperestunden")}}</td>
+                      </tr>
                     </tbody>
                   </template>
                 </v-simple-table>
@@ -21,7 +30,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onCloseButtonClick">Close</v-btn>
+          <v-btn color="primary" text @click="onCloseButtonClick">{{ $t('dialog.common.close') }}</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -59,6 +68,10 @@ export default {
   computed: {
     consumption () {
       return this.component ? this.component.calculateConsumptionData() : null
+    },
+    consumptionKeysWithoutAh () {
+      if (!this.consumption) return []
+      return Object.keys(this.consumption).filter(key => key !== 'amperestunden')
     }
   }
 }

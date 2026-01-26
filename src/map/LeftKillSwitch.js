@@ -1,4 +1,5 @@
 import LeftNode from './LeftNode'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class LeftKillSwitch extends LeftNode {
   constructor() {
@@ -20,13 +21,24 @@ export default class LeftKillSwitch extends LeftNode {
       //
       const firstSpannung = this.children[0].calculateOutputData().spannung
       if ( this.children.find( child => child.calculateOutputData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the switch.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('mixedVoltagesNotAllowed', {
+            component: 'switch'
+          })
+        })
       }
 
       this.children.forEach( child => {
         const data = child.calculateOutputData().spannung
         if ( data.spannung > this.model.data.spannung ) {
-          result.push({ type: "Error", text: `Child delivers power of <b>[${data.spannung} V]</b> but switch can handle only up to <b>[${this.model.data.spannung} V]</b>` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('childVoltageNotSupported', {
+              actual: data.spannung,
+              max: this.model.data.spannung
+            })
+          })
         }
       })
     }
@@ -43,7 +55,14 @@ export default class LeftKillSwitch extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The power <b>[${parseInt(data.strom)} A]</b> of the input sources are bigger than the maximum power which the switch can handle <b>[${this.model.data.strom} A]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentTooHigh', {
+            component: 'switch',
+            actual: parseInt(data.strom),
+            max: this.model.data.strom
+          })
+        })
       }
     }
     return result

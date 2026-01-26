@@ -1,5 +1,6 @@
 import RightNode from './RightNode'
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class RightKillSwitch extends RightNode {
   constructor() {
@@ -23,7 +24,13 @@ export default class RightKillSwitch extends RightNode {
     const checkParent = node => {
       if ( node.parent && node.parent.model.type === "fuse") {
         if ( node.parent.model.data.strom > node.model.data.strom ) {
-          result.push( { type: "Error", text: `Switch with a maximum currents of <b>[${toFixed(this.model.data.strom)} A]</b> is breaking before the used fuse with <b>[${toFixed(node.parent.model.data.strom)} A]</b> can protect the circuit. Choose a fuse with a lower amperage value.` } )
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('switchBreaksBeforeFuse', {
+              switchCurrent: toFixed(this.model.data.strom),
+              fuseCurrent: toFixed(node.parent.model.data.strom)
+            })
+          })
           return false
         }
         return true
@@ -43,7 +50,12 @@ export default class RightKillSwitch extends RightNode {
       //
       const firstSpannung = this.children[0].calculateOutputData().spannung
       if ( this.children.find( child => child.calculateOutputData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the switch.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('mixedVoltagesNotAllowed', {
+            component: 'switch'
+          })
+        })
       }
     }
     
@@ -60,7 +72,13 @@ export default class RightKillSwitch extends RightNode {
       // accumulated "strom" must be less than the max allowed of this device
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Warning", text: `All theoretically possible currents <b>[${parseInt(data.strom)} A]</b> of all consumers are bigger than the maximum power which the battery protection can handle <b>[${this.model.data.strom} A]</b>. Ensure that you have a correct fuse in place to avoid a burnout of this device.` })
+        result.push({ 
+          type: "Warning", 
+          text: errorMessages.t('consumerCurrentWarning', {
+            actual: parseInt(data.strom),
+            max: this.model.data.strom
+          })
+        })
       }
     }
     return result

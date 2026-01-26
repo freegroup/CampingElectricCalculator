@@ -1,7 +1,8 @@
 import RightNode from './RightNode'
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 
-export default class Usb extends RightNode {
+export default class CarSocket extends RightNode {
   constructor() {
     super()
   }
@@ -23,7 +24,14 @@ export default class Usb extends RightNode {
     if ( this.children.length > 0 ) {
       this.children.forEach( child => {
         if ( child.model.data.strom > this.model.data.strom ) {
-          result.push({ type: "Error", text: `The power <b>[${toFixed(child.model.data.strom)} A]</b> of the input sources are bigger than the maximum power which the socket can handle <b>[${this.model.data.strom} A]</b>` })
+          result.push({ 
+            type: "Error", 
+            text: errorMessages.t('currentTooHigh', {
+              component: 'socket',
+              actual: toFixed(child.model.data.strom),
+              max: this.model.data.strom
+            })
+          })
         }
       })
     }
@@ -41,9 +49,9 @@ export default class Usb extends RightNode {
       //
       if ( (data.operationHours / this.model.data.buchsen) > 24 ) {
         if ( this.model.data.buchse > 1 ) {
-          result.push({ type: "Warning", text: `The car socket are occupied more than 24 hours a day. Install an additional socket.` })
+          result.push({ type: "Warning", text: errorMessages.t('socketsOccupiedTooLong', { component: 'car sockets' }) })
         } else {
-          result.push({ type: "Warning", text: `The car socket is occupied more than 24 hours a day. Install an additional socket.` })
+          result.push({ type: "Warning", text: errorMessages.t('socketOccupiedTooLong', { component: 'car socket' }) })
         }
       }
     }
@@ -51,7 +59,14 @@ export default class Usb extends RightNode {
     // Spannungen müssen passen
     const base = this.getBaseVoltage()
     if ( this.model.data.spannung !== base ) {
-      result.push({ type: "Error", text: `The USB unit requires a supply voltage of <b>[${this.model.data.spannung} V]</b>. Input voltage of <b>[${this.getBaseVoltage()} V]</b> is not supported.` })
+      result.push({ 
+        type: "Error", 
+        text: errorMessages.t('voltageNotSupported', {
+          component: 'car socket',
+          required: this.model.data.spannung,
+          actual: this.getBaseVoltage()
+        })
+      })
     }
  
     return result

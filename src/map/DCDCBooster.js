@@ -1,5 +1,6 @@
 import RightNode from './RightNode'
 import { toFixed } from "@/utils/Wire.js"
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class DCDCBooster extends RightNode {
   constructor() {
@@ -25,7 +26,12 @@ export default class DCDCBooster extends RightNode {
       //
       const firstSpannung = this.children[0].calculateConsumptionData().spannung
       if ( this.children.find( child => child.calculateConsumptionData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('mixedVoltagesNotAllowed', {
+            component: 'DC-DC converter'
+          })
+        })
       }
     }
 
@@ -35,7 +41,13 @@ export default class DCDCBooster extends RightNode {
     /*
     const amp = this.getFuseAmp()
     if ( amp === undefined || amp > this.model.data.strom_in ) {
-      result.push( { type: "Error", text: `DC-DC converter with a maximum currents of <b>[${this.model.data.strom_in} A]</b> can break before the used fuse with <b>[${amp} A]</b> can protect the circuit. Choose a fuse with a lower amperage value to avoid a damage by accident of this component.` } )
+      result.push({ 
+        type: "Error", 
+        text: errorMessages.t('dcdcConverterBreaksBeforeFuse', {
+          converterCurrent: this.model.data.strom_in,
+          fuseCurrent: amp
+        })
+      })
     }
     */
 
@@ -51,7 +63,14 @@ export default class DCDCBooster extends RightNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The current <b>[${toFixed(data.strom)} A]</b> of the input sources are bigger than the maximum power which the fuse can handle <b>[${this.model.data.strom} A]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentTooHigh', {
+            component: 'DC-DC converter',
+            actual: toFixed(data.strom),
+            max: this.model.data.strom
+          })
+        })
       }
     }
 
@@ -59,8 +78,15 @@ export default class DCDCBooster extends RightNode {
       // Spannungen müssen passen
       const base = this.parent.getBaseVoltage()
       if ( this.model.data.spannung_in !== base) {
-        result.push({ type: "Error", text: `The DC-DC converter operates with a supply voltage of <b>[${this.model.data.spannung_in} V]</b>. Input voltage of <b>[${base} V]</b> is not supported.` })
-      }            
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('voltageNotSupported', {
+            component: 'DC-DC converter',
+            required: this.model.data.spannung_in,
+            actual: base
+          })
+        })
+      }
     }
  
     return result

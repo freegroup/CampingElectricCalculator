@@ -92,7 +92,8 @@ export default {
         spannung_min: "Voltage (min)",
         spannung_max: "Voltage (max)",
         operationHours: "Operation Hours",
-        nennspannung: "Nominal Voltage"
+        nennspannung: "Nominal Voltage",
+        watt: "Power"
       },
       unit: {
         amperestunden: "Ah",
@@ -194,6 +195,14 @@ export default {
       }
     },
     dialog: {
+      common: {
+        close: "Close",
+        ok: "OK",
+        cancel: "Cancel",
+        apply: "Apply",
+        provider: "Provider",
+        consumer: "Consumer"
+      },
       fileOpen: {
         title: "Open Example Configuration",
         subtitle: "Standard suggestions for laying out the electrical system in a camper according to the user profiles"
@@ -212,11 +221,22 @@ export default {
       },
       consumer: {
         title: "Energy Consumption",
-        subtitle: "Displays the total energy consumption flowing through this component"
+        subtitle: "Displays the total energy consumption flowing through or consumed by this component"
       },
       balance: {
         title: "Energy Balance",
         subtitle: "An overview of the energy flowing into and out of the component"
+      },
+      accuBalance: {
+        title: "Energy Balance",
+        subtitle: "An overview of the energy flowing into and out of the component",
+        provider: "Provider",
+        consumer: "Consumer"
+      },
+      inOutBalance: {
+        input: "Input",
+        output: "Output",
+        providing: "Providing"
       },
       addComponent: {
         okButton: "Close",
@@ -224,7 +244,8 @@ export default {
         shopLabel: "Shops",
         suggestComponent: "Suggest new Component",
         subtitle: "Add a new component to the diagram which will be included in the total calculation.",
-        lastKnownPrice: "Last known price"
+        lastKnownPrice: "Last known price",
+        safetyInfo: "Only components that are technically suitable for this position are shown. Consumers require a fuse or fuse box between the battery. Battery management systems (BMS) or battery protection devices connect directly to the battery or fuse."
       },
       wire: {
         okButton: "Close",
@@ -240,7 +261,12 @@ export default {
       info: {
         okButton: "Close",
         title: "Component Information",
-        subtitle: "Technical details about the component"
+        subtitle: "Technical details about the component",
+        nameHeader: "Name",
+        valueHeader: "Value",
+        shoppingLinks: "Shopping Links",
+        lastKnownPrice: "Last known price",
+        suggestShop: "Suggest new shop"
       },
       timer: {
         okButton: "Apply",
@@ -255,6 +281,14 @@ export default {
         title: "What does the tool do?",
         subtitle: "Simplifies the calculation of your currents and consumption of your electrics"
       }
+    },
+    toolbar: {
+      open: "Open",
+      save: "Save",
+      parts: "Parts",
+      help: "Help",
+      coffee: "Send Me a Coffee",
+      estimatedCost: "Estimated Cost"
     }
   },
   de: {
@@ -353,7 +387,8 @@ export default {
         spannung_min: "Spannung (min)",
         spannung_max: "Spannung (max)",
         operationHours: "Betriebsstunden",
-        nennspannung: "Nennspannung"
+        nennspannung: "Nennspannung",
+        watt: "Leistung"
       },
       unit: {
         amperestunden: "Ah",
@@ -455,6 +490,14 @@ export default {
       }
     },
     dialog: {
+      common: {
+        close: "Schließen",
+        ok: "OK",
+        cancel: "Abbrechen",
+        apply: "Übernehmen",
+        provider: "Erzeuger",
+        consumer: "Verbraucher"
+      },
       fileOpen: {
         title: "Beispielkonfiguration öffnen",
         subtitle: "Standardvorschläge für die Auslegung der Elektrik in einem Camper basierend auf Nutzerprofilen"
@@ -474,11 +517,22 @@ export default {
       },
       consumer: {
         title: "Energieverbrauch",
-        subtitle: "Zeigt den gesamten Energieverbrauch an, der durch diese Komponente fließt"
+        subtitle: "Zeigt den gesamten Energieverbrauch an, der durch diese Komponente fließt oder von dieser verbraucht wird"
       },
       balance: {
         title: "Energiebilanz",
         subtitle: "Eine Übersicht über die Energie, die in und aus der Komponente fließt"
+      },
+      accuBalance: {
+        title: "Energiebilanz",
+        subtitle: "Eine Übersicht über die Energie, die in und aus der Komponente fließt",
+        provider: "Erzeuger",
+        consumer: "Verbraucher"
+      },
+      inOutBalance: {
+        input: "Eingang",
+        output: "Ausgang",
+        providing: "Bereitstellung"
       },
       addComponent: {
         okButton: "Schließen",
@@ -486,7 +540,8 @@ export default {
         shopLabel: "Shops",
         suggestComponent: "Neue Komponente vorschlagen",
         subtitle: "Füge eine neue Komponente zum Diagramm hinzu, die in die Gesamtberechnung einbezogen wird.",
-        lastKnownPrice: "Letzter bekannter Preis"
+        lastKnownPrice: "Letzter bekannter Preis",
+        safetyInfo: "Es werden nur Komponenten angezeigt, die an dieser Stelle technisch sinnvoll sind. Verbraucher benötigen eine Sicherung oder einen Sicherungskasten zwischen der Batterie. Batteriemanagementsysteme (BMS) oder Batterieschutzgeräte werden direkt an die Batterie oder Sicherung angeschlossen."
       },
       wire: {
         okButton: "Schließen",
@@ -502,7 +557,12 @@ export default {
       info: {
         okButton: "Schließen",
         title: "Komponenten-Information",
-        subtitle: "Technische Details zur Komponente"
+        subtitle: "Technische Details zur Komponente",
+        nameHeader: "Name",
+        valueHeader: "Wert",
+        shoppingLinks: "Shopping Links",
+        lastKnownPrice: "Letzter bekannter Preis",
+        suggestShop: "Shop vorschlagen"
       },
       timer: {
         okButton: "Übernehmen",
@@ -517,6 +577,14 @@ export default {
         title: "Was macht das Tool?",
         subtitle: "Vereinfacht die Berechnung deiner Ströme und des Verbrauchs deiner Elektrik"
       }
+    },
+    toolbar: {
+      open: "Öffnen",
+      save: "Speichern",
+      parts: "Teile",
+      help: "Hilfe",
+      coffee: "Spendiere mir einen Kaffee",
+      estimatedCost: "Geschätzte Kosten"
     }
   }
 }

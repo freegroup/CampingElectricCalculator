@@ -1,4 +1,5 @@
 import LeftNode from './LeftNode'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class ShoreBooster extends LeftNode {
   constructor() {
@@ -16,7 +17,13 @@ export default class ShoreBooster extends LeftNode {
     if ( this.parent ) {
       // Ladespannungen müssen passen
       if ( this.model.data.spannung !== this.parent.getBaseVoltage() ) {
-        result.push({ type: "Error", text: `The charger with <b>[${this.model.data.spannung} V]</b> do not support the used battery voltage of <b>[${this.parent.getBaseVoltage()} V]</b>.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('chargerVoltageNotSupported', {
+            chargerVoltage: this.model.data.spannung,
+            batteryVoltage: this.parent.getBaseVoltage()
+          })
+        })
       }
     }
      
@@ -24,7 +31,13 @@ export default class ShoreBooster extends LeftNode {
       // ladekurve muß mit dem Batterietype zusammenpassen
       //
       if ( !this.model.data.chargeSupport.includes(this.mindmap.model.data.type) ) {
-        result.push({ type: "Error", text: `The charger do not support the used battery type <b>${this.mindmap.model.data.type}</b>. Supported battery types are <b>${this.model.data.chargeSupport.join(", ")}</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('batteryTypeNotSupported', {
+            actual: this.mindmap.model.data.type,
+            supported: this.model.data.chargeSupport.join(", ")
+          })
+        })
       }
     }
 

@@ -6,9 +6,9 @@
         <v-card-text style="height: 350px;">
           <template v-if="output && input">
             <v-row class="mt-5">
-              <v-col align-self="center" align="center" cols="5" class="text-h6">Input</v-col>
+              <v-col align-self="center" align="center" cols="5" class="text-h6">{{ $t('dialog.inOutBalance.input') }}</v-col>
               <v-col cols="2"></v-col>
-              <v-col align-self="center" align="center" cols="5" class="text-h6">Output</v-col>
+              <v-col align-self="center" align="center" cols="5" class="text-h6">{{ $t('dialog.inOutBalance.output') }}</v-col>
             </v-row>
             <v-row class="mt-5">
               <v-col cols="5">
@@ -37,7 +37,7 @@
 
           <template v-if="input===null">
             <v-row class="mt-5">
-              <v-col align-self="center" align="center" cols="12" class="text-h6">Providing</v-col>
+              <v-col align-self="center" align="center" cols="12" class="text-h6">{{ $t('dialog.inOutBalance.providing') }}</v-col>
             </v-row>
             <v-row class="mt-5">
               <v-col cols="12">
@@ -56,7 +56,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onCloseButtonClick">Close</v-btn>
+          <v-btn color="primary" text @click="onCloseButtonClick">{{ $t('dialog.common.close') }}</v-btn>
         </v-card-actions>
 
       </v-card>

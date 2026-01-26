@@ -6,9 +6,9 @@
         <v-card-text style="height: 350px;" v-if="output && input">
           <template>
             <v-row class="mt-5">
-              <v-col align-self="center" align="center" cols="5" class="text-h6">Provider</v-col>
+              <v-col align-self="center" align="center" cols="5" class="text-h6">{{ $t('dialog.accuBalance.provider') }}</v-col>
               <v-col cols="2"></v-col>
-              <v-col align-self="center" align="center" cols="5" class="text-h6">Consumer</v-col>
+              <v-col align-self="center" align="center" cols="5" class="text-h6">{{ $t('dialog.accuBalance.consumer') }}</v-col>
             </v-row>
             <v-row class="mt-5">
               <v-col cols="5">
@@ -39,7 +39,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onCloseButtonClick">Close</v-btn>
+          <v-btn color="primary" text @click="onCloseButtonClick">{{ $t('dialog.common.close') }}</v-btn>
         </v-card-actions>
 
       </v-card>

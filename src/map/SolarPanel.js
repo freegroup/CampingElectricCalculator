@@ -1,4 +1,5 @@
 import LeftNode from './LeftNode'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class SolarPanel extends LeftNode {
   constructor() {
@@ -15,13 +16,13 @@ export default class SolarPanel extends LeftNode {
     // A child panel is interpreted as "Seriel" or "Reihenschaltung" of the panels
     //
     if ( this.children.length > 1 ) {
-      result.push({ type: "Error", text: "Maximnal one child panel is allowed." } )
+      result.push({ type: "Error", text: errorMessages.t('maxOnePanelChild') })
     }
 
     if ( this.children.length === 1 ) {
       const child = this.children[0]
       if ( child.model.uuid !== this.model.uuid ) {
-        result.push({ type: "Error", text: "It is only allowd to add panels in 'serial' mode of the same kind" })
+        result.push({ type: "Error", text: errorMessages.t('panelsSameKindSerial') })
       }
     }
     return result

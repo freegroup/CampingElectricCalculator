@@ -1,4 +1,5 @@
 import LeftNode from './LeftNode'
+import errorMessages from '@/utils/ErrorMessages.js'
 
 export default class LeftFuse extends LeftNode {
   constructor() {
@@ -20,7 +21,12 @@ export default class LeftFuse extends LeftNode {
       //
       const firstSpannung = this.children[0].calculateOutputData().spannung
       if ( this.children.find( child => child.calculateOutputData().spannung !== firstSpannung) ) {
-        result.push({ type: "Error", text: `It is not allowed to mix different voltages on the fuse.` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('mixedVoltagesNotAllowed', {
+            component: 'fuse'
+          })
+        })
       }
     }
     
@@ -36,7 +42,14 @@ export default class LeftFuse extends LeftNode {
       // the "leerlaufspannung" must be smaller than the max input of the charger
       //
       if ( data.strom > this.model.data.strom ) {
-        result.push({ type: "Error", text: `The power <b>[${parseInt(data.strom)} A]</b> of the input sources are bigger than the maximum power which the fuse can handle <b>[${this.model.data.strom} A]</b>` })
+        result.push({ 
+          type: "Error", 
+          text: errorMessages.t('currentTooHigh', {
+            component: 'fuse',
+            actual: parseInt(data.strom),
+            max: this.model.data.strom
+          })
+        })
       }
     }
     return result

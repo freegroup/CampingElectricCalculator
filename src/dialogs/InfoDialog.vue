@@ -12,8 +12,8 @@
               <table>
                   <thead>
                     <tr>
-                      <th width="200" class="text-left">Name</th>
-                      <th class="text-left">Value</th></tr>
+                      <th width="200" class="text-left">{{ $t('dialog.info.nameHeader') }}</th>
+                      <th class="text-left">{{ $t('dialog.info.valueHeader') }}</th></tr>
                   </thead>
                   <tbody>
                     <tr :key="key" v-for="key in Object.keys(model.data)" >
@@ -27,11 +27,64 @@
                         <td>{{model.data[key]}} {{$t("data.unit."+key)}}</td> 
                       </template>
                     </tr>
-                    <tr v-if="model.shopping.length>0">
-                      <td></td><td class="text-right pt-4"><a :href="model.shopping[0].link" target="_blank">More Details...</a></td>
-                    </tr>
                   </tbody>
               </table>
+            </v-col>
+          </v-row>
+
+          <!-- Shopping Links Expansion Panel - Always visible -->
+          <v-row class="mt-4">
+            <v-col cols="12">
+              <v-expansion-panels flat>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    <span>
+                      <v-icon small class="mr-2">mdi-cart-outline</v-icon>
+                      <template v-if="hasShoppingLinks">
+                        {{ $t('dialog.info.shoppingLinks') }} ({{ model.shopping.length }})
+                      </template>
+                      <template v-else>
+                        {{ $t('dialog.info.shoppingLinks') }}
+                      </template>
+                    </span>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content style="max-height: 150px; overflow-y: auto;">
+                    <v-list dense>
+                      <!-- Existing Shopping Links -->
+                      <template v-if="hasShoppingLinks">
+                        <v-list-item v-for="(shop, index) in model.shopping" :key="index" :href="shop.link" target="_blank" class="px-0">
+                          <v-list-item-icon class="mr-3">
+                            <v-icon small>mdi-open-in-new</v-icon>
+                          </v-list-item-icon>
+                          <v-list-item-content>
+                            <v-list-item-title>{{ shop.shop }}</v-list-item-title>
+                            <v-list-item-subtitle class="text-caption">
+                              {{ shop.label }}
+                            </v-list-item-subtitle>
+                            <v-list-item-subtitle class="text-caption font-weight-bold">
+                              {{ $t('dialog.info.lastKnownPrice') }}: {{ shop.lastKnownPrice.toFixed(2) }} €
+                            </v-list-item-subtitle>
+                          </v-list-item-content>
+                        </v-list-item>
+                        
+                        <v-divider class="my-2"></v-divider>
+                      </template>
+                      
+                      <!-- Suggest Shop Link - Always visible -->
+                      <v-list-item @click="suggestShop" class="px-0">
+                        <v-list-item-icon class="mr-3">
+                          <v-icon small color="primary">mdi-email-outline</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>
+                          <v-list-item-title class="primary--text">
+                            {{ $t('dialog.info.suggestShop') }}
+                          </v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
             </v-col>
           </v-row>
         </v-card-text>
@@ -40,8 +93,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn                      color="primary" text @click="onCloseButtonClick">Close</v-btn>
-          <v-btn v-if="valueChanged"  color="primary"      @click="onSaveButtonClick">Save</v-btn>
+          <v-btn                      color="primary" text @click="onCloseButtonClick">{{ $t('dialog.info.okButton') }}</v-btn>
+          <v-btn v-if="valueChanged"  color="primary"      @click="onSaveButtonClick">{{ $t('dialog.common.apply') }}</v-btn>
         </v-card-actions>
 
       </v-card>
@@ -84,6 +137,9 @@ export default {
     modelEditable () {
       // it is only editable if we have a "custom" item in the collection of the type. This is the template.
       return !!this.$store.getters[this.component.type + "/getByUuid"]("custom")
+    },
+    hasShoppingLinks () {
+      return this.model.shopping && this.model.shopping.length > 0
     }
   },
   methods: {
@@ -137,6 +193,40 @@ export default {
     },
     items (key) {
       return enums[this.model.type][key].values
+    },
+    suggestShop() {
+      // Prepare component data for email
+      const componentName = this.model.name
+      const componentType = this.$t('component.name.' + this.model.type)
+      
+      // Build technical data string
+      let technicalData = ''
+      Object.keys(this.model.data).forEach(key => {
+        const label = this.$t("data.label." + key)
+        const value = this.model.data[key]
+        const unit = this.$t("data.unit." + key)
+        technicalData += `${label}: ${value} ${unit}\n`
+      })
+      
+      // Email subject and body
+      const subject = encodeURIComponent(`Shop-Vorschlag für ${componentName}`)
+      const body = encodeURIComponent(
+        `Hallo,\n\n` +
+        `ich möchte einen Shop-Link für folgende Komponente vorschlagen:\n\n` +
+        `Komponente: ${componentName}\n` +
+        `Typ: ${componentType}\n\n` +
+        `Technische Daten:\n${technicalData}\n` +
+        `Shop-Link:\n` +
+        `[Bitte hier den Link einfügen]\n\n` +
+        `Shop-Name:\n` +
+        `[z.B. Amazon, eBay, etc.]\n\n` +
+        `Preis:\n` +
+        `[Aktueller Preis in Euro]\n\n` +
+        `Vielen Dank!`
+      )
+      
+      // Open mailto link
+      window.location.href = `mailto:camping@freegroup.de?subject=${subject}&body=${body}`
     },
     onCloseButtonClick() {
       this.showFlag = false
