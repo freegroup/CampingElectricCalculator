@@ -18,7 +18,7 @@
                     <v-list-item class="amber lighten-5">
                     <v-list-item-subtitle style="white-space: normal">{{ $t('component.description.' + type)}}</v-list-item-subtitle>
                     </v-list-item>
-                    <template v-for="(item, index) in components(type)" >
+                    <template v-for="item in components(type)" >
                       <v-list-item :key="item.uuid">
                           <v-img  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" contain class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
                           <v-list-item-content>
@@ -29,8 +29,17 @@
                             </v-list-item-subtitle>
                           </v-list-item-content>
                       </v-list-item>
-                      <v-divider :key="item.uuid+'fff'" v-if="index !== (components(type).length - 1)"></v-divider>
+                      <v-divider :key="item.uuid+'fff'"></v-divider>
                     </template>
+                    <!-- Suggest component item at the end of each category -->
+                    <v-list-item :key="'suggest-'+type" @click="suggestComponent(type)" style="cursor:pointer" class="blue lighten-5">
+                      <v-list-item-icon class="mr-3">
+                        <v-icon color="primary">mdi-lightbulb-on-outline</v-icon>
+                      </v-list-item-icon>
+                      <v-list-item-content>
+                        <v-list-item-title class="primary--text">{{ $t('component.name.' + type) }} vorschlagen</v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
                 </v-list-group>
                 <v-divider :key="'div:'+type"></v-divider>
               </template>
@@ -58,10 +67,6 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" outlined href="https://github.com/freegroup/CampingElectricCalculator/issues/new/choose" target="_blank">
-            <v-icon>mdi-lightbulb-on-outline</v-icon>
-            {{$t("dialog.addComponent.suggestComponent")}}
-          </v-btn>
           <v-btn color="primary" @click="onCloseButtonClick">{{$t("dialog.addComponent.okButton")}}</v-btn>
         </v-card-actions>
 
@@ -106,6 +111,62 @@ export default {
         return toFixed(low.lastKnownPrice) + " €"
       }
       return toFixed(low.lastKnownPrice) + " - " + toFixed(high.lastKnownPrice) + " €"
+    },
+    suggestComponent(type) {
+      // Get the generic/custom component template for this type
+      const genericComponent = this.$store.state[type].components.find(c => c.uuid === "custom" || c.uuid === "generic")
+      
+      if (!genericComponent) {
+        return
+      }
+
+      // Generate a UUID
+      const generateUUID = () => {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          const r = Math.random() * 16 | 0
+          const v = c === 'x' ? r : (r & 0x3 | 0x8)
+          return v.toString(16).toUpperCase()
+        })
+      }
+
+      // Create a clean JSON template
+      const template = {
+        uuid: generateUUID(),
+        name: "Component Name",
+        description: "Component Description",
+        imageSrc: "path/to/image.png",
+        exportable: true,
+        shopping: [
+          {
+            shop: "Shop Name (e.g., Amazon)",
+            link: "https://shop-link-here.com",
+            label: "Product Label",
+            lastKnownPrice: 0.00
+          }
+        ],
+        data: { ...genericComponent.data }
+      }
+
+      // Prepare email
+      const componentTypeName = this.$t('component.name.' + type)
+      const subject = encodeURIComponent(`Neue Komponente vorschlagen: ${componentTypeName}`)
+      const body = encodeURIComponent(
+        `Hallo,\n\n` +
+        `ich möchte eine neue Komponente für die Kategorie "${componentTypeName}" vorschlagen.\n\n` +
+        `Wenn die Daten vollständig sind und die Komponente im Web verfügbar ist, wird sie in den Konfigurator aufgenommen und steht dann allen Nutzern zur Verfügung!\n\n` +
+        `Bitte füllen Sie die folgenden Informationen aus:\n\n` +
+        `JSON Template:\n` +
+        `${JSON.stringify(template, null, 2)}\n\n` +
+        `Hinweise:\n` +
+        `- Passen Sie Name, Beschreibung und technische Daten an\n` +
+        `- Fügen Sie einen Link zum Produktbild hinzu (imageSrc)\n` +
+        `- Fügen Sie, wenn möglich, Shopping-Links mit aktuellen Preisen hinzu\n` +
+        `- Je vollständiger die Daten, desto schneller kann die Komponente aufgenommen werden\n\n` +
+        `Vielen Dank für Ihren Beitrag zur Community!`
+      )
+
+      // Open mailto link
+      window.location.href = `mailto:camping@freegroup.de?subject=${subject}&body=${body}`
     },
     onItemSelected(type, uuid) {
       this.showFlag = false

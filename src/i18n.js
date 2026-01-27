@@ -289,6 +289,11 @@ export default {
       help: "Help",
       coffee: "Send Me a Coffee",
       estimatedCost: "Estimated Cost"
+    },
+    tooltip: {
+      energyBalance: "Energy Balance",
+      exchangeComponent: "Exchange Component",
+      removeComponent: "Remove Component"
     }
   },
   de: {
@@ -585,6 +590,11 @@ export default {
       help: "Hilfe",
       coffee: "Spendiere mir einen Kaffee",
       estimatedCost: "Geschätzte Kosten"
+    },
+    tooltip: {
+      energyBalance: "Energiebilanz",
+      exchangeComponent: "Komponente austauschen",
+      removeComponent: "Entfernen"
     }
   }
 }

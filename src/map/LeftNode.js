@@ -77,13 +77,13 @@ export default class LeftNode extends Node {
               this.labelContainer.append(this.toolbarDiv)
               this.toolbarDiv.className = 'toolbar'
 
-              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-gauge"></i>')
+              this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-gauge" title=""></i>')
               this.toolbarDiv.append(this.gaugeIcon)
 
-              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-widgets-outline"></i>')
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-widgets-outline" title=""></i>')
               this.toolbarDiv.append(this.configIcon)
 
-              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="float-right toolbar_icon pl-3 v-icon mdi mdi-trash-can-outline"></i>')
+              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="float-right toolbar_icon pl-3 v-icon mdi mdi-trash-can-outline" title=""></i>')
               this.toolbarDiv.append(this.deleteIcon)
             }
 

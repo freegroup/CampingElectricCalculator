@@ -81,6 +81,9 @@ export default {
     this.map = new MindMap(root, 7000, 7000)
     this.price = this.map.calculateSetupPrice()
 
+    // Set tooltips for battery icons
+    this.setTooltips()
+
     this.map.on("select", event => this.handleNodeSelect(event))
     this.map.on("timer", event => this.handleNodeTimer( event))
     this.map.on("configure", event => this.handleNodeConfigure( event))
@@ -130,6 +133,8 @@ export default {
         })
       })).then(results => {
         this.map.drawLines(true)
+        // Set tooltips after all components are loaded
+        this.setTooltips()
       })
       this.$emit("configLoaded")
     },
@@ -183,6 +188,10 @@ export default {
         const child = NodeFactory.createNode(event.leftSide, data)
         node.addNode(child)
         this.saveConfig()
+        // Set tooltips for the newly added component
+        this.$nextTick(() => {
+          this.setTooltips()
+        })
       }
     },
     
@@ -252,6 +261,34 @@ export default {
       if ( this.configuration.id !== "user") {
         this.$router.push({ path: '/map/user' })
       }
+    },
+
+    setTooltips() {
+      // Set tooltips for all toolbar icons
+      $(this.map.gaugeIcon).attr('title', this.$t('tooltip.energyBalance'))
+      $(this.map.configIcon).attr('title', this.$t('tooltip.exchangeComponent'))
+      
+      // Set tooltips for all child nodes
+      const setNodeTooltips = (node) => {
+        if (node.gaugeIcon) {
+          $(node.gaugeIcon).attr('title', this.$t('tooltip.energyBalance'))
+        }
+        if (node.configIcon) {
+          $(node.configIcon).attr('title', this.$t('tooltip.exchangeComponent'))
+        }
+        if (node.deleteIcon) {
+          $(node.deleteIcon).attr('title', this.$t('tooltip.removeComponent'))
+        }
+        
+        // Recursively set tooltips for children
+        if (node.children) {
+          node.children.forEach(child => setNodeTooltips(child))
+        }
+      }
+      
+      // Set tooltips for left and right children
+      this.map.leftChildren.forEach(child => setNodeTooltips(child))
+      this.map.rightChildren.forEach(child => setNodeTooltips(child))
     },
 
     getName() {
