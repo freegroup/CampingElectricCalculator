@@ -14,6 +14,7 @@ import RightFuseBox from "./RightFuseBox.js"
 import Consumer from "./Consumer.js"
 import Usb from "./Usb.js"
 import CarSocket from "./CarSocket.js"
+import CarSocketCharger from "./CarSocketCharger.js"
 import LeftFuse from "./LeftFuse.js"
 import RightFuse from "./RightFuse.js"
 import SwitchPanel from "./SwitchPanel.js"
@@ -24,6 +25,9 @@ export default class NodeFactory {
     switch (model.type) {
       case "carSocket":
         node = new CarSocket()     
+        break
+      case "carSocketCharger":
+        node = new CarSocketCharger()     
         break
       case "cooler":
         node = new Consumer()     

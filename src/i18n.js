@@ -153,6 +153,7 @@ export default {
         dcdcBooster: "DC/DC Converter",
         solarSet: "Solar Panel + Controller",
         carSocket: "Car Socket",
+        carSocketCharger: "Car Socket Charger",
         killSwitch: "Power Switch",
         switchPanel: "Switch Panel",
         solarPanel: "Solar Panel",
@@ -163,6 +164,7 @@ export default {
         alternator: "Alternator",
         accu: "Caravan Battery",
         fridge: "Fridge",
+        cooler: "Cooler Box",
         heater: "Heater",
         fuse: "Fuse",
         fuseBox: "Fuse Box",
@@ -174,6 +176,7 @@ export default {
       description: {
         switchPanel: "Install a switch panel to operate several appliances from one location in your camper. These switch panels.",
         dcdcBooster: "A DC-to-DC converter is an electronic circuit or electromechanical device that converts a source of direct current (DC) from one voltage level to another. ",
+        carSocketCharger: "USB chargers that plug into the car socket (cigarette lighter) to charge phones, tablets, laptops and other USB devices. These adapters convert 12V DC to 5V USB power.",
         solarBooster: "Solar charge controllers sits in between the solar panels and your battery and used to convert varying voltages from solar cells to charge batteries of different types (Acid, LiFePo4,..)",
         solarSet: "This was the easiest and quickest way to complete our solar panel setup but it's not necessarily the cheapest. If you don't want to fiddle around with solar panel too much with solar panel wiring and finding the right controller, then a solar panel kit is for you.",
         carSocket: "An automobile auxiliary power outlet (also known as power socket) in an automobile became a de facto standard DC connector to supply electrical power for portable accessories used in or near an automobile directly from the vehicle's electrical system",
@@ -186,6 +189,7 @@ export default {
         alternator: "An alternator is a device, used especially in a car, that creates an electrical current. This software needs the information of the alternator to ensure that the current flow fits perfect to your DC-DC charger",
         accu: "An auxiliary battery system in a camper is to isolate the starting battery when the engine is not running—which prevents it from being drained and unable to start your vehicle. With the engine off (read: alternator not producing power), the auxiliary battery is used to power all of your interior accessories (interior lights, stereo, 12v fridge/freezer, etc.), thus preserving your starting battery for... well, for starting",
         fridge: "An RV fridge cools your food to a safe temperature for storage just like your fridge at home. Often, it is smaller to fit in the space of the RV and has a few special features, like latching doors and the ability to run on different power sources",
+        cooler: "Mobile cooler boxes that can be connected to a 12V cigarette lighter. Usually with a slightly smaller volume than built-in devices.",
         fuse: "One of the common problems with the electrical system is the flow of excess current. The excess current can wreak havoc and to save yourself from that, there are fuses and circuit breakers",
         fuseBox: "Fuse boxes are used to individually fuse small end devices. This prevents that in the event of minor damage, the lines to the end loads are damaged or even the entire electrical system in the camper fails. You must add a fuse box for security reasons before you can add any consumer.",
         pressurePump: "The water pump pressurizes water lines in an RV to force water out. When you open a water fixture, it releases pressure and activates the water pump. The water pump repressurizes the water lines, and water continues to flow until you close the fixture",
@@ -285,7 +289,7 @@ export default {
     toolbar: {
       open: "Open",
       save: "Save",
-      parts: "Parts",
+      parts: "Shopping Parts",
       help: "Help",
       coffee: "Send Me a Coffee",
       estimatedCost: "Estimated Cost"
@@ -453,6 +457,7 @@ export default {
         dcdcBooster: "DC/DC Wandler",
         solarSet: "Solar Set",
         carSocket: "KFZ Steckdose",
+        carSocketCharger: "KFZ Steckdosen-Ladegerät",
         killSwitch: "Trennschalter",
         switchPanel: "Schaltpanel",
         solarPanel: "Solarpanel",
@@ -463,6 +468,7 @@ export default {
         alternator: "Lichtmaschine",
         accu: "Versorgungsbatterie",
         fridge: "Kühlschrank",
+        cooler: "Kühlbox",
         heater: "Standheizung",
         fuse: "Sicherung",
         fuseBox: "Sicherungskasten",
@@ -474,6 +480,7 @@ export default {
       description: {
         switchPanel: "Installiere ein Schaltpanel, um mehrere Geräte von einem Ort in deinem Camper aus zu bedienen.",
         dcdcBooster: "Ein Gleichspannungswandler (DC-DC-Wandler) ist eine elektrische Schaltung, die eine am Eingang zugeführte Gleichspannung in eine Gleichspannung mit höherem, niedrigerem oder invertiertem Spannungsniveau umwandelt.",
+        carSocketCharger: "USB-Ladegeräte, die in die KFZ-Steckdose (Zigarettenanzünder) gesteckt werden, um Handys, Tablets, Laptops und andere USB-Geräte zu laden. Diese Adapter wandeln 12V DC in 5V USB-Strom um.",
         solarBooster: "Solar-Laderegler sitzen zwischen den Solarmodulen und der Batterie. Sie wandeln die schwankende Spannung der Solarzellen um, um Batterien verschiedener Typen (Blei, LiFePo4,..) optimal zu laden.",
         solarSet: "Dies ist der einfachste und schnellste Weg, dein Solar-Setup zu vervollständigen, aber nicht unbedingt der günstigste. Wenn du dich nicht zu sehr mit der Verkabelung und der Suche nach dem richtigen Regler beschäftigen willst, ist ein Solar-Kit das Richtige für dich.",
         carSocket: "Eine KFZ-Bordspannungssteckdose (Zigarettenanzünder) ist ein Standard-Gleichstromanschluss zur Versorgung tragbarer Geräte, die im oder am Fahrzeug verwendet werden, direkt aus dem Bordnetz.",
@@ -486,6 +493,7 @@ export default {
         alternator: "Eine Lichtmaschine ist ein Generator, der insbesondere in Autos verwendet wird, um elektrischen Strom zu erzeugen. Diese Software benötigt die Daten der Lichtmaschine, um sicherzustellen, dass der Stromfluss perfekt zu deinem Ladebooster passt.",
         accu: "Eine Zusatzbatterie im Camper dient dazu, die Starterbatterie zu isolieren, wenn der Motor nicht läuft – so wird verhindert, dass sie entladen wird und das Fahrzeug nicht mehr startet. Bei abgestelltem Motor versorgt die Zusatzbatterie alle Verbraucher im Innenraum (Licht, Radio, 12V-Kühlschrank usw.).",
         fridge: "Ein Camping-Kühlschrank kühlt deine Lebensmittel auf eine sichere Lagertemperatur, genau wie zu Hause. Oft ist er kleiner, um in den Camper zu passen, und hat spezielle Funktionen wie verriegelbare Türen und die Möglichkeit, mit verschiedenen Energiequellen betrieben zu werden.",
+        cooler: "Mobile Kühlboxen, die an einen 12V Zigarettenanzünder angeschlossen werden können. Meist mit einem etwas geringeren Volumen als die Einbaugeräte.",
         fuse: "Ein häufiges Problem in elektrischen Systemen ist ein zu hoher Stromfluss. Dieser kann Schäden verursachen. Um dich und dein System davor zu schützen, gibt es Sicherungen und Schutzschalter.",
         fuseBox: "Sicherungskästen werden verwendet, um kleine Endgeräte einzeln abzusichern. Dies verhindert, dass bei einem kleinen Schaden die Leitungen zu den Endverbrauchern beschädigt werden oder gar das gesamte Bordnetz ausfällt. Aus Sicherheitsgründen musst du einen Sicherungskasten hinzufügen, bevor du Verbraucher anschließen kannst.",
         pressurePump: "Die Wasserpumpe setzt die Wasserleitungen im Wohnmobil unter Druck. Wenn du einen Wasserhahn öffnest, entweicht der Druck und die Pumpe springt an. Sie hält den Druck aufrecht, solange Wasser fließt, bis du den Hahn wieder schließt.",
@@ -586,7 +594,7 @@ export default {
     toolbar: {
       open: "Öffnen",
       save: "Speichern",
-      parts: "Teile",
+      parts: "Einkaufsliste",
       help: "Hilfe",
       coffee: "Spendiere mir einen Kaffee",
       estimatedCost: "Geschätzte Kosten"

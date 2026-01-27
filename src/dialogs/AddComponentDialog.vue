@@ -18,7 +18,7 @@
                     <v-list-item class="amber lighten-5">
                     <v-list-item-subtitle style="white-space: normal">{{ $t('component.description.' + type)}}</v-list-item-subtitle>
                     </v-list-item>
-                    <template v-for="item in components(type)" >
+                    <template v-for="item in components(type)">
                       <v-list-item :key="item.uuid">
                           <v-img  style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" contain class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
                           <v-list-item-content>
@@ -45,8 +45,10 @@
               </template>
             </template>
             <template v-if="types.length === 1">
+              <!-- eslint-disable-next-line vue/valid-v-for -->
               <template  v-for="type in types">
-                <template v-for="item in components(type)" >
+                <!-- eslint-disable-next-line vue/valid-v-for -->
+                <template v-for="item in components(type)">
                   <v-list-item :key="item.uuid">
                     <v-img style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
@@ -153,16 +155,15 @@ export default {
       const body = encodeURIComponent(
         `Hallo,\n\n` +
         `ich möchte eine neue Komponente für die Kategorie "${componentTypeName}" vorschlagen.\n\n` +
-        `Wenn die Daten vollständig sind und die Komponente im Web verfügbar ist, wird sie in den Konfigurator aufgenommen und steht dann allen Nutzern zur Verfügung!\n\n` +
-        `Bitte füllen Sie die folgenden Informationen aus:\n\n` +
+        `Toll, dass du mitmachst! Wir freuen uns über jeden Vorschlag, der den Konfigurator für alle besser macht. Wenn du die technischen Daten und Links unten ergänzt, können wir die Komponente schnell für die gesamte Community freischalten.\n\n` +
+        `Bitte fülle hier die Daten aus:\n\n` +
         `JSON Template:\n` +
         `${JSON.stringify(template, null, 2)}\n\n` +
-        `Hinweise:\n` +
-        `- Passen Sie Name, Beschreibung und technische Daten an\n` +
-        `- Fügen Sie einen Link zum Produktbild hinzu (imageSrc)\n` +
-        `- Fügen Sie, wenn möglich, Shopping-Links mit aktuellen Preisen hinzu\n` +
-        `- Je vollständiger die Daten, desto schneller kann die Komponente aufgenommen werden\n\n` +
-        `Vielen Dank für Ihren Beitrag zur Community!`
+        `Checkliste:\n` +
+        `- Name, Beschreibung und technische Daten angepasst?\n` +
+        `- Shopping-Links mit aktuellen Preisen hinzugefügt?\n` +
+        `- Je vollständiger, desto schneller online!\n\n` +
+        `Vielen Dank für deine Unterstützung und deinen Beitrag zur Community! ❤️`
       )
 
       // Open mailto link

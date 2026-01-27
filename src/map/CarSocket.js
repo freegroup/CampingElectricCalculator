@@ -8,7 +8,7 @@ export default class CarSocket extends RightNode {
   }
 
   getChildCandidates () {
-    return ["cooler"] 
+    return ["cooler", "carSocketCharger"] 
   }
 
   setParent(parent) {
