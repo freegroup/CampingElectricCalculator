@@ -52,20 +52,20 @@
                     <v-list dense>
                       <!-- Existing Shopping Links -->
                       <template v-if="hasShoppingLinks">
-                        <v-list-item v-for="(shop, index) in model.shopping" :key="index" :href="shop.link" target="_blank" class="px-0">
-                          <v-list-item-icon class="mr-3">
-                            <v-icon small>mdi-open-in-new</v-icon>
-                          </v-list-item-icon>
-                          <v-list-item-content>
-                            <v-list-item-title>{{ shop.shop }}</v-list-item-title>
-                            <v-list-item-subtitle class="text-caption">
-                              {{ shop.label }}
-                            </v-list-item-subtitle>
-                            <v-list-item-subtitle class="text-caption font-weight-bold">
-                              {{ $t('dialog.info.lastKnownPrice') }}: {{ shop.lastKnownPrice.toFixed(2) }} €
-                            </v-list-item-subtitle>
-                          </v-list-item-content>
-                        </v-list-item>
+                      <v-list-item v-for="(shop, index) in model.shopping" :key="index" :href="shop.link" target="_blank" class="px-0 shopping-link">
+                        <v-list-item-icon class="mr-3">
+                          <v-icon small color="primary">mdi-open-in-new</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-content>
+                          <v-list-item-title class="primary--text">{{ shop.shop }}</v-list-item-title>
+                          <v-list-item-subtitle class="text-caption">
+                            {{ shop.label }}
+                          </v-list-item-subtitle>
+                          <v-list-item-subtitle class="text-caption font-weight-bold">
+                            {{ $t('dialog.info.lastKnownPrice') }}: {{ shop.lastKnownPrice.toFixed(2) }} €
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+                      </v-list-item>
                         
                         <v-divider class="my-2"></v-divider>
                       </template>
