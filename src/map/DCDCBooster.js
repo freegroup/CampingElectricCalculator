@@ -115,8 +115,13 @@ export default class DCDCBooster extends RightNode {
     }
     // Umrechnen von der Ausgangsspannung zu der Eingangsspannung. Da ändert sich der Strom
     //
-    result.strom = toFixed( (result.strom * this.model.data.spannung_out ) / this.model.data.spannung_in )
-    result.amperestunden = toFixed( (result.amperestunden * this.model.data.spannung_out ) / this.model.data.spannung_in )
+    if ( this.model.data.spannung_in && this.model.data.spannung_in !== 0 ) {
+      result.strom = toFixed( (result.strom * this.model.data.spannung_out ) / this.model.data.spannung_in )
+      result.amperestunden = toFixed( (result.amperestunden * this.model.data.spannung_out ) / this.model.data.spannung_in )
+    } else {
+      result.strom = NaN
+      result.amperestunden = NaN
+    }
     
     result.watt = (result.strom * result.spannung)
 

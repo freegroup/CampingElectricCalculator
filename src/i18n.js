@@ -287,6 +287,7 @@ export default {
       }
     },
     toolbar: {
+      title: "Camper Electric Configuration",
       open: "Open",
       save: "Save",
       parts: "Shopping Parts",
@@ -592,6 +593,7 @@ export default {
       }
     },
     toolbar: {
+      title: "Camper Elektrik Konfigurator",
       open: "Öffnen",
       save: "Speichern",
       parts: "Einkaufsliste",

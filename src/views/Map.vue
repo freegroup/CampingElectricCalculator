@@ -7,7 +7,7 @@
         </v-avatar>
 
       </router-link>
-        <v-toolbar-title>Camper Electric Configuration</v-toolbar-title>
+        <v-toolbar-title>{{ $t('toolbar.title') }}</v-toolbar-title>
       <v-spacer></v-spacer>
           <v-btn @click="load" class="ml-1" small>
             <v-icon>mdi-open-in-app</v-icon>

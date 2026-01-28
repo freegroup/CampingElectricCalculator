@@ -57,22 +57,34 @@ export default class SolarSet extends LeftNode {
         // gleicher Leistung (P=100W). Dabei ändert sich der Ladestrom – er steigt an! 
         // Die Formel dazu liefert den Beweis: I=100W/14.4V . Das ergibt einen neuen 
         // Ladestrom von 6,75A.
-        result.strom = data.watt / result.ladespannung
+        if ( result.ladespannung && result.ladespannung !== 0 ) {
+          result.strom = data.watt / result.ladespannung
+        } else {
+          result.strom = NaN
+        }
         result.watt = data.watt
         break
       case "PWM":
         // Der Kollege PWM mag es unkompliziert, und passt deswegen die Modulspannung 
         // an deine Ladespannung des Akkus an – in dem Fall 14,8V (AGM Akku).
-        // Wenn du nun nochmal einen Blick auf die Spannung “Vm” des Moduls wirfst, wirst 
-        // du feststellen, dass diese bei 18,5V liegt. Der Regler “verschenkt” sozusagen 
+        // Wenn du nun nochmal einen Blick auf die Spannung "Vm" des Moduls wirfst, wirst 
+        // du feststellen, dass diese bei 18,5V liegt. Der Regler "verschenkt" sozusagen 
         // 3,7V, weil dein Akku ja lediglich 14,8 benötigt, während der Strom (Im) gleich 
         // bleibt
         result.strom = data.nennstrom
-        result.watt = data.nennstrom * result.ladespannung
+        if ( result.ladespannung && result.ladespannung !== 0 ) {
+          result.watt = data.nennstrom * result.ladespannung
+        } else {
+          result.watt = NaN
+        }
         break
     }
 
-    result.ladestrom = result.watt / result.ladespannung
+    if ( result.ladespannung && result.ladespannung !== 0 ) {
+      result.ladestrom = result.watt / result.ladespannung
+    } else {
+      result.ladestrom = NaN
+    }
     result.amperestunden = result.strom * this.model.operationHours
     return result
   }

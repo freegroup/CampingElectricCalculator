@@ -145,8 +145,8 @@ export default class RightNode extends Node {
     const rootAh = this.mindmap.calculateOutputData().amperestunden
     const thisAh = this.calculateConsumptionData().amperestunden
 
-    if ( isNaN(rootAh) || isNaN(thisAh) ) {
-      return 0
+    if ( isNaN(rootAh) || isNaN(thisAh) || rootAh === 0 ) {
+      return NaN
     }
     return ( 1 / rootAh ) * thisAh
   }

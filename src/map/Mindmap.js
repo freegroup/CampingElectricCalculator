@@ -526,7 +526,12 @@ export default class Mindmap extends GenericNode {
     if ( diff >= 0 || this.model === null ) {
       runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
     } else {
-      runtimeDays = toFixed(this.model.data.effective_amperestunden / Math.abs(diff))
+      const absDiff = Math.abs(diff)
+      if ( absDiff !== 0 ) {
+        runtimeDays = toFixed(this.model.data.effective_amperestunden / absDiff)
+      } else {
+        runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
+      }
     }
     this.inputLabel.innerHTML = "Input<br>" + toFixed(inputAh) + " Ah"
     this.runtimeLabel.innerHTML = "Running Time<br>" + runtimeDays + " days"

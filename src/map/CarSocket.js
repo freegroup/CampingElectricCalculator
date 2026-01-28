@@ -47,7 +47,7 @@ export default class CarSocket extends RightNode {
       })
       // the "operationHours" divided by the socket count must be less than 24 hours
       //
-      if ( (data.operationHours / this.model.data.buchsen) > 24 ) {
+      if ( this.model.data.buchsen && this.model.data.buchsen !== 0 && (data.operationHours / this.model.data.buchsen) > 24 ) {
         if ( this.model.data.buchse > 1 ) {
           result.push({ type: "Warning", text: errorMessages.t('socketsOccupiedTooLong', { component: 'car sockets' }) })
         } else {

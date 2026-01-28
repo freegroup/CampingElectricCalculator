@@ -21,7 +21,12 @@ export default class Usb extends RightNode {
     // Teil selber zieht.
     // Da das model eine "deep copy" ist, können wir die Daten direkt verändern
     //
-    this.model.data.strom = ( (this.model.data.strom_je_buchse * this.model.data.buchsen) * this.getBaseVoltage() ) / parent?.getBaseVoltage()
+    const baseVoltage = parent?.getBaseVoltage()
+    if ( baseVoltage && baseVoltage !== 0 ) {
+      this.model.data.strom = ( (this.model.data.strom_je_buchse * this.model.data.buchsen) * this.getBaseVoltage() ) / baseVoltage
+    } else {
+      this.model.data.strom = NaN
+    }
   }
 
   getErrorMessages () {
@@ -38,7 +43,7 @@ export default class Usb extends RightNode {
       })
       // the "operationHours" divided by the socket count must be less than 24 hours
       //
-      if ( (data.operationHours / this.model.data.buchsen) > 24 ) {
+      if ( this.model.data.buchsen && this.model.data.buchsen !== 0 && (data.operationHours / this.model.data.buchsen) > 24 ) {
         if ( this.model.data.buchse > 1 ) {
           result.push({ 
             type: "Warning", 
