@@ -1,14 +1,14 @@
 <template>
-  <v-app-bar app :color="color" dense :dark="dark" :light="light">
-    <router-link to="/">
-      <v-avatar :size="32" class="mr-2">
+  <v-app-bar app :color="color" :dark="dark" :light="light" height="80">
+    <router-link to="/" class="d-flex align-center text-decoration-none">
+      <v-avatar :size="64" class="mr-4 my-2">
         <img src="@/assets/logo.svg" alt="Logo">
       </v-avatar>
+      
+      <v-toolbar-title :class="titleClass + ' toolbar-title-link'">
+        {{ title }}
+      </v-toolbar-title>
     </router-link>
-    
-    <v-toolbar-title :class="titleClass">
-      {{ title }}
-    </v-toolbar-title>
     
     <v-spacer></v-spacer>
 
@@ -84,8 +84,21 @@ export default {
     },
     titleClass: {
       type: String,
-      default: 'subtitle-1 font-weight-bold grey--text text--darken-2'
+      default: 'text-h6 font-weight-light'
     }
   }
 }
 </script>
+
+<style scoped>
+.toolbar-title-link {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 2.2rem !important;
+  color: black !important;
+}
+
+.toolbar-title-link:hover {
+  text-decoration: underline;
+}
+</style>

@@ -298,7 +298,7 @@ export default {
       estimatedCost: "Estimated Cost"
     },
     overview: {
-      appTitle: "Camping Electric Calculator",
+      appTitle: "Camper Electric Designer",
       hero: {
         title: "Freedom, Powered.",
         subtitle: "Design the perfect electrical system for your van life adventures. Simple, accurate, and completely free.",
@@ -667,7 +667,7 @@ export default {
       estimatedCost: "Geschätzte Kosten"
     },
     overview: {
-      appTitle: "Camping Elektrik Rechner",
+      appTitle: "Camper Elektrik Designer",
       hero: {
         title: "Freiheit, Angetrieben.",
         subtitle: "Entwerfe das perfekte Elektriksystem für deine Van-Life-Abenteuer. Einfach, präzise und komplett kostenlos.",

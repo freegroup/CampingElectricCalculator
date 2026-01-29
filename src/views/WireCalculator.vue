@@ -6,14 +6,7 @@
       color="#E39623"
       dark
       :light="false"
-    >
-      <template v-slot:actions>
-        <v-btn @click="$router.push('/')" class="ml-1" small>
-          <v-icon>mdi-arrow-left</v-icon>
-          <div class="ml-3 d-none d-lg-block">{{ $t('wireCalculator.backButton') }}</div>
-        </v-btn>
-      </template>
-    </AppToolbar>
+    />
 
     <v-main class="grey lighten-5">
       <!-- Hero Section -->
