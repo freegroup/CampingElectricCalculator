@@ -18,8 +18,8 @@
           class="hero-image"
         >
           <v-container class="fill-height" style="height: 100%;">
-            <v-row align="start" justify="end" style="height: 100%;">
-              <v-col cols="12" md="7" lg="6" class="text-right pr-md-10 pt-md-10">
+            <v-row align="center" justify="end" style="height: 100%;">
+              <v-col cols="12" md="7" lg="6" class="text-right pr-md-10">
                 <h1 class="hero-title font-weight-light mb-3 text-shadow">
                   {{ $t('overview.hero.title') }}
                 </h1>
@@ -284,7 +284,7 @@ export default {
   font-size: clamp(1.2rem, 4vw, 3rem);
   line-height: 1.2;
   white-space: nowrap;
-  color: #FFE0B2 !important;
+  color: white !important;
   text-shadow: 
     0 0 10px rgba(0, 0, 0, 0.3),
     0 0 20px rgba(0, 0, 0, 0.2),
