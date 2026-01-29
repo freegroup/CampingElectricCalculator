@@ -669,7 +669,7 @@ export default {
     overview: {
       appTitle: "Camper Elektrik Designer",
       hero: {
-        title: "Freiheit, Angetrieben.",
+        title: "Unabhängig unterwegs, Individuell.",
         subtitle: "Entwerfe das perfekte Elektriksystem für deine Van-Life-Abenteuer. Einfach, präzise und komplett kostenlos.",
         startButton: "Planung Starten"
       },
