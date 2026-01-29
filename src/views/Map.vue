@@ -1,60 +1,38 @@
 <template>
     <v-app>
-    <v-app-bar app color="#E39623" dense dark>
-      <router-link to="/">
-        <v-avatar class="mr-4">
-          <img src="@/assets/logo.svg">
-        </v-avatar>
+    <AppToolbar
+      :title="$t('toolbar.title')"
+      color="#E39623"
+      dark
+      :light="false"
+      show-extension
+    >
+      <template v-slot:actions>
+        <v-btn @click="load" class="ml-1" small>
+          <v-icon>mdi-open-in-app</v-icon>
+          <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.open') }}</div>
+        </v-btn>
+                  
+        <v-btn @click="save" class="ml-1" small>
+          <v-icon>mdi-content-save-outline</v-icon>
+          <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.save') }}</div>
+        </v-btn>
+        
+        <v-btn @click="exportPdf" class="ml-1" small>
+          <v-icon>mdi-text-box-check-outline</v-icon> 
+          <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.parts') }}</div>
+        </v-btn>
 
-      </router-link>
-        <v-toolbar-title>{{ $t('toolbar.title') }}</v-toolbar-title>
-      <v-spacer></v-spacer>
-          <v-btn @click="load" class="ml-1" small>
-            <v-icon>mdi-open-in-app</v-icon>
-            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.open') }}</div>
-          </v-btn>
-                    
-          <v-btn @click="save" class="ml-1" small>
-            <v-icon>mdi-content-save-outline</v-icon>
-            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.save') }}</div>
-          </v-btn>
-          
-          <v-btn @click="exportPdf" class="ml-1" small>
-            <v-icon>mdi-text-box-check-outline</v-icon> 
-            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.parts') }}</div>
-          </v-btn>
+        <v-btn @click="help" class="ml-1" small>
+          <v-icon>mdi-help-circle-outline</v-icon>
+          <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.help') }}</div>
+        </v-btn>
+      </template>
 
-          <v-btn @click="help" class="ml-1" small>
-            <v-icon>mdi-help-circle-outline</v-icon>
-            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.help') }}</div>
-          </v-btn>
-
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn class="ml-1" small v-bind="attrs" v-on="on">
-                <v-icon>mdi-translate</v-icon>
-                <div class="ml-3 d-none d-lg-block">{{ currentLanguage.toUpperCase() }}</div>
-              </v-btn>
-            </template>
-            <v-list dense>
-              <v-list-item @click="changeLanguage('de')">
-                <v-list-item-title>🇩🇪 Deutsch</v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="changeLanguage('en')">
-                <v-list-item-title>🇬🇧 English</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-btn href="https://www.paypal.com/paypalme/freegroup/2.50" target="_blank" class="teal accent-4 ml-1" small>
-            <v-icon>mdi-coffee-outline</v-icon>
-            <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.coffee') }}</div>
-          </v-btn>
-
-          <template v-slot:extension>
-            <div style="width:100%">{{name}} <span class="float-right">{{ $t('toolbar.estimatedCost') }}: {{(price.low).toFixed(2)}} Euro</span></div>
-          </template>
-    </v-app-bar>
+      <template v-slot:extension>
+        <div style="width:100%">{{name}} <span class="float-right">{{ $t('toolbar.estimatedCost') }}: {{(price.low).toFixed(2)}} Euro</span></div>
+      </template>
+    </AppToolbar>
     <v-main>
       <ComponentMap ref="mindmap" @configLoaded="onConfigLoaded"/>
     </v-main>
@@ -69,8 +47,8 @@ import JsonDialog from '@/dialogs/JSONDialog.vue'
 import HelpDialog from '@/dialogs/HelpDialog.vue'
 import FileOpenDialog from '@/dialogs/FileOpenDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'
+import AppToolbar from '@/components/AppToolbar.vue'
 import { mapState } from 'vuex'
-import errorMessages from '@/utils/ErrorMessages.js'
 
 export default {
   name: 'Map',
@@ -78,7 +56,8 @@ export default {
     ComponentMap,
     JsonDialog,
     FileOpenDialog,
-    HelpDialog
+    HelpDialog,
+    AppToolbar
   },
   data: () => ({
     name: "",
@@ -134,7 +113,7 @@ export default {
         types: [
           { accept: { "application/json": [".json"] } }
         ],
-        excludeAcceptAllOption: true 
+        excludeAcceptAllOption: true
       })
 
       const writer = await fileHandle.createWritable()
@@ -147,16 +126,6 @@ export default {
     exportPdf() {
       const routeData = this.$router.resolve({ path: '/list/' + this.$refs.mindmap.getConfiguration().id })
       window.open(routeData.href, '_blank')
-    },
-    changeLanguage(lang) {
-      this.$i18n.locale = lang
-      localStorage.setItem('userLanguage', lang)
-      // Update ErrorMessages for native JS components
-      errorMessages.setLocale(lang)
-      // Force re-render of error messages
-      if (this.$refs.mindmap && this.$refs.mindmap.updateStatusIcons) {
-        this.$refs.mindmap.updateStatusIcons(true)
-      }
     }
   },
   watch: {
@@ -169,10 +138,7 @@ export default {
       profiles: state => {
         return state.profile.all
       }
-    }),
-    currentLanguage() {
-      return this.$i18n.locale
-    }
+    })
   }
 }
 </script>

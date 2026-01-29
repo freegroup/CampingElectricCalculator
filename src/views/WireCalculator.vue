@@ -1,33 +1,19 @@
- unten dann mit empfholen<template>
+<template>
   <v-app>
     <!-- Navigation bar -->
-    <v-app-bar
-      color="white"
-      elevate-on-scroll
-      light
-      dense
+    <AppToolbar
+      :title="$t('wireCalculator.title')"
+      color="#E39623"
+      dark
+      :light="false"
     >
-      <v-btn icon @click="$router.push('/')" color="grey darken-1">
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
-      
-      <v-avatar size="32" class="mr-2 ml-2">
-        <img src="@/assets/logo.svg" alt="Logo">
-      </v-avatar>
-      <v-toolbar-title class="subtitle-1 font-weight-bold grey--text text--darken-2">
-        Kabelquerschnitt Rechner
-      </v-toolbar-title>
-      
-      <v-spacer></v-spacer>
-
-      <v-btn icon href="https://www.youtube.com/channel/UC1WhvBxYkiGQlAO6YR7uEQQ" target="_blank" color="grey darken-1">
-        <v-icon>mdi-youtube</v-icon>
-      </v-btn>
-
-      <v-btn icon href="https://github.com/freegroup/CampingElectricCalculator" target="_blank" color="grey darken-1">
-        <v-icon>mdi-github</v-icon>
-      </v-btn>
-    </v-app-bar>
+      <template v-slot:actions>
+        <v-btn @click="$router.push('/')" class="ml-1" small>
+          <v-icon>mdi-arrow-left</v-icon>
+          <div class="ml-3 d-none d-lg-block">{{ $t('wireCalculator.backButton') }}</div>
+        </v-btn>
+      </template>
+    </AppToolbar>
 
     <v-main class="grey lighten-5">
       <!-- Hero Section -->
@@ -37,7 +23,7 @@
             <v-col cols="12" class="text-center">
               <div class="d-flex align-center justify-center">
                 <h1 class="text-h4 font-weight-bold white--text text-shadow">
-                  Kabelquerschnitt Rechner
+                  {{ $t('wireCalculator.title') }}
                 </h1>
                 <v-btn
                   icon
@@ -352,9 +338,9 @@
     <v-footer app padless color="white" class="border-top">
       <v-col class="text-center" cols="12">
         <span class="caption grey--text">
-          Open Source Project | 
+          {{ $t('overview.footer.openSource') }} | 
           <a href="https://github.com/freegroup/CampingElectricCalculator/issues" target="_blank" class="text-decoration-none teal--text">
-            Report a Bug
+            {{ $t('overview.footer.reportBug') }}
           </a>
         </span>
       </v-col>
@@ -366,11 +352,13 @@
 import { kabelquerschnitt, querschnitt, toFixed, gamma } from '@/utils/Wire.js'
 import wireExamples from '@/data/wireExamples.json'
 import WireCalculatorInfo from '@/components/WireCalculatorInfo.vue'
+import AppToolbar from '@/components/AppToolbar.vue'
 
 export default {
   name: 'WireCalculator',
   components: {
-    WireCalculatorInfo
+    WireCalculatorInfo,
+    AppToolbar
   },
   data() {
     return {

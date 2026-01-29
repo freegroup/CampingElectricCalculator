@@ -17,6 +17,8 @@ export default {
       squareMillimeterFull: "Square Millimeter"
     },
     wireCalculator: {
+      title: "Wire Cross-Section Calculator",
+      backButton: "Back",
       info: {
         title: "How does the calculation work?",
         description: "This tool helps you find the optimal wire cross-section for your camping installation. The cross-section determines how efficiently current flows from the consumer to the source. The longer the cable and the higher the current, the thicker the cable should be to keep energy losses low.",
@@ -295,6 +297,67 @@ export default {
       coffee: "Send Me a Coffee",
       estimatedCost: "Estimated Cost"
     },
+    overview: {
+      appTitle: "Camping Electric Calculator",
+      hero: {
+        title: "Freedom, Powered.",
+        subtitle: "Design the perfect electrical system for your van life adventures. Simple, accurate, and completely free.",
+        startButton: "Start Planning"
+      },
+      setupSection: {
+        title: "Choose Your Setup",
+        subtitle: "Select a template or start from scratch",
+        weekender: {
+          title: "The Weekender",
+          description: "Lightweight setup for phones, lights & a small cooler. Ideal for short trips.",
+          action: "Start Basic"
+        },
+        explorer: {
+          title: "The Explorer",
+          description: "Reliable power for laptops, fridge & off-grid capability.",
+          action: "Start Comfort"
+        },
+        nomad: {
+          title: "The Nomad",
+          description: "Full amenities: Induction, AC & long-term autonomy.",
+          action: "Start Pro"
+        },
+        custom: {
+          title: "Custom Build",
+          description: "Start with a blank canvas"
+        }
+      },
+      howItWorks: {
+        title: "Three Steps to Freedom",
+        step1: {
+          title: "1. Connect",
+          description: "Drag & drop components. Simulate your real-world wiring easily."
+        },
+        step2: {
+          title: "2. Calculate",
+          description: "Instant feedback on capacity, power usage, and potential issues."
+        },
+        step3: {
+          title: "3. Build",
+          description: "Export your parts list and diagram to start your build with confidence."
+        }
+      },
+      tools: {
+        title: "Tools & Utilities",
+        subtitle: "Useful tools for your camper conversion",
+        wireCalculator: {
+          title: "Wire Cross-Section Calculator",
+          subtitle: "Calculate the optimal wire cross-section for your installation",
+          description: "If you prefer to calculate everything yourself, use the wire calculator to quickly find the right wire cross-section. Enter cable length, current, and voltage to instantly get the recommended wire cross-section including voltage drop and power loss. Perfect for individual connections!",
+          action: "Calculate Now"
+        }
+      },
+      footer: {
+        disclaimer: "This tool provides estimates. Always consult a professional electrician.",
+        openSource: "Open Source Project",
+        reportBug: "Report a Bug"
+      }
+    },
     tooltip: {
       energyBalance: "Energy Balance",
       exchangeComponent: "Exchange Component",
@@ -319,6 +382,8 @@ export default {
       squareMillimeterFull: "Quadratmillimeter"
     },
     wireCalculator: {
+      title: "Kabelquerschnitt Rechner",
+      backButton: "Zurück",
       info: {
         title: "Wie funktioniert die Berechnung?",
         description: "Dieses Tool hilft Ihnen, den optimalen Kabelquerschnitt für Ihre Camping-Installation zu finden. Der Querschnitt bestimmt, wie effizient Strom vom Verbraucher zur Quelle fließt. Je länger das Kabel und je höher der Strom, desto dicker sollte das Kabel sein, um Energieverluste gering zu halten.",
@@ -600,6 +665,67 @@ export default {
       help: "Hilfe",
       coffee: "Spendiere mir einen Kaffee",
       estimatedCost: "Geschätzte Kosten"
+    },
+    overview: {
+      appTitle: "Camping Elektrik Rechner",
+      hero: {
+        title: "Freiheit, Angetrieben.",
+        subtitle: "Entwerfe das perfekte Elektriksystem für deine Van-Life-Abenteuer. Einfach, präzise und komplett kostenlos.",
+        startButton: "Planung Starten"
+      },
+      setupSection: {
+        title: "Wähle Dein Setup",
+        subtitle: "Wähle eine Vorlage oder starte von Grund auf",
+        weekender: {
+          title: "Der Wochenendler",
+          description: "Leichtes Setup für Handys, Licht & kleine Kühlbox. Ideal für Kurztrips.",
+          action: "Basis Starten"
+        },
+        explorer: {
+          title: "Der Entdecker",
+          description: "Zuverlässige Stromversorgung für Laptop, Kühlschrank & Autarkie.",
+          action: "Komfort Starten"
+        },
+        nomad: {
+          title: "Der Nomade",
+          description: "Volle Ausstattung: Induktion, Klimaanlage & Langzeit-Autarkie.",
+          action: "Profi Starten"
+        },
+        custom: {
+          title: "Individueller Aufbau",
+          description: "Mit leerer Leinwand starten"
+        }
+      },
+      howItWorks: {
+        title: "Drei Schritte zur Freiheit",
+        step1: {
+          title: "1. Verbinden",
+          description: "Drag & Drop Komponenten. Simuliere deine reale Verkabelung einfach."
+        },
+        step2: {
+          title: "2. Berechnen",
+          description: "Sofortiges Feedback zu Kapazität, Stromverbrauch und möglichen Problemen."
+        },
+        step3: {
+          title: "3. Bauen",
+          description: "Exportiere deine Teileliste und Diagramm, um selbstbewusst mit dem Bau zu beginnen."
+        }
+      },
+      tools: {
+        title: "Tools & Hilfsmittel",
+        subtitle: "Nützliche Werkzeuge für deinen Camperausbau",
+        wireCalculator: {
+          title: "Kabelquerschnitt Rechner",
+          subtitle: "Berechne den optimalen Kabelquerschnitt für deine Installation",
+          description: "Wenn du lieber alles selbst ausrechnen willst, nutze den Kabelrechner, um schnell den richtigen Kabelquerschnitt zu finden. Gib Kabellänge, Stromstärke und Spannung ein und erhalte sofort den empfohlenen Kabelquerschnitt inklusive Spannungsabfall und Leistungsverlust. Perfekt für einzelne Verbindungen!",
+          action: "Jetzt Berechnen"
+        }
+      },
+      footer: {
+        disclaimer: "Dieses Tool liefert Schätzwerte. Konsultiere immer einen professionellen Elektriker.",
+        openSource: "Open Source Projekt",
+        reportBug: "Fehler Melden"
+      }
     },
     tooltip: {
       energyBalance: "Energiebilanz",
