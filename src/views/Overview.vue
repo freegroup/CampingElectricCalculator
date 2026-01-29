@@ -18,9 +18,9 @@
           class="hero-image"
         >
           <v-container class="fill-height" style="height: 100%;">
-            <v-row align="end" justify="end" style="height: 100%;">
-              <v-col cols="12" md="7" lg="6" class="text-right pr-md-10 pb-md-10">
-                <h1 class="text-h2 font-weight-bold mb-3 white--text text-shadow">
+            <v-row align="start" justify="end" style="height: 100%;">
+              <v-col cols="12" md="7" lg="6" class="text-right pr-md-10 pt-md-10">
+                <h1 class="hero-title font-weight-bold mb-3 white--text text-shadow">
                   {{ $t('overview.hero.title') }}
                 </h1>
               </v-col>
@@ -278,5 +278,11 @@ export default {
 
 .border-top {
   border-top: 1px solid #e0e0e0;
+}
+
+.hero-title {
+  font-size: clamp(1.5rem, 5vw, 3.75rem);
+  line-height: 1.2;
+  white-space: nowrap;
 }
 </style>
