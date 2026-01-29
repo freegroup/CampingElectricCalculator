@@ -20,7 +20,7 @@
           <v-container class="fill-height" style="height: 100%;">
             <v-row align="start" justify="end" style="height: 100%;">
               <v-col cols="12" md="7" lg="6" class="text-right pr-md-10 pt-md-10">
-                <h1 class="hero-title font-weight-bold mb-3 white--text text-shadow">
+                <h1 class="hero-title font-weight-light mb-3 text-shadow">
                   {{ $t('overview.hero.title') }}
                 </h1>
               </v-col>
@@ -253,7 +253,7 @@ export default {
 
 <style scoped>
 .hero-section {
-  height: 300px; /* Smaller height */
+  height: 450px;
   overflow: hidden;
   background-color: #fff;
 }
@@ -281,8 +281,13 @@ export default {
 }
 
 .hero-title {
-  font-size: clamp(1.5rem, 5vw, 3.75rem);
+  font-size: clamp(1.2rem, 4vw, 3rem);
   line-height: 1.2;
   white-space: nowrap;
+  color: #FFE0B2 !important;
+  text-shadow: 
+    0 0 10px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 0, 0, 0.2),
+    2px 2px 8px rgba(0, 0, 0, 0.25) !important;
 }
 </style>
