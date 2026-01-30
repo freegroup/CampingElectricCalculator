@@ -1,0 +1,77 @@
+/* 
+ * Central Color Definitions
+ * Define all colors as LESS variables for consistent theming
+ */
+
+// Accent Colors - from design system
+@color-success: #66bb6a;      // Green - Lighter, friendlier green
+@color-info: #0288d1;         // Blue - Info states
+@color-warning: #ed6c02;      // Orange - Warning states
+@color-error: #d32f2f;        // Red - Error states
+@color-accent-pink: #e91e63;  // Pink - Special accent
+@color-accent-purple: #9c27b0; // Purple - Special accent
+
+// Light variants for backgrounds
+@color-success-light: #e8f5e9;
+@color-info-light: #e3f2fd;
+@color-warning-light: #fff3e0;
+@color-error-light: #ffebee;
+@color-accent-pink-light: #fce4ec;
+
+// Header/Toolbar colors
+@color-header: #d9dff2;
+@color-header-alt: #d7ddef;
+
+// AppToolbar specific
+@color-toolbar-bg: rgba(217, 223, 242, 0.85);
+@color-toolbar-title: #212121;
+@toolbar-button-bg: #212121;
+@toolbar-button-text: #ffffff;
+@toolbar-button-hover: #424242;
+@color-toolbar-coffee: #00897b;
+
+// AppBar Glassmorphism
+@appbar-bg: rgba(217, 223, 242, 0.85);
+@appbar-blur: blur(20px) saturate(180%);
+@appbar-border: 1px solid rgba(255, 255, 255, 0.3);
+@appbar-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+
+// AppBar Extension
+@appbar-extension-bg: transparent;
+@appbar-extension-border: 1px solid rgba(0, 0, 0, 0.1);
+
+// Dialog colors
+@dialog-header-bg: #f8bbd0;  // Pink powder color for testing
+@dialog-header-text: #212121;
+@dialog-content-bg: #ffffff;
+@dialog-border: 1px solid rgba(0, 0, 0, 0.12);
+@dialog-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+@dialog-accent-icon: @color-info;  // Blue for accent icons in dialogs
+
+// Button colors
+@color-button-dark: #212121;
+@color-button-dark-hover: #424242;
+@color-button-teal: #00897b;
+
+// Text colors
+@color-text-primary: #212121;
+@color-text-secondary: #757575;
+@color-text-white: #ffffff;
+
+// Background colors
+@color-bg-gradient-start: #edeff6;
+@color-bg-gradient-end: #8e9fd5;
+
+// Export as CSS variables for compatibility
+:root {
+  --color-success: @color-success;
+  --color-info: @color-info;
+  --color-warning: @color-warning;
+  --color-error: @color-error;
+  --color-success-light: @color-success-light;
+  --color-info-light: @color-info-light;
+  --color-warning-light: @color-warning-light;
+  --color-error-light: @color-error-light;
+  --color-bg-gradient-start: @color-bg-gradient-start;
+  --color-bg-gradient-end: @color-bg-gradient-end;
+}

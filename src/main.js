@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
+import '@/assets/colors.less'
 import messages from "@/i18n.js"
 import { toFixed } from "@/utils/Wire.js"
 

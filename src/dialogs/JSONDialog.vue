@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showFlag" width="500" scrollable>
       <v-card>
-        <v-card-title class="pa-1 pl-3 orange white--text lighten-2">Configuration Data</v-card-title>
+        <DialogHeader title="Configuration Data" subtitle="" icon="mdi-code-json"></DialogHeader>
 
         <v-card-text style="height: 350px">
           <pre>
@@ -22,8 +22,13 @@
 </template>
 
 <script>
+import DialogHeader from "@/components/DialogHeader.vue"
+
 export default {
   name: "JSONDialog",
+  components: {
+    DialogHeader
+  },
   data() {
     return {
       showFlag: false,

@@ -3,27 +3,28 @@
     <!-- Navigation bar -->
     <AppToolbar
       :title="$t('wireCalculator.title')"
-      color="#E39623"
-      dark
-      :light="false"
+      color="#d7ddef"
+      :dark="false"
+      :light="true"
     />
 
-    <v-main class="grey lighten-5">
+    <v-main class="gradient-background">
       <!-- Hero Section -->
-      <div class="hero-section-wire">
+      <div class="hero-section-wire-glass">
         <v-container>
           <v-row justify="center">
             <v-col cols="12" class="text-center">
               <div class="d-flex align-center justify-center">
-                <h1 class="text-h4 font-weight-bold white--text text-shadow">
-                  {{ $t('wireCalculator.title') }}
-                </h1>
+      
                 <v-btn
                   icon
                   color="white"
                   class="ml-3"
                   @click="showInfo = !showInfo"
                 >
+                <h3 class="white--text text-shadow">
+                  {{ $t('widierten werte aus der AppToolbar in die css vars verlegen müssen mehr eigentlichreCalculator.info.title') }}
+                </h3>
                   <v-icon>{{ showInfo ? 'mdi-chevron-up' : 'mdi-information' }}</v-icon>
                 </v-btn>
               </div>
@@ -55,11 +56,9 @@
                   <!-- LEFT: Power Source -->
                   <div class="flex-item-fixed">
                     <v-card 
-                      class="source-card pa-6 rounded-lg elevation-4" 
-                      color="green lighten-5"
-                      outlined
+                      class="source-card glass-card pa-6 rounded-xl elevation-8" 
                     >
-                      <v-icon size="80" color="green darken-2" class="mb-4">mdi-battery-charging</v-icon>
+                      <v-icon size="80" class="mb-4 icon-glow-green">mdi-battery-charging</v-icon>
                       <h3 class="text-h6 font-weight-bold mb-4 green--text text--darken-3">
                         Spannungsquelle
                       </h3>
@@ -171,11 +170,9 @@
                   <!-- RIGHT: Consumer -->
                   <div class="flex-item-fixed">
                     <v-card 
-                      class="consumer-card pa-6 rounded-lg elevation-4" 
-                      color="orange lighten-5"
-                      outlined
+                      class="consumer-card glass-card pa-6 rounded-xl elevation-8" 
                     >
-                      <v-icon size="80" color="orange darken-2" class="mb-4">mdi-power-plug</v-icon>
+                      <v-icon size="80" class="mb-4 icon-glow-orange">mdi-power-plug</v-icon>
                       <h3 class="text-h6 font-weight-bold mb-4 orange--text text--darken-3">
                         Verbraucher
                       </h3>
@@ -539,7 +536,7 @@ export default {
       return {
         height: '10px',
         backgroundColor: color,
-        borderRadius: '5px',
+        borderRadius: '0',
         marginBottom: '4px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
       }
@@ -547,10 +544,10 @@ export default {
     
     getInfoBoxStyle() {
       const drop = parseFloat(this.result.voltageDropPercent)
-      let bgColor = '#E8F5E9' // green lighten-5
-      if (drop > 3 && drop <= 5) bgColor = '#FFF9C4' // yellow lighten-4
-      else if (drop > 5 && drop <= 8) bgColor = '#FFE0B2' // orange lighten-4
-      else if (drop > 8) bgColor = '#FFEBEE' // red lighten-5
+      let bgColor = 'var(--color-success-light)'
+      if (drop > 3 && drop <= 5) bgColor = 'var(--color-info-light)'
+      else if (drop > 5 && drop <= 8) bgColor = 'var(--color-warning-light)'
+      else if (drop > 8) bgColor = 'var(--color-error-light)'
       
       return {
         backgroundColor: bgColor
@@ -568,11 +565,63 @@ export default {
 </script>
 
 <style scoped>
-.hero-section-wire {
-  background: linear-gradient(135deg, #43A047 0%, #1E88E5 100%);
+/* Gradient Background using CSS variables */
+.gradient-background {
+  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 100%);
+  min-height: 100vh;
+}
+
+.hero-section-wire-glass {
+  background: transparent;
   min-height: 120px;
   position: relative;
   padding-bottom: 20px;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+}
+
+/* Icon Glow Effects - Softer colors from the image */
+.icon-glow-green {
+  color: #7CB342 !important;
+  filter: drop-shadow(0 0 4px rgba(124, 179, 66, 0.4))
+          drop-shadow(0 0 8px rgba(124, 179, 66, 0.2));
+  animation: pulse-green 3s ease-in-out infinite;
+}
+
+.icon-glow-orange {
+  color: #FF9800 !important;
+  filter: drop-shadow(0 0 4px rgba(255, 152, 0, 0.4))
+          drop-shadow(0 0 8px rgba(255, 152, 0, 0.2));
+  animation: pulse-orange 3s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(124, 179, 66, 0.4))
+            drop-shadow(0 0 8px rgba(124, 179, 66, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(124, 179, 66, 0.5))
+            drop-shadow(0 0 12px rgba(124, 179, 66, 0.3));
+  }
+}
+
+@keyframes pulse-orange {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(255, 152, 0, 0.4))
+            drop-shadow(0 0 8px rgba(255, 152, 0, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(255, 152, 0, 0.5))
+            drop-shadow(0 0 12px rgba(255, 152, 0, 0.3));
+  }
 }
 
 .text-shadow {
@@ -584,11 +633,13 @@ export default {
   align-items: stretch;
   gap: 0;
   min-height: 400px;
+  position: relative;
 }
 
 .flex-item-fixed {
   flex: 0 0 300px;
   min-width: 300px;
+  z-index: 2;
 }
 
 .flex-item-expand {
@@ -597,20 +648,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   padding: 0 20px;
+  z-index: 1;
 }
 
 .source-card,
 .cable-card,
 .consumer-card {
-  transition: all 0.3s ease;
   min-height: 450px;
-}
-
-.source-card:hover,
-.cable-card:hover,
-.consumer-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
 }
 
 .hover-card {
@@ -638,6 +682,7 @@ export default {
 
 .cable-container {
   position: relative;
+  margin: 0 -40px;
 }
 
 .cable-visual {
@@ -661,6 +706,27 @@ export default {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Custom Alert Colors - Using CSS variables from colors.css */
+.v-alert.success {
+  background-color: var(--color-success) !important;
+  border-color: var(--color-success) !important;
+}
+
+.v-alert.info {
+  background-color: var(--color-info) !important;
+  border-color: var(--color-info) !important;
+}
+
+.v-alert.warning {
+  background-color: var(--color-warning) !important;
+  border-color: var(--color-warning) !important;
+}
+
+.v-alert.error {
+  background-color: var(--color-error) !important;
+  border-color: var(--color-error) !important;
 }
 
 @media (max-width: 960px) {

@@ -2,28 +2,28 @@
     <v-app>
     <AppToolbar
       :title="$t('toolbar.title')"
-      color="#E39623"
-      dark
-      :light="false"
+      color="#d9dff2"
+      :dark="false"
+      :light="true"
       show-extension
     >
       <template v-slot:actions>
-        <v-btn @click="load" class="ml-1" small>
+        <v-btn @click="load" class="ml-1 toolbar-btn" small>
           <v-icon>mdi-open-in-app</v-icon>
           <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.open') }}</div>
         </v-btn>
                   
-        <v-btn @click="save" class="ml-1" small>
+        <v-btn @click="save" class="ml-1 toolbar-btn" small>
           <v-icon>mdi-content-save-outline</v-icon>
           <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.save') }}</div>
         </v-btn>
         
-        <v-btn @click="exportPdf" class="ml-1" small>
+        <v-btn @click="exportPdf" class="ml-1 toolbar-btn" small>
           <v-icon>mdi-text-box-check-outline</v-icon> 
           <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.parts') }}</div>
         </v-btn>
 
-        <v-btn @click="help" class="ml-1" small>
+        <v-btn @click="help" class="ml-1 toolbar-btn" small>
           <v-icon>mdi-help-circle-outline</v-icon>
           <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.help') }}</div>
         </v-btn>
@@ -144,7 +144,7 @@ export default {
 </script>
 
 <style>
-.v-toolbar__extension{
-  background-color: rgba(255,255,255,0.1);
+.v-main {
+  padding-top: 0 !important;
 }
 </style>

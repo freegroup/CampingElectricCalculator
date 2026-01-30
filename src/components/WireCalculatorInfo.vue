@@ -4,10 +4,6 @@ erade eingestellt habe<template>
       <v-col cols="12" md="10" lg="8">
         <v-card class="pa-4 rounded-lg" color="rgba(255,255,255,0.95)">
           <v-card-text>
-            <h3 class="text-h6 font-weight-bold mb-3">
-              <v-icon color="primary" class="mr-2">mdi-information-outline</v-icon>
-              {{ i18n.wireCalculator.info.title }}
-            </h3>
             
             <p class="body-2 mb-4">
               {{ i18n.wireCalculator.info.description }}

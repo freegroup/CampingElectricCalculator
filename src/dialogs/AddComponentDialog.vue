@@ -3,7 +3,7 @@
       <v-card>
         <DialogHeader :title="$t('dialog.addComponent.title')" :subtitle="$t('dialog.addComponent.subtitle')" icon="mdi-plus-network-outline"></DialogHeader>
 
-        <div class="orange lighten-4 pa-3 text-body-2" style="border-bottom: 1px solid rgba(0,0,0,0.12);" v-html="$t('dialog.addComponent.safetyInfo')"></div>
+        <div class="dialog-warning-box pa-3 text-body-2" v-html="$t('dialog.addComponent.safetyInfo')"></div>
 
         <v-card-text style="height: 400px;">
           <v-list two-line>
@@ -181,6 +181,13 @@ export default {
 }
 </script>
 <style lang="less">
+@import '~@/assets/colors.less';
+
+.dialog-warning-box {
+  background-color: @color-warning-light;
+  border-bottom: @dialog-border;
+}
+
 .v-list-item--active,
 .v-list-item--active:hover  {
   background-color: #FFF8E1 !important;

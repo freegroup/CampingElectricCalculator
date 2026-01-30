@@ -3,9 +3,9 @@
     <!-- Simple, clean navigation bar -->
     <AppToolbar
       :title="$t('overview.appTitle')"
-      color="#E39623"
-      dark
-      :light="false"
+      color="#d9dff2"
+      :dark="false"
+      :light="true"
     />
 
     <v-main class="grey lighten-5">

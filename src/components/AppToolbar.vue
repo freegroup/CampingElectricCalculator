@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app :color="color" :dark="dark" :light="light" height="80">
-    <router-link to="/" class="d-flex align-center text-decoration-none">
-      <v-avatar :size="64" class="mr-4 my-2">
+    <router-link to="/" class="d-flex align-center text-decoration-none logo-link">
+      <v-avatar :size="64" class="mr-4">
         <img src="@/assets/logo.svg" alt="Logo">
       </v-avatar>
       
@@ -16,14 +16,13 @@
     <slot name="actions"></slot>
 
     <!-- Common buttons -->
-    <LanguageSelector :icon="iconButtons" :small="!iconButtons" :btn-class="iconButtons ? 'grey darken-1' : 'ml-1'" />
+    <LanguageSelector :icon="iconButtons" :small="!iconButtons" :btn-class="iconButtons ? 'grey darken-1' : 'ml-1 toolbar-btn'" />
 
     <v-btn 
       :icon="iconButtons"
       href="https://github.com/freegroup/CampingElectricCalculator" 
       target="_blank" 
-      :color="iconButtons ? 'grey darken-1' : ''"
-      :class="iconButtons ? '' : 'ml-1'"
+      :class="iconButtons ? '' : 'ml-1 toolbar-btn'"
       :small="!iconButtons"
     >
       <v-icon>mdi-github</v-icon>
@@ -90,15 +89,79 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
+@import '~@/assets/colors.less';
+
+/* Glassmorphism effect - unscoped to override Vuetify's color prop */
+.v-app-bar.v-toolbar {
+  background: @appbar-bg !important;
+  backdrop-filter: @appbar-blur;
+  -webkit-backdrop-filter: @appbar-blur;
+  border-bottom: @appbar-border;
+  box-shadow: @appbar-shadow !important;
+}
+
+/* Extension divider */
+.v-toolbar__extension {
+  border-top: @appbar-extension-border;
+}
+
+/* Toolbar buttons - using LESS variables */
+.toolbar-btn.v-btn {
+  background-color: @toolbar-button-bg !important;
+  color: @toolbar-button-text !important;
+  border-color: @toolbar-button-bg !important;
+  
+  .v-icon {
+    color: @toolbar-button-text !important;
+  }
+  
+  .v-btn__content {
+    color: @toolbar-button-text !important;
+    
+    > div {
+      color: @toolbar-button-text !important;
+    }
+  }
+  
+  &:hover {
+    background-color: @toolbar-button-hover !important;
+  }
+  
+  &:before {
+    opacity: 0 !important;
+  }
+}
+</style>
+
+<style lang="less" scoped>
+@import '~@/assets/colors.less';
+
+.logo-link {
+  height: 100%;
+  
+  .v-avatar {
+    height: 70% !important;
+    width: auto !important;
+    
+    img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+}
+
 .toolbar-title-link {
   transition: all 0.2s ease;
   cursor: pointer;
   font-size: 2.2rem !important;
-  color: black !important;
-}
-
-.toolbar-title-link:hover {
-  text-decoration: underline;
+  color: @color-toolbar-title !important;
+  line-height: 1.3 !important;
+  padding-top: 4px;
+  
+  &:hover {
+    text-decoration: underline;
+  }
 }
 </style>
