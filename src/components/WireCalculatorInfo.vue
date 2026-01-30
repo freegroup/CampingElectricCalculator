@@ -1,4 +1,4 @@
-erade eingestellt habe<template>
+<template>
   <v-expand-transition>
     <v-row v-show="show" justify="center" class="mt-4">
       <v-col cols="12" md="10" lg="8">

@@ -15,17 +15,15 @@
           <v-row justify="center">
             <v-col cols="12" class="text-center">
               <div class="d-flex align-center justify-center">
-      
                 <v-btn
-                  icon
-                  color="white"
-                  class="ml-3"
+                  text
+                  class="text-none"
                   @click="showInfo = !showInfo"
                 >
-                <h3 class="white--text text-shadow">
-                  {{ $t('widierten werte aus der AppToolbar in die css vars verlegen müssen mehr eigentlichreCalculator.info.title') }}
-                </h3>
-                  <v-icon>{{ showInfo ? 'mdi-chevron-up' : 'mdi-information' }}</v-icon>
+                  <h3 class="grey--text text--darken-4 font-weight-regular mr-2">
+                    {{ $t('wireCalculator.info.title') }}
+                  </h3>
+                  <v-icon color="grey darken-3">{{ showInfo ? 'mdi-chevron-up' : 'mdi-information' }}</v-icon>
                 </v-btn>
               </div>
             </v-col>
@@ -56,30 +54,38 @@
                   <!-- LEFT: Power Source -->
                   <div class="flex-item-fixed">
                     <v-card 
-                      class="source-card glass-card pa-6 rounded-xl elevation-8" 
+                      class="source-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column" 
                     >
-                      <v-icon size="80" class="mb-4 icon-glow-green">mdi-battery-charging</v-icon>
-                      <h3 class="text-h6 font-weight-bold mb-4 green--text text--darken-3">
-                        Spannungsquelle
-                      </h3>
-                      
-                      <!-- Voltage Selection -->
-                      <v-btn-toggle
-                        v-model="voltage"
-                        mandatory
-                        rounded
-                        color="green darken-2"
-                        class="mb-4"
-                        @change="calculateFromInputs"
-                      >
-                        <v-btn :value="12" small>12V</v-btn>
-                        <v-btn :value="24" small>24V</v-btn>
-                      </v-btn-toggle>
-                      
-                      <div class="text-h4 font-weight-bold green--text text--darken-2 mb-2">
-                        {{ voltage }} V
+                      <div>
+                        <v-icon size="80" class="mb-4 icon-glow-green">mdi-battery-charging</v-icon>
+                        <h3 class="text-h6 font-weight-bold mb-4 green--text text--darken-3">
+                          Spannungsquelle
+                        </h3>
                       </div>
-                      <div class="caption grey--text">Systemspannung</div>
+                      
+                      <!-- Voltage Selection - Middle Section with flex-grow -->
+                      <div style="flex: 1;">
+                        <v-btn-toggle
+                          v-model="voltage"
+                          mandatory
+                          rounded
+                          color="green darken-2"
+                          class="mb-4"
+                          @change="calculateFromInputs"
+                        >
+                          <v-btn :value="12" small>12V</v-btn>
+                          <v-btn :value="24" small>24V</v-btn>
+                        </v-btn-toggle>
+                      </div>
+                      
+                      <!-- Display Values - Bottom Section -->
+                      <div>
+                        <v-divider class="my-4"></v-divider>
+                        <div class="text-h4 font-weight-bold green--text text--darken-2 mb-2">
+                          {{ voltage }} V
+                        </div>
+                        <div class="caption grey--text">Systemspannung</div>
+                      </div>
                     </v-card>
                   </div>
 
@@ -87,24 +93,16 @@
                   <div class="flex-item-expand cable-section">
                     <!-- Editable Values Above Cable -->
                     <div class="cable-info-top mb-3">
-                      <div class="d-flex justify-space-around align-center mb-3">
-                        <div class="text-center">
-                          <div class="caption grey--text mb-1">Länge</div>
-                          <div class="text-h6 font-weight-bold">{{ length }}m</div>
-                        </div>
-                        <div class="text-center">
-                          <div class="caption grey--text mb-1">Minimaler Querschnitt</div>
-                          <div class="text-h5 font-weight-bold" :class="getCableTextColor()">
-                            {{ calculatedCrossSection.toFixed(2) }} mm²
-                          </div>
-                        </div>
+                      <div class="text-center mb-3">
+                        <div class="body-1 grey--text mb-1">Kabellänge</div>
+                        <div class="text-h5 font-weight-black">{{ length }}m</div>
                       </div>
                       
                       <!-- Length Slider -->
                       <v-slider
                         v-model="length"
                         min="0.5"
-                        max="15"
+                        max="10"
                         step="0.5"
                         thumb-label
                         :color="getCableSliderColor()"
@@ -134,11 +132,13 @@
                         dense
                         suffix="mm²"
                         hide-details
-                        label="Empfohlener Querschnitt"
+                        label="Gewählter Querschnitt"
                         @change="calculateFromCrossSection"
+                        class="mb-0"
                       ></v-select>
                       
-                      <div class="mt-3 pa-3 rounded" :style="getInfoBoxStyle()">
+                      <!-- Loss Values Box (attached to combobox) -->
+                      <div class="pa-3 rounded-b" :style="getInfoBoxStyle()">
                         <v-row dense no-gutters class="mb-2">
                           <v-col cols="7" class="text-left">
                             <div class="caption grey--text">Spannungsabfall</div>
@@ -164,88 +164,115 @@
                           </v-col>
                         </v-row>
                       </div>
+
+                      <!-- Calculated Cross Section Box (separate) -->
+                      <div class="mt-3 pa-3 rounded grey lighten-4">
+                        <v-row dense no-gutters class="mb-2">
+                          <v-col cols="7" class="text-left">
+                            <div class="caption grey--text">Berechneter Querschnitt</div>
+                          </v-col>
+                          <v-col cols="5" class="text-left">
+                            <div class="font-weight-bold">{{ calculatedCrossSection.toFixed(2) }} mm²</div>
+                          </v-col>
+                        </v-row>
+                        <v-row dense no-gutters class="mb-2">
+                          <v-col cols="7" class="text-left">
+                            <div class="caption grey--text">Empfohlener Querschnitt</div>
+                          </v-col>
+                          <v-col cols="5" class="text-left">
+                            <div class="font-weight-bold">{{ recommendedCrossSection }} mm²</div>
+                          </v-col>
+                        </v-row>
+                      </div>
                     </div>
                   </div>
 
                   <!-- RIGHT: Consumer -->
                   <div class="flex-item-fixed">
                     <v-card 
-                      class="consumer-card glass-card pa-6 rounded-xl elevation-8" 
+                      class="consumer-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column" 
                     >
-                      <v-icon size="80" class="mb-4 icon-glow-orange">mdi-power-plug</v-icon>
-                      <h3 class="text-h6 font-weight-bold mb-4 orange--text text--darken-3">
-                        Verbraucher
-                      </h3>
+                      <div>
+                        <v-icon size="80" class="mb-4 icon-glow-orange">mdi-power-plug</v-icon>
+                        <h3 class="text-h6 font-weight-bold mb-4 orange--text text--darken-3">
+                          Verbraucher
+                        </h3>
+                      </div>
                       
-                      <!-- Input Mode Toggle -->
-                      <v-btn-toggle
-                        v-model="inputMode"
-                        mandatory
-                        rounded
-                        color="orange darken-2"
-                        class="mb-4"
-                        @change="calculateFromInputs"
-                      >
-                        <v-btn value="current" small>Ampere</v-btn>
-                        <v-btn value="power" small>Watt</v-btn>
-                      </v-btn-toggle>
-
-                      <!-- Current Input -->
-                      <div v-if="inputMode === 'current'" class="mb-4">
-                        <div class="caption grey--text mb-2">Stromstärke</div>
-                        <v-text-field
-                          v-model.number="current"
-                          type="number"
-                          outlined
-                          dense
-                          suffix="A"
-                          hide-details
-                          @input="calculateFromInputs"
-                        ></v-text-field>
-                        <v-slider
-                          v-model="current"
-                          min="1"
-                          max="100"
-                          step="1"
-                          thumb-label
+                      <!-- Input Section - Middle Section with flex-grow -->
+                      <div style="flex: 1;">
+                        <!-- Input Mode Toggle -->
+                        <v-btn-toggle
+                          v-model="inputMode"
+                          mandatory
+                          rounded
                           color="orange darken-2"
-                          hide-details
-                          class="mt-2"
-                          @input="calculateFromInputs"
-                        ></v-slider>
+                          class="mb-4"
+                          @change="calculateFromInputs"
+                        >
+                          <v-btn value="current" small>Ampere</v-btn>
+                          <v-btn value="power" small>Watt</v-btn>
+                        </v-btn-toggle>
+
+                        <!-- Current Input -->
+                        <div v-if="inputMode === 'current'" class="mb-4">
+                          <div class="caption grey--text mb-2">Stromstärke</div>
+                          <v-text-field
+                            v-model.number="current"
+                            type="number"
+                            outlined
+                            dense
+                            suffix="A"
+                            hide-details
+                            @input="calculateFromInputs"
+                          ></v-text-field>
+                          <v-slider
+                            v-model="current"
+                            min="1"
+                            max="100"
+                            step="1"
+                            thumb-label
+                            color="orange darken-2"
+                            hide-details
+                            class="mt-2"
+                            @input="calculateFromInputs"
+                          ></v-slider>
+                        </div>
+
+                        <!-- Power Input -->
+                        <div v-if="inputMode === 'power'" class="mb-4">
+                          <div class="caption grey--text mb-2">Leistung</div>
+                          <v-text-field
+                            v-model.number="power"
+                            type="number"
+                            outlined
+                            dense
+                            suffix="W"
+                            hide-details
+                            @input="calculateFromPower"
+                          ></v-text-field>
+                          <v-slider
+                            v-model="power"
+                            min="10"
+                            max="1200"
+                            step="10"
+                            thumb-label
+                            color="orange darken-2"
+                            hide-details
+                            class="mt-2"
+                            @input="calculateFromPower"
+                          ></v-slider>
+                        </div>
                       </div>
 
-                      <!-- Power Input -->
-                      <div v-if="inputMode === 'power'" class="mb-4">
-                        <div class="caption grey--text mb-2">Leistung</div>
-                        <v-text-field
-                          v-model.number="power"
-                          type="number"
-                          outlined
-                          dense
-                          suffix="W"
-                          hide-details
-                          @input="calculateFromPower"
-                        ></v-text-field>
-                        <v-slider
-                          v-model="power"
-                          min="10"
-                          max="1200"
-                          step="10"
-                          thumb-label
-                          color="orange darken-2"
-                          hide-details
-                          class="mt-2"
-                          @input="calculateFromPower"
-                        ></v-slider>
+                      <!-- Display Values - Bottom Section -->
+                      <div>
+                        <v-divider class="my-4"></v-divider>
+                        <div class="text-h4 font-weight-bold orange--text text--darken-2 mb-1">
+                          {{ current }} A / {{ power }} W
+                        </div>
+                        <div class="caption grey--text">Leistungsaufnahme</div>
                       </div>
-
-                      <!-- Display Values -->
-                      <v-divider class="my-4"></v-divider>
-                      <div class="text-h5 font-weight-bold orange--text text--darken-2 mb-1">
-                        {{ current }} A / {{ power }} W
-                      </div>
-                      <div class="caption grey--text">Leistungsaufnahme</div>
                     </v-card>
                   </div>
                 </div>
@@ -476,7 +503,19 @@ export default {
     
     getRecommendationType() {
       const drop = parseFloat(this.result.voltageDropPercent)
-      if (this.selectedCrossSection >= this.recommendedCrossSection && drop <= 3) return 'success'
+      
+      // Check if selected cross section is less than calculated minimum (dangerous!)
+      if (this.selectedCrossSection < this.calculatedCrossSection) {
+        return 'error'
+      }
+      
+      // Check if between calculated and recommended (just barely ok)
+      if (this.selectedCrossSection < this.recommendedCrossSection) {
+        return 'warning'
+      }
+      
+      // If cross section is adequate, check voltage drop
+      if (drop <= 3) return 'success'
       if (drop <= 5) return 'info'
       if (drop <= 8) return 'warning'
       return 'error'
@@ -492,7 +531,19 @@ export default {
     
     getRecommendationTitle() {
       const drop = parseFloat(this.result.voltageDropPercent)
-      if (this.selectedCrossSection >= this.recommendedCrossSection && drop <= 3) {
+      
+      // First check: Is cross section below calculated minimum?
+      if (this.selectedCrossSection < this.calculatedCrossSection) {
+        return 'GEFAHR: Kabel zu dünn!'
+      }
+      
+      // Second check: Between calculated and recommended?
+      if (this.selectedCrossSection < this.recommendedCrossSection) {
+        return 'Gerade noch OK'
+      }
+      
+      // Third check: Voltage drop evaluation
+      if (drop <= 3) {
         return 'Optimale Konfiguration!'
       }
       if (drop <= 5) {
@@ -501,24 +552,33 @@ export default {
       if (drop <= 8) {
         return 'Akzeptabel für Camping'
       }
-      return 'Achtung: Hoher Spannungsabfall!'
+      return 'Kritisch: Hoher Spannungsabfall!'
     },
     
     getRecommendationText() {
       const drop = parseFloat(this.result.voltageDropPercent)
-      if (this.selectedCrossSection >= this.recommendedCrossSection && drop <= 3) {
-        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - optimal für Camping-Anwendungen.`
+      
+      // First check: Is cross section below calculated minimum? (Safety critical!)
+      if (this.selectedCrossSection < this.calculatedCrossSection) {
+        return `WARNUNG: Der gewählte Querschnitt (${this.selectedCrossSection} mm²) ist zu dünn! Das Kabel kann überhitzen und stellt eine Brandgefahr dar. Mindestens ${this.calculatedCrossSection.toFixed(2)} mm² erforderlich!`
       }
+      
+      // Second check: Between calculated and recommended? (Just barely ok)
       if (this.selectedCrossSection < this.recommendedCrossSection) {
-        return `Der gewählte Querschnitt ist dünner als empfohlen. Empfohlen: ${this.recommendedCrossSection} mm² für optimale Leistung.`
+        return `Der gewählte Querschnitt (${this.selectedCrossSection} mm²) liegt über dem berechneten Minimum (${this.calculatedCrossSection.toFixed(2)} mm²), ist aber dünner als empfohlen. Für optimale Leistung wird ${this.recommendedCrossSection} mm² empfohlen.`
+      }
+      
+      // Third check: Voltage drop evaluation (Efficiency)
+      if (drop <= 3) {
+        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - optimal für Camping-Anwendungen. Das Kabel ist sicher dimensioniert.`
       }
       if (drop <= 5) {
-        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - gut für die meisten Camping-Anwendungen.`
+        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - gut für die meisten Camping-Anwendungen. Das Kabel ist sicher, aber ein dickerer Querschnitt würde die Effizienz verbessern.`
       }
       if (drop <= 8) {
-        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - noch akzeptabel für unkritische Verbraucher, aber ein dickeres Kabel wäre besser.`
+        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - noch akzeptabel für unkritische Verbraucher. Das Kabel ist sicher, aber die Effizienz ist nicht optimal. Ein dickeres Kabel wird empfohlen.`
       }
-      return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - zu hoch! Verwenden Sie ein dickeres Kabel oder verkürzen Sie die Strecke.`
+      return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - kritisch hoch! Obwohl das Kabel thermisch sicher ist, geht zu viel Energie verloren. Verwenden Sie ein dickeres Kabel oder verkürzen Sie die Strecke.`
     },
     
     getCableStyle() {
@@ -543,6 +603,21 @@ export default {
     },
     
     getInfoBoxStyle() {
+      // First check: Is cross section below calculated minimum? (Safety critical!)
+      if (this.selectedCrossSection < this.calculatedCrossSection) {
+        return {
+          backgroundColor: 'var(--color-error-light)'
+        }
+      }
+      
+      // Second check: Between calculated and recommended? (Just barely ok)
+      if (this.selectedCrossSection < this.recommendedCrossSection) {
+        return {
+          backgroundColor: 'var(--color-warning-light)'
+        }
+      }
+      
+      // Third check: Voltage drop evaluation (Efficiency)
       const drop = parseFloat(this.result.voltageDropPercent)
       let bgColor = 'var(--color-success-light)'
       if (drop > 3 && drop <= 5) bgColor = 'var(--color-info-light)'
@@ -564,7 +639,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+@import '~@/assets/colors.less';
+
 /* Gradient Background using CSS variables */
 .gradient-background {
   background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 100%);
@@ -647,7 +724,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 20px;
+  padding: 0 @wire-calc-section-gap;
   z-index: 1;
 }
 
@@ -682,7 +759,7 @@ export default {
 
 .cable-container {
   position: relative;
-  margin: 0 -40px;
+  margin: 0 calc(-2 * @wire-calc-section-gap);
 }
 
 .cable-visual {
