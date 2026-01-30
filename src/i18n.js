@@ -302,10 +302,11 @@ export default {
       hero: {
         title: "Freedom, Powered.",
         subtitle: "Design the perfect electrical system for your van life adventures. Simple, accurate, and completely free.",
-        startButton: "Start Planning"
+        startButton: "Start Planning",
+        calculateButton: "Calculate Yourself"
       },
       setupSection: {
-        title: "Choose Your Setup",
+        title: "Configurator",
         subtitle: "Select a template or start from scratch",
         weekender: {
           title: "The Weekender",
@@ -671,10 +672,11 @@ export default {
       hero: {
         title: "Unabhängig unterwegs, Individuell.",
         subtitle: "Entwerfe das perfekte Elektriksystem für deine Van-Life-Abenteuer. Einfach, präzise und komplett kostenlos.",
-        startButton: "Planung Starten"
+        startButton: "Planung Starten",
+        calculateButton: "Selber Berechnen"
       },
       setupSection: {
-        title: "Wähle Dein Setup",
+        title: "Konfigurator",
         subtitle: "Wähle eine Vorlage oder starte von Grund auf",
         weekender: {
           title: "Der Wochenendler",

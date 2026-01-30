@@ -43,7 +43,7 @@
                   <v-icon right>mdi-arrow-down</v-icon>
                 </v-btn>
                 <v-btn color="purple darken-2" dark large elevation="2" @click="$vuetify.goTo('#tools-section', { offset: 80 })" class="mx-2 mb-2">
-                  Selber Berechnen
+                  {{ $t('overview.hero.calculateButton') }}
                   <v-icon right>mdi-calculator-variant</v-icon>
                 </v-btn>
               </div>
@@ -54,9 +54,9 @@
 
       <v-container class="mt-8">
         <!-- Get Started Section -->
-        <v-row justify="center" class="mb-8" id="setup-options">
+        <v-row class="mb-8" id="setup-options">
           <v-col cols="12">
-            <h2 class="text-h4 font-weight-bold grey--text text--darken-3 mb-2">Konfigurator</h2>
+            <h2 class="text-h4 font-weight-bold grey--text text--darken-3 mb-2">{{ $t('overview.setupSection.title') }}</h2>
             <p class="subtitle-1 grey--text text--darken-1">{{ $t('overview.setupSection.subtitle') }}</p>
           </v-col>
         </v-row>
@@ -139,48 +139,54 @@
         </v-row>
 
         <!-- How it works -->
-        <v-row class="my-12 py-8 white rounded-xl elevation-1">
-          <v-col cols="12" class="text-center mb-4">
-            <h2 class="text-h5 font-weight-bold grey--text text--darken-3">{{ $t('overview.howItWorks.title') }}</h2>
-          </v-col>
-          <v-col cols="12" md="4" class="text-center px-6">
-            <div class="d-inline-flex align-center justify-center rounded-circle teal lighten-5 mb-4" style="width: 80px; height: 80px;">
-              <v-icon size="40" color="teal">mdi-source-branch</v-icon>
-            </div>
-            <h3 class="subtitle-1 font-weight-bold mb-2">{{ $t('overview.howItWorks.step1.title') }}</h3>
-            <p class="body-2 grey--text text--darken-1">
-              {{ $t('overview.howItWorks.step1.description') }}
-            </p>
-          </v-col>
-          <v-col cols="12" md="4" class="text-center px-6">
-            <div class="d-inline-flex align-center justify-center rounded-circle blue lighten-5 mb-4" style="width: 80px; height: 80px;">
-              <v-icon size="40" color="blue">mdi-calculator-variant</v-icon>
-            </div>
-            <h3 class="subtitle-1 font-weight-bold mb-2">{{ $t('overview.howItWorks.step2.title') }}</h3>
-            <p class="body-2 grey--text text--darken-1">
-              {{ $t('overview.howItWorks.step2.description') }}
-            </p>
-          </v-col>
-          <v-col cols="12" md="4" class="text-center px-6">
-            <div class="d-inline-flex align-center justify-center rounded-circle orange lighten-5 mb-4" style="width: 80px; height: 80px;">
-              <v-icon size="40" color="orange">mdi-file-export</v-icon>
-            </div>
-            <h3 class="subtitle-1 font-weight-bold mb-2">{{ $t('overview.howItWorks.step3.title') }}</h3>
-            <p class="body-2 grey--text text--darken-1">
-              {{ $t('overview.howItWorks.step3.description') }}
-            </p>
+        <v-row class="my-12 px-2">
+          <v-col cols="12">
+            <v-card class="py-8 rounded-xl elevation-1">
+              <v-row>
+                <v-col cols="12" class="text-center mb-4">
+                  <h2 class="text-h5 font-weight-bold grey--text text--darken-3">{{ $t('overview.howItWorks.title') }}</h2>
+                </v-col>
+                <v-col cols="12" md="4" class="text-center px-6">
+                  <div class="d-inline-flex align-center justify-center rounded-circle teal lighten-5 mb-4" style="width: 80px; height: 80px;">
+                    <v-icon size="40" color="teal">mdi-source-branch</v-icon>
+                  </div>
+                  <h3 class="subtitle-1 font-weight-bold mb-2">{{ $t('overview.howItWorks.step1.title') }}</h3>
+                  <p class="body-2 grey--text text--darken-1">
+                    {{ $t('overview.howItWorks.step1.description') }}
+                  </p>
+                </v-col>
+                <v-col cols="12" md="4" class="text-center px-6">
+                  <div class="d-inline-flex align-center justify-center rounded-circle blue lighten-5 mb-4" style="width: 80px; height: 80px;">
+                    <v-icon size="40" color="blue">mdi-calculator-variant</v-icon>
+                  </div>
+                  <h3 class="subtitle-1 font-weight-bold mb-2">{{ $t('overview.howItWorks.step2.title') }}</h3>
+                  <p class="body-2 grey--text text--darken-1">
+                    {{ $t('overview.howItWorks.step2.description') }}
+                  </p>
+                </v-col>
+                <v-col cols="12" md="4" class="text-center px-6">
+                  <div class="d-inline-flex align-center justify-center rounded-circle orange lighten-5 mb-4" style="width: 80px; height: 80px;">
+                    <v-icon size="40" color="orange">mdi-file-export</v-icon>
+                  </div>
+                  <h3 class="subtitle-1 font-weight-bold mb-2">{{ $t('overview.howItWorks.step3.title') }}</h3>
+                  <p class="body-2 grey--text text--darken-1">
+                    {{ $t('overview.howItWorks.step3.description') }}
+                  </p>
+                </v-col>
+              </v-row>
+            </v-card>
           </v-col>
         </v-row>
 
         <!-- Tools Section -->
-        <v-row justify="center" class="mt-12 mb-4" id="tools-section">
+        <v-row class="mt-12 mb-4" id="tools-section">
           <v-col cols="12">
             <h2 class="text-h4 font-weight-bold grey--text text--darken-3 mb-2">{{ $t('overview.tools.title') }}</h2>
             <p class="subtitle-1 grey--text text--darken-1">{{ $t('overview.tools.subtitle') }}</p>
           </v-col>
         </v-row>
 
-        <v-row justify="center" class="mb-8 px-2">
+        <v-row class="mb-8 px-2">
           <v-col cols="12">
             <v-card class="rounded-xl transition-swing hover-card elevation-4" :to="{ path: '/wire-calculator' }">
               <v-row no-gutters>
