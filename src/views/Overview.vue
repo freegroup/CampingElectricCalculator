@@ -37,10 +37,16 @@
               <p class="text-h5 font-weight-regular green--text text--darken-4 mb-6" style="line-height: 1.6;">
                 {{ $t('overview.hero.subtitle') }}
               </p>
-              <v-btn color="green darken-1" dark large elevation="2" @click="$vuetify.goTo('#setup-options')">
-                {{ $t('overview.hero.startButton') }}
-                <v-icon right>mdi-arrow-down</v-icon>
-              </v-btn>
+              <div class="d-flex flex-wrap justify-center gap-3">
+                <v-btn color="green darken-1" dark large elevation="2" @click="$vuetify.goTo('#setup-options', { offset: 80 })" class="mx-2 mb-2">
+                  {{ $t('overview.hero.startButton') }}
+                  <v-icon right>mdi-arrow-down</v-icon>
+                </v-btn>
+                <v-btn color="purple darken-2" dark large elevation="2" @click="$vuetify.goTo('#tools-section', { offset: 80 })" class="mx-2 mb-2">
+                  Selber Berechnen
+                  <v-icon right>mdi-calculator-variant</v-icon>
+                </v-btn>
+              </div>
             </v-col>
           </v-row>
         </v-container>
@@ -49,8 +55,8 @@
       <v-container class="mt-8">
         <!-- Get Started Section -->
         <v-row justify="center" class="mb-8" id="setup-options">
-          <v-col cols="12" class="text-center">
-            <h2 class="text-h4 font-weight-bold grey--text text--darken-3 mb-2">{{ $t('overview.setupSection.title') }}</h2>
+          <v-col cols="12">
+            <h2 class="text-h4 font-weight-bold grey--text text--darken-3 mb-2">Konfigurator</h2>
             <p class="subtitle-1 grey--text text--darken-1">{{ $t('overview.setupSection.subtitle') }}</p>
           </v-col>
         </v-row>
@@ -167,7 +173,7 @@
         </v-row>
 
         <!-- Tools Section -->
-        <v-row justify="center" class="mt-12 mb-4">
+        <v-row justify="center" class="mt-12 mb-4" id="tools-section">
           <v-col cols="12">
             <h2 class="text-h4 font-weight-bold grey--text text--darken-3 mb-2">{{ $t('overview.tools.title') }}</h2>
             <p class="subtitle-1 grey--text text--darken-1">{{ $t('overview.tools.subtitle') }}</p>
