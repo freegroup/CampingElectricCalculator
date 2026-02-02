@@ -52,42 +52,33 @@
                 <div class="flow-container-flex">
                   
                   <!-- LEFT: Power Source -->
-                  <div class="flex-item-fixed">
-                    <v-card 
-                      class="source-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column" 
+                  <v-card class="flex-item-fixed source-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column">
+                    <v-icon size="80" class="mb-4 icon-glow-green">mdi-battery-charging</v-icon>
+                    <h3 class="text-h6 font-weight-bold mb-4 green--text text--darken-3">
+                      Spannungsquelle
+                    </h3>
+                    
+                    <!-- Voltage Selection - Middle Section with flex-grow -->
+                    <v-btn-toggle
+                      v-model="voltage"
+                      mandatory
+                      rounded
+                      color="green darken-2"
+                      class="mb-4"
+                      style="flex: 1;"
+                      @change="calculateFromInputs"
                     >
-                      <div>
-                        <v-icon size="80" class="mb-4 icon-glow-green">mdi-battery-charging</v-icon>
-                        <h3 class="text-h6 font-weight-bold mb-4 green--text text--darken-3">
-                          Spannungsquelle
-                        </h3>
-                      </div>
-                      
-                      <!-- Voltage Selection - Middle Section with flex-grow -->
-                      <div style="flex: 1;">
-                        <v-btn-toggle
-                          v-model="voltage"
-                          mandatory
-                          rounded
-                          color="green darken-2"
-                          class="mb-4"
-                          @change="calculateFromInputs"
-                        >
-                          <v-btn :value="12" small>12V</v-btn>
-                          <v-btn :value="24" small>24V</v-btn>
-                        </v-btn-toggle>
-                      </div>
-                      
-                      <!-- Display Values - Bottom Section -->
-                      <div>
-                        <v-divider class="my-4"></v-divider>
-                        <div class="text-h4 font-weight-bold green--text text--darken-2 mb-2">
-                          {{ voltage }} V
-                        </div>
-                        <div class="caption grey--text">Systemspannung</div>
-                      </div>
-                    </v-card>
-                  </div>
+                      <v-btn :value="12" small>12V</v-btn>
+                      <v-btn :value="24" small>24V</v-btn>
+                    </v-btn-toggle>
+                    
+                    <!-- Display Values - Bottom Section -->
+                    <v-divider class="my-4"></v-divider>
+                    <div class="text-h4 font-weight-bold green--text text--darken-2 mb-2">
+                      {{ voltage }} V
+                    </div>
+                    <div class="caption grey--text">Systemspannung</div>
+                  </v-card>
 
                   <!-- CENTER: Cable -->
                   <div class="flex-item-expand cable-section">
@@ -188,93 +179,82 @@
                   </div>
 
                   <!-- RIGHT: Consumer -->
-                  <div class="flex-item-fixed">
-                    <v-card 
-                      class="consumer-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column" 
+                  <v-card class="flex-item-fixed consumer-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column">
+                    <v-icon size="80" class="mb-4 icon-glow-orange">mdi-power-plug</v-icon>
+                    <h3 class="text-h6 font-weight-bold mb-4 orange--text text--darken-3">
+                      Verbraucher
+                    </h3>
+                    
+                    <!-- Input Section - Middle Section with flex-grow -->
+                    <v-btn-toggle
+                      v-model="inputMode"
+                      mandatory
+                      rounded
+                      color="orange darken-2"
+                      class="mb-4"
+                      @change="calculateFromInputs"
                     >
-                      <div>
-                        <v-icon size="80" class="mb-4 icon-glow-orange">mdi-power-plug</v-icon>
-                        <h3 class="text-h6 font-weight-bold mb-4 orange--text text--darken-3">
-                          Verbraucher
-                        </h3>
-                      </div>
-                      
-                      <!-- Input Section - Middle Section with flex-grow -->
-                      <div style="flex: 1;">
-                        <!-- Input Mode Toggle -->
-                        <v-btn-toggle
-                          v-model="inputMode"
-                          mandatory
-                          rounded
-                          color="orange darken-2"
-                          class="mb-4"
-                          @change="calculateFromInputs"
-                        >
-                          <v-btn value="current" small>Ampere</v-btn>
-                          <v-btn value="power" small>Watt</v-btn>
-                        </v-btn-toggle>
+                      <v-btn value="current" small>Ampere</v-btn>
+                      <v-btn value="power" small>Watt</v-btn>
+                    </v-btn-toggle>
 
-                        <!-- Current Input -->
-                        <div v-if="inputMode === 'current'" class="mb-4">
-                          <div class="caption grey--text mb-2">Stromstärke</div>
-                          <v-text-field
-                            v-model.number="current"
-                            type="number"
-                            outlined
-                            dense
-                            suffix="A"
-                            hide-details
-                            @input="calculateFromInputs"
-                          ></v-text-field>
-                          <v-slider
-                            v-model="current"
-                            min="1"
-                            max="100"
-                            step="1"
-                            thumb-label
-                            color="orange darken-2"
-                            hide-details
-                            class="mt-2"
-                            @input="calculateFromInputs"
-                          ></v-slider>
-                        </div>
+                    <!-- Current Input -->
+                    <div v-if="inputMode === 'current'" class="mb-4" style="flex: 1;">
+                      <div class="caption grey--text mb-2">Stromstärke</div>
+                      <v-text-field
+                        v-model.number="current"
+                        type="number"
+                        outlined
+                        dense
+                        suffix="A"
+                        hide-details
+                        @input="calculateFromInputs"
+                      ></v-text-field>
+                      <v-slider
+                        v-model="current"
+                        min="1"
+                        max="100"
+                        step="1"
+                        thumb-label
+                        color="orange darken-2"
+                        hide-details
+                        class="mt-2"
+                        @input="calculateFromInputs"
+                      ></v-slider>
+                    </div>
 
-                        <!-- Power Input -->
-                        <div v-if="inputMode === 'power'" class="mb-4">
-                          <div class="caption grey--text mb-2">Leistung</div>
-                          <v-text-field
-                            v-model.number="power"
-                            type="number"
-                            outlined
-                            dense
-                            suffix="W"
-                            hide-details
-                            @input="calculateFromPower"
-                          ></v-text-field>
-                          <v-slider
-                            v-model="power"
-                            min="10"
-                            max="1200"
-                            step="10"
-                            thumb-label
-                            color="orange darken-2"
-                            hide-details
-                            class="mt-2"
-                            @input="calculateFromPower"
-                          ></v-slider>
-                        </div>
-                      </div>
+                    <!-- Power Input -->
+                    <div v-if="inputMode === 'power'" class="mb-4" style="flex: 1;">
+                      <div class="caption grey--text mb-2">Leistung</div>
+                      <v-text-field
+                        v-model.number="power"
+                        type="number"
+                        outlined
+                        dense
+                        suffix="W"
+                        hide-details
+                        @input="calculateFromPower"
+                      ></v-text-field>
+                      <v-slider
+                        v-model="power"
+                        min="10"
+                        max="1200"
+                        step="10"
+                        thumb-label
+                        color="orange darken-2"
+                        hide-details
+                        class="mt-2"
+                        @input="calculateFromPower"
+                      ></v-slider>
+                    </div>
 
-                      <!-- Display Values - Bottom Section -->
-                      <div>
-                        <v-divider class="my-4"></v-divider>
-                        <div class="text-h4 font-weight-bold orange--text text--darken-2 mb-1">
-                          {{ current }} A / {{ power }} W
-                        </div>
-                        <div class="caption grey--text">Leistungsaufnahme</div>
-                      </div>
-                    </v-card>
-                  </div>
+                    <!-- Display Values - Bottom Section -->
+                    <v-divider class="my-4"></v-divider>
+                    <div class="text-h4 font-weight-bold orange--text text--darken-2 mb-1">
+                      {{ current }} A / {{ power }} W
+                    </div>
+                    <div class="caption grey--text">Leistungsaufnahme</div>
+                  </v-card>
                 </div>
 
                 <!-- Recommendation Banner -->
