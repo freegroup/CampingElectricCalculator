@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build --dest ./docs",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --dest ./docs",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -41,6 +41,7 @@
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.4.5",
     "vue-template-compiler": "^2.7.16",
+ion
     "vuetify-loader": "^1.7.0"
   }
 }

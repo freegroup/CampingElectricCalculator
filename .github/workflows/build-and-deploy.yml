@@ -19,14 +19,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           cache: 'npm'
       
       - name: Install dependencies
         run: npm ci
       
       - name: Build application
-        run: npm run build
+        run: NODE_OPTIONS=--openssl-legacy-provider npm run build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
       
       - name: Commit and push built files
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
