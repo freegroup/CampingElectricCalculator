@@ -127,6 +127,6 @@ export default
       strom: 10,
       spannung: 24
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

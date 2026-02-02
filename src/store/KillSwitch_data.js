@@ -108,6 +108,6 @@ export default
       strom: 1000,
       spannung: 48
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

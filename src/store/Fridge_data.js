@@ -34,6 +34,6 @@ export default [
       strom: toFixed(32 / 12),
       liter: 80
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

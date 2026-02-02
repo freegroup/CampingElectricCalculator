@@ -54,6 +54,6 @@ export default
       spannung_in: 12,
       spannung_out: 20
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

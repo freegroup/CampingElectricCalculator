@@ -59,6 +59,6 @@ export default [
       spannung_je_buchse: 5,
       strom_je_buchse: 3.6
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

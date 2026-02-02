@@ -32,6 +32,6 @@ export default
       strom: 8,
       watt: 60
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

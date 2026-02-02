@@ -140,6 +140,6 @@ export default [
       spannung: 24,
       strom: 8
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

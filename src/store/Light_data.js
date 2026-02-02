@@ -34,6 +34,6 @@ export default [
       strom: toFixed(11 / 12),
       laenge: 5
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

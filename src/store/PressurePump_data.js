@@ -56,6 +56,6 @@ export default [
       spannung: 12, 
       strom: 3.5
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

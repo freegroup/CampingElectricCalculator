@@ -137,6 +137,6 @@ export default [
       nennstrom: 9.43, // Nennstrom
       kurzschlussstrom: 9.99
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

@@ -40,6 +40,6 @@ export default [
       strom: 5, // I=P/U
       heizleistung: 5000
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

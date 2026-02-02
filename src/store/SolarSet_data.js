@@ -40,6 +40,6 @@ export default [
         spannung: 12
       }
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

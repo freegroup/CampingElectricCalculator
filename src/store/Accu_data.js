@@ -307,7 +307,6 @@ export default [
       effective_amperestunden: 100,
       ladespannung: 28.8
     }
-  }
-
-  }/* NEW_COMPONENT_PLACE */
+  }, 
+  /* NEW_COMPONENT_PLACE */
 ]

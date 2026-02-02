@@ -84,6 +84,6 @@ export default [
       spannung: 5, 
       strom: toFixed(30 / 5)
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

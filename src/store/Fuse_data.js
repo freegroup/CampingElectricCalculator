@@ -230,6 +230,6 @@ export default
       spannung_min: 12,
       spannung_max: 35
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]

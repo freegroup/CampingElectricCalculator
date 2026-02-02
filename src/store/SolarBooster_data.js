@@ -209,6 +209,6 @@ export default [
       // Solarmodul Strom bis maximal...
       kurzschlussstrom: 60
     }
-  }
-  }/* NEW_COMPONENT_PLACE */
+  },
+  /* NEW_COMPONENT_PLACE */
 ]
