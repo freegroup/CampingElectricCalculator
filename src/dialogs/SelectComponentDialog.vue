@@ -22,7 +22,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" outlined href="https://github.com/freegroup/CampingElectricCalculator/issues/new/choose" target="_blank">
+          <v-btn v-if="isLoggedIn" color="primary" outlined @click="suggestComponent">
             <v-icon>mdi-lightbulb-on-outline</v-icon>
             {{$t("dialog.addComponent.suggestComponent")}}
           </v-btn>
@@ -30,11 +30,20 @@
         </v-card-actions>
 
       </v-card>
+
+      <!-- Suggest Component Dialog -->
+      <SuggestComponentDialog ref="suggestDialog" />
+      
+      <!-- JSON Dialog for showing complete file -->
+      <JSONDialog ref="jsonDialog" />
     </v-dialog>
 </template>
 
 <script>
 import DialogHeader from "@/components/DialogHeader.vue"
+import SuggestComponentDialog from "@/dialogs/SuggestComponentDialog.vue"
+import JSONDialog from "@/dialogs/JSONDialog.vue"
+import GitHubAuth from "@/utils/GitHubAuth.js"
 import { toFixed } from "@/utils/Wire.js"
 
 export default {
@@ -47,9 +56,14 @@ export default {
     }
   },
   components: {
-    DialogHeader
+    DialogHeader,
+    SuggestComponentDialog,
+    JSONDialog
   },
   computed: {
+    isLoggedIn() {
+      return GitHubAuth.isLoggedIn()
+    },
     components() {
       if ( this.type === null ) {
         return []  
@@ -83,6 +97,15 @@ export default {
     onCloseButtonClick() {
       this.showFlag = false
       this.resolve && this.resolve()
+    },
+    async suggestComponent() {
+      // Open the new suggest component dialog
+      const result = await this.$refs.suggestDialog.show(this.type)
+      
+      if (result) {
+        // Show the complete file content in JSONDialog
+        await this.$refs.jsonDialog.show(result.completeFileContent)
+      }
     }
   }
 }

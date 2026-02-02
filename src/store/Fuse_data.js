@@ -231,4 +231,5 @@ export default
       spannung_max: 35
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

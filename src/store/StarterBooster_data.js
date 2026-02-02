@@ -132,4 +132,5 @@ export default [
       strom: 12
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

@@ -35,4 +35,5 @@ export default [
       laenge: 5
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

@@ -60,4 +60,5 @@ export default [
       strom_je_buchse: 3.6
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

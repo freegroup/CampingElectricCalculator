@@ -7,6 +7,6 @@ export default {
   repository: {
     owner: 'freegroup',
     repo: 'CampingElectricCalculator',
-    defaultBranch: 'main'
+    defaultBranch: 'master'
   }
 }

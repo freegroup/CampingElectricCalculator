@@ -29,6 +29,27 @@ export default {
     },
     longname: (state, getters, rootState, rootGetters) => (model) => {
       return longname(model)
+    },
+    getEnumValues: (state) => (fieldName) => {
+      // Define which fields are enums
+      const enumFields = ['type']
+      
+      // Check if the requested field is an enum
+      if (!enumFields.includes(fieldName)) {
+        return null
+      }
+      
+      // Extract unique values for this enum field
+      const values = new Set()
+      
+      state.components.forEach(comp => {
+        if (comp.data && comp.data[fieldName] !== undefined) {
+          values.add(comp.data[fieldName])
+        }
+      })
+      
+      // Return sorted array of enum values
+      return Array.from(values).sort()
     }
   }
 }

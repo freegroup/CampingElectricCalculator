@@ -55,4 +55,5 @@ export default
       spannung_out: 20
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

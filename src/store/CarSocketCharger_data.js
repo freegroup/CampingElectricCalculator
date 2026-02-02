@@ -33,4 +33,5 @@ export default
       watt: 60
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

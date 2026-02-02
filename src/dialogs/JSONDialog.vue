@@ -1,9 +1,9 @@
 <template>
-    <v-dialog v-model="showFlag" width="500" scrollable>
+    <v-dialog v-model="showFlag" max-width="900" scrollable>
       <v-card>
         <DialogHeader title="Configuration Data" subtitle="" icon="mdi-code-json"></DialogHeader>
 
-        <v-card-text style="height: 350px">
+        <v-card-text style="height: 600px">
           <pre>
 {{json}}
           </pre>
@@ -41,7 +41,8 @@ export default {
       return new Promise((resolve) => {
         this.resolve = resolve
         this.showFlag = true
-        this.json = JSON.stringify(json, undefined, 2)
+        // If json is already a string, use it directly, otherwise stringify
+        this.json = typeof json === 'string' ? json : JSON.stringify(json, undefined, 2)
       })
     },
     onCloseButtonClick() {

@@ -308,4 +308,6 @@ export default [
       ladespannung: 28.8
     }
   }
+
+  /* NEW_COMPONENT_PLACE */
 ]

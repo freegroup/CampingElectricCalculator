@@ -135,4 +135,5 @@ export default [
       liter: 33
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

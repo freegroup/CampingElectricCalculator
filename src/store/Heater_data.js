@@ -41,4 +41,5 @@ export default [
       heizleistung: 5000
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

@@ -55,4 +55,5 @@ export default [
       buchsen: 2
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

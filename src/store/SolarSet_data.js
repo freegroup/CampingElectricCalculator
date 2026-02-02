@@ -41,4 +41,5 @@ export default [
       }
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

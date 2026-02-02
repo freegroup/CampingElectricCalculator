@@ -36,4 +36,5 @@ export default [
       strom_je_anschluss: 3
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]

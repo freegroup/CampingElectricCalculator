@@ -127,4 +127,5 @@ export default
       anschluesse: 8
     }
   }
+  /* NEW_COMPONENT_PLACE */
 ]
