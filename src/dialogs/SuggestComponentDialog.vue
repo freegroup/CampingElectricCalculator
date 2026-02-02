@@ -321,7 +321,7 @@ export default {
         uuid: this.formData.uuid,
         name: this.formData.name,
         description: this.formData.description,
-        imageSrc: 'images("./your-image.png")',
+        imageSrc: 'images("./custom.png")',
         shopping: this.formData.shopping.filter(s => s.link),
         data: this.formData.data
       }

@@ -23,6 +23,7 @@ module.exports = {
     'no-lone-blocks': 0,
     'new-cap' :0,
     'comma-dangle': 0,
-    'comma-style': 0
+    'comma-style': 0,
+    'indent': 0
   },
 };
