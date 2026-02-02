@@ -89,7 +89,6 @@
 import DialogHeader from "@/components/DialogHeader.vue"
 import SuggestComponentDialog from "@/dialogs/SuggestComponentDialog.vue"
 import JSONDialog from "@/dialogs/JSONDialog.vue"
-import GitHubAuth from "@/utils/GitHubAuth.js"
 import { toFixed } from "@/utils/Wire.js"
 
 export default {
@@ -108,7 +107,7 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      return GitHubAuth.isLoggedIn()
+      return this.$store.getters['auth/isLoggedIn']
     }
   },
   methods: {

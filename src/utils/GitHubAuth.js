@@ -9,8 +9,8 @@ export default {
    * Start GitHub OAuth login flow
    */
   login() {
-    // Get current full URL (origin + pathname) for redirect (supports localhost and production)
-    const currentUrl = window.location.origin + window.location.pathname
+    // Get current full URL (origin + pathname + hash) for redirect (supports localhost and production)
+    const currentUrl = window.location.origin + window.location.pathname + window.location.hash
     const state = encodeURIComponent(currentUrl)
     
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${config.github.clientId}&redirect_uri=${config.github.workerUrl}/auth/callback&scope=${config.github.scope}&state=${state}`
@@ -115,15 +115,30 @@ export default {
    */
   async init() {
     // Check for token in URL (after OAuth redirect)
+    // Token can be in query params or in hash
+    let token = null
+    
+    // First check query params
     const urlParams = new URLSearchParams(window.location.search)
-    const token = urlParams.get('token')
+    token = urlParams.get('token')
+    
+    // If not in query params, check hash
+    if (!token && window.location.hash) {
+      const hashParams = new URLSearchParams(window.location.hash.split('?')[1])
+      token = hashParams.get('token')
+    }
 
     if (token) {
       // Store token
       this.setToken(token)
 
-      // Clean URL
-      window.history.replaceState({}, document.title, window.location.pathname)
+      // Clean URL - remove token from hash
+      if (window.location.hash.includes('?token=')) {
+        const cleanHash = window.location.hash.split('?')[0]
+        window.history.replaceState({}, document.title, window.location.pathname + cleanHash)
+      } else {
+        window.history.replaceState({}, document.title, window.location.pathname)
+      }
 
       // Fetch user data
       await this.fetchUser(token)

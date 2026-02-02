@@ -80,7 +80,6 @@
 </template>
 
 <script>
-import GitHubAuth from '@/utils/GitHubAuth.js'
 import LoginDialog from '@/dialogs/LoginDialog.vue'
 
 export default {
@@ -96,13 +95,17 @@ export default {
   },
   data() {
     return {
-      user: null,
       showLoginDialog: false
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.getters['auth/user']
     }
   },
   async mounted() {
     // Initialize auth on component mount
-    await this.initAuth()
+    await this.$store.dispatch('auth/init')
     
     // Listen for storage changes (in case of login in another tab)
     window.addEventListener('storage', this.handleStorageChange)
@@ -111,31 +114,15 @@ export default {
     window.removeEventListener('storage', this.handleStorageChange)
   },
   methods: {
-    async initAuth() {
-      try {
-        // Check if user is logged in (also handles OAuth callback)
-        const loggedIn = await GitHubAuth.init()
-        
-        if (loggedIn) {
-          // Load user data
-          this.user = GitHubAuth.getUser()
-          console.log('User logged in:', this.user)
-        }
-      } catch (error) {
-        console.error('Error initializing auth:', error)
-      }
-    },
-
     handleStorageChange(event) {
       // Update user when storage changes
       if (event.key === 'github_user' || event.key === 'github_token') {
-        this.user = GitHubAuth.getUser()
+        this.$store.dispatch('auth/updateLoginStatus')
       }
     },
 
     handleLogout() {
-      GitHubAuth.logout()
-      this.user = null
+      this.$store.dispatch('auth/logout')
       this.$emit('logout')
     },
 

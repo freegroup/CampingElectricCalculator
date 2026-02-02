@@ -25,6 +25,7 @@ import switchPanel from './SwitchPanel'
 import pressurePump from './PressurePump'
 import dcdcBooster from './DCDCBooster'
 import profile from './Profile'
+import auth from './Auth'
 
 Vue.use(Vuex)
 
@@ -53,6 +54,7 @@ export default new Vuex.Store({
     killSwitch,
     starterAccu,
     solarPanel,
-    profile
+    profile,
+    auth
   }
 })
