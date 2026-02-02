@@ -355,8 +355,8 @@ export default {
         // Generate the new component string
         const newComponentStr = this.componentToJavaScript(newComponent, 2)
         
-        // Replace the marker with: new component + comma + marker
-        const replacement = newComponentStr + ',\n  ' + marker
+        // Replace the marker with: comma + new component + newline + marker
+        const replacement = ',\n' + newComponentStr + '\n  ' + marker
         
         const fileContent = originalContent.replace(marker, replacement)
         
@@ -436,7 +436,7 @@ export default {
 
       try {
         // Generate the complete file content
-        const fileContent = this.generateCompleteDataFile()
+        const fileContent = await this.generateCompleteDataFile()
         
         // Create pull request using GitHubAPI
         const pr = await GitHubAPI.createComponentPR(
