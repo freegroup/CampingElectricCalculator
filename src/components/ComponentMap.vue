@@ -414,17 +414,28 @@ export default {
         border: 2px solid transparent;
         background: white;
         .toolbar {
-          height: 26px;
+          height: 40px;
           border-bottom: 1px solid lightgray;
-          text-align: right;
-          padding-top:4px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 0 8px;
           .toolbar_icon{
-            font-size: 16px;
-            padding-left: 3px;
+            font-size: 22px;
+            padding: 4px 6px;
             cursor: pointer;
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.04);
+            color: rgba(0, 0, 0, 0.54);
+            transition: all 0.2s ease;
             &:hover {
-              color:orange;
+              background-color: #d9dff2;
+              color: rgba(0, 0, 0, 0.87);
+              transform: scale(1.05);
             }
+          }
+          .toolbar_spacer {
+            flex: 1;
           }
         }
         .statusbar {

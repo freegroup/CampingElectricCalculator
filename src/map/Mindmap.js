@@ -262,8 +262,11 @@ export default class Mindmap extends GenericNode {
               this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-gauge" title=""></i>')
               this.toolbarDiv.append(this.gaugeIcon)
 
-              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon pr-8 v-icon mdi mdi-widgets-outline" title=""></i>')
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-swap-horizontal" title=""></i>')
               this.toolbarDiv.append(this.configIcon)
+
+              this.spacer = htmlToElement('<div class="toolbar_spacer"></div>')
+              this.toolbarDiv.append(this.spacer)
             }
 
             this.centerLabel = document.createElement('div')

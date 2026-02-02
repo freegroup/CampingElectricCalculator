@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="showFlag" width="900" scrollable>
       <v-card>
-        <DialogHeader :title="$t('dialog.selectComponent.title')" :subtitle="$t('dialog.selectComponent.subtitle')" icon="mdi-widgets-outline"></DialogHeader>
+        <DialogHeader :title="$t('dialog.selectComponent.title')" :subtitle="$t('dialog.selectComponent.subtitle')" icon="mdi-swap-horizontal"></DialogHeader>
 
         <v-card-text style="height: 350px;">
           <v-list dense>

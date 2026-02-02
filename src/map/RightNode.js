@@ -42,10 +42,13 @@ export default class RightNode extends Node {
               this.gaugeIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-gauge" title=""></i>')
               this.toolbarDiv.append(this.gaugeIcon)
 
-              this.configIcon = htmlToElement('<i aria-hidden="true" class="float-left toolbar_icon v-icon mdi mdi-widgets-outline" title=""></i>')
+              this.configIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-swap-horizontal" title=""></i>')
               this.toolbarDiv.append(this.configIcon)
 
-              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="float-right toolbar_icon pl-3 v-icon mdi mdi-trash-can-outline" title=""></i>')
+              this.spacer = htmlToElement('<div class="toolbar_spacer"></div>')
+              this.toolbarDiv.append(this.spacer)
+
+              this.deleteIcon = htmlToElement('<i aria-hidden="true" class="toolbar_icon v-icon mdi mdi-trash-can-outline" title=""></i>')
               this.toolbarDiv.append(this.deleteIcon)
             }
 
