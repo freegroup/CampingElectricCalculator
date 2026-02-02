@@ -1,14 +1,47 @@
 <template>
-  <v-dialog v-model="showFlag" max-width="800" scrollable persistent>
+  <v-dialog v-model="showFlag" :max-width="showSuccessView ? '500' : '800'" scrollable persistent>
     <v-card>
-      <DialogHeader 
-        :title="dialogTitle"
-        :subtitle="dialogSubtitle"
-        icon="mdi-lightbulb-on-outline"
-        @close="onCancel"
-      />
+      <!-- Success View -->
+      <template v-if="showSuccessView">
+        <v-card-title class="text-h5 success--text">
+          <v-icon large color="success" class="mr-2">mdi-check-circle</v-icon>
+          Thank You! 🎉
+        </v-card-title>
+        <v-card-text class="pt-4">
+          <p class="text-h6 mb-3">Your component suggestion has been submitted successfully!</p>
+          <p class="mb-3">We really appreciate your contribution to the project. Your suggestion will be reviewed and merged soon.</p>
+          <v-alert type="info" outlined dense class="mb-0">
+            <div class="d-flex align-center">
+              <v-icon left>mdi-source-pull</v-icon>
+              <div class="flex-grow-1">
+                <strong>Pull Request #{{ pullRequestNumber }}</strong>
+                <div class="text-caption">{{ pullRequestTitle }}</div>
+              </div>
+            </div>
+          </v-alert>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text @click="closeDialog">
+            Close
+          </v-btn>
+          <v-btn color="primary" depressed @click="openPullRequest">
+            <v-icon left>mdi-open-in-new</v-icon>
+            View Pull Request
+          </v-btn>
+        </v-card-actions>
+      </template>
 
-      <v-tabs v-model="activeTab" grow>
+      <!-- Form View -->
+      <template v-else>
+        <DialogHeader 
+          :title="dialogTitle"
+          :subtitle="dialogSubtitle"
+          icon="mdi-lightbulb-on-outline"
+          @close="onCancel"
+        />
+
+        <v-tabs v-model="activeTab" grow>
         <v-tab>
           <v-icon left>mdi-form-textbox</v-icon>
           Input
@@ -166,39 +199,8 @@
           Suggest Component
         </v-btn>
       </v-card-actions>
+      </template>
 
-      <!-- Success Dialog -->
-      <v-dialog v-model="showSuccessDialog" max-width="500" persistent>
-        <v-card>
-          <v-card-title class="text-h5 success--text">
-            <v-icon large color="success" class="mr-2">mdi-check-circle</v-icon>
-            Thank You! 🎉
-          </v-card-title>
-          <v-card-text class="pt-4">
-            <p class="text-h6 mb-3">Your component suggestion has been submitted successfully!</p>
-            <p class="mb-3">We really appreciate your contribution to the project. Your suggestion will be reviewed and merged soon.</p>
-            <v-alert type="info" outlined dense class="mb-0">
-              <div class="d-flex align-center">
-                <v-icon left>mdi-source-pull</v-icon>
-                <div class="flex-grow-1">
-                  <strong>Pull Request #{{ pullRequestNumber }}</strong>
-                  <div class="text-caption">{{ pullRequestTitle }}</div>
-                </div>
-              </div>
-            </v-alert>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn text @click="closeSuccessDialog">
-              Close
-            </v-btn>
-            <v-btn color="primary" depressed @click="openPullRequest">
-              <v-icon left>mdi-open-in-new</v-icon>
-              View Pull Request
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-card>
   </v-dialog>
 </template>
@@ -221,7 +223,7 @@ export default {
       resolve: null,
       componentType: null,
       creatingPR: false,
-      showSuccessDialog: false,
+      showSuccessView: false,
       pullRequestNumber: null,
       pullRequestTitle: '',
       pullRequestUrl: '',
@@ -242,7 +244,23 @@ export default {
       },
       rules: {
         required: v => !!v || 'Required',
-        url: v => !v || /^https?:\/\/.+/.test(v) || 'Must be a valid URL'
+        url: v => !v || /^https?:\/\/.+/.test(v) || 'Must be a valid URL',
+        uniqueLongname: v => {
+          if (!v || !this.componentType) return true
+          
+          // Generate the longname for the current component using the store's getter
+          const currentLongname = this.$store.getters[`${this.componentType}/longname`]({
+            name: this.formData.name,
+            data: this.formData.data
+          })
+          
+          // Get all existing longnames
+          const existingLongnames = this.$store.state[this.componentType].components
+            .map(c => c.longname.toLowerCase())
+          
+          return !existingLongnames.includes(currentLongname.toLowerCase()) || 
+            'A component with this combination already exists'
+        }
       }
     }
   },
@@ -456,8 +474,7 @@ export default {
       this.showFlag = false
       this.resolve && this.resolve(null)
     },
-    closeSuccessDialog() {
-      this.showSuccessDialog = false
+    closeDialog() {
       this.showFlag = false
       this.resolve && this.resolve({
         componentType: this.componentType,
@@ -471,12 +488,33 @@ export default {
       }
     },
     triggerConfetti() {
+      // Create a canvas element with high z-index for confetti
+      const canvas = document.createElement('canvas')
+      canvas.style.position = 'fixed'
+      canvas.style.top = '0'
+      canvas.style.left = '0'
+      canvas.style.width = '100%'
+      canvas.style.height = '100%'
+      canvas.style.pointerEvents = 'none'
+      canvas.style.zIndex = '9999' // Higher than dialog overlay
+      document.body.appendChild(canvas)
+
+      const myConfetti = confetti.create(canvas, {
+        resize: true,
+        useWorker: true
+      })
+
       // Trigger confetti animation
-      confetti({
+      myConfetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 }
       })
+
+      // Remove canvas after animation
+      setTimeout(() => {
+        document.body.removeChild(canvas)
+      }, 5000)
     },
     async onCreatePullRequest() {
       if (!this.$refs.form.validate()) {
@@ -501,8 +539,8 @@ export default {
         this.pullRequestTitle = pr.title
         this.pullRequestUrl = pr.html_url
         
-        // Show success dialog
-        this.showSuccessDialog = true
+        // Switch to success view
+        this.showSuccessView = true
         
         // Trigger confetti animation
         this.triggerConfetti()
