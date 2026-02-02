@@ -1,20 +1,14 @@
 <template>
-  <v-card-title class="dialog-header ma-0 pa-0">
-    <v-container>
-      <v-row no-gutters>
-        <v-col cols="1" align-self="center" align="center">
-          <v-icon class="white--text" large>{{icon}}</v-icon>
-        </v-col>
-        <v-col cols="11">
-          <v-list-item two-line dark>
-            <v-list-item-content>
-              <v-list-item-title>{{title}}</v-list-item-title>
-              <v-list-item-subtitle v-html="subtitle" class="wrap-text"></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-col>
-      </v-row>
-    </v-container>
+  <v-card-title class="dialog-header ma-0 pa-3">
+    <v-row no-gutters align="center">
+      <v-col cols="auto" class="pr-3">
+        <v-icon>{{icon}}</v-icon>
+      </v-col>
+      <v-col>
+        <div class="text-subtitle-1 font-weight-medium">{{title}}</div>
+        <div v-if="subtitle" v-html="subtitle" class="text-caption wrap-text"></div>
+      </v-col>
+    </v-row>
   </v-card-title>
 </template>
 
@@ -30,6 +24,11 @@ export default {
 .dialog-header {
   background-color: @dialog-header-bg !important;
   color: @dialog-header-text !important;
+  
+  // Glassmorphism / Acrylic effect (same as AppToolbar)
+  backdrop-filter: @appbar-blur !important;
+  -webkit-backdrop-filter: @appbar-blur !important;
+  border-bottom: @appbar-border !important;
   
   .v-icon {
     color: @dialog-header-text !important;
