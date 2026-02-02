@@ -206,6 +206,7 @@
 <script>
 import DialogHeader from '@/components/DialogHeader.vue'
 import GitHubAPI from '@/utils/GitHubAPI.js'
+import confetti from 'canvas-confetti'
 
 export default {
   name: 'SuggestComponentDialog',
@@ -470,14 +471,12 @@ export default {
       }
     },
     triggerConfetti() {
-      // Simple confetti animation using canvas-confetti if available
-      if (window.confetti) {
-        window.confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
-        })
-      }
+      // Trigger confetti animation
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      })
     },
     async onCreatePullRequest() {
       if (!this.$refs.form.validate()) {
