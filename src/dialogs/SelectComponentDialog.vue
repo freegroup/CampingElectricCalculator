@@ -108,6 +108,12 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped lang="less">
+@import '~@/assets/colors.less';
 
+::v-deep .v-card {
+  border: @dialog-border-style !important;
+  border-radius: @dialog-corner-radius !important;
+  box-sizing: border-box !important;
+}
 </style>

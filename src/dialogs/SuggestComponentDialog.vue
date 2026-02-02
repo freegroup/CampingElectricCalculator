@@ -555,7 +555,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import '~@/assets/colors.less';
+
 .code-preview {
   background-color: #f5f5f5;
   padding: 12px;
@@ -564,5 +566,11 @@ export default {
   overflow-x: auto;
   max-height: 500px;
   overflow-y: auto;
+}
+
+::v-deep .v-card {
+  border: @dialog-border-style !important;
+  border-radius: @dialog-corner-radius !important;
+  box-sizing: border-box !important;
 }
 </style>

@@ -121,8 +121,10 @@ export default {
   }
 }
 </script>
-<style lang="less">
-  .lengthSlider{
+<style scoped lang="less">
+@import '~@/assets/colors.less';
+
+.lengthSlider{
     .v-messages{
       display: none;
     }
@@ -132,4 +134,10 @@ export default {
     position: relative;
     font-size:60%;
   }
+
+::v-deep .v-card {
+  border: @dialog-border-style !important;
+  border-radius: @dialog-corner-radius !important;
+  box-sizing: border-box !important;
+}
 </style>

@@ -152,7 +152,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style scoped lang="less">
 @import '~@/assets/colors.less';
 
 .dialog-warning-box {
@@ -166,5 +166,11 @@ export default {
 }
 .theme--light.v-list-item--active:hover::before {
     opacity: 0;
+}
+
+::v-deep .v-card {
+  border: @dialog-border-style !important;
+  border-radius: @dialog-corner-radius !important;
+  box-sizing: border-box !important;
 }
 </style>
