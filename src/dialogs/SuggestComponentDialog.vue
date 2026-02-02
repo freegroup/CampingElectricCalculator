@@ -156,15 +156,6 @@
           Cancel
         </v-btn>
         <v-btn 
-          color="secondary" 
-          outlined
-          :disabled="!valid"
-          @click="onSubmit"
-        >
-          <v-icon left>mdi-file-document-outline</v-icon>
-          Show Full File
-        </v-btn>
-        <v-btn 
           color="primary" 
           depressed
           :disabled="!valid || creatingPR"
