@@ -162,10 +162,43 @@
           :loading="creatingPR"
           @click="onCreatePullRequest"
         >
-          <v-icon left>mdi-lightbulb-on</v-icon>
+          <v-icon left>mdi-star</v-icon>
           Suggest Component
         </v-btn>
       </v-card-actions>
+
+      <!-- Success Dialog -->
+      <v-dialog v-model="showSuccessDialog" max-width="500" persistent>
+        <v-card>
+          <v-card-title class="text-h5 success--text">
+            <v-icon large color="success" class="mr-2">mdi-check-circle</v-icon>
+            Thank You! 🎉
+          </v-card-title>
+          <v-card-text class="pt-4">
+            <p class="text-h6 mb-3">Your component suggestion has been submitted successfully!</p>
+            <p class="mb-3">We really appreciate your contribution to the project. Your suggestion will be reviewed and merged soon.</p>
+            <v-alert type="info" outlined dense class="mb-0">
+              <div class="d-flex align-center">
+                <v-icon left>mdi-source-pull</v-icon>
+                <div class="flex-grow-1">
+                  <strong>Pull Request #{{ pullRequestNumber }}</strong>
+                  <div class="text-caption">{{ pullRequestTitle }}</div>
+                </div>
+              </div>
+            </v-alert>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text @click="closeSuccessDialog">
+              Close
+            </v-btn>
+            <v-btn color="primary" depressed @click="openPullRequest">
+              <v-icon left>mdi-open-in-new</v-icon>
+              View Pull Request
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-card>
   </v-dialog>
 </template>
@@ -187,6 +220,10 @@ export default {
       resolve: null,
       componentType: null,
       creatingPR: false,
+      showSuccessDialog: false,
+      pullRequestNumber: null,
+      pullRequestTitle: '',
+      pullRequestUrl: '',
       formData: {
         uuid: '',
         name: '',
@@ -353,7 +390,7 @@ export default {
         
         return fileContent
       } catch (error) {
-        console.error('Error reading original file:', error)er smily oder so
+        console.error('Error reading original file:', error)
         throw error
       }
     },
@@ -418,6 +455,30 @@ export default {
       this.showFlag = false
       this.resolve && this.resolve(null)
     },
+    closeSuccessDialog() {
+      this.showSuccessDialog = false
+      this.showFlag = false
+      this.resolve && this.resolve({
+        componentType: this.componentType,
+        componentData: this.formData,
+        pullRequestCreated: true
+      })
+    },
+    openPullRequest() {
+      if (this.pullRequestUrl) {
+        window.open(this.pullRequestUrl, '_blank')
+      }
+    },
+    triggerConfetti() {
+      // Simple confetti animation using canvas-confetti if available
+      if (window.confetti) {
+        window.confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        })
+      }
+    },
     async onCreatePullRequest() {
       if (!this.$refs.form.validate()) {
         return
@@ -436,20 +497,16 @@ export default {
           fileContent
         )
         
-        // Success!
-        alert(`Pull Request created successfully!\n\nPR #${pr.number}: ${pr.title}\n\nURL: ${pr.html_url}`)
+        // Store PR details
+        this.pullRequestNumber = pr.number
+        this.pullRequestTitle = pr.title
+        this.pullRequestUrl = pr.html_url
         
-        // Open PR in new tab
-        window.open(pr.html_url, '_blank')
+        // Show success dialog
+        this.showSuccessDialog = true
         
-        this.showFlag = false
-        this.resolve && this.resolve({
-          componentType: this.componentType,
-          componentData: this.formData,
-          completeFileContent: fileContent,
-          pullRequestCreated: true,
-          pullRequest: pr
-        })
+        // Trigger confetti animation
+        this.triggerConfetti()
       } catch (error) {
         console.error('Error creating pull request:', error)
         alert(`Error creating pull request:\n\n${error.message}\n\nPlease check the console for more details.`)

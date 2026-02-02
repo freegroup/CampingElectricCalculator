@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.16.7",
     "@mdi/font": "5.9.55",
+    "canvas-confetti": "^1.9.4",
     "chokidar": "^3.6.0",
     "file-saver": "^2.0.5",
     "jquery": "^3.7.1",
