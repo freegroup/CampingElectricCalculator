@@ -48,18 +48,21 @@
               <!-- eslint-disable-next-line vue/valid-v-for -->
               <template  v-for="type in types">
                 <!-- eslint-disable-next-line vue/valid-v-for -->
-                <template v-for="item in components(type)">
-                  <v-list-item :key="item.uuid">
+           
+                  <v-list-item v-for="item in components(type)" :key="item.uuid">
                     <v-img style="cursor:pointer" @click="onItemSelected(type, item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" :src="item.imageSrc"></v-img>
                     <v-list-item-content>
                         <v-list-item-title style="cursor:pointer" @click="onItemSelected(type, item.uuid)"  v-html="item.name"></v-list-item-title>
                         <v-list-item-subtitle>{{$t("dialog.addComponent.shopLabel")}}: 
-                          <template v-for="shop in item.shopping"><a :key="shop.link" :href="shop.link" target="_blank">{{shop.shop}}</a>&nbsp;&nbsp;</template>
+                            <a v-for="shop in item.shopping" :key="shop.link" :href="shop.link" target="_blank">
+                              {{shop.shop}}
+                            </a>
+                            &nbsp;&nbsp;
                         </v-list-item-subtitle>
                         <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
-                </template>
+          
               </template>
             </template>
           </v-list>

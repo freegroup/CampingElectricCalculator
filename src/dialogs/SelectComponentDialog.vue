@@ -5,16 +5,15 @@
 
         <v-card-text style="height: 350px;">
           <v-list dense>
-  
-                <template v-for="item in components" >
-                  <v-list-item :key="item.uuid">
+       
+                  <v-list-item  v-for="item in components" :key="item.uuid">
                     <v-img style="cursor:pointer" @click="onItemSelected(item.uuid)" max-height="100" class="mt-4 mb-4 mr-6" max-width="100" contain :src="item.imageSrc"></v-img>
                     <v-list-item-content>
                         <v-list-item-title style="cursor:pointer" @click="onItemSelected(item.uuid)"  v-html="item.longname"></v-list-item-title>
                         <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
-                </template>
+               
           </v-list>
         </v-card-text>
 
