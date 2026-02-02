@@ -309,5 +309,21 @@ export default [
     }
   }
 
+  ,
+  {
+    uuid: "610831E3-7F6E-4889-9FE3-161D2E47816B",
+    name: "MeineTolleBatterie",
+    description: "ohne Beschreibung",
+    imageSrc: images("./your-image.png"),
+    shopping: [],
+    data: {
+      type: "LiFePO4",
+      amperestunden: 200,
+      effective_amperestunden: 200,
+      bms: "internal",
+      spannung: 12,
+      ladespannung: 14.6
+    }
+  }
   /* NEW_COMPONENT_PLACE */
 ]
