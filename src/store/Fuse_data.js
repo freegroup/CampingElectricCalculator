@@ -231,5 +231,18 @@ export default
       spannung_max: 35
     }
   },
+  {
+  uuid: "24207457-8732-46BD-BD42-684D0E33E639",
+  name: "Blah",
+  description: "pubs",
+  imageSrc: images("./custom.png"),
+  shopping: [],
+  data: {
+    type: "melt",
+    strom: 50,
+    spannung_min: 12,
+    spannung_max: 12
+  }
+},
   /* NEW_COMPONENT_PLACE */
 ]
