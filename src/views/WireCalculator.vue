@@ -59,18 +59,18 @@
                     </h3>
                     
                     <!-- Voltage Selection - Middle Section with flex-grow -->
-                    <v-btn-toggle
-                      v-model="voltage"
-                      mandatory
-                      rounded
-                      color="green darken-2"
-                      class="mb-4"
-                      style="flex: 1;"
-                      @change="calculateFromInputs"
-                    >
-                      <v-btn :value="12" small>12V</v-btn>
-                      <v-btn :value="24" small>24V</v-btn>
-                    </v-btn-toggle>
+                    <div class="d-flex justify-center mb-4" style="flex: 1;">
+                      <v-btn-toggle
+                        v-model="voltage"
+                        mandatory
+                        rounded
+                        color="green darken-2"
+                        @change="calculateFromInputs"
+                      >
+                        <v-btn :value="12" small>12V</v-btn>
+                        <v-btn :value="24" small>24V</v-btn>
+                      </v-btn-toggle>
+                    </div>
                     
                     <!-- Display Values - Bottom Section -->
                     <v-divider class="my-4"></v-divider>
@@ -186,17 +186,18 @@
                     </h3>
                     
                     <!-- Input Section - Middle Section with flex-grow -->
-                    <v-btn-toggle
-                      v-model="inputMode"
-                      mandatory
-                      rounded
-                      color="orange darken-2"
-                      class="mb-4"
-                      @change="calculateFromInputs"
-                    >
-                      <v-btn value="current" small>Ampere</v-btn>
-                      <v-btn value="power" small>Watt</v-btn>
-                    </v-btn-toggle>
+                    <div class="d-flex justify-center mb-4">
+                      <v-btn-toggle
+                        v-model="inputMode"
+                        mandatory
+                        rounded
+                        color="orange darken-2"
+                        @change="calculateFromInputs"
+                      >
+                        <v-btn value="current" small>Ampere</v-btn>
+                        <v-btn value="power" small>Watt</v-btn>
+                      </v-btn-toggle>
+                    </div>
 
                     <!-- Current Input -->
                     <div v-if="inputMode === 'current'" class="mb-4" style="flex: 1;">
@@ -826,7 +827,7 @@ export default {
   
   .flow-container-flex {
     flex-direction: column;
-  }
+}
   
   .flex-item-fixed {
     flex: 1 1 auto;
