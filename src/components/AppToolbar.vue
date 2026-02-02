@@ -20,17 +20,6 @@
 
     <v-btn 
       :icon="iconButtons"
-      href="https://github.com/freegroup/CampingElectricCalculator" 
-      target="_blank" 
-      :class="iconButtons ? '' : 'ml-1 toolbar-btn'"
-      :small="!iconButtons"
-    >
-      <v-icon>mdi-github</v-icon>
-      <div v-if="!iconButtons" class="ml-3 d-none d-lg-block">GitHub</div>
-    </v-btn>
-
-    <v-btn 
-      :icon="iconButtons"
       href="https://www.paypal.com/paypalme/freegroup/2.50" 
       target="_blank" 
       :color="iconButtons ? 'grey darken-1' : 'teal accent-4'"

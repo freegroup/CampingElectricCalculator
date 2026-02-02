@@ -22,11 +22,6 @@
           <v-icon>mdi-text-box-check-outline</v-icon> 
           <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.parts') }}</div>
         </v-btn>
-
-        <v-btn @click="help" class="ml-1 toolbar-btn" small>
-          <v-icon>mdi-help-circle-outline</v-icon>
-          <div class="ml-3 d-none d-lg-block">{{ $t('toolbar.help') }}</div>
-        </v-btn>
       </template>
 
       <template v-slot:extension>
@@ -37,14 +32,12 @@
       <ComponentMap ref="mindmap" @configLoaded="onConfigLoaded"/>
     </v-main>
    <JsonDialog ref="jsonDialog"/>
-   <HelpDialog ref="helpDialog"/>
    <FileOpenDialog ref="fileOpenDialog"/>
   </v-app>
 </template>
 
 <script>
 import JsonDialog from '@/dialogs/JSONDialog.vue'
-import HelpDialog from '@/dialogs/HelpDialog.vue'
 import FileOpenDialog from '@/dialogs/FileOpenDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'
 import AppToolbar from '@/components/AppToolbar.vue'
@@ -56,7 +49,6 @@ export default {
     ComponentMap,
     JsonDialog,
     FileOpenDialog,
-    HelpDialog,
     AppToolbar
   },
   data: () => ({
@@ -119,9 +111,6 @@ export default {
       const writer = await fileHandle.createWritable()
       await writer.write(blob)
       await writer.close()
-    },
-    help() {
-      this.$refs.helpDialog.show()
     },
     exportPdf() {
       const routeData = this.$router.resolve({ path: '/list/' + this.$refs.mindmap.getConfiguration().id })
