@@ -138,5 +138,5 @@ export default [
       kurzschlussstrom: 9.99
     }
   }
-  /* NEW_COMPONENT_PLACE */
+  }/* NEW_COMPONENT_PLACE */
 ]

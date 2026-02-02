@@ -355,10 +355,10 @@ export default {
         // Generate the new component string
         const newComponentStr = this.componentToJavaScript(newComponent, 2)
         
-        // Replace the marker with: comma + new component + newline + marker
-        const replacement = ',\n' + newComponentStr + '\n  ' + marker
+        // Replace the marker with: comma + new component + marker (on same line)
+        const replacement = ',\n' + newComponentStr + '\n  }' + marker
         
-        const fileContent = originalContent.replace(marker, replacement)
+        const fileContent = originalContent.replace('}' + marker, replacement)
         
         return fileContent
       } catch (error) {

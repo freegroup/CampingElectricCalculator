@@ -128,5 +128,5 @@ export default
       spannung: 24
     }
   }
-  /* NEW_COMPONENT_PLACE */
+  }/* NEW_COMPONENT_PLACE */
 ]
