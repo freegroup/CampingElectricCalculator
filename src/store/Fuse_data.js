@@ -231,5 +231,19 @@ export default
       spannung_max: 35
     }
   }
+  ,
+  {
+    uuid: "CCB6458F-89CF-45F3-BA04-88AB885B1FD0",
+    name: "lllll",
+    description: "llllll",
+    imageSrc: images("./your-image.png"),
+    shopping: [],
+    data: {
+      type: "melt",
+      strom: 0,
+      spannung_min: 12,
+      spannung_max: 0
+    }
+  }
   /* NEW_COMPONENT_PLACE */
 ]
