@@ -162,8 +162,8 @@
           :loading="creatingPR"
           @click="onCreatePullRequest"
         >
-          <v-icon left>mdi-source-pull</v-icon>
-          Create Pull Request
+          <v-icon left>mdi-lightbulb-on</v-icon>
+          Suggest Component
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -353,7 +353,7 @@ export default {
         
         return fileContent
       } catch (error) {
-        console.error('Error reading original file:', error)
+        console.error('Error reading original file:', error)er smily oder so
         throw error
       }
     },
