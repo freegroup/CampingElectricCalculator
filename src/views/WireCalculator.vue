@@ -55,7 +55,7 @@
                   <v-card class="flex-item-fixed source-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column">
                     <v-icon size="80" class="mb-4 icon-glow-green">mdi-battery-charging</v-icon>
                     <h3 class="text-h6 font-weight-bold mb-4 green--text text--darken-3">
-                      Spannungsquelle
+                      {{ $t('wireCalculator.powerSource') }}
                     </h3>
                     
                     <!-- Voltage Selection - Middle Section with flex-grow -->
@@ -77,7 +77,7 @@
                     <div class="text-h4 font-weight-bold green--text text--darken-2 mb-2">
                       {{ voltage }} V
                     </div>
-                    <div class="caption grey--text">Systemspannung</div>
+                    <div class="caption grey--text">{{ $t('wireCalculator.systemVoltage') }}</div>
                   </v-card>
 
                   <!-- CENTER: Cable -->
@@ -85,7 +85,7 @@
                     <!-- Editable Values Above Cable -->
                     <div class="cable-info-top mb-3">
                       <div class="text-center mb-3">
-                        <div class="body-1 grey--text mb-1">Kabellänge</div>
+                        <div class="body-1 grey--text mb-1">{{ $t('wireCalculator.cableLength') }}</div>
                         <div class="text-h5 font-weight-black">{{ length }}m</div>
                       </div>
                       
@@ -123,7 +123,7 @@
                         dense
                         suffix="mm²"
                         hide-details
-                        label="Gewählter Querschnitt"
+                        :label="$t('wireCalculator.selectedCrossSection')"
                         @change="calculateFromCrossSection"
                         class="mb-0"
                       ></v-select>
@@ -132,7 +132,7 @@
                       <div class="pa-3 rounded-b" :style="getInfoBoxStyle()">
                         <v-row dense no-gutters class="mb-2">
                           <v-col cols="7" class="text-left">
-                            <div class="caption grey--text">Spannungsabfall</div>
+                            <div class="caption grey--text">{{ $t('wireCalculator.voltageDrop') }}</div>
                           </v-col>
                           <v-col cols="5" class="text-left">
                             <div class="font-weight-bold">{{ result.voltageDrop }} V</div>
@@ -140,7 +140,7 @@
                         </v-row>
                         <v-row dense no-gutters class="mb-2">
                           <v-col cols="7" class="text-left">
-                            <div class="caption grey--text">Verlust</div>
+                            <div class="caption grey--text">{{ $t('wireCalculator.loss') }}</div>
                           </v-col>
                           <v-col cols="5" class="text-left">
                             <div class="font-weight-bold">{{ result.voltageDropPercent }}%</div>
@@ -148,7 +148,7 @@
                         </v-row>
                         <v-row dense no-gutters class="mb-2">
                           <v-col cols="7" class="text-left">
-                            <div class="caption grey--text">Leistungsverlust</div>
+                            <div class="caption grey--text">{{ $t('wireCalculator.powerLoss') }}</div>
                           </v-col>
                           <v-col cols="5" class="text-left">
                             <div class="font-weight-bold">{{ result.powerLoss }} W</div>
@@ -160,7 +160,7 @@
                       <div class="mt-3 pa-3 rounded grey lighten-4">
                         <v-row dense no-gutters class="mb-2">
                           <v-col cols="7" class="text-left">
-                            <div class="caption grey--text">Berechneter Querschnitt</div>
+                            <div class="caption grey--text">{{ $t('wireCalculator.calculatedCrossSection') }}</div>
                           </v-col>
                           <v-col cols="5" class="text-left">
                             <div class="font-weight-bold">{{ calculatedCrossSection.toFixed(2) }} mm²</div>
@@ -168,7 +168,7 @@
                         </v-row>
                         <v-row dense no-gutters class="mb-2">
                           <v-col cols="7" class="text-left">
-                            <div class="caption grey--text">Empfohlener Querschnitt</div>
+                            <div class="caption grey--text">{{ $t('wireCalculator.recommendedCrossSection') }}</div>
                           </v-col>
                           <v-col cols="5" class="text-left">
                             <div class="font-weight-bold">{{ recommendedCrossSection }} mm²</div>
@@ -182,7 +182,7 @@
                   <v-card class="flex-item-fixed consumer-card glass-card pa-6 rounded-xl elevation-8 text-center d-flex flex-column">
                     <v-icon size="80" class="mb-4 icon-glow-orange">mdi-power-plug</v-icon>
                     <h3 class="text-h6 font-weight-bold mb-4 orange--text text--darken-3">
-                      Verbraucher
+                      {{ $t('wireCalculator.consumer') }}
                     </h3>
                     
                     <!-- Input Section - Middle Section with flex-grow -->
@@ -201,7 +201,7 @@
 
                     <!-- Current Input -->
                     <div v-if="inputMode === 'current'" class="mb-4" style="flex: 1;">
-                      <div class="caption grey--text mb-2">Stromstärke</div>
+                      <div class="caption grey--text mb-2">{{ $t('wireCalculator.current') }}</div>
                       <v-text-field
                         v-model.number="current"
                         type="number"
@@ -226,7 +226,7 @@
 
                     <!-- Power Input -->
                     <div v-if="inputMode === 'power'" class="mb-4" style="flex: 1;">
-                      <div class="caption grey--text mb-2">Leistung</div>
+                      <div class="caption grey--text mb-2">{{ $t('wireCalculator.power') }}</div>
                       <v-text-field
                         v-model.number="power"
                         type="number"
@@ -254,7 +254,7 @@
                     <div class="text-h4 font-weight-bold orange--text text--darken-2 mb-1">
                       {{ current }} A / {{ power }} W
                     </div>
-                    <div class="caption grey--text">Leistungsaufnahme</div>
+                    <div class="caption grey--text">{{ $t('wireCalculator.powerConsumption') }}</div>
                   </v-card>
                 </div>
 
@@ -277,7 +277,7 @@
                           </div>
                         </v-col>
                         <v-col cols="12" md="4" class="text-center">
-                          <div class="caption mb-1">Empfohlener Querschnitt</div>
+                          <div class="caption mb-1">{{ $t('wireCalculator.recommendedCrossSection') }}</div>
                           <div class="text-h4 font-weight-bold">
                             {{ recommendedCrossSection }} mm²
                           </div>
@@ -289,7 +289,7 @@
                             @click="selectedCrossSection = recommendedCrossSection; calculateFromCrossSection()"
                           >
                             <v-icon small left>mdi-check</v-icon>
-                            Übernehmen
+                            {{ $t('wireCalculator.apply') }}
                           </v-btn>
                         </v-col>
                       </v-row>
@@ -306,7 +306,7 @@
         <v-row justify="center" class="mt-8 mb-8">
           <v-col cols="12" lg="11" xl="10">
             <h3 class="text-h6 font-weight-bold mb-4 text-center grey--text text--darken-3">
-              Schnellauswahl: Typische Anwendungen
+              {{ $t('wireCalculator.quickSelection') }}
             </h3>
             <v-row justify="center">
               <v-col cols="6" sm="4" md="3" lg="2" v-for="(example, index) in examples" :key="index">
@@ -317,7 +317,7 @@
                   hover
                 >
                   <v-icon :color="example.color" size="36" class="mb-2">{{ example.icon }}</v-icon>
-                  <div class="font-weight-bold caption mb-1">{{ example.name }}</div>
+                  <div class="font-weight-bold caption mb-1">{{ $t(example.nameKey) }}</div>
                   <div class="caption grey--text" style="font-size: 0.7rem;">
                     {{ example.length }}m, {{ example.current }}A
                   </div>
@@ -515,25 +515,25 @@ export default {
       
       // First check: Is cross section below calculated minimum?
       if (this.selectedCrossSection < this.calculatedCrossSection) {
-        return 'GEFAHR: Kabel zu dünn!'
+        return this.$t('wireCalculator.recommendations.danger')
       }
       
       // Second check: Between calculated and recommended?
       if (this.selectedCrossSection < this.recommendedCrossSection) {
-        return 'Gerade noch OK'
+        return this.$t('wireCalculator.recommendations.barelyOk')
       }
       
       // Third check: Voltage drop evaluation
       if (drop <= 3) {
-        return 'Optimale Konfiguration!'
+        return this.$t('wireCalculator.recommendations.optimal')
       }
       if (drop <= 5) {
-        return 'Gute Konfiguration'
+        return this.$t('wireCalculator.recommendations.good')
       }
       if (drop <= 8) {
-        return 'Akzeptabel für Camping'
+        return this.$t('wireCalculator.recommendations.acceptable')
       }
-      return 'Kritisch: Hoher Spannungsabfall!'
+      return this.$t('wireCalculator.recommendations.critical')
     },
     
     getRecommendationText() {
@@ -541,25 +541,40 @@ export default {
       
       // First check: Is cross section below calculated minimum? (Safety critical!)
       if (this.selectedCrossSection < this.calculatedCrossSection) {
-        return `WARNUNG: Der gewählte Querschnitt (${this.selectedCrossSection} mm²) ist zu dünn! Das Kabel kann überhitzen und stellt eine Brandgefahr dar. Mindestens ${this.calculatedCrossSection.toFixed(2)} mm² erforderlich!`
+        return this.$t('wireCalculator.recommendations.dangerText', {
+          selected: this.selectedCrossSection,
+          minimum: this.calculatedCrossSection.toFixed(2)
+        })
       }
       
       // Second check: Between calculated and recommended? (Just barely ok)
       if (this.selectedCrossSection < this.recommendedCrossSection) {
-        return `Der gewählte Querschnitt (${this.selectedCrossSection} mm²) liegt über dem berechneten Minimum (${this.calculatedCrossSection.toFixed(2)} mm²), ist aber dünner als empfohlen. Für optimale Leistung wird ${this.recommendedCrossSection} mm² empfohlen.`
+        return this.$t('wireCalculator.recommendations.barelyOkText', {
+          selected: this.selectedCrossSection,
+          minimum: this.calculatedCrossSection.toFixed(2),
+          recommended: this.recommendedCrossSection
+        })
       }
       
       // Third check: Voltage drop evaluation (Efficiency)
       if (drop <= 3) {
-        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - optimal für Camping-Anwendungen. Das Kabel ist sicher dimensioniert.`
+        return this.$t('wireCalculator.recommendations.optimalText', {
+          drop: this.result.voltageDropPercent
+        })
       }
       if (drop <= 5) {
-        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - gut für die meisten Camping-Anwendungen. Das Kabel ist sicher, aber ein dickerer Querschnitt würde die Effizienz verbessern.`
+        return this.$t('wireCalculator.recommendations.goodText', {
+          drop: this.result.voltageDropPercent
+        })
       }
       if (drop <= 8) {
-        return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - noch akzeptabel für unkritische Verbraucher. Das Kabel ist sicher, aber die Effizienz ist nicht optimal. Ein dickeres Kabel wird empfohlen.`
+        return this.$t('wireCalculator.recommendations.acceptableText', {
+          drop: this.result.voltageDropPercent
+        })
       }
-      return `Der Spannungsabfall liegt bei ${this.result.voltageDropPercent}% - kritisch hoch! Obwohl das Kabel thermisch sicher ist, geht zu viel Energie verloren. Verwenden Sie ein dickeres Kabel oder verkürzen Sie die Strecke.`
+      return this.$t('wireCalculator.recommendations.criticalText', {
+        drop: this.result.voltageDropPercent
+      })
     },
     
     getCableStyle() {

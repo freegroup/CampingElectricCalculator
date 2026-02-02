@@ -6,16 +6,16 @@
           <v-card-text>
             
             <p class="body-2 mb-4">
-              {{ i18n.wireCalculator.info.description }}
+              {{ $t('wireCalculator.info.description') }}
             </p>
             
             <h3 class="text-h6 font-weight-bold mb-3">
               <v-icon color="primary" class="mr-2">mdi-calculator</v-icon>
-              {{ i18n.wireCalculator.info.formulaTitle }}
+              {{ $t('wireCalculator.info.formulaTitle') }}
             </h3>
             
             <p class="body-2 mb-2">
-              {{ i18n.wireCalculator.info.formulaDescription }}
+              {{ $t('wireCalculator.info.formulaDescription') }}
             </p>
             
             <!-- Compact Calculation with User Values -->
@@ -73,24 +73,24 @@
             <v-row dense class="body-2">
               <v-col cols="12" sm="6">
                 <div class="mb-2">
-                  <span class="font-weight-bold">A</span> = {{ i18n.wireCalculator.info.variables.crossSection }} [{{ i18n.units.squareMillimeter }}]
+                  <span class="font-weight-bold">A</span> = {{ $t('wireCalculator.info.variables.crossSection') }} [{{ $t('units.squareMillimeter') }}]
                 </div>
                 <div class="mb-2">
-                  <span class="font-weight-bold">L</span> = {{ i18n.wireCalculator.info.variables.length }} [{{ i18n.units.meter }}]
+                  <span class="font-weight-bold">L</span> = {{ $t('wireCalculator.info.variables.length') }} [{{ $t('units.meter') }}]
                 </div>
                 <div class="mb-2">
-                  <span class="font-weight-bold">I</span> = {{ i18n.wireCalculator.info.variables.current }} [{{ i18n.units.ampere }}]
+                  <span class="font-weight-bold">I</span> = {{ $t('wireCalculator.info.variables.current') }} [{{ $t('units.ampere') }}]
                 </div>
               </v-col>
               <v-col cols="12" sm="6">
                 <div class="mb-2">
-                  <span class="font-weight-bold">U</span> = {{ i18n.wireCalculator.info.variables.voltage }} [{{ i18n.units.volt }}]
+                  <span class="font-weight-bold">U</span> = {{ $t('wireCalculator.info.variables.voltage') }} [{{ $t('units.volt') }}]
                 </div>
                 <div class="mb-2">
-                  <span class="font-weight-bold">Δ</span> = {{ i18n.wireCalculator.info.variables.voltageDrop }}
+                  <span class="font-weight-bold">Δ</span> = {{ $t('wireCalculator.info.variables.voltageDrop') }}
                 </div>
                 <div class="mb-2">
-                  <span class="font-weight-bold">γ</span> = {{ i18n.wireCalculator.info.variables.conductivity }}
+                  <span class="font-weight-bold">γ</span> = {{ $t('wireCalculator.info.variables.conductivity') }}
                 </div>
               </v-col>
             </v-row>
@@ -102,7 +102,7 @@
               class="mt-3"
             >
               <div class="caption">
-                <strong>{{ i18n.wireCalculator.info.factor2Title }}:</strong> {{ i18n.wireCalculator.info.factor2Description }}
+                <strong>{{ $t('wireCalculator.info.factor2Title') }}:</strong> {{ $t('wireCalculator.info.factor2Description') }}
               </div>
             </v-alert>
           </v-card-text>
@@ -113,8 +113,6 @@
 </template>
 
 <script>
-import i18nData from '@/i18n.js'
-
 export default {
   name: 'WireCalculatorInfo',
   props: {
@@ -141,11 +139,6 @@ export default {
     recommendedCrossSection: {
       type: Number,
       default: 10
-    }
-  },
-  data() {
-    return {
-      i18n: i18nData.de // Default to German, can be made dynamic later
     }
   }
 }

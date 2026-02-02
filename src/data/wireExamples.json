@@ -1,6 +1,6 @@
 [
   {
-    "name": "LED Strip",
+    "nameKey": "wireCalculator.examples.ledStrip",
     "length": 3,
     "current": 2,
     "voltage": 12,
@@ -8,7 +8,7 @@
     "color": "yellow darken-2"
   },
   {
-    "name": "USB",
+    "nameKey": "wireCalculator.examples.usb",
     "length": 2,
     "current": 2,
     "voltage": 12,
@@ -16,7 +16,7 @@
     "color": "blue"
   },
   {
-    "name": "Kühlbox",
+    "nameKey": "wireCalculator.examples.cooler",
     "length": 3,
     "current": 4,
     "voltage": 12,
@@ -24,7 +24,7 @@
     "color": "light-blue"
   },
   {
-    "name": "Wechselrichter",
+    "nameKey": "wireCalculator.examples.inverter",
     "length": 1,
     "current": 50,
     "voltage": 12,
@@ -32,7 +32,7 @@
     "color": "orange darken-2"
   },
   {
-    "name": "Wasserpumpe",
+    "nameKey": "wireCalculator.examples.waterPump",
     "length": 2,
     "current": 8,
     "voltage": 12,
