@@ -231,5 +231,18 @@ export default
       spannung_max: 35
     }
   },
+    {
+    uuid: "29F67D76-7C1D-475C-8FDD-E058C530D4C8",
+    name: "jjj",
+    description: "jjj",
+    imageSrc: images("./custom.png"),
+    shopping: [],
+    data: {
+      type: "melt",
+      strom: 0,
+      spannung_min: 0,
+      spannung_max: 0
+    }
+  },
   /* NEW_COMPONENT_PLACE */
 ]
