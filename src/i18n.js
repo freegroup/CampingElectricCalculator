@@ -333,6 +333,13 @@ export default {
       coffee: "Send Me a Coffee",
       estimatedCost: "Estimated Cost"
     },
+    login: {
+      title: "GitHub Login",
+      login: "Login",
+      logout: "Logout",
+      explanation: "You only need to log in if you want to contribute change proposals or suggest new components. Otherwise, the software can be used anonymously without any restrictions. As it should be for good open source software... 😊",
+      loginWithGitHub: "Login with GitHub"
+    },
     overview: {
       appTitle: "Camper Electric Designer",
       hero: {
@@ -738,6 +745,13 @@ export default {
       help: "Hilfe",
       coffee: "Spendiere mir einen Kaffee",
       estimatedCost: "Geschätzte Kosten"
+    },
+    login: {
+      title: "GitHub Login",
+      login: "Anmelden",
+      logout: "Abmelden",
+      explanation: "Es ist nur notwendig sich anzumelden, wenn Sie Änderungsvorschläge oder neue Komponenten beitragen wollen. Ansonsten kann die Software ohne Einschränkungen natürlich auch anonym verwendet werden. Wie es sich für gute Open Source Software gehört... 😊",
+      loginWithGitHub: "Mit GitHub anmelden"
     },
     overview: {
       appTitle: "Camper Elektrik Designer",

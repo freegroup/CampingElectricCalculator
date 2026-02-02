@@ -41,6 +41,8 @@
       <div v-if="!iconButtons" class="ml-3 d-none d-lg-block">{{ $t('toolbar.coffee') }}</div>
     </v-btn>
 
+    <UserLoginButton :icon-buttons="iconButtons" class="ml-1" />
+
     <!-- Extension slot for Map view -->
     <template v-if="showExtension" v-slot:extension>
       <slot name="extension"></slot>
@@ -50,11 +52,13 @@
 
 <script>
 import LanguageSelector from '@/components/LanguageSelector.vue'
+import UserLoginButton from '@/components/UserLoginButton.vue'
 
 export default {
   name: 'AppToolbar',
   components: {
-    LanguageSelector
+    LanguageSelector,
+    UserLoginButton
   },
   props: {
     title: {
