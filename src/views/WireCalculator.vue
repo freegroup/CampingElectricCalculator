@@ -41,7 +41,7 @@
         </v-container>
       </div>
 
-      <v-container class="mt-n12">
+      <div class="custom-container mt-n12">
         <!-- Main Calculator Card -->
         <v-row justify="center">
           <v-col cols="12" lg="11" xl="10">
@@ -349,7 +349,7 @@
           </v-col>
         </v-row>
 
-      </v-container>
+      </div>
     </v-main>
 
     <v-footer app padless color="white" class="border-top">
@@ -806,6 +806,39 @@ export default {
   border-color: var(--color-error) !important;
 }
 
+/* Custom Container - Full control over spacing */
+.custom-container {
+  width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Desktop: Standard padding */
+@media (min-width: 1264px) {
+  .custom-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Medium breakpoint: Minimal padding for maximum content space */
+@media (min-width: 600px) and (max-width: 1263px) {
+  .custom-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Small screens: Minimal padding */
+@media (max-width: 599px) {
+  .custom-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 @media (max-width: 960px) {
   .hero-section-wire {
     min-height: 100px;
@@ -827,6 +860,12 @@ export default {
   .source-card,
   .consumer-card {
     min-height: auto;
+  }
+  
+  /* Reduce padding for more content space at medium breakpoint */
+  .v-card-text.pa-6.pa-md-10 {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
 }
 </style>
