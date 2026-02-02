@@ -231,5 +231,19 @@ export default
       spannung_max: 35
     }
   },
+  ,
+  {
+    uuid: "247DAEBE-69F2-459C-B37A-AB5822251AA8",
+    name: "kkk",
+    description: "kkkkk",
+    imageSrc: images("./your-image.png"),
+    shopping: [],
+    data: {
+      type: "melt",
+      strom: 0,
+      spannung_min: 12,
+      spannung_max: 0
+    }
+  }
   /* NEW_COMPONENT_PLACE */
 ]
