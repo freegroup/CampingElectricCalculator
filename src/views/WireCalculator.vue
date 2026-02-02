@@ -45,8 +45,8 @@
         <!-- Main Calculator Card -->
         <v-row justify="center">
           <v-col cols="12" lg="11" xl="10">
-            <v-card class="rounded-xl elevation-8 overflow-hidden">
-              <v-card-text class="pa-6 pa-md-10">
+            <v-card class="rounded-xl elevation-8 overflow-visible">
+              <v-card-text class="pa-6 pa-md-10 pb-0">
                 
                 <!-- Visual Flow: Source -> Cable -> Consumer -->
                 <div class="flow-container-flex">
@@ -258,46 +258,42 @@
                   </v-card>
                 </div>
 
-                <!-- Recommendation Banner -->
-                <v-row class="mt-6">
-                  <v-col cols="12">
-                    <v-alert
-                      :type="getRecommendationType()"
-                      prominent
-                      border="left"
-                      :icon="getRecommendationIcon()"
+              </v-card-text>
+              
+              <!-- Recommendation Banner - Flush with bottom -->
+              <div class="recommendation-banner rounded-b-xl" :style="getRecommendationStyle()">
+                <v-row align="center" no-gutters>
+                  <v-col cols="12" md="1" class="text-center pa-4">
+                    <v-icon :color="getRecommendationIconColor()" size="48">
+                      {{ getRecommendationIcon() }}
+                    </v-icon>
+                  </v-col>
+                  <v-col cols="12" md="7" class="pa-4">
+                    <div class="font-weight-bold text-h6 mb-2">
+                      {{ getRecommendationTitle() }}
+                    </div>
+                    <div class="body-2">
+                      {{ getRecommendationText() }}
+                    </div>
+                  </v-col>
+                  <v-col cols="12" md="4" class="text-center pa-4">
+                    <div class="caption mb-1">{{ $t('wireCalculator.recommendedCrossSection') }}</div>
+                    <div class="text-h4 font-weight-bold">
+                      {{ recommendedCrossSection }} mm²
+                    </div>
+                    <v-btn
+                      v-if="selectedCrossSection !== recommendedCrossSection"
+                      small
+                      color="white"
+                      class="mt-2"
+                      @click="selectedCrossSection = recommendedCrossSection; calculateFromCrossSection()"
                     >
-                      <v-row align="center">
-                        <v-col cols="12" md="8">
-                          <div class="font-weight-bold text-h6 mb-2">
-                            {{ getRecommendationTitle() }}
-                          </div>
-                          <div class="body-2">
-                            {{ getRecommendationText() }}
-                          </div>
-                        </v-col>
-                        <v-col cols="12" md="4" class="text-center">
-                          <div class="caption mb-1">{{ $t('wireCalculator.recommendedCrossSection') }}</div>
-                          <div class="text-h4 font-weight-bold">
-                            {{ recommendedCrossSection }} mm²
-                          </div>
-                          <v-btn
-                            v-if="selectedCrossSection !== recommendedCrossSection"
-                            small
-                            :color="getRecommendationType()"
-                            class="mt-2"
-                            @click="selectedCrossSection = recommendedCrossSection; calculateFromCrossSection()"
-                          >
-                            <v-icon small left>mdi-check</v-icon>
-                            {{ $t('wireCalculator.apply') }}
-                          </v-btn>
-                        </v-col>
-                      </v-row>
-                    </v-alert>
+                      <v-icon small left>mdi-check</v-icon>
+                      {{ $t('wireCalculator.apply') }}
+                    </v-btn>
                   </v-col>
                 </v-row>
-
-              </v-card-text>
+              </div>
             </v-card>
           </v-col>
         </v-row>
@@ -630,6 +626,43 @@ export default {
       // length is in meters, convert to cm for formula
       const lengthInCm = example.length * 100
       return kabelquerschnitt(lengthInCm, example.current, example.voltage)
+    },
+    
+    getRecommendationStyle() {
+      const drop = parseFloat(this.result.voltageDropPercent)
+      let backgroundColor = '#4CAF50' // success green
+      let color = 'white'
+      
+      // Check if selected cross section is less than calculated minimum (dangerous!)
+      if (this.selectedCrossSection < this.calculatedCrossSection) {
+        backgroundColor = '#F44336' // error red
+      }
+      // Check if between calculated and recommended (just barely ok)
+      else if (this.selectedCrossSection < this.recommendedCrossSection) {
+        backgroundColor = '#FF9800' // warning orange
+      }
+      // If cross section is adequate, check voltage drop
+      else if (drop <= 3) {
+        backgroundColor = '#4CAF50' // success green
+      }
+      else if (drop <= 5) {
+        backgroundColor = '#2196F3' // info blue
+      }
+      else if (drop <= 8) {
+        backgroundColor = '#FF9800' // warning orange
+      }
+      else {
+        backgroundColor = '#F44336' // error red
+      }
+      
+      return {
+        backgroundColor,
+        color
+      }
+    },
+    
+    getRecommendationIconColor() {
+      return 'white'
     }
   }
 }
