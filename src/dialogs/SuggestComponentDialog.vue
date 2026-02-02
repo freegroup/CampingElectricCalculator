@@ -353,7 +353,7 @@ export default {
         }
         
         // Generate the new component string
-        const newComponentStr = this.componentToJavaScript(newComponent, 2)
+        const newComponentStr = this.componentToJavaScript(newComponent, 0)
         
         // Replace the marker with: new component + comma + newline + marker
         const replacement = newComponentStr + ',\n  ' + marker
