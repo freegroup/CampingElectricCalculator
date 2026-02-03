@@ -308,5 +308,20 @@ export default [
       ladespannung: 28.8
     }
   }, 
+  {
+  uuid: "567ACAB7-D3D8-4A53-8B07-0A2F62F7299F",
+  name: " nm",
+  description: "   vbbvbv",
+  imageSrc: images("./custom.png"),
+  shopping: [],
+  data: {
+    type: "LiFePO4",
+    amperestunden: 100,
+    effective_amperestunden: 100,
+    bms: "internal",
+    spannung: 0,
+    ladespannung: 14.6
+  }
+},
   /* NEW_COMPONENT_PLACE */
 ]
