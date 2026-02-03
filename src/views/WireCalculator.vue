@@ -631,27 +631,22 @@ export default {
     getRecommendationStyle() {
       const drop = parseFloat(this.result.voltageDropPercent)
       let backgroundColor = '#4CAF50' // success green
-      let color = 'white'
+      const color = 'white'
       
       // Check if selected cross section is less than calculated minimum (dangerous!)
       if (this.selectedCrossSection < this.calculatedCrossSection) {
         backgroundColor = '#F44336' // error red
-      }
-      // Check if between calculated and recommended (just barely ok)
-      else if (this.selectedCrossSection < this.recommendedCrossSection) {
+      } else if (this.selectedCrossSection < this.recommendedCrossSection) {
+        // Check if between calculated and recommended (just barely ok)
         backgroundColor = '#FF9800' // warning orange
-      }
-      // If cross section is adequate, check voltage drop
-      else if (drop <= 3) {
+      } else if (drop <= 3) {
+        // If cross section is adequate, check voltage drop
         backgroundColor = '#4CAF50' // success green
-      }
-      else if (drop <= 5) {
+      } else if (drop <= 5) {
         backgroundColor = '#2196F3' // info blue
-      }
-      else if (drop <= 8) {
+      } else if (drop <= 8) {
         backgroundColor = '#FF9800' // warning orange
-      }
-      else {
+      } else {
         backgroundColor = '#F44336' // error red
       }
       
