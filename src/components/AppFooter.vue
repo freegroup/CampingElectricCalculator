@@ -4,8 +4,8 @@
       <v-row align="center" justify="center">
         <v-col cols="12" class="text-center">
           <div class="footer-content">
-            <!-- Visitor Counter -->
-            <div class="visitor-stats">
+            <!-- Visitor Counter - Hidden on mobile (< 960px) -->
+            <div class="visitor-stats d-none d-md-inline-flex">
               <v-icon small color="grey darken-1" class="mr-1">mdi-eye-outline</v-icon>
               <span v-if="loading" class="grey--text text--darken-1">
                 {{ $t('footer.loading') }}
@@ -18,20 +18,24 @@
               </span>
             </div>
 
-            <!-- Divider -->
-            <span class="mx-2 grey--text text--lighten-1">•</span>
+            <!-- Divider - Hidden on mobile -->
+            <span class="mx-2 grey--text text--lighten-1 d-none d-md-inline">•</span>
 
-            <!-- Made with love -->
-            <span class="grey--text text--darken-1">
+            <!-- Made with love - Full text on desktop, only heart on mobile -->
+            <span class="grey--text text--darken-1 d-none d-sm-inline">
               {{ $t('footer.madeWith') }}
               <v-icon small color="red" class="heart-icon">mdi-heart</v-icon>
               {{ $t('footer.forCampers') }}
+            </span>
+            <!-- Mobile: Just the heart -->
+            <span class="grey--text text--darken-1 d-inline d-sm-none">
+              <v-icon small color="red" class="heart-icon">mdi-heart</v-icon>
             </span>
 
             <!-- Divider -->
             <span class="mx-2 grey--text text--lighten-1 d-none d-sm-inline">•</span>
 
-            <!-- Analytics Link -->
+            <!-- Analytics Link - Hidden on very small screens -->
             <a
               href="https://camping-calculator.goatcounter.com"
               target="_blank"
@@ -45,8 +49,8 @@
             <!-- Divider -->
             <span class="mx-2 grey--text text--lighten-1 d-none d-sm-inline">•</span>
 
-            <!-- Share Buttons -->
-            <ShareButtons class="d-none d-sm-inline-block" />
+            <!-- Share Buttons - Always visible! -->
+            <ShareButtons />
           </div>
         </v-col>
       </v-row>
