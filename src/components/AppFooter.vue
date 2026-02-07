@@ -21,11 +21,11 @@
             <!-- Divider - Hidden on mobile -->
             <span class="mx-2 grey--text text--lighten-1 d-none d-md-inline">•</span>
 
-            <!-- Made with love - Always visible -->
+            <!-- Made with love - Desktop: full text, Mobile: without "for campers" -->
             <span class="grey--text text--darken-1">
               {{ $t('footer.madeWith') }}
               <v-icon small color="red" class="heart-icon">mdi-heart</v-icon>
-              {{ $t('footer.forCampers') }}
+              <span class="d-none d-sm-inline">{{ $t('footer.forCampers') }}</span>
             </span>
 
             <!-- Divider -->
