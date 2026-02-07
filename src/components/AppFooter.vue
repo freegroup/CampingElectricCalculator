@@ -21,15 +21,11 @@
             <!-- Divider - Hidden on mobile -->
             <span class="mx-2 grey--text text--lighten-1 d-none d-md-inline">•</span>
 
-            <!-- Made with love - Full text on desktop, only heart on mobile -->
-            <span class="grey--text text--darken-1 d-none d-sm-inline">
+            <!-- Made with love - Always visible -->
+            <span class="grey--text text--darken-1">
               {{ $t('footer.madeWith') }}
               <v-icon small color="red" class="heart-icon">mdi-heart</v-icon>
               {{ $t('footer.forCampers') }}
-            </span>
-            <!-- Mobile: Just the heart -->
-            <span class="grey--text text--darken-1 d-inline d-sm-none">
-              <v-icon small color="red" class="heart-icon">mdi-heart</v-icon>
             </span>
 
             <!-- Divider -->
