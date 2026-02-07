@@ -329,16 +329,7 @@
       </div>
     </v-main>
 
-    <v-footer app padless color="white" class="border-top">
-      <v-col class="text-center" cols="12">
-        <span class="caption grey--text">
-          {{ $t('overview.footer.openSource') }} | 
-          <a href="https://github.com/freegroup/CampingElectricCalculator/issues" target="_blank" class="text-decoration-none teal--text">
-            {{ $t('overview.footer.reportBug') }}
-          </a>
-        </span>
-      </v-col>
-    </v-footer>
+    <AppFooter />
   </v-app>
 </template>
 
@@ -347,12 +338,14 @@ import { kabelquerschnitt, querschnitt, toFixed, gamma } from '@/utils/Wire.js'
 import wireExamples from '@/data/wireExamples.json'
 import WireCalculatorInfo from '@/components/WireCalculatorInfo.vue'
 import AppToolbar from '@/components/AppToolbar.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
   name: 'WireCalculator',
   components: {
     WireCalculatorInfo,
-    AppToolbar
+    AppToolbar,
+    AppFooter
   },
   data() {
     return {

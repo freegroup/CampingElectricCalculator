@@ -31,6 +31,7 @@
     <v-main>
       <ComponentMap ref="mindmap" @configLoaded="onConfigLoaded"/>
     </v-main>
+   <AppFooter />
    <JsonDialog ref="jsonDialog"/>
    <FileOpenDialog ref="fileOpenDialog"/>
   </v-app>
@@ -41,6 +42,7 @@ import JsonDialog from '@/dialogs/JSONDialog.vue'
 import FileOpenDialog from '@/dialogs/FileOpenDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'
 import AppToolbar from '@/components/AppToolbar.vue'
+import AppFooter from '@/components/AppFooter.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -49,7 +51,8 @@ export default {
     ComponentMap,
     JsonDialog,
     FileOpenDialog,
-    AppToolbar
+    AppToolbar,
+    AppFooter
   },
   data: () => ({
     name: "",

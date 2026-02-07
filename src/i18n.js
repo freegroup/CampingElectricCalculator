@@ -333,6 +333,13 @@ export default {
       coffee: "Send Me a Coffee",
       estimatedCost: "Estimated Cost"
     },
+    footer: {
+      visitors: "visitors",
+      loading: "Loading...",
+      madeWith: "Made with",
+      forCampers: "for campers",
+      analytics: "Analytics"
+    },
     login: {
       title: "GitHub Login",
       login: "Login",
@@ -745,6 +752,13 @@ export default {
       help: "Hilfe",
       coffee: "Spendiere mir einen Kaffee",
       estimatedCost: "Geschätzte Kosten"
+    },
+    footer: {
+      visitors: "Besucher",
+      loading: "Lädt...",
+      madeWith: "Gemacht mit",
+      forCampers: "für Camper",
+      analytics: "Statistiken"
     },
     login: {
       title: "GitHub Login",

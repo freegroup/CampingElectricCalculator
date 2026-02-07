@@ -231,27 +231,20 @@
       </v-container>
     </v-main>
 
-    <v-footer app padless color="white" class="border-top">
-      <v-col class="text-center" cols="12">
-        <span class="caption grey--text">
-          {{ $t('overview.footer.openSource') }} | 
-          <a href="https://github.com/freegroup/CampingElectricCalculator/issues" target="_blank" class="text-decoration-none teal--text">
-            {{ $t('overview.footer.reportBug') }}
-          </a>
-        </span>
-      </v-col>
-    </v-footer>
+    <AppFooter />
   </v-app>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import AppToolbar from '@/components/AppToolbar.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
   name: 'Overview',
   components: {
-    AppToolbar
+    AppToolbar,
+    AppFooter
   },
   computed: {
     ...mapState({

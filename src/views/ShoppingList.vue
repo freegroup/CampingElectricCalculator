@@ -107,13 +107,16 @@
         </template>
       </v-card>
     </v-main>
+    <AppFooter />
   </v-app>
 </template>
 <script>
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
   name: 'Map',
   components: {
+    AppFooter
   },
   mounted() {
     this.configuration = this.$store.getters["profile/getById"](this.$route.params.configuration)
