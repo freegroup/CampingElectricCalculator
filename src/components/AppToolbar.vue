@@ -1,36 +1,40 @@
 <template>
   <v-app-bar app :color="color" :dark="dark" :light="light" height="80">
-    <router-link to="/" class="d-flex align-center text-decoration-none logo-link">
-      <v-avatar :size="64" class="mr-4">
-        <img src="@/assets/logo.svg" alt="Logo">
-      </v-avatar>
-      
-      <v-toolbar-title :class="titleClass + ' toolbar-title-link'">
-        {{ title }}
-      </v-toolbar-title>
-    </router-link>
-    
-    <v-spacer></v-spacer>
+    <div class="toolbar-row-1">
+      <router-link to="/" class="d-flex align-center text-decoration-none logo-link">
+        <v-avatar :size="64" class="mr-4">
+          <img src="@/assets/logo.svg" alt="Logo">
+        </v-avatar>
 
-    <!-- Slot for page-specific buttons -->
-    <slot name="actions"></slot>
+        <v-toolbar-title :class="titleClass + ' toolbar-title-link'">
+          {{ title }}
+        </v-toolbar-title>
+      </router-link>
+    </div>
 
-    <!-- Common buttons -->
-    <LanguageSelector :icon="iconButtons" :small="!iconButtons" :btn-class="iconButtons ? 'grey darken-1' : 'ml-1 toolbar-btn'" />
+    <v-spacer class="d-none d-sm-flex"></v-spacer>
 
-    <v-btn 
-      :icon="iconButtons"
-      href="https://www.paypal.com/paypalme/freegroup/2.50" 
-      target="_blank" 
-      :color="iconButtons ? 'grey darken-1' : 'teal accent-4'"
-      :class="iconButtons ? '' : 'ml-1'"
-      :small="!iconButtons"
-    >
-      <v-icon>mdi-coffee-outline</v-icon>
-      <div v-if="!iconButtons" class="ml-3 d-none d-lg-block">{{ $t('toolbar.coffee') }}</div>
-    </v-btn>
+    <div class="toolbar-buttons">
+      <!-- Slot for page-specific buttons -->
+      <slot name="actions"></slot>
 
-    <UserLoginButton :icon-buttons="iconButtons" class="ml-1" />
+      <!-- Common buttons -->
+      <LanguageSelector :icon="iconButtons" :small="!iconButtons" :btn-class="iconButtons ? 'grey darken-1' : 'ml-1 toolbar-btn'" />
+
+      <v-btn
+        :icon="iconButtons"
+        href="https://www.paypal.com/paypalme/freegroup/2.50"
+        target="_blank"
+        :color="iconButtons ? 'grey darken-1' : 'teal accent-4'"
+        :class="iconButtons ? '' : 'ml-1'"
+        :small="!iconButtons"
+      >
+        <v-icon>mdi-coffee-outline</v-icon>
+        <div v-if="!iconButtons" class="ml-3 d-none d-lg-block">{{ $t('toolbar.coffee') }}</div>
+      </v-btn>
+
+      <UserLoginButton :icon-buttons="iconButtons" class="ml-1" />
+    </div>
 
     <!-- Extension slot for Map view -->
     <template v-if="showExtension" v-slot:extension>
@@ -94,9 +98,103 @@ export default {
   box-shadow: @appbar-shadow !important;
 }
 
+/* Mobile: Stack toolbar vertically with buttons in second row */
+@media (max-width: 600px) {
+  .v-app-bar.v-toolbar {
+    height: 68px !important;
+  }
+
+  .v-toolbar__content {
+    height: 68px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    padding: 4px 8px !important;
+  }
+
+  /* First row: Logo and title take full width */
+  .toolbar-row-1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    flex-shrink: 0;
+
+    .logo-link {
+      height: 32px !important;
+    }
+
+    .v-avatar {
+      height: 24px !important;
+      width: 24px !important;
+      margin-right: 8px !important;
+      min-width: 24px !important;
+    }
+  }
+
+  /* Second row: All buttons in a horizontal flex container */
+  .toolbar-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 32px;
+    flex-shrink: 0;
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+
+    /* Hide scrollbar but keep functionality */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Make all buttons icon-only on mobile */
+    .v-btn .d-none.d-lg-block {
+      display: none !important;
+    }
+
+    .v-btn {
+      min-width: 40px !important;
+      height: 28px !important;
+      padding: 0 8px !important;
+      flex-shrink: 0;
+    }
+  }
+}
+
+/* Desktop: Keep original layout */
+@media (min-width: 601px) {
+  .toolbar-row-1 {
+    display: contents;
+  }
+
+  .toolbar-buttons {
+    display: contents;
+  }
+}
+
 /* Extension divider */
 .v-toolbar__extension {
   border-top: @appbar-extension-border;
+  background: @appbar-bg !important;
+  backdrop-filter: @appbar-blur;
+  -webkit-backdrop-filter: @appbar-blur;
+}
+
+/* Mobile: Extension styling */
+@media (max-width: 600px) {
+  .v-toolbar__extension {
+    min-height: 32px !important;
+    padding: 4px 8px !important;
+    font-size: 0.85rem;
+  }
 }
 
 /* Toolbar buttons - using LESS variables */
@@ -152,9 +250,18 @@ export default {
   color: @color-toolbar-title !important;
   line-height: 1.3 !important;
   padding-top: 4px;
-  
+
   &:hover {
     text-decoration: underline;
+  }
+}
+
+// Mobile responsiveness - reduce font size by 50%
+@media (max-width: 600px) {
+  .toolbar-title-link {
+    font-size: 0.95rem !important;
+    line-height: 1.1 !important;
+    padding-top: 0 !important;
   }
 }
 </style>

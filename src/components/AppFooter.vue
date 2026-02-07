@@ -170,8 +170,29 @@ export default {
 
 // Mobile responsiveness
 @media (max-width: 600px) {
+  .app-footer {
+    padding: 4px 0 !important;
+  }
+
+  .app-footer .v-footer__content {
+    padding: 0 !important;
+  }
+
+  .app-footer .container {
+    padding: 0 8px !important;
+  }
+
+  .app-footer .row {
+    margin: 0 !important;
+  }
+
+  .app-footer .col {
+    padding: 4px !important;
+  }
+
   .footer-content {
     font-size: 12px;
+    line-height: 1.3;
   }
 }
 </style>
