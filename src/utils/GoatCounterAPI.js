@@ -8,7 +8,7 @@ const GOATCOUNTER_SITE = 'camping-calculator'
 // PUBLIC READ-ONLY TOKEN - Safe to expose in client-side code
 // This token has read-only permissions and can only fetch public statistics
 // No sensitive data or write operations are possible with this token
-const GOATCOUNTER_PUBLIC_READONLY_TOKEN = 'aKRnRXGHypXqtfAGRlTS4hll1cup3gDD3bWDTtI+'
+const GOATCOUNTER_PUBLIC_READONLY_TOKEN = '1jyqqbdeaorhiy63vxt0disqjm99ofzc2fcsl232fai15jdqdi'
 
 /**
  * Fetch total visitor count from GoatCounter
