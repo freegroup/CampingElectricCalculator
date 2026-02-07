@@ -41,6 +41,12 @@
               <v-icon x-small class="mr-1">mdi-chart-line</v-icon>
               {{ $t('footer.analytics') }}
             </a>
+
+            <!-- Divider -->
+            <span class="mx-2 grey--text text--lighten-1 d-none d-sm-inline">•</span>
+
+            <!-- Share Buttons -->
+            <ShareButtons class="d-none d-sm-inline-block" />
           </div>
         </v-col>
       </v-row>
@@ -50,9 +56,13 @@
 
 <script>
 import { getVisitorStats } from '@/utils/GoatCounterAPI.js'
+import ShareButtons from '@/components/ShareButtons.vue'
 
 export default {
   name: 'AppFooter',
+  components: {
+    ShareButtons
+  },
   data() {
     return {
       stats: {

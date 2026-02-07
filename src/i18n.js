@@ -340,6 +340,15 @@ export default {
       forCampers: "for campers",
       analytics: "Analytics"
     },
+    share: {
+      button: "Share",
+      title: "Camping Electric Calculator - Plan Your Camper Van Electrical System",
+      text: "Calculate solar panels, batteries, and electrical components for your camper van!",
+      native: "Share...",
+      email: "Email",
+      copyLink: "Copy Link",
+      copied: "Copied!"
+    },
     login: {
       title: "GitHub Login",
       login: "Login",
@@ -759,6 +768,15 @@ export default {
       madeWith: "Gemacht mit",
       forCampers: "für Camper",
       analytics: "Statistiken"
+    },
+    share: {
+      button: "Teilen",
+      title: "Camping Elektrik Konfigurator - Plane deine Camper Van Elektrik",
+      text: "Berechne Solaranlagen, Batterien und elektrische Komponenten für deinen Camper!",
+      native: "Teilen...",
+      email: "E-Mail",
+      copyLink: "Link kopieren",
+      copied: "Kopiert!"
     },
     login: {
       title: "GitHub Login",
