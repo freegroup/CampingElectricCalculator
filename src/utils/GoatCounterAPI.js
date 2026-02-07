@@ -16,25 +16,35 @@ const GOATCOUNTER_PUBLIC_READONLY_TOKEN = '1jyqqbdeaorhiy63vxt0disqjm99ofzc2fcsl
  */
 export async function getVisitorStats() {
   try {
-    const response = await fetch(
-      `https://${GOATCOUNTER_SITE}.goatcounter.com/api/v0/stats/total`,
-      {
-        headers: {
-          Authorization: `Bearer ${GOATCOUNTER_PUBLIC_READONLY_TOKEN}`
-        }
+    const url = `https://${GOATCOUNTER_SITE}.goatcounter.com/api/v0/stats/total`
+    console.log('[GoatCounter] Fetching stats from:', url)
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${GOATCOUNTER_PUBLIC_READONLY_TOKEN}`
       }
-    )
+    })
+
+    console.log('[GoatCounter] Response status:', response.status, response.statusText)
 
     if (!response.ok) {
+      const errorText = await response.text()
+      console.error('[GoatCounter] API error:', response.status, errorText)
       throw new Error(`GoatCounter API error: ${response.status}`)
     }
 
     const data = await response.json()
-    return {
+    console.log('[GoatCounter] API response data:', data)
+
+    const result = {
       total: data.total || 0,
-      totalUnique: data.total_unique || 0
+      totalUnique: data.total_utc || 0 // GoatCounter uses 'total_utc' for unique visitors
     }
+    console.log('[GoatCounter] Parsed result:', result)
+
+    return result
   } catch (error) {
+    console.error('[GoatCounter] Fetch error:', error)
     return {
       total: 0,
       totalUnique: 0,
