@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Camper Elektrik planen – Schaltplan, Solar &amp; Kabel berechnen</title>
+<meta name="description" content="Kostenloser Planer für die 12-V-Elektrik im Wohnmobil: Batterie, Solar und Ladebooster verschalten, Kabelquerschnitte und Sicherungen berechnen.">
+<link rel="canonical" href="https://camper-elektrik-planer.de/de/">
+<link rel="alternate" hreflang="de" href="https://camper-elektrik-planer.de/de/">
+<link rel="alternate" hreflang="en" href="https://camper-elektrik-planer.de/en/">
+<link rel="alternate" hreflang="x-default" href="https://camper-elektrik-planer.de/de/">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Camper Elektrik Planer">
+<meta property="og:title" content="Camper Elektrik planen – Schaltplan, Solar &amp; Kabel berechnen">
+<meta property="og:description" content="Kostenloser Planer für die 12-V-Elektrik im Wohnmobil: Batterie, Solar und Ladebooster verschalten, Kabelquerschnitte und Sicherungen berechnen, Stückliste exportieren.">
+<meta property="og:url" content="https://camper-elektrik-planer.de/de/">
+<meta property="og:image" content="https://camper-elektrik-planer.de/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Camper Elektrik planen – Schaltplan, Solar &amp; Kabel berechnen">
+<meta name="twitter:description" content="Kostenloser Planer für die 12-V-Elektrik im Wohnmobil: Batterie, Solar, Kabelquerschnitte und Sicherungen.">
+<meta name="twitter:image" content="https://camper-elektrik-planer.de/og-image.jpg">
+<style>
+:root{--ink:#212121;--muted:#5f6368;--line:#e0e0e0;--bg:#f7f8fb;--accent:#2e7d32;--accent-dk:#1b5e20;--head:#d9dff2}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff}
+header{background:var(--head);padding:14px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-weight:600;text-decoration:none;color:var(--ink)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:14px}
+nav a:hover{color:var(--ink);text-decoration:underline}
+h1{font-size:2rem;line-height:1.25;margin:36px 0 14px}
+h2{font-size:1.35rem;margin:38px 0 12px;padding-top:6px}
+h3{font-size:1.05rem;margin:24px 0 6px}
+p,li{color:#333}
+.lead{font-size:1.1rem;color:#444}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:13px 24px;border-radius:8px;font-weight:600;margin:6px 8px 6px 0}
+.cta:hover{background:var(--accent-dk)}
+.cta.sec{background:#fff;color:var(--accent-dk);border:2px solid var(--accent)}
+.cta.sec:hover{background:#f1f8f2}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:22px 0}
+.warn{background:#fff8e1;border-color:#ffe082}
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left}
+th{background:var(--bg);font-weight:600}
+td.num{text-align:right;white-space:nowrap}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:28px 0 44px;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+.steps{list-style:none;padding:0}
+.steps li{padding:12px 0 12px 44px;position:relative}
+.steps li b{display:block}
+.steps li::before{content:counter(s);counter-increment:s;position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:28px;font-size:14px;font-weight:700}
+.steps{counter-reset:s}
+@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="brand" href="/de/">Camper Elektrik Planer</a>
+  <nav>
+    <a href="/de/kabelquerschnitt-berechnen/">Kabelquerschnitt</a>
+    <a href="/#/">Zur App</a>
+    <a href="/en/" hreflang="en">English</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<h1>Camper Elektrik planen — vom Schaltplan bis zur Stückliste</h1>
+
+<p class="lead">Ein kostenloses Werkzeug, mit dem du die 12-Volt-Anlage in deinem Wohnmobil
+oder Kastenwagen zusammensteckst: Batterie, Solar, Ladebooster und Verbraucher verbinden,
+Kabelquerschnitte und Sicherungen berechnen lassen, Fehler finden, bevor sie im Fahrzeug
+stecken.</p>
+
+<p>
+  <a class="cta" href="/#/map/new">Planung starten</a>
+  <a class="cta sec" href="/de/kabelquerschnitt-berechnen/">Nur Kabel berechnen</a>
+</p>
+
+<h2>Warum die Elektrik vorher auf Papier gehört</h2>
+
+<p>Im Ausbau rächt sich jede Abkürzung genau einmal — dann aber gründlich. Die drei Fehler,
+die am häufigsten passieren:</p>
+
+<p><b>Zu dünne Kabel.</b> Bei 12 Volt fließen für dieselbe Leistung rund zwanzigmal so hohe
+Ströme wie bei 230 Volt. Ein Wechselrichter mit 2000 Watt zieht knapp 175 Ampere. Ein Kabel,
+das dafür zu dünn ist, wird warm — im ungünstigen Fall so warm, dass die Isolierung
+aufgibt. Der Spannungsabfall auf der Leitung kommt obendrauf: was auf dem Weg verloren geht,
+fehlt am Verbraucher und heizt stattdessen das Kabel.</p>
+
+<p><b>Falsch dimensionierte Sicherungen.</b> Eine Sicherung schützt nicht das Gerät, sondern
+die <em>Leitung</em>. Sie muss also zum Kabelquerschnitt passen, nicht zum Verbrauch. Eine
+100-A-Sicherung vor einem 6-mm²-Kabel ist genau so gut wie gar keine Sicherung.</p>
+
+<p><b>Batterie und Ladetechnik passen nicht zusammen.</b> LiFePO₄ braucht andere
+Ladespannungen als AGM oder Gel, und nicht jeder Laderegler unterstützt jeden Typ. Wer hier
+mischt, verliert im besten Fall Kapazität und im schlechtesten die Batterie.</p>
+
+<h2>Was der Planer für dich übernimmt</h2>
+
+<ul>
+  <li><b>Verschaltung zusammenklicken</b> — Batterie in der Mitte, links die Erzeuger (Solar,
+      Lichtmaschine, Landstrom), rechts die Verbraucher. Komponenten lassen sich per Drag &amp;
+      Drop umhängen.</li>
+  <li><b>Laufende Plausibilitätsprüfung</b> — der Planer meldet, wenn Spannungen nicht
+      zusammenpassen, eine Sicherung falsch dimensioniert ist, ein Schalter vor der Sicherung
+      auslösen würde oder die Batterie einen Tiefentladeschutz braucht.</li>
+  <li><b>Energiebilanz</b> — Ertrag gegen Verbrauch, mit Betriebsstunden je Gerät. Daraus
+      ergibt sich, wie viele Tage die Anlage autark durchhält.</li>
+  <li><b>Kabelquerschnitte</b> — für jede Verbindung, abhängig von Länge, Strom und Spannung.</li>
+  <li><b>Stückliste mit Preisschätzung</b> — als Einkaufsliste zum Ausdrucken.</li>
+</ul>
+
+<h2>In drei Schritten zum fertigen Plan</h2>
+
+<ol class="steps">
+  <li><b>Verbinden</b> Vorlage wählen oder leer starten, Komponenten aus der Datenbank
+      hinzufügen und verkabeln.</li>
+  <li><b>Berechnen</b> Sofortige Rückmeldung zu Kapazität, Stromaufnahme, Querschnitten und
+      möglichen Problemen.</li>
+  <li><b>Bauen</b> Stückliste und Diagramm exportieren und mit einem geprüften Plan in den
+      Ausbau gehen.</li>
+</ol>
+
+<p>
+  <a class="cta" href="/#/map/Standard100wSmallCooler">Vorlage: 100 W Solar mit Kühlbox</a>
+  <a class="cta sec" href="/#/map/Power540Watt">Vorlage: 540 W Ausbau</a>
+</p>
+
+<h2>Typische Fragen</h2>
+
+<h3>Wie viel Solarleistung brauche ich?</h3>
+<p>Das hängt weniger an der Panelfläche als am Verbrauch. Rechne zuerst zusammen, was deine
+Geräte pro Tag ziehen — Kompressorkühlschrank, Licht, Wasserpumpe, Laden von Telefon und
+Laptop — und plane rund 20 Prozent Puffer ein. Erst daraus ergeben sich Batteriegröße und
+Solarleistung. Genau in dieser Reihenfolge arbeitet auch der Planer.</p>
+
+<h3>Reicht Solar allein?</h3>
+<p>Im Sommer meistens, im Winter selten. Zwischen Dezember und Februar liefert dieselbe
+Anlage in Mitteleuropa nur einen Bruchteil des Sommerertrags. Wer ganzjährig autark stehen
+will, kombiniert Solar üblicherweise mit einem Ladebooster an der Lichtmaschine.</p>
+
+<h3>Brauche ich einen Ladebooster?</h3>
+<p>Sobald eine LiFePO₄-Batterie im Spiel ist, praktisch immer. Die Lichtmaschine allein
+erreicht die nötige Ladespannung nicht zuverlässig, und moderne Fahrzeuge regeln die
+Bordspannung aktiv herunter. Ein B2B-Lader entkoppelt Starter- und Aufbaubatterie und lädt
+mit dem Profil, das der Batterietyp braucht.</p>
+
+<h3>Darf ich das alles selbst machen?</h3>
+<p>Das 12-Volt-Bordnetz können Selbstausbauer mit Sorgfalt selbst installieren. Für die
+230-Volt-Seite gilt das ausdrücklich <b>nicht</b>: Landstrominstallationen müssen nach
+DIN VDE 0100-721 von einer Elektrofachkraft errichtet und abgenommen werden.</p>
+
+<div class="box warn">
+  <b>Hinweis:</b> Dieses Werkzeug liefert Schätz- und Planungswerte auf Basis der von dir
+  eingegebenen Daten. Es ersetzt keine fachliche Abnahme. Prüfe sicherheitsrelevante
+  Entscheidungen — insbesondere Absicherung und Querschnitte — vor dem Einbau gegen die
+  Herstellerangaben deiner Komponenten.
+</div>
+
+<h2>Weiter zum Kabelrechner</h2>
+<p>Wenn du nur eine einzelne Verbindung auslegen willst, geht es schneller über den
+Kabelrechner: Länge, Strom und Spannung eingeben, Querschnitt samt Spannungsabfall und
+Verlustleistung ablesen. Die Herleitung der Formel und eine Tabelle typischer Camper-Fälle
+findest du auf der Seite
+<a href="/de/kabelquerschnitt-berechnen/">Kabelquerschnitt berechnen</a>.</p>
+
+<p><a class="cta" href="/#/map/new">Jetzt mit der Planung anfangen</a></p>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Camper Elektrik Planer — kostenloses Open-Source-Projekt für den Wohnmobil-Selbstausbau.
+  <a href="https://github.com/freegroup/CampingElectricCalculator" rel="noopener">Quellcode auf GitHub</a>.</p>
+  <p><a href="/de/">Deutsch</a> · <a href="/en/" hreflang="en">English</a> · <a href="/#/">Zur App</a></p>
+</div></footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Camper Elektrik Planer",
+      "url": "https://camper-elektrik-planer.de/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "inLanguage": ["de", "en"],
+      "description": "Planer für die 12-V-Elektrik im Wohnmobil: Verschaltung, Energiebilanz, Kabelquerschnitte, Sicherungen und Stückliste.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Wie viel Solarleistung brauche ich?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Das hängt am Verbrauch, nicht an der Panelfläche. Zuerst den Tagesverbrauch aller Geräte zusammenrechnen und rund 20 Prozent Puffer einplanen. Erst daraus ergeben sich Batteriegröße und Solarleistung." } },
+        { "@type": "Question", "name": "Reicht Solar allein?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Im Sommer meistens, im Winter selten. In Mitteleuropa liefert dieselbe Anlage zwischen Dezember und Februar nur einen Bruchteil des Sommerertrags. Für ganzjährige Autarkie wird Solar üblicherweise mit einem Ladebooster an der Lichtmaschine kombiniert." } },
+        { "@type": "Question", "name": "Brauche ich einen Ladebooster?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Bei einer LiFePO4-Batterie praktisch immer. Die Lichtmaschine erreicht die nötige Ladespannung nicht zuverlässig, moderne Fahrzeuge regeln die Bordspannung aktiv herunter. Ein B2B-Lader entkoppelt Starter- und Aufbaubatterie und lädt mit dem passenden Profil." } },
+        { "@type": "Question", "name": "Darf ich die Elektrik selbst installieren?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Das 12-Volt-Bordnetz können Selbstausbauer mit Sorgfalt selbst installieren. Die 230-Volt-Landstrominstallation muss nach DIN VDE 0100-721 von einer Elektrofachkraft errichtet und abgenommen werden." } }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 const delta = 0.02
-const gamma = 57.18
+// Leitfähigkeit von Kupfer in m/(Ohm*mm^2). Normwert für handelsübliche Kupferleitungen.
+// Muss mit dem Wert übereinstimmen, den die Formelerklärung nennt (i18n: wireCalculator.info.variables.conductivity)
+const gamma = 56
 
 function querschnitt (laengeInMeter, strom, spannung) {
   return ((laengeInMeter / 100) * 2 * strom) / ( delta * spannung * gamma)

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cable Cross-Section Calculator – Campervan, RV &amp; 12 V</title>
+<meta name="description" content="Work out cable size for 12 V and 24 V systems: the formula explained, a table of typical campervan cases and matching fuse sizes.">
+<link rel="canonical" href="https://camper-elektrik-planer.de/en/wire-cross-section-calculator/">
+<link rel="alternate" hreflang="de" href="https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/">
+<link rel="alternate" hreflang="en" href="https://camper-elektrik-planer.de/en/wire-cross-section-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:site_name" content="Camper Electric Planner">
+<meta property="og:title" content="Cable Cross-Section Calculator – Campervan, RV &amp; 12 V">
+<meta property="og:description" content="The formula explained, a table of typical campervan cases, matching fuses and the most common mistakes.">
+<meta property="og:url" content="https://camper-elektrik-planer.de/en/wire-cross-section-calculator/">
+<meta property="og:image" content="https://camper-elektrik-planer.de/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cable Cross-Section Calculator – Campervan, RV &amp; 12 V">
+<meta name="twitter:description" content="The formula explained, a table of typical campervan cases and the most common mistakes.">
+<meta name="twitter:image" content="https://camper-elektrik-planer.de/og-image.jpg">
+<style>
+:root{--ink:#212121;--muted:#5f6368;--line:#e0e0e0;--bg:#f7f8fb;--accent:#2e7d32;--accent-dk:#1b5e20;--head:#d9dff2}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff}
+header{background:var(--head);padding:14px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-weight:600;text-decoration:none;color:var(--ink)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:14px}
+nav a:hover{color:var(--ink);text-decoration:underline}
+h1{font-size:2rem;line-height:1.25;margin:36px 0 14px}
+h2{font-size:1.35rem;margin:38px 0 12px;padding-top:6px}
+h3{font-size:1.05rem;margin:24px 0 6px}
+p,li{color:#333}
+.lead{font-size:1.1rem;color:#444}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:13px 24px;border-radius:8px;font-weight:600;margin:6px 8px 6px 0}
+.cta:hover{background:var(--accent-dk)}
+.cta.sec{background:#fff;color:var(--accent-dk);border:2px solid var(--accent)}
+.cta.sec:hover{background:#f1f8f2}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:22px 0}
+.warn{background:#fff8e1;border-color:#ffe082}
+.formula{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:20px;margin:20px 0;text-align:center;font-size:1.15rem}
+.formula .frac{display:inline-block;vertical-align:middle;text-align:center;margin:0 6px}
+.formula .frac .top{display:block;padding:0 8px 4px}
+.formula .frac .bot{display:block;border-top:2px solid var(--ink);padding:4px 8px 0}
+dl.vars{margin:14px 0}
+dl.vars dt{float:left;clear:left;width:3.4em;font-weight:700}
+dl.vars dd{margin:0 0 4px 3.8em;color:#444}
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left}
+th{background:var(--bg);font-weight:600}
+td.num,th.num{text-align:right;white-space:nowrap}
+.crumb{font-size:14px;color:var(--muted);margin:18px 0 0}
+.crumb a{color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:28px 0 44px;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}table{font-size:14px}th,td{padding:7px 6px}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="brand" href="/en/">Camper Electric Planner</a>
+  <nav>
+    <a href="/en/wire-cross-section-calculator/">Cable sizing</a>
+    <a href="/#/">Open the app</a>
+    <a href="/de/kabelquerschnitt-berechnen/" hreflang="de">Deutsch</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<p class="crumb"><a href="/en/">Home</a> › Cable cross-section</p>
+
+<h1>Cable cross-section calculator for campervans and RVs</h1>
+
+<p class="lead">Undersized cable is the most common mistake in a self-build — and the one with
+the most unpleasant consequences. Here is how the cross-section is calculated, why 12 volt
+systems follow different rules than household wiring, and what the numbers come out at for
+typical loads.</p>
+
+<p>
+  <a class="cta" href="/#/wire-calculator">Open the calculator</a>
+  <a class="cta sec" href="/#/map/new">Plan the whole system</a>
+</p>
+
+<h2>Why cross-section matters so much at 12 volts</h2>
+
+<p>Power is voltage times current. Because the system voltage is low, the current has to be
+correspondingly high: 1000 watts means a good 4 amps at 230 volts, but around 83 amps at
+12 volts. That is why campervans need conductor sizes nobody ever runs in a house.</p>
+
+<p>Two effects make thin cable a problem:</p>
+
+<p><b>Voltage drop.</b> Every cable has resistance. Whatever voltage is lost along the way
+never reaches the load. At 230 volts, 0.5 V goes unnoticed — at 12 volts that is more than
+4 per cent, and a compressor fridge or water pump answers with poor starting behaviour or
+cut-outs. This is why low-voltage systems are calculated far more strictly.</p>
+
+<p><b>Heating.</b> The lost voltage does not disappear, it becomes heat in the cable. Inside
+a trunking run behind the panelling, bundled with other cables and without airflow, that is
+not a theoretical risk.</p>
+
+<h2>The formula</h2>
+
+<p>The minimum cross-section follows from cable length, current, system voltage and the
+voltage drop you are prepared to accept:</p>
+
+<div class="formula">
+  <b>A</b> =
+  <span class="frac">
+    <span class="top">2 · L · I</span>
+    <span class="bot">&delta;<sub>U</sub> · U · &gamma;</span>
+  </span>
+</div>
+
+<dl class="vars">
+  <dt>A</dt><dd>cross-section in mm²</dd>
+  <dt>L</dt><dd>one-way cable length in metres (not the sum of both conductors)</dd>
+  <dt>I</dt><dd>current in amps</dd>
+  <dt>U</dt><dd>system voltage, i.e. 12 V or 24 V</dd>
+  <dt>&delta;<sub>U</sub></dt><dd>permitted voltage drop as a fraction — 0.02 here, i.e. 2 %</dd>
+  <dt>&gamma;</dt><dd>conductivity of copper, 56 m/(&Omega;·mm²)</dd>
+</dl>
+
+<h3>Where the factor 2 comes from</h3>
+<p>Current flows in a loop. The length of the negative conductor adds to that of the positive
+one — the current covers the distance twice. That is why the one-way length is doubled. Using
+the combined length of both conductors <em>and</em> multiplying by 2 sizes the cable twice as
+large as needed.</p>
+
+<h3>Why 2 per cent and not 3</h3>
+<p>Values between 2 and 5 per cent are all in circulation. This calculator deliberately uses
+the strict 2 per cent: at 12 volts that is a mere 0.24 V of headroom. Being more generous
+saves copper and buys you starting problems on compressors and pumps. For lighting alone,
+more would be defensible — for anything with a motor, less so.</p>
+
+<h3>From the calculated value to a cable you can actually buy</h3>
+<p>The calculator adds <b>12 per cent margin</b> to the result and then rounds <b>up</b> to the
+next standard size: 1 · 2.5 · 4 · 6 · 10 · 16 · 25 · 35 · 50 mm² and so on. It always rounds up
+— one size too large costs money, one size too small is dangerous.</p>
+
+<h2>Worked example</h2>
+
+<div class="box">
+<p style="margin-top:0"><b>Compressor cool box, 4 m cable run, 5 A at 12 V</b></p>
+<p style="margin-bottom:0">
+A = (2 · 4 m · 5 A) / (0.02 · 12 V · 56) = 40 / 13.44 = <b>2.98 mm²</b><br>
+plus 12 % margin → 3.33 mm² → next standard size: <b>4 mm²</b>
+</p>
+</div>
+
+<h2>Typical values in a campervan</h2>
+
+<p>All figures for a 12 volt system, calculated with the formula above. Length is the one-way
+run from source to load.</p>
+
+<table>
+<thead><tr>
+  <th>Load</th><th class="num">Length</th><th class="num">Current</th>
+  <th class="num">calculated</th><th class="num">recommended</th>
+</tr></thead>
+<tbody>
+  <tr><td>LED lighting</td><td class="num">5 m</td><td class="num">2 A</td><td class="num">1.49 mm²</td><td class="num"><b>2.5 mm²</b></td></tr>
+  <tr><td>Compressor cool box</td><td class="num">4 m</td><td class="num">5 A</td><td class="num">2.98 mm²</td><td class="num"><b>4 mm²</b></td></tr>
+  <tr><td>Water pump</td><td class="num">3 m</td><td class="num">10 A</td><td class="num">4.46 mm²</td><td class="num"><b>6 mm²</b></td></tr>
+  <tr><td>Solar controller to battery</td><td class="num">2 m</td><td class="num">20 A</td><td class="num">5.95 mm²</td><td class="num"><b>8 mm²</b></td></tr>
+  <tr><td>DC-DC charger</td><td class="num">4 m</td><td class="num">30 A</td><td class="num">17.86 mm²</td><td class="num"><b>25 mm²</b></td></tr>
+  <tr><td>Inverter 1000 W</td><td class="num">1.5 m</td><td class="num">90 A</td><td class="num">20.09 mm²</td><td class="num"><b>25 mm²</b></td></tr>
+  <tr><td>Inverter 2000 W</td><td class="num">1.5 m</td><td class="num">175 A</td><td class="num">39.06 mm²</td><td class="num"><b>50 mm²</b></td></tr>
+</tbody>
+</table>
+
+<p>The table is no substitute for doing the sum — one extra metre of cable run already shifts
+the result. For your own figures:
+<a href="/#/wire-calculator">open the calculator</a>.</p>
+
+<h2>The fuse belongs to the cable, not to the appliance</h2>
+
+<p>The most widely misunderstood point in vehicle electrics: <b>a fuse protects the
+conductor.</b> Not the inverter, not the fridge — the cable. So it has to be chosen to blow
+before the conductor is thermally overloaded.</p>
+
+<p>Which means: determine the cross-section from current and length first, then pick the fuse
+to match the cross-section — not the other way round. And it belongs as close to the battery
+as possible, because everything between battery and fuse is unprotected.</p>
+
+<p>Also worth watching: isolator switches and battery protection devices have their own
+maximum currents. If that is below the fuse rating, the component gives up before the fuse
+does. The planner checks this chain automatically.</p>
+
+<h2>Series or parallel — the biggest lever on solar cable</h2>
+
+<p>With more than one solar panel, the wiring decides the cross-section you need. In
+<b>series</b> the voltages add up while the current stays the same — thinner cable, lower
+losses. In <b>parallel</b> the currents add up and the cable has to grow. With an MPPT
+controller series wiring is therefore usually the better choice. A PWM controller cannot make
+use of the higher voltage.</p>
+
+<div class="box">
+<p style="margin:0"><b>Rule of thumb:</b> if the sum produces more than 10 mm² for a solar
+run, it is worth revisiting the panel wiring or the position of the controller first — that
+is almost always cheaper than even thicker copper.</p>
+</div>
+
+<h2>Common mistakes</h2>
+
+<ul>
+  <li><b>Only counting the positive cable.</b> The return path through negative counts just as
+      much — hence the factor 2.</li>
+  <li><b>Using continuous rather than peak current.</b> Inverters and compressors draw a
+      multiple of it on start-up.</li>
+  <li><b>Sizing the cable to the fuse instead of the other way round.</b> The order is:
+      current → cross-section → fuse.</li>
+  <li><b>Assuming the vehicle chassis as return path.</b> In a self-build a properly run
+      negative cable is the more dependable solution.</li>
+  <li><b>Aluminium instead of copper.</b> Aluminium conducts considerably worse; the formula
+      above is for copper.</li>
+  <li><b>Confusing flexible and solid conductors.</b> Vehicles need finely stranded cable —
+      solid conductors fracture under vibration.</li>
+</ul>
+
+<div class="box warn">
+  <b>Note:</b> The values on this page are planning aids for 12 V and 24 V DC systems. Verify
+  them against your components' documentation before installing. Mains-voltage shore power
+  installations are subject to national regulation and generally require a qualified
+  electrician.
+</div>
+
+<p>
+  <a class="cta" href="/#/wire-calculator">Calculate cable size now</a>
+  <a class="cta sec" href="/en/">Back to overview</a>
+</p>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Camper Electric Planner — a free open-source project for campervan self-builds.
+  <a href="https://github.com/freegroup/CampingElectricCalculator" rel="noopener">Source on GitHub</a>.</p>
+  <p><a href="/de/kabelquerschnitt-berechnen/" hreflang="de">Deutsch</a> · <a href="/en/wire-cross-section-calculator/">English</a> · <a href="/#/">Open the app</a></p>
+</div></footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Cable cross-section calculator for campervans and RVs",
+      "description": "The formula explained, a table of typical campervan cases, matching fuses and the most common mistakes.",
+      "inLanguage": "en",
+      "image": "https://camper-elektrik-planer.de/og-image.jpg",
+      "mainEntityOfPage": "https://camper-elektrik-planer.de/en/wire-cross-section-calculator/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://camper-elektrik-planer.de/en/" },
+        { "@type": "ListItem", "position": 2, "name": "Cable cross-section", "item": "https://camper-elektrik-planer.de/en/wire-cross-section-calculator/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do you calculate cable cross-section at 12 V?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A = (2 · L · I) / (δU · U · γ). L is the one-way cable length in metres, I the current in amps, U the system voltage, δU the permitted voltage drop as a fraction (0.02 for 2 %) and γ the conductivity of copper at 56 m/(Ω·mm²). A safety margin is added to the result, which is then rounded up to the next standard size." } },
+        { "@type": "Question", "name": "Why is the cable length doubled?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Current flows in a loop: the length of the negative conductor adds to that of the positive one. That is why the one-way length is multiplied by 2." } },
+        { "@type": "Question", "name": "Which fuse matches which cable size?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A fuse protects the conductor, not the appliance. Determine the cross-section from current and length first, then choose the fuse to match the cross-section — not the other way round. It belongs as close to the battery as possible." } },
+        { "@type": "Question", "name": "Should solar panels be wired in series or parallel?",
+          "acceptedAnswer": { "@type": "Answer", "text": "In series the voltages add up while the current stays the same, allowing thinner cable and lower losses. In parallel the currents add up and the cable has to be thicker. With an MPPT controller series wiring is usually the better choice; a PWM controller cannot use the higher voltage." } }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

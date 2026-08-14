@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campervan Electrical Planner – Wiring, Solar &amp; Cable Sizing</title>
+<meta name="description" content="Free planner for 12 V campervan and RV electrics: wire up battery, solar and DC-DC charger, calculate cable cross-sections and fuses, export a parts list.">
+<link rel="canonical" href="https://camper-elektrik-planer.de/en/">
+<link rel="alternate" hreflang="de" href="https://camper-elektrik-planer.de/de/">
+<link rel="alternate" hreflang="en" href="https://camper-elektrik-planer.de/en/">
+<link rel="alternate" hreflang="x-default" href="https://camper-elektrik-planer.de/de/">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:site_name" content="Camper Electric Planner">
+<meta property="og:title" content="Campervan Electrical Planner – Wiring, Solar &amp; Cable Sizing">
+<meta property="og:description" content="Free planner for 12 V campervan and RV electrics: wire up battery, solar and DC-DC charger, calculate cable cross-sections and fuses, export a parts list.">
+<meta property="og:url" content="https://camper-elektrik-planer.de/en/">
+<meta property="og:image" content="https://camper-elektrik-planer.de/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Campervan Electrical Planner – Wiring, Solar &amp; Cable Sizing">
+<meta name="twitter:description" content="Free planner for 12 V campervan electrics: battery, solar, cable cross-sections and fuses.">
+<meta name="twitter:image" content="https://camper-elektrik-planer.de/og-image.jpg">
+<style>
+:root{--ink:#212121;--muted:#5f6368;--line:#e0e0e0;--bg:#f7f8fb;--accent:#2e7d32;--accent-dk:#1b5e20;--head:#d9dff2}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff}
+header{background:var(--head);padding:14px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-weight:600;text-decoration:none;color:var(--ink)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:14px}
+nav a:hover{color:var(--ink);text-decoration:underline}
+h1{font-size:2rem;line-height:1.25;margin:36px 0 14px}
+h2{font-size:1.35rem;margin:38px 0 12px;padding-top:6px}
+h3{font-size:1.05rem;margin:24px 0 6px}
+p,li{color:#333}
+.lead{font-size:1.1rem;color:#444}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:13px 24px;border-radius:8px;font-weight:600;margin:6px 8px 6px 0}
+.cta:hover{background:var(--accent-dk)}
+.cta.sec{background:#fff;color:var(--accent-dk);border:2px solid var(--accent)}
+.cta.sec:hover{background:#f1f8f2}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:22px 0}
+.warn{background:#fff8e1;border-color:#ffe082}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:28px 0 44px;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps li{padding:12px 0 12px 44px;position:relative}
+.steps li b{display:block}
+.steps li::before{content:counter(s);counter-increment:s;position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:28px;font-size:14px;font-weight:700}
+@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="brand" href="/en/">Camper Electric Planner</a>
+  <nav>
+    <a href="/en/wire-cross-section-calculator/">Cable sizing</a>
+    <a href="/#/">Open the app</a>
+    <a href="/de/" hreflang="de">Deutsch</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<h1>Plan your campervan electrics — from wiring diagram to parts list</h1>
+
+<p class="lead">A free tool for laying out the 12 volt system in your campervan or motorhome:
+connect battery, solar, DC-DC charger and loads, get cable cross-sections and fuse sizes
+calculated for you, and catch mistakes before they are bolted into the vehicle.</p>
+
+<p>
+  <a class="cta" href="/#/map/new">Start planning</a>
+  <a class="cta sec" href="/en/wire-cross-section-calculator/">Just size a cable</a>
+</p>
+
+<h2>Why the electrics deserve a plan first</h2>
+
+<p>In a self-build, every shortcut gets paid for exactly once — but thoroughly. The three
+mistakes that come up most often:</p>
+
+<p><b>Undersized cable.</b> At 12 volts the same power draws roughly twenty times the current
+it would at 230 volts. A 2000 W inverter pulls close to 175 amps. A cable too thin for that
+gets warm — in the worst case warm enough for the insulation to give up. Voltage drop along
+the run adds to it: whatever is lost on the way never reaches the load, it heats the cable
+instead.</p>
+
+<p><b>Wrongly sized fuses.</b> A fuse does not protect the appliance, it protects the
+<em>cable</em>. So it has to match the conductor size, not the consumption. A 100 A fuse in
+front of a 6 mm² cable is about as useful as no fuse at all.</p>
+
+<p><b>Battery and charging gear that do not match.</b> LiFePO₄ needs different charge voltages
+than AGM or gel, and not every controller supports every chemistry. Mixing them costs capacity
+at best and the battery at worst.</p>
+
+<h2>What the planner does for you</h2>
+
+<ul>
+  <li><b>Click the system together</b> — battery in the middle, sources on the left (solar,
+      alternator, shore power), loads on the right. Components can be dragged to a different
+      branch at any time.</li>
+  <li><b>Continuous plausibility checks</b> — it flags mismatched voltages, wrongly sized
+      fuses, a switch that would trip before the fuse can protect the circuit, or a battery
+      chemistry that needs deep-discharge protection.</li>
+  <li><b>Energy balance</b> — harvest against consumption, with operating hours per device,
+      giving you the number of days the system runs off-grid.</li>
+  <li><b>Cable cross-sections</b> — for every connection, based on length, current and voltage.</li>
+  <li><b>Parts list with price estimate</b> — as a shopping list you can print.</li>
+</ul>
+
+<h2>Three steps to a finished plan</h2>
+
+<ol class="steps">
+  <li><b>Connect</b> Pick a template or start from scratch, add components from the database
+      and wire them up.</li>
+  <li><b>Calculate</b> Immediate feedback on capacity, current draw, cross-sections and
+      potential problems.</li>
+  <li><b>Build</b> Export the parts list and diagram, and start the build with a plan that
+      has been checked.</li>
+</ol>
+
+<p>
+  <a class="cta" href="/#/map/Standard100wSmallCooler">Template: 100 W solar with cool box</a>
+  <a class="cta sec" href="/#/map/Power540Watt">Template: 540 W build</a>
+</p>
+
+<h2>Common questions</h2>
+
+<h3>How much solar do I need?</h3>
+<p>That depends on consumption, not on roof area. Add up what your devices draw per day —
+compressor fridge, lighting, water pump, charging phone and laptop — and allow around 20 per
+cent headroom. Battery size and solar output follow from that number, in exactly that order.
+The planner works the same way round.</p>
+
+<h3>Is solar alone enough?</h3>
+<p>In summer usually, in winter rarely. Between December and February the same array delivers
+a fraction of its summer yield in northern latitudes. Anyone wanting year-round autonomy
+normally combines solar with a DC-DC charger on the alternator.</p>
+
+<h3>Do I need a DC-DC charger?</h3>
+<p>With a LiFePO₄ battery, essentially always. The alternator on its own does not reliably
+reach the required charge voltage, and modern vehicles actively regulate system voltage down.
+A B2B charger decouples starter and leisure battery and charges with the profile the chemistry
+needs.</p>
+
+<h3>Can I do this myself?</h3>
+<p>The 12 volt side can be installed by careful self-builders. The 230 V / mains side is a
+different matter and is subject to national regulation — in Germany, shore power installations
+must be built and signed off by a qualified electrician under DIN VDE 0100-721. Check the rules
+that apply where your vehicle is registered.</p>
+
+<div class="box warn">
+  <b>Note:</b> This tool produces planning estimates from the data you enter. It does not
+  replace a professional inspection. Verify safety-relevant decisions — fusing and cross-sections
+  in particular — against your components' documentation before installing anything.
+</div>
+
+<h2>Next: the cable calculator</h2>
+<p>If you only need to size a single run, the cable calculator is quicker: enter length,
+current and voltage, read off the cross-section together with voltage drop and power loss.
+The derivation of the formula and a table of typical campervan cases are on the
+<a href="/en/wire-cross-section-calculator/">cable cross-section</a> page.</p>
+
+<p><a class="cta" href="/#/map/new">Start planning now</a></p>
+
+</main>
+
+<footer><div class="wrap">
+  <p>Camper Electric Planner — a free open-source project for campervan self-builds.
+  <a href="https://github.com/freegroup/CampingElectricCalculator" rel="noopener">Source on GitHub</a>.</p>
+  <p><a href="/de/" hreflang="de">Deutsch</a> · <a href="/en/">English</a> · <a href="/#/">Open the app</a></p>
+</div></footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Camper Electric Planner",
+      "url": "https://camper-elektrik-planer.de/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "inLanguage": ["de", "en"],
+      "description": "Planner for 12 V campervan electrics: wiring, energy balance, cable cross-sections, fuses and parts list.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How much solar do I need for a campervan?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on consumption rather than roof area. Add up the daily draw of all devices and allow around 20 per cent headroom. Battery size and solar output follow from that figure, in that order." } },
+        { "@type": "Question", "name": "Is solar alone enough?",
+          "acceptedAnswer": { "@type": "Answer", "text": "In summer usually, in winter rarely. Between December and February an array delivers a fraction of its summer yield in northern latitudes, so year-round autonomy normally means combining solar with a DC-DC charger on the alternator." } },
+        { "@type": "Question", "name": "Do I need a DC-DC charger?",
+          "acceptedAnswer": { "@type": "Answer", "text": "With a LiFePO4 battery, essentially always. The alternator does not reliably reach the required charge voltage and modern vehicles regulate system voltage down. A B2B charger decouples starter and leisure battery and charges with the correct profile." } },
+        { "@type": "Question", "name": "Can I install campervan electrics myself?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The 12 volt side can be installed by careful self-builders. The 230 V mains side is subject to national regulation; in Germany shore power installations must be built and signed off by a qualified electrician under DIN VDE 0100-721." } }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
