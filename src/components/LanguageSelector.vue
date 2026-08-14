@@ -53,10 +53,10 @@ export default {
       localStorage.setItem('userLanguage', lang)
       // Update ErrorMessages for native JS components
       errorMessages.setLocale(lang)
-      // Force re-render of error messages if mindmap exists
-      if (this.$parent.$refs?.mindmap?.updateStatusIcons) {
-        this.$parent.$refs.mindmap.updateStatusIcons(true)
-      }
+      // The map is built from plain HTML and does not re-render like a Vue template,
+      // so it has to be told explicitly. Announced on the root instance because the
+      // map is not an ancestor or descendant of this component.
+      this.$root.$emit('localeChanged', lang)
     }
   }
 }

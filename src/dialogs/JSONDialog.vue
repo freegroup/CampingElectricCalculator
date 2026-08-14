@@ -13,8 +13,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="onCopyButtonClick">Copy</v-btn>
-          <v-btn color="primary" text @click="onCloseButtonClick">Close</v-btn>
+          <v-btn color="primary" text @click="onCopyButtonClick">{{ $t('dialog.common.copy') }}</v-btn>
+          <v-btn color="primary" text @click="onCloseButtonClick">{{ $t('dialog.common.close') }}</v-btn>
         </v-card-actions>
 
       </v-card>

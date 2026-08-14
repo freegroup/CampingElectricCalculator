@@ -536,9 +536,18 @@ export default class Mindmap extends GenericNode {
         runtimeDays = '<i aria-hidden="true" class="v-icon mdi mdi-all-inclusive"></i>'
       }
     }
-    this.inputLabel.innerHTML = "Input<br>" + toFixed(inputAh) + " Ah"
-    this.runtimeLabel.innerHTML = "Running Time<br>" + runtimeDays + " days"
-    this.outputLabel.innerHTML = "Output<br>" + toFixed(outputAh) + " Ah"
+    this.inputLabel.innerHTML = errorMessages.t('mapInput') + "<br>" + toFixed(inputAh) + " Ah"
+    this.runtimeLabel.innerHTML = errorMessages.t('mapRuntime') + "<br>" + runtimeDays + " " + errorMessages.t('mapDays')
+    this.outputLabel.innerHTML = errorMessages.t('mapOutput') + "<br>" + toFixed(outputAh) + " Ah"
+  }
+
+  /**
+   * Re-render all texts of the map. Called after the user switched the language.
+   */
+  refreshLabels() {
+    this.updateStatusbar()
+    this.leftChildren.forEach( child => child.refreshLabels())
+    this.rightChildren.forEach( child => child.refreshLabels())
   }
 
   updateStatusIcons(recursive) {

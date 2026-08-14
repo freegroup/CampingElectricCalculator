@@ -25,7 +25,7 @@
                             <v-list-item-title style="cursor:pointer" @click="onItemSelected(type, item.uuid)" v-html="item.longname"></v-list-item-title>
                             <v-list-item-subtitle>{{$t("dialog.addComponent.lastKnownPrice")}}: {{lastKnownPrice(item)}}</v-list-item-subtitle>
                             <v-list-item-subtitle v-if="item.shopping.length>0">
-                              <a :href="item.shopping[0].link" target="_blank">More Details...</a>
+                              <a :href="item.shopping[0].link" target="_blank">{{ $t('dialog.common.moreDetails') }}</a>
                             </v-list-item-subtitle>
                           </v-list-item-content>
                       </v-list-item>

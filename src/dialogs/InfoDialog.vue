@@ -15,18 +15,24 @@
                       <th width="200" class="text-left">{{ $t('dialog.info.nameHeader') }}</th>
                       <th class="text-left">{{ $t('dialog.info.valueHeader') }}</th></tr>
                   </thead>
-                  <tbody>
+                  <tbody v-if="modelEditable">
                     <tr :key="key" v-for="key in Object.keys(model.data)" >
                       <td class="text-no-wrap">{{ $t("data.label."+key)}}</td>
-                      <template v-if="modelEditable">
-                        <td v-if="isNumber(key)"><v-text-field :disabled="!attributeEditable(key)" :hide-details="true" dense type="number" v-model.number="model.data[key]" :suffix='$t("data.unit."+key)'></v-text-field></td> 
-                        <td v-else-if="isStringValue(key)"><v-select :disabled="!attributeEditable(key)" :hide-details="true" dense :items="items(key)" v-model="model.data[key]"></v-select></td> 
-                        <td v-else-if="isArrayValue(key)"><v-select :disabled="!attributeEditable(key)" :multiple="true" :hide-details="true" :items="items(key)" dense v-model="model.data[key]" ></v-select></td> 
-                      </template>
-                      <template v-else>
-                        <td>{{model.data[key]}} {{$t("data.unit."+key)}}</td> 
-                      </template>
+                      <td v-if="isNumber(key)"><v-text-field :disabled="!attributeEditable(key)" :hide-details="true" dense type="number" v-model.number="model.data[key]" :suffix='$t("data.unit."+key)'></v-text-field></td>
+                      <td v-else-if="isStringValue(key)"><v-select :disabled="!attributeEditable(key)" :hide-details="true" dense :items="items(key)" v-model="model.data[key]"></v-select></td>
+                      <td v-else-if="isArrayValue(key)"><v-select :disabled="!attributeEditable(key)" :multiple="true" :hide-details="true" :items="items(key)" dense v-model="model.data[key]" ></v-select></td>
                     </tr>
+                  </tbody>
+                  <tbody v-else>
+                    <template v-for="row in displayRows">
+                      <tr v-if="row.group" :key="row.path">
+                        <td colspan="2" class="pt-3 font-weight-bold">{{row.label}}</td>
+                      </tr>
+                      <tr v-else :key="row.path">
+                        <td class="text-no-wrap" :class="{'pl-4': row.indented}">{{row.label}}</td>
+                        <td>{{row.value}} {{row.unit}}</td>
+                      </tr>
+                    </template>
                   </tbody>
               </table>
             </v-col>
@@ -104,6 +110,7 @@
 <script>
 import DialogHeader from "@/components/DialogHeader.vue"
 import enums from "@/enums.js"
+import { toDisplayRows } from "@/utils/DataRows.js"
 
 export default {
   name: "InfoDialog",
@@ -140,6 +147,10 @@ export default {
     },
     hasShoppingLinks () {
       return this.model.shopping && this.model.shopping.length > 0
+    },
+    // read only view of the data, with nested blocks expanded into single rows
+    displayRows () {
+      return toDisplayRows(this.model.data, this.$t.bind(this))
     }
   },
   methods: {

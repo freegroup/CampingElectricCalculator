@@ -1,6 +1,7 @@
 import $ from "jquery"
 import { v4 as uuidv4 } from 'uuid'
 import store from "@/store/index"
+import errorMessages from '@/utils/ErrorMessages.js'
 
 let DRAGGING_COUNTER = 0
 let DRAGGING_NODE = null
@@ -32,11 +33,32 @@ export default class GenericNode {
     return []
   }
 
+  /**
+   * Write the operation hours into the status bar of this node. Kept separate from
+   * setOperationHours so the label alone can be re-rendered when the language changes.
+   */
+  renderOperationHours() {
+    if ( this.statusbarDiv ) {
+      const key = this.leftSide ? 'mapRunningHours' : 'mapConnectedHours'
+      this.statusbarDiv.innerHTML = ` ${errorMessages.t(key, { hours: this.model.operationHours })}`
+    }
+  }
+
+  /**
+   * Re-render all texts of this node and everything below it. Called after the user
+   * switched the language, because the labels are written as plain HTML and don't
+   * re-render on their own like a Vue template would.
+   */
+  refreshLabels() {
+    this.renderOperationHours()
+    if ( this.children ) {
+      this.children.forEach( child => child.refreshLabels())
+    }
+  }
+
   setOperationHours( hours ) {
     this.model.operationHours = hours
-    if ( this.statusbarDiv ) {
-      this.statusbarDiv.innerHTML = ` ${this.leftSide ? 'Running' : 'Connected'} ${hours} Hours / Day`
-    }
+    this.renderOperationHours()
 
     if ( this.mindmap ) {
       this.mindmap.updateStatusbar()

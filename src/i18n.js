@@ -131,6 +131,7 @@ export default {
         spannung_max: "Voltage (max)",
         operationHours: "Operation Hours",
         nennspannung: "Nominal Voltage",
+        heizleistung: "Heating Power",
         watt: "Power"
       },
       unit: {
@@ -173,6 +174,7 @@ export default {
         spannung_max: "V",
         nennspannung: "V",
         operationHours: "hours",
+        heizleistung: "W",
         chargeSupport: ""
       }
     },
@@ -213,6 +215,7 @@ export default {
       },
       description: {
         switchPanel: "Install a switch panel to operate several appliances from one location in your camper. These switch panels.",
+        heater: "Diesel or gasoline air heaters draw their fuel from the vehicle tank or a separate tank and blow warm air into the living area. They need very little electrical power in continuous operation, but noticeably more during the glow phase at start-up.",
         dcdcBooster: "A DC-to-DC converter is an electronic circuit or electromechanical device that converts a source of direct current (DC) from one voltage level to another. ",
         carSocketCharger: "USB chargers that plug into the car socket (cigarette lighter) to charge phones, tablets, laptops and other USB devices. These adapters convert 12V DC to 5V USB power.",
         solarBooster: "Solar charge controllers sits in between the solar panels and your battery and used to convert varying voltages from solar cells to charge batteries of different types (Acid, LiFePo4,..)",
@@ -242,6 +245,8 @@ export default {
         ok: "OK",
         cancel: "Cancel",
         apply: "Apply",
+        copy: "Copy",
+        moreDetails: "More details…",
         provider: "Provider",
         consumer: "Consumer"
       },
@@ -568,6 +573,7 @@ export default {
         spannung_max: "Spannung (max)",
         operationHours: "Betriebsstunden",
         nennspannung: "Nennspannung",
+        heizleistung: "Heizleistung",
         watt: "Leistung"
       },
       unit: {
@@ -610,6 +616,7 @@ export default {
         spannung_max: "V",
         nennspannung: "V",
         operationHours: "Stunden",
+        heizleistung: "W",
         chargeSupport: ""
       }
     },
@@ -650,6 +657,7 @@ export default {
       },
       description: {
         switchPanel: "Installiere ein Schaltpanel, um mehrere Geräte von einem Ort in deinem Camper aus zu bedienen.",
+        heater: "Diesel- oder Benzin-Standheizungen beziehen ihren Brennstoff aus dem Fahrzeugtank oder einem separaten Tank und blasen warme Luft in den Wohnraum. Im Dauerbetrieb brauchen sie sehr wenig Strom, beim Start während der Glühphase dagegen deutlich mehr.",
         dcdcBooster: "Ein Gleichspannungswandler (DC-DC-Wandler) ist eine elektrische Schaltung, die eine am Eingang zugeführte Gleichspannung in eine Gleichspannung mit höherem, niedrigerem oder invertiertem Spannungsniveau umwandelt.",
         carSocketCharger: "USB-Ladegeräte, die in die KFZ-Steckdose (Zigarettenanzünder) gesteckt werden, um Handys, Tablets, Laptops und andere USB-Geräte zu laden. Diese Adapter wandeln 12V DC in 5V USB-Strom um.",
         solarBooster: "Solar-Laderegler sitzen zwischen den Solarmodulen und der Batterie. Sie wandeln die schwankende Spannung der Solarzellen um, um Batterien verschiedener Typen (Blei, LiFePo4,..) optimal zu laden.",
@@ -679,6 +687,8 @@ export default {
         ok: "OK",
         cancel: "Abbrechen",
         apply: "Übernehmen",
+        copy: "Kopieren",
+        moreDetails: "Mehr Details…",
         provider: "Erzeuger",
         consumer: "Verbraucher"
       },
@@ -753,7 +763,7 @@ export default {
         subtitle: "Technische Details zur Komponente",
         nameHeader: "Name",
         valueHeader: "Wert",
-        shoppingLinks: "Shopping Links",
+        shoppingLinks: "Einkaufslinks",
         lastKnownPrice: "Letzter bekannter Preis",
         suggestShop: "Shop vorschlagen"
       },

@@ -106,10 +106,25 @@ export default {
       this.$refs.parallelDialog.show()
     })
 
+    this.$root.$on('localeChanged', this.onLocaleChanged)
+
     const configuration = this.$store.getters["profile/getById"](this.$route.params.configuration)
     this.loadConfiguration(configuration)
   },
+  beforeDestroy() {
+    this.$root.$off('localeChanged', this.onLocaleChanged)
+  },
   methods: {
+    /**
+     * The map is rendered as plain HTML, so a language switch has to re-write the
+     * labels by hand - a Vue template would do this on its own.
+     */
+    onLocaleChanged() {
+      this.map.refreshLabels()
+      this.map.updateStatusIcons(true)
+      this.setTooltips()
+    },
+
     /**
      * Build the map for the given configuration.
      *

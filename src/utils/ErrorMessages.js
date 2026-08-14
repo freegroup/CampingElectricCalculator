@@ -1,5 +1,5 @@
-// Error messages for native JS components in src/map
-// These components don't have access to Vue's $t() function
+// Texts for the native JS components in src/map (error messages and UI labels).
+// These components are not Vue components and therefore have no access to $t().
 
 const messages = {
   en: {
@@ -31,7 +31,15 @@ const messages = {
     childVoltageNotSupported: "Child delivers power of <b>[{actual} V]</b> but switch can handle only up to <b>[{max} V]</b>",
     batteryTypeRequiresProtection: "Battery type <b>{batteryType}</b> requires a battery protection between all consumers to avoid deep discharge and damage of the battery.",
     batteryDirectConnectionNotAllowed: "Battery of type <b>'{batteryType}'</b> do not allow a direct connection to a device of type <b>'{deviceType}'</b>",
-    solarControllerVoltageNotSupported: "The solar controller with <b>[{controllerVoltage} V]</b> do not support the used battery with <b>[{batteryVoltage} V]</b>."
+    solarControllerVoltageNotSupported: "The solar controller with <b>[{controllerVoltage} V]</b> do not support the used battery with <b>[{batteryVoltage} V]</b>.",
+
+    // labels of the battery balance bar and the node status bars
+    mapInput: "Input",
+    mapOutput: "Output",
+    mapRuntime: "Running Time",
+    mapDays: "days",
+    mapRunningHours: "Running {hours} hours / day",
+    mapConnectedHours: "Connected {hours} hours / day"
   },
   de: {
     voltageNotSupported: "Die {component} benötigt eine Versorgungsspannung von <b>[{required} V]</b>. Eingangsspannung von <b>[{actual} V]</b> wird nicht unterstützt.",
@@ -62,7 +70,15 @@ const messages = {
     childVoltageNotSupported: "Kind liefert Leistung von <b>[{actual} V]</b>, aber Schalter kann nur bis zu <b>[{max} V]</b> verarbeiten",
     batteryTypeRequiresProtection: "Batterietyp <b>{batteryType}</b> erfordert einen Batterieschutz zwischen allen Verbrauchern, um Tiefentladung und Beschädigung der Batterie zu vermeiden.",
     batteryDirectConnectionNotAllowed: "Batterie vom Typ <b>'{batteryType}'</b> erlaubt keine direkte Verbindung zu einem Gerät vom Typ <b>'{deviceType}'</b>",
-    solarControllerVoltageNotSupported: "Der Solarregler mit <b>[{controllerVoltage} V]</b> unterstützt die verwendete Batterie mit <b>[{batteryVoltage} V]</b> nicht."
+    solarControllerVoltageNotSupported: "Der Solarregler mit <b>[{controllerVoltage} V]</b> unterstützt die verwendete Batterie mit <b>[{batteryVoltage} V]</b> nicht.",
+
+    // Beschriftungen der Bilanzleiste an der Batterie und der Statuszeilen der Knoten
+    mapInput: "Eingang",
+    mapOutput: "Ausgang",
+    mapRuntime: "Laufzeit",
+    mapDays: "Tage",
+    mapRunningHours: "Läuft {hours} Stunden / Tag",
+    mapConnectedHours: "Angeschlossen {hours} Stunden / Tag"
   }
 }
 

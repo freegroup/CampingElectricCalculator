@@ -23,12 +23,17 @@
             <v-row>
               <table class="text-body-2">
                   <tbody>
-                    <tr :key="key" v-for="key in Object.keys(battery.data)" >
-                      <td class="text-no-wrap pr-5 font-weight-medium">{{ $t("data.label."+key)}}</td>
-                      <td>{{battery.data[key]}} {{ $t("data.unit."+key)}}</td> 
-                    </tr>
+                    <template v-for="row in rows(battery)">
+                      <tr v-if="row.group" :key="row.path">
+                        <td colspan="2" class="pt-3 font-weight-bold">{{row.label}}</td>
+                      </tr>
+                      <tr v-else :key="row.path">
+                        <td class="text-no-wrap pr-5 font-weight-medium" :class="{'pl-4': row.indented}">{{row.label}}</td>
+                        <td>{{row.value}} {{row.unit}}</td>
+                      </tr>
+                    </template>
                     <tr v-if="battery.shopping.length>0" >
-                      <td><a target="_blank" class="ma-1 darken-1" :href="battery.shopping[0].link">More Details...</a></td> 
+                      <td><a target="_blank" class="ma-1 darken-1" :href="battery.shopping[0].link">{{ $t('dialog.common.moreDetails') }}</a></td> 
                       <td></td>
                     </tr>
                   </tbody>
@@ -57,12 +62,17 @@
               <v-row>
                 <table class="text-body-2">
                    <tbody>
-                    <tr :key="key" v-for="key in Object.keys(item.data)" >
-                      <td class="text-no-wrap pr-5 font-weight-medium">{{ $t("data.label."+key)}}</td>
-                      <td>{{item.data[key]}} {{ $t("data.unit."+key)}}</td> 
-                    </tr>
+                    <template v-for="row in rows(item)">
+                      <tr v-if="row.group" :key="row.path">
+                        <td colspan="2" class="pt-3 font-weight-bold">{{row.label}}</td>
+                      </tr>
+                      <tr v-else :key="row.path">
+                        <td class="text-no-wrap pr-5 font-weight-medium" :class="{'pl-4': row.indented}">{{row.label}}</td>
+                        <td>{{row.value}} {{row.unit}}</td>
+                      </tr>
+                    </template>
                     <tr v-if="item.shopping.length>0" >
-                      <td><a target="_blank" class="ma-1 darken-1" :href="item.shopping[0].link">More Details...</a></td> 
+                      <td><a target="_blank" class="ma-1 darken-1" :href="item.shopping[0].link">{{ $t('dialog.common.moreDetails') }}</a></td> 
                       <td></td>
                     </tr>
                   </tbody>
@@ -92,12 +102,17 @@
               </v-row>
               <v-row>
                 <table class="text-body-2">
-                    <tr :key="item.uuid + index" v-for="(key, index) in Object.keys(item.data)" >
-                      <td class="text-no-wrap pr-5 font-weight-medium">{{$t("data.label."+key)}}</td>
-                      <td>{{item.data[key]}} {{$t("data.unit."+key)}}</td> 
-                    </tr>
+                    <template v-for="row in rows(item)">
+                      <tr v-if="row.group" :key="item.uuid + row.path">
+                        <td colspan="2" class="pt-3 font-weight-bold">{{row.label}}</td>
+                      </tr>
+                      <tr v-else :key="item.uuid + row.path">
+                        <td class="text-no-wrap pr-5 font-weight-medium" :class="{'pl-4': row.indented}">{{row.label}}</td>
+                        <td>{{row.value}} {{row.unit}}</td>
+                      </tr>
+                    </template>
                     <tr v-if="item.shopping.length>0" >
-                      <td><a target="_blank" class="ma-1 darken-1" :href="item.shopping[0].link">More Details...</a></td> 
+                      <td><a target="_blank" class="ma-1 darken-1" :href="item.shopping[0].link">{{ $t('dialog.common.moreDetails') }}</a></td> 
                       <td></td>
                     </tr>
                 </table>
@@ -114,6 +129,7 @@
 <script>
 import AppFooter from '@/components/AppFooter.vue'
 import NotificationDialog from '@/dialogs/NotificationDialog.vue'
+import { toDisplayRows } from '@/utils/DataRows.js'
 
 export default {
   name: 'Map',
@@ -151,6 +167,13 @@ export default {
     producer: []
   }),
   methods: {
+    /**
+     * Rows of the fact sheet table, with nested data blocks expanded into single rows.
+     */
+    rows(component) {
+      return toDisplayRows(component.data, this.$t.bind(this))
+    },
+
     /**
      * Resolve a component of the configuration. Returns "null" if the component is not part
      * of the component database (anymore) so the caller can leave it out of the list.
