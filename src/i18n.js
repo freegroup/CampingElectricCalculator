@@ -318,8 +318,6 @@ export default {
         okButton: "Close",
         title: "Component Information",
         subtitle: "Technical details about the component",
-        nameHeader: "Name",
-        valueHeader: "Value",
         shoppingLinks: "Shopping Links",
         lastKnownPrice: "Last known price",
         suggestShop: "Suggest new shop"
@@ -761,8 +759,6 @@ export default {
         okButton: "Schließen",
         title: "Komponenten-Information",
         subtitle: "Technische Details zur Komponente",
-        nameHeader: "Name",
-        valueHeader: "Wert",
         shoppingLinks: "Einkaufslinks",
         lastKnownPrice: "Letzter bekannter Preis",
         suggestShop: "Shop vorschlagen"

@@ -10,11 +10,6 @@
             </v-col>
             <v-col cols="8"  class="mt-5 pl-10">
               <table>
-                  <thead>
-                    <tr>
-                      <th width="200" class="text-left">{{ $t('dialog.info.nameHeader') }}</th>
-                      <th class="text-left">{{ $t('dialog.info.valueHeader') }}</th></tr>
-                  </thead>
                   <tbody v-if="modelEditable">
                     <tr :key="key" v-for="key in Object.keys(model.data)" >
                       <td class="text-no-wrap">{{ $t("data.label."+key)}}</td>
