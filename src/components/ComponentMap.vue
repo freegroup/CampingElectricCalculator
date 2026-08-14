@@ -12,6 +12,7 @@
     <WireDialog ref="wireDialog"/>
     <SerialDialog ref="serialDialog"/>
     <ParallelDialog ref="parallelDialog"/>
+    <NotificationDialog ref="notificationDialog"/>
 
     <v-card style="z-index:2; position:absolute; bottom:20px; right:20px;padding-left:10px;padding-right:10px" width="250" height="30">
       <v-slider v-model="zoom" step="5" min="30" max="170" dense></v-slider>
@@ -34,12 +35,15 @@ import InOutBalanceDialog from '@/dialogs/InOutBalanceDialog.vue'
 import ConsumerDialog from '@/dialogs/ConsumerDialog.vue'
 import SerialDialog from '@/dialogs/SerialDialog.vue'
 import ParallelDialog from '@/dialogs/ParallelDialog.vue'
+import NotificationDialog from '@/dialogs/NotificationDialog.vue'
+import Default from '@/store/configuration/Default.json'
 import $ from "jquery"
 
 export default {
   data() {
     return {
       map: null,
+      configuration: null,
       price: { low: 0, high: 0 },
       calcPrice: 0,
       zoom: 100
@@ -56,7 +60,8 @@ export default {
     TimerDialog,
     InfoDialog,
     ParallelDialog,
-    SerialDialog
+    SerialDialog,
+    NotificationDialog
   },
   computed: mapState({
     low() {
@@ -105,21 +110,46 @@ export default {
     this.loadConfiguration(configuration)
   },
   methods: {
+    /**
+     * Build the map for the given configuration.
+     *
+     * A configuration can come from the localStorage, from a bundled example or from a JSON
+     * file the user picked. All of them can reference components which don't exist (anymore).
+     * Whatever we can't resolve is skipped instead of breaking the map, and the user gets a
+     * short, friendly summary of what was left out.
+     */
     loadConfiguration (configuration ) {
+      const problems = []
+
+      if ( !configuration || typeof configuration !== "object" ) {
+        configuration = { id: "user", name: "User", config: Default, loadProblem: "configInvalid" }
+      }
+
+      // a problem the store already ran into while reading the configuration
+      if ( configuration.loadProblem ) {
+        problems.push(this.$t('dialog.loadProblem.' + configuration.loadProblem))
+      }
+
+      let config = configuration.config
+      if ( !this.isValidConfig(config) ) {
+        config = Default
+        problems.push(this.$t('dialog.loadProblem.configInvalid'))
+      }
+
       this.configuration = configuration
-      const config = configuration.config
+
       // delete the old DOM tree
       this.map.reset()
 
-      // setup the center element 
-      const data = this.$store.getters[config.center.type + "/getByUuid"]( config.center.uuid)
+      // setup the center element
+      const data = this.resolveComponentModel(config.center.type, config.center.uuid) || this.resolveDefaultBattery(problems)
       this.map.setModel(data)
       this.map.model.operationHours = 24
       if ( config.center.customData ) {
         this.map.setCustomData(config.center.customData)
       }
-      this.createLeftComponents(this.map, config.left)
-      this.createRightComponents(this.map, config.right)
+      this.createComponents(this.map, config.left, true, problems)
+      this.createComponents(this.map, config.right, false, problems)
 
       // it is possible, that not all images are loaded immediatly. In this case
       // we must check the images and redraw the lines between the nodes.
@@ -137,55 +167,134 @@ export default {
         this.setTooltips()
       })
       this.$emit("configLoaded")
+
+      this.reportLoadProblems(problems)
     },
 
-    createLeftComponents (parentComponentHost, childComponents) {
-      childComponents.forEach(componentRef => {
-        const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
+    /**
+     * Check that a configuration provides the parts the map is built from.
+     */
+    isValidConfig (config) {
+      return !!config &&
+        typeof config === "object" &&
+        !!config.center &&
+        typeof config.center === "object" &&
+        Array.isArray(config.left) &&
+        Array.isArray(config.right)
+    },
 
-        const node = NodeFactory.createNode(true, data)
+    /**
+     * Look up a component in the store. Returns "null" for unknown component types as well as
+     * for components which are not part of the component database (anymore).
+     */
+    resolveComponentModel (type, uuid) {
+      if ( typeof type !== "string" || type.length === 0 ) {
+        return null
+      }
+      const getByUuid = this.$store.getters[type + "/getByUuid"]
+      if ( typeof getByUuid !== "function" ) {
+        return null
+      }
+      return getByUuid(uuid) || null
+    },
+
+    /**
+     * Fallback for a configuration whose battery doesn't exist anymore. Without a center
+     * element the map can't be rendered at all, so we always have to provide one.
+     */
+    resolveDefaultBattery (problems) {
+      problems.push(this.$t('dialog.loadProblem.unknownBattery'))
+
+      const fallback = this.resolveComponentModel(Default.center.type, Default.center.uuid)
+      if ( fallback ) {
+        return fallback
+      }
+      const accus = this.$store.state.accu.components
+      return accus.find(accu => accu.uuid !== "custom") || accus[0]
+    },
+
+    /**
+     * Human readable name of a component type, used in the messages for the user.
+     */
+    componentTypeName (type) {
+      const key = 'component.name.' + type
+      const name = this.$t(key)
+      return name === key ? String(type) : name
+    },
+
+    /**
+     * Build one side of the map below the given host.
+     *
+     * @param {Boolean} leftSide "true" for the producer side (left of the battery),
+     *                           "false" for the consumer side (right of the battery).
+     *                           That flag is the only thing both sides differ in, so the
+     *                           handling of components which can't be resolved lives here once.
+     */
+    createComponents (parentComponentHost, childComponents, leftSide, problems) {
+      if ( !Array.isArray(childComponents) ) {
+        return
+      }
+
+      childComponents.forEach(componentRef => {
+        if ( !componentRef || typeof componentRef !== "object" ) {
+          return
+        }
+
+        const data = this.resolveComponentModel(componentRef.type, componentRef.uuid)
+        const node = NodeFactory.createNode(leftSide, data)
+        if ( node === null ) {
+          // The component is gone. Skip it together with its children - they hang below a
+          // component which no longer exists and can't be placed anywhere sensible.
+          problems.push(this.$t('dialog.loadProblem.unknownComponent', { component: this.componentTypeName(componentRef.type) }))
+          return
+        }
+
         node.model.operationHours = componentRef.operationHours
         node.model.operationHours ||= 24
 
         node.model.wireLength = componentRef.wireLength
         node.model.wireLength ||= 100 // cm
- 
+
         if ( componentRef.customData ) {
           node.setCustomData(componentRef.customData)
         }
 
         parentComponentHost.addNode(node)
-        this.createLeftComponents(node, componentRef.children) 
+        this.createComponents(node, componentRef.children, leftSide, problems)
       })
     },
 
-    createRightComponents (parentComponentHost, childComponents) {
-      childComponents.forEach(componentRef => {
-        const data = this.$store.getters[componentRef.type + "/getByUuid"]( componentRef.uuid)
-        const node = NodeFactory.createNode(false, data)
-        
-        node.model.operationHours = componentRef.operationHours
-        node.model.operationHours ||= 24
+    /**
+     * Tell the user - once and in plain language - what could not be restored.
+     */
+    reportLoadProblems (problems) {
+      const messages = problems.filter((message, index) => problems.indexOf(message) === index)
+      if ( messages.length === 0 ) {
+        return
+      }
 
-        node.model.wireLength = componentRef.wireLength
-        node.model.wireLength ||= 100 // cm
-        
-        if ( componentRef.customData ) {
-          node.setCustomData(componentRef.customData)
-        }
-
-        parentComponentHost.addNode(node)
-        this.createRightComponents(node, componentRef.children) 
+      this.$nextTick(() => {
+        this.$refs.notificationDialog && this.$refs.notificationDialog.show({
+          title: this.$t('dialog.loadProblem.title'),
+          subtitle: this.$t('dialog.loadProblem.subtitle'),
+          hint: this.$t('dialog.loadProblem.hint'),
+          messages: messages,
+          severity: "warning"
+        })
       })
     },
-    
+
     async handleNodeAddChild (event) {
       const node = event.component
       const candidateTypes = event.candidates
       const { type, uuid } = await this.$refs.addChildDialog.show(candidateTypes)
       if (uuid) {
-        const data = this.$store.getters[type + "/getByUuid"](uuid)
+        const data = this.resolveComponentModel(type, uuid)
         const child = NodeFactory.createNode(event.leftSide, data)
+        if (child === null) {
+          this.reportLoadProblems([this.$t('dialog.loadProblem.unknownComponent', { component: this.componentTypeName(type) })])
+          return
+        }
         node.addNode(child)
         this.saveConfig()
         // Set tooltips for the newly added component
@@ -208,7 +317,11 @@ export default {
       const node = event.component
       const uuid = await this.$refs.selectDialog.show(node.type)
       if (uuid) {
-        const model = this.$store.getters[node.type + "/getByUuid"](uuid)
+        const model = this.resolveComponentModel(node.type, uuid)
+        if (model === null) {
+          this.reportLoadProblems([this.$t('dialog.loadProblem.unknownComponent', { component: this.componentTypeName(node.type) })])
+          return
+        }
         node.setModel(model)
         this.saveConfig()
       }
@@ -229,7 +342,11 @@ export default {
       const node = event.component
       const data = await this.$refs.infoDialog.show(node)
       if ( data ) {
-        const model = this.$store.getters[node.type + "/getByUuid"]("custom")
+        const model = this.resolveComponentModel(node.type, "custom")
+        if ( model === null ) {
+          // no "custom" template for this type - keep the component untouched
+          return
+        }
         node.setModel(model)
         node.setCustomData(data)
         this.saveConfig()
@@ -258,7 +375,7 @@ export default {
       this.$store.dispatch('profile/saveUserConfiguration', this.map.toJson())
 
       // and switch from the predefined setup to the "user" configuration by "#" routing.
-      if ( this.configuration.id !== "user") {
+      if ( this.configuration?.id !== "user") {
         this.$router.push({ path: '/map/user' })
       }
     },
@@ -292,7 +409,7 @@ export default {
     },
 
     getName() {
-      return this.configuration.name
+      return this.configuration?.name || ""
     },
 
     center() {

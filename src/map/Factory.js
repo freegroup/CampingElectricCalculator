@@ -20,8 +20,19 @@ import RightFuse from "./RightFuse.js"
 import SwitchPanel from "./SwitchPanel.js"
 
 export default class NodeFactory {
+  /**
+   * Create the visual node for the given component model.
+   *
+   * Returns "null" if the model is missing or of a type this version of the app doesn't
+   * know (e.g. a configuration saved by a newer version, or a hand edited JSON file).
+   * Callers must handle "null" and skip the component instead of breaking the whole map.
+   */
   static createNode (leftSide, model) {
-    let node = null  
+    if ( !model || typeof model.type !== "string" ) {
+      return null
+    }
+
+    let node = null
     switch (model.type) {
       case "carSocket":
         node = new CarSocket()     
@@ -98,6 +109,11 @@ export default class NodeFactory {
         node = new SolarPanel()
         break
     }
+
+    if ( node === null ) {
+      return null
+    }
+
     node.setModel(model)
     return node
   }

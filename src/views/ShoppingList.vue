@@ -7,7 +7,7 @@
 
     <v-main class="ma-6" >
 
-      <v-card class="pa-3 mb-10">
+      <v-card class="pa-3 mb-10" v-if="battery">
         <v-row no-gutters class="mb-5">
           <v-col cols="12" class="mb-4">
             <div class="text-h6">{{battery.name}}</div>
@@ -108,56 +108,111 @@
       </v-card>
     </v-main>
     <AppFooter />
+    <NotificationDialog ref="notificationDialog"/>
   </v-app>
 </template>
 <script>
 import AppFooter from '@/components/AppFooter.vue'
+import NotificationDialog from '@/dialogs/NotificationDialog.vue'
 
 export default {
   name: 'Map',
   components: {
-    AppFooter
+    AppFooter,
+    NotificationDialog
   },
   mounted() {
-    this.configuration = this.$store.getters["profile/getById"](this.$route.params.configuration)
+    const configuration = this.$store.getters["profile/getById"](this.$route.params.configuration)
+    const problems = []
+
+    if ( configuration.loadProblem ) {
+      problems.push(this.$t('dialog.loadProblem.' + configuration.loadProblem))
+    }
+
+    const config = configuration.config
+    if ( !config || typeof config !== "object" ) {
+      this.configuration = configuration
+      problems.push(this.$t('dialog.loadProblem.configInvalid'))
+      this.reportProblems(problems)
+      return
+    }
+
+    this.battery = this.getComponent(config.center, problems)
+    this.producer = this.collectComponents(config.left, problems)
+    this.consumers = this.collectComponents(config.right, problems)
+    this.configuration = configuration
+
+    this.reportProblems(problems)
   },
   data: () => ({
-    configuration: null
+    configuration: null,
+    battery: null,
+    consumers: [],
+    producer: []
   }),
   methods: {
-    getComponent(componentRef) {
+    /**
+     * Resolve a component of the configuration. Returns "null" if the component is not part
+     * of the component database (anymore) so the caller can leave it out of the list.
+     */
+    getComponent(componentRef, problems) {
+      if ( !componentRef || typeof componentRef !== "object" ) {
+        return null
+      }
       const uuid = componentRef.uuid
       const type = componentRef.type
-      const node = this.$store.getters[type + "/getByUuid"]( uuid)
+      const getByUuid = typeof type === "string" ? this.$store.getters[type + "/getByUuid"] : null
+      const node = typeof getByUuid === "function" ? getByUuid(uuid) : null
+
+      if ( !node ) {
+        const key = 'component.name.' + type
+        const name = this.$t(key)
+        problems.push(this.$t('dialog.loadProblem.unknownComponent', { component: name === key ? String(type) : name }))
+        return null
+      }
+
       if ( componentRef.customData ) {
         node.data = componentRef.customData
       }
       return node
-    }
-  },
-  watch: {
-  },
-  computed: {
-    battery() {
-      return this.getComponent(this.configuration.config.center)
     },
-    consumers() {
+
+    /**
+     * Flatten the component tree into the list shown to the user, skipping everything
+     * which can't be resolved anymore.
+     */
+    collectComponents(childComponents, problems) {
       const result = []
-      const flat = child => { 
-        result.push(this.getComponent(child))
-        child.children.forEach(c => flat(c))
+      const flat = child => {
+        const component = this.getComponent(child, problems)
+        if ( component === null ) {
+          // the component is gone - and so is everything connected below it
+          return
+        }
+        result.push(component)
+        const children = Array.isArray(child.children) ? child.children : []
+        children.forEach(c => flat(c))
       }
-      this.configuration.config.right.forEach( item => flat(item))
+      const roots = Array.isArray(childComponents) ? childComponents : []
+      roots.forEach( item => flat(item))
       return result
     },
-    producer() {
-      const result = []
-      const flat = child => { 
-        result.push(this.getComponent(child))
-        child.children.forEach(c => flat(c))
+
+    reportProblems(problems) {
+      const messages = problems.filter((message, index) => problems.indexOf(message) === index)
+      if ( messages.length === 0 ) {
+        return
       }
-      this.configuration.config.left.forEach( item => flat(item))
-      return result
+
+      this.$nextTick(() => {
+        this.$refs.notificationDialog && this.$refs.notificationDialog.show({
+          title: this.$t('dialog.loadProblem.title'),
+          subtitle: this.$t('dialog.loadProblem.subtitle'),
+          hint: this.$t('dialog.loadProblem.hint'),
+          messages: messages,
+          severity: "warning"
+        })
+      })
     }
   }
 }

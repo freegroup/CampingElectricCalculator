@@ -300,6 +300,15 @@ export default {
         title: "Component Error",
         subtitle: "Indicates errors in the configuration of the components or their children"
       },
+      loadProblem: {
+        title: "Setup not fully restored",
+        subtitle: "Some parts of your setup could not be loaded. Everything else is ready and you can simply carry on.",
+        hint: "This usually happens when a component has been replaced or removed from our component database.",
+        storageCorrupt: "Your last saved setup could not be read any more. We have loaded the standard setup for you instead.",
+        configInvalid: "This setup could not be read. We have loaded the standard setup for you instead.",
+        unknownBattery: "The battery of your setup is not available any more. We have inserted a standard battery instead.",
+        unknownComponent: "\"{component}\" is not available any more and has been removed from your setup — together with everything that was connected to it."
+      },
       info: {
         okButton: "Close",
         title: "Component Information",
@@ -728,6 +737,15 @@ export default {
         okButton: "Schließen",
         title: "Komponenten-Fehler",
         subtitle: "Zeigt Fehler in der Konfiguration der Komponenten oder ihrer untergeordneten Elemente an"
+      },
+      loadProblem: {
+        title: "Aufbau nicht vollständig geladen",
+        subtitle: "Ein paar Teile deines Aufbaus konnten nicht geladen werden. Alles andere steht bereit und du kannst ganz normal weiterarbeiten.",
+        hint: "Das passiert meistens dann, wenn eine Komponente in unserer Komponenten-Datenbank ersetzt oder entfernt wurde.",
+        storageCorrupt: "Dein zuletzt gespeicherter Aufbau war leider nicht mehr lesbar. Wir haben stattdessen den Standard-Aufbau für dich geladen.",
+        configInvalid: "Dieser Aufbau konnte nicht gelesen werden. Wir haben stattdessen den Standard-Aufbau für dich geladen.",
+        unknownBattery: "Die Batterie deines Aufbaus gibt es nicht mehr. Wir haben stattdessen eine Standard-Batterie eingesetzt.",
+        unknownComponent: "„{component}“ gibt es nicht mehr und wurde aus deinem Aufbau entfernt — zusammen mit allem, was daran hing."
       },
       info: {
         okButton: "Schließen",

@@ -8,6 +8,62 @@ import Aboveaverage200wLightCooler from "./configuration/aboveaverage_200w_light
 import Power540Watt from "./configuration/power_540w.json"
 import Power720Watt from "./configuration/power_720w.json"
 
+const USER_CONFIGURATION_KEY = 'configuration'
+const CORRUPT_CONFIGURATION_KEY = 'configuration.corrupted'
+
+/**
+ * Rough structural check of a configuration. Only verifies that the parts the map
+ * relies on are present at all - the detailed, per component check happens while
+ * building the map, because only there we know which components still exist.
+ */
+function hasExpectedShape (config) {
+  return !!config &&
+    typeof config === "object" &&
+    !!config.center &&
+    typeof config.center === "object" &&
+    Array.isArray(config.left) &&
+    Array.isArray(config.right)
+}
+
+/**
+ * Read the configuration the user worked on last. The data comes from the localStorage
+ * and can be unreadable for all kind of reasons outside of our control (aborted write,
+ * exceeded quota, manual edit, ...).
+ *
+ * In this case we never let the app die: we move the unreadable data aside - so the user
+ * keeps a chance to recover it by hand and the app heals itself on the next start - and
+ * fall back to the default configuration. The returned "loadProblem" tells the view which
+ * message it should show to the user.
+ */
+function readUserConfiguration () {
+  const stored = localStorage.getItem(USER_CONFIGURATION_KEY)
+  if (!stored) {
+    return { id: "user", name: "User", config: Default }
+  }
+
+  let configuration = null
+  try {
+    configuration = JSON.parse(stored)
+  } catch (error) {
+    configuration = null
+  }
+
+  if (configuration && hasExpectedShape(configuration.config)) {
+    return configuration
+  }
+
+  // Keep the broken data around for a possible manual rescue, but get it out of the way
+  // so the user is not greeted by the same problem on every single start.
+  try {
+    localStorage.setItem(CORRUPT_CONFIGURATION_KEY, stored)
+    localStorage.removeItem(USER_CONFIGURATION_KEY)
+  } catch (error) {
+    // Storage is not writable. Nothing we can do about it - the fallback below still works.
+  }
+
+  return { id: "user", name: "User", config: Default, loadProblem: "storageCorrupt" }
+}
+
 export default {
   namespaced: true,
   state: {
@@ -53,10 +109,7 @@ export default {
       }
 
       if (id === "user" ) {
-        if ( localStorage.getItem('configuration') ) {
-          return JSON.parse( localStorage.getItem('configuration'))
-        }
-        return { id: "user", name: "User", config: Default }
+        return readUserConfiguration()
       }
 
       let profiles = []
@@ -73,7 +126,12 @@ export default {
 
   mutations: {
     SET_USER_CONFIGURATION (state, payload) {
-      localStorage.setItem('configuration', JSON.stringify({ id: "user", name: "User", config: payload }, undefined, 2))
+      try {
+        localStorage.setItem(USER_CONFIGURATION_KEY, JSON.stringify({ id: "user", name: "User", config: payload }, undefined, 2))
+      } catch (error) {
+        // Storage full or blocked (private mode, ...). Losing the auto save is annoying but
+        // it must never interrupt the user while editing the map.
+      }
     }
   }
 }
