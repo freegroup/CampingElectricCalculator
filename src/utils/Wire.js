@@ -27,7 +27,11 @@ function kabelquerschnitt (laengeInCm, strom, spannung) {
 }
 
 function toFixed(value) {
-  if ( isNaN(value) ) {
+  // Only a real number can be rounded. isNaN() alone is not enough as a guard: it coerces,
+  // so null, "" and "12" all pass it and then blow up on .toFixed(). This runs as a global
+  // display filter, so anything it cannot handle is handed back untouched rather than
+  // taking a whole render down with it.
+  if ( typeof value !== "number" || !isFinite(value) ) {
     return value
   }
   // return value.toFixed(2).replace(/\.00$/, '')
