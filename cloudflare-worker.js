@@ -51,7 +51,9 @@ export default {
           try {
             const decodedState = decodeURIComponent(state);
             // Validate it's a safe URL (localhost or production)
-            if (decodedState.startsWith('http://localhost:') || 
+            if (decodedState.startsWith('http://localhost:') ||
+                decodedState.startsWith('https://camper-elektrik-planer.de') ||
+                decodedState.startsWith('https://www.camper-elektrik-planer.de') ||
                 decodedState.startsWith('https://freegroup.github.io')) {
               redirectUrl = decodedState;
             }

@@ -4,7 +4,7 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
-  publicPath: '/CampingElectricCalculator/',
+  publicPath: '/',
   css: {
     loaderOptions: {
       sass: {
