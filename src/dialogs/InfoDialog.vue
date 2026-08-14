@@ -137,8 +137,15 @@ export default {
   },
   computed: {
     modelEditable () {
+      // "component" is null while the dialog is closed and during its fade out, but the
+      // template is still rendered - so this must not assume there is one.
+      const type = this.component && this.component.type
+      if ( typeof type !== "string" ) {
+        return false
+      }
       // it is only editable if we have a "custom" item in the collection of the type. This is the template.
-      return !!this.$store.getters[this.component.type + "/getByUuid"]("custom")
+      const getByUuid = this.$store.getters[type + "/getByUuid"]
+      return typeof getByUuid === "function" && !!getByUuid("custom")
     },
     hasShoppingLinks () {
       return this.model.shopping && this.model.shopping.length > 0
