@@ -43,6 +43,7 @@ import FileOpenDialog from '@/dialogs/FileOpenDialog.vue'
 import ComponentMap from '@/components/ComponentMap.vue'
 import AppToolbar from '@/components/AppToolbar.vue'
 import AppFooter from '@/components/AppFooter.vue'
+import { openJsonFile, saveJsonFile } from '@/utils/FileDialog.js'
 import { mapState } from 'vuex'
 
 export default {
@@ -79,19 +80,10 @@ export default {
       const profileId = await this.$refs.fileOpenDialog.show()
       if ( profileId ) {
         if ( profileId === "local" ) {
-          const options = {
-            types: [
-              {
-                description: 'JSON Files',
-                accept: {
-                  'application/json': ['.json']
-                }
-              }
-            ]
+          const contents = await openJsonFile()
+          if ( contents === null ) {
+            return
           }
-          const [fileHandle] = await window.showOpenFilePicker(options)
-          const file = await fileHandle.getFile()
-          const contents = await file.text()
           this.$refs.mindmap.loadConfiguration({ id: "user", name: "User", config: JSON.parse(contents) })
         } else {
           this.$router.push({ path: '/map/' + profileId })
@@ -99,21 +91,8 @@ export default {
       }
     },
     async save() {
-      let json = this.$refs.mindmap.toJson()
-      json = JSON.stringify(json, undefined, 2)
-      var blob = new Blob([json], { type: "application/json;charset=utf-8" })
-      const fileHandle = await window.showSaveFilePicker({
-        _preferPolyfill: false,
-        suggestedName: 'CamperElectricConfiguration.json',
-        types: [
-          { accept: { "application/json": [".json"] } }
-        ],
-        excludeAcceptAllOption: true
-      })
-
-      const writer = await fileHandle.createWritable()
-      await writer.write(blob)
-      await writer.close()
+      const json = JSON.stringify(this.$refs.mindmap.toJson(), undefined, 2)
+      await saveJsonFile(json)
     },
     exportPdf() {
       const routeData = this.$router.resolve({ path: '/list/' + this.$refs.mindmap.getConfiguration().id })
