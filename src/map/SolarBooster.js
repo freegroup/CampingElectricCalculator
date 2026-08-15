@@ -3,7 +3,8 @@ import $ from "jquery"
 import { htmlToElement } from "./utils.js"
 import { toFixed } from "@/utils/Wire.js"
 import errorMessages from '@/utils/ErrorMessages.js'
-const images = require.context("@/assets/", true, /\.png$/)
+import serialIcon from "@/assets/serial.png"
+import parallelIcon from "@/assets/parallel.png"
 
 export default class SolarBooster extends LeftNode {
   constructor() {
@@ -171,7 +172,7 @@ export default class SolarBooster extends LeftNode {
     this.children.forEach( child => {
       $(child.html).find('.serialIcon').remove()
       if ( child.children.length > 0 ) {
-        $(child.html).append(htmlToElement(`<img src='${images("./serial.png")}' class='serialIcon'></img>`))
+        $(child.html).append(htmlToElement(`<img src='${serialIcon}' class='serialIcon'></img>`))
         $(child.html).addClass("serialPanels")
       } else {
         $(child.html).removeClass("serialPanels")
@@ -180,7 +181,7 @@ export default class SolarBooster extends LeftNode {
 
     $(this.childrenContainer).find('.parallelIcon').remove()
     if ( this.children.length > 1 ) {
-      $(this.childrenContainer).append(htmlToElement(`<img src='${images("./parallel.png")}' class='parallelIcon'></img>`))
+      $(this.childrenContainer).append(htmlToElement(`<img src='${parallelIcon}' class='parallelIcon'></img>`))
       $(this.childrenTable).addClass("parallelPanels")
     } else {
       $(this.childrenTable).removeClass("parallelPanels")
