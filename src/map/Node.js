@@ -105,18 +105,6 @@ export default class Node extends GenericNode {
 
   /**
    * */
-  getAbsoluteAnchor() {
-    return $(this.labelDiv).offset()
-  }
-
-  /**
-   * */
-  getAnchorHeight() {
-    return $(this.labelDiv).height()
-  }
-
-  /**
-   * */
   getAnchorBoundigBox() {
     const pos = this.getAbsoluteAnchor()
     pos.width = $(this.labelDiv).width()

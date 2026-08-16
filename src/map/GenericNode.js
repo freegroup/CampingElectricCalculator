@@ -83,6 +83,23 @@ export default class GenericNode {
     this.updateStatusIcons(true)
   }
 
+  /**
+   * Position and height of the card a connection line attaches to.
+   *
+   * Deliberately the whole card and not the image area inside it: every card sits in a
+   * table cell that centers it vertically, so all cards of a row share one center line -
+   * and that is where the "+" between them sits too. Measuring the image area instead
+   * puts the ends at different heights, because a card with a balance bar below the image
+   * has its image higher up than one without. That was the step in the lines.
+   */
+  getAbsoluteAnchor() {
+    return $(this.labelContainer).offset()
+  }
+
+  getAnchorHeight() {
+    return $(this.labelContainer).height()
+  }
+
   updateStatusIcons(recursive) {
     const msgs = this.getErrorMessages()
     const errors = msgs.filter(msg => msg.type === "Error").length

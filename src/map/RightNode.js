@@ -117,8 +117,13 @@ export default class RightNode extends Node {
   drawLines (recursive) {
     if ( recursive ) {
       this.canvas.innerHTML = ""
-      const height = this.adjustCanvasHeight()
+      this.adjustCanvasHeight()
       const thisAnchor = $(this.canvas).offset()
+      // Both ends of a line have to be measured against the same box. The child end uses
+      // the middle of the child's image area, so the parent end has to do the same -
+      // taking half the container height instead gives the middle of the whole card, and
+      // the line ends up with a step of half a toolbar.
+      const parentTop = this.getAbsoluteAnchor().top - thisAnchor.top + this.getAnchorHeight() / 2
 
       this.children.forEach((child) => {
         // the child node can't have more percentage than the parent
@@ -130,7 +135,7 @@ export default class RightNode extends Node {
         const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
         const width = lineWidth(3, percentage)
 
-        const line = drawLine(this.canvas, LINE_CONSUMER, width, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 })
+        const line = drawLine(this.canvas, LINE_CONSUMER, width, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: parentTop }, { x: 5, y: parentTop })
         $(line).on('click', () => { 
           this.mindmap.notifyListeners({ event: "wireSettings", component: child })
         })

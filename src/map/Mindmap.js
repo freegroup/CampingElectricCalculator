@@ -364,12 +364,15 @@ export default class Mindmap extends GenericNode {
 
     let thisAnchor = $(this.leftCanvas).offset()
     this.leftCanvas.innerHTML = ""
+    // the battery end of every line, measured the same way as the child end - see the
+    // note on getAbsoluteAnchor in GenericNode
+    let centerTop = this.getAbsoluteAnchor().top - thisAnchor.top + this.getAnchorHeight() / 2
     this.leftChildren.forEach((child) => {
       const percentage = child.getPercentageOfAh()
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       const width = lineWidth(3, percentage)
-      const line = drawLine(this.leftCanvas, LINE_PRODUCER, width, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 })
+      const line = drawLine(this.leftCanvas, LINE_PRODUCER, width, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: centerTop }, { x: CANVAS_WIDTH - 5, y: centerTop })
       $(line).on('click', () => { 
         this.notifyListeners({ event: "wireSettings", component: child })
       })
@@ -380,13 +383,14 @@ export default class Mindmap extends GenericNode {
 
     thisAnchor = $(this.rightCanvas).offset()
     this.rightCanvas.innerHTML = ""
+    centerTop = this.getAbsoluteAnchor().top - thisAnchor.top + this.getAnchorHeight() / 2
 
     this.rightChildren.forEach((child) => {
       const percentage = child.getPercentageOfAh()
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       const width = lineWidth(3, percentage)
-      const line = drawLine(this.rightCanvas, LINE_CONSUMER, width, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
+      const line = drawLine(this.rightCanvas, LINE_CONSUMER, width, { x: 5, y: centerTop }, { x: CANVAS_WIDTH / 2, y: centerTop }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
       $(line).on('click', () => { 
         this.notifyListeners({ event: "wireSettings", component: child })
       })

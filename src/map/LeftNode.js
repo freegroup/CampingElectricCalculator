@@ -119,15 +119,17 @@ export default class LeftNode extends Node {
   drawLines (recursive) {
     if ( recursive ) {
       this.canvas.innerHTML = ""
-      const height = this.adjustCanvasHeight()
+      this.adjustCanvasHeight()
       const thisAnchor = $(this.canvas).offset()
+      // both ends measured against the same box - see the note in RightNode.drawLines
+      const parentTop = this.getAbsoluteAnchor().top - thisAnchor.top + this.getAnchorHeight() / 2
 
       this.children.forEach((child) => {
         const percentage = child.getPercentageOfAh()
         const anchor = child.getAbsoluteAnchor()
         const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
         const width = lineWidth(3, percentage)
-        const line = drawLine(this.canvas, LINE_PRODUCER, width, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 5, y: height / 2 })
+        const line = drawLine(this.canvas, LINE_PRODUCER, width, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: parentTop }, { x: CANVAS_WIDTH - 5, y: parentTop })
         $(line).on('click', () => { 
           this.mindmap.notifyListeners({ event: "wireSettings", component: child })
         })
