@@ -155,6 +155,7 @@ const CANVAS_WIDTH = 80
 const ARROW_STROKE = 10
 // width of the invisible path that catches the pointer for a connection line
 const HIT_AREA_STROKE = 18
-// how much wider than the line itself its hover outline is drawn
-const OUTLINE_STROKE = 7
+// how much wider than the line itself its hover outline is drawn - half of it shows on
+// each side, so this is twice the border thickness the user actually sees
+const OUTLINE_STROKE = 4
 export { createSvg, createCanvas, disableSelection, drawLine, lineWidth, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH }
