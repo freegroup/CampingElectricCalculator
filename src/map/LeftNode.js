@@ -1,6 +1,6 @@
 import Node from './Node'
 import $ from "jquery"
-import { drawLine, htmlToElement, ARROW_STROKE, CANVAS_WIDTH, createSvg } from "./utils.js"
+import { drawLine, lineWidth, htmlToElement, CANVAS_WIDTH, createSvg } from "./utils.js"
 
 export default class LeftNode extends Node {
   constructor() {
@@ -126,8 +126,8 @@ export default class LeftNode extends Node {
         const percentage = child.getPercentageOfAh()
         const anchor = child.getAbsoluteAnchor()
         const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
-        const lineWidth = Math.max(3, ARROW_STROKE * percentage)
-        const line = drawLine(this.canvas, '#5CC9FA', lineWidth, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 5, y: height / 2 })
+        const width = lineWidth(3, percentage)
+        const line = drawLine(this.canvas, '#5CC9FA', width, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: CANVAS_WIDTH - 5, y: height / 2 })
         $(line).on('click', () => { 
           this.mindmap.notifyListeners({ event: "wireSettings", component: child })
         })

@@ -27,15 +27,45 @@ function disableSelection(element) {
 function drawLine(svg, color, stroke, p0, p1, p2, p3) {
   // http://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html
   const path = `M${p0.x},${p0.y} C${p1.x},${p1.y} ${p2.x},${p2.y} ${p3.x},${p3.y}`
+
+  const group = document.createElementNS('http://www.w3.org/2000/svg', "g")
+  group.setAttributeNS(null, "class", "node_line")
+
+  // A line of a few pixels is nearly impossible to hit with the mouse - and without a hit
+  // the user never notices that it reacts at all. So the same curve is drawn a second time,
+  // invisible but much wider, and that one catches the pointer.
+  const hitArea = document.createElementNS('http://www.w3.org/2000/svg', "path")
+  hitArea.setAttributeNS(null, "d", path)
+  hitArea.setAttributeNS(null, "class", "node_line_hitarea")
+  hitArea.setAttributeNS(null, "fill", "none")
+  hitArea.setAttributeNS(null, "stroke", "transparent")
+  hitArea.setAttributeNS(null, "stroke-width", HIT_AREA_STROKE)
+  group.append(hitArea)
+
   const newpath = document.createElementNS('http://www.w3.org/2000/svg', "path")
   newpath.setAttributeNS(null, "d", path)
-  newpath.setAttributeNS(null, "class", "node_line")
+  newpath.setAttributeNS(null, "class", "node_line_visible")
   newpath.setAttributeNS(null, "fill", "none")
   newpath.setAttributeNS(null, "stroke", color)
   newpath.setAttributeNS(null, "stroke-linecap", "round" )
   newpath.setAttributeNS(null, "stroke-width", stroke)
-  svg.append(newpath)
-  return newpath
+  group.append(newpath)
+
+  svg.append(group)
+  return group
+}
+
+/**
+ * Width of a connection line, derived from its share of the overall flow.
+ *
+ * The share is NaN as long as nothing is consumed yet - a fresh setup has no load, so
+ * there is no share to compute. "NaN > minimum" is false, which is exactly what we want:
+ * the minimum width is used. Math.max() would have handed the NaN straight through to
+ * stroke-width, where the browser discards it and falls back to a 1px hairline.
+ */
+function lineWidth (minimum, percentage) {
+  const width = ARROW_STROKE * percentage
+  return width > minimum ? width : minimum
 }
 
 function drawCircle(ctx, centerX, centerY, radius) {
@@ -111,4 +141,6 @@ function drawArrowLine(ctx, p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndAr
 
 const CANVAS_WIDTH = 80
 const ARROW_STROKE = 10
-export { createSvg, createCanvas, disableSelection, drawLine, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH, ARROW_STROKE }
+// width of the invisible path that catches the pointer for a connection line
+const HIT_AREA_STROKE = 18
+export { createSvg, createCanvas, disableSelection, drawLine, lineWidth, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH }

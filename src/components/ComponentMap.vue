@@ -508,6 +508,14 @@ export default {
       position: relative;
       .node_line {
         cursor: pointer;
+        .node_line_visible {
+          transition: filter 120ms ease-out;
+        }
+        // the wide transparent path underneath catches the pointer, so a 3px line
+        // is still comfortable to hit
+        &:hover .node_line_visible {
+          filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.55));
+        }
       }
     }
 

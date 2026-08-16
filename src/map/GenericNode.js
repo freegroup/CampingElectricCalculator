@@ -129,6 +129,15 @@ export default class GenericNode {
         <img draggable="false" class="component_icon" src="${this.model.imageSrc}"></img>
       </div>
       `
+      // The image defines the height of the node, and the height decides where the
+      // connection line has to point at. As long as it is not loaded the node is still
+      // too small and the line ends up next to the component instead of on it. Whether
+      // that is noticeable depends on the browser cache, which is why it looked
+      // intermittent. So draw once now and again once the image is really there.
+      const image = this.getComponentContainer().querySelector('img')
+      if ( image && !image.complete ) {
+        image.addEventListener('load', () => this.drawLines(), { once: true })
+      }
       this.drawLines()
     }
   }
