@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import { drawLine, lineWidth, disableSelection, htmlToElement, CANVAS_WIDTH, createSvg } from "./utils.js"
+import { drawLine, lineWidth, disableSelection, htmlToElement, CANVAS_WIDTH, createSvg, LINE_PRODUCER, LINE_CONSUMER } from "./utils.js"
 import GenericNode from './GenericNode'
 import LeftDefaultNode from './LeftDefaultNode'
 import RightDefaultNode from './RightDefaultNode'
@@ -369,7 +369,7 @@ export default class Mindmap extends GenericNode {
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       const width = lineWidth(3, percentage)
-      const line = drawLine(this.leftCanvas, '#5CC9FA', width, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 })
+      const line = drawLine(this.leftCanvas, LINE_PRODUCER, width, { x: 5, y: top }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH - 5, y: this.height / 2 })
       $(line).on('click', () => { 
         this.notifyListeners({ event: "wireSettings", component: child })
       })
@@ -386,7 +386,7 @@ export default class Mindmap extends GenericNode {
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       const width = lineWidth(3, percentage)
-      const line = drawLine(this.rightCanvas, '#C2185B', width, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
+      const line = drawLine(this.rightCanvas, LINE_CONSUMER, width, { x: 5, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: this.height / 2 }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
       $(line).on('click', () => { 
         this.notifyListeners({ event: "wireSettings", component: child })
       })

@@ -506,16 +506,28 @@ export default {
       display: block;
       z-index: 1;
       position: relative;
+      // The two colours come from drawLine() as --line-color and --line-color-hover.
+      // On hover the line brightens and an outline appears in that same lighter tone,
+      // which reads as the line growing thicker. The wide transparent path underneath
+      // catches the pointer, so even a 3px line is comfortable to hit.
       .node_line {
         cursor: pointer;
-        // the wide transparent path underneath catches the pointer, so even a 3px line
-        // is comfortable to hit
+        .node_line_visible {
+          stroke: var(--line-color);
+          transition: stroke 120ms ease-out;
+        }
         .node_line_outline {
+          stroke: var(--line-color-hover);
           opacity: 0;
           transition: opacity 120ms ease-out;
         }
-        &:hover .node_line_outline {
-          opacity: 0.75;
+        &:hover {
+          .node_line_visible {
+            stroke: var(--line-color-hover);
+          }
+          .node_line_outline {
+            opacity: 1;
+          }
         }
       }
     }

@@ -24,12 +24,18 @@ function disableSelection(element) {
   element.style.MozUserSelect = "none"
   element.style.cursor = "default"
 }
+/**
+ * @param {Object} color a pair of { base, hover } from LINE_PRODUCER / LINE_CONSUMER
+ */
 function drawLine(svg, color, stroke, p0, p1, p2, p3) {
   // http://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html
   const path = `M${p0.x},${p0.y} C${p1.x},${p1.y} ${p2.x},${p2.y} ${p3.x},${p3.y}`
 
   const group = document.createElementNS('http://www.w3.org/2000/svg', "g")
   group.setAttributeNS(null, "class", "node_line")
+  // handed to the stylesheet, which does the switching on hover
+  group.style.setProperty("--line-color", color.base)
+  group.style.setProperty("--line-color-hover", color.hover)
 
   // A line of a few pixels is nearly impossible to hit with the mouse - and without a hit
   // the user never notices that it reacts at all. So the same curve is drawn a second time,
@@ -42,14 +48,14 @@ function drawLine(svg, color, stroke, p0, p1, p2, p3) {
   hitArea.setAttributeNS(null, "stroke-width", HIT_AREA_STROKE)
   group.append(hitArea)
 
-  // Dark outline, hidden until the pointer is on the line. Drawn underneath the coloured
-  // path and a fixed amount wider, so the border looks the same on a thin line as on a
-  // thick one - the width itself carries information and must not change on hover.
+  // Outline in the hover colour, hidden until the pointer is on the line. Together with
+  // the line brightening to that same colour it reads as the line growing thicker, and it
+  // avoids the contrast problem a dark outline has under a dark line.
   const outline = document.createElementNS('http://www.w3.org/2000/svg', "path")
   outline.setAttributeNS(null, "d", path)
   outline.setAttributeNS(null, "class", "node_line_outline")
   outline.setAttributeNS(null, "fill", "none")
-  outline.setAttributeNS(null, "stroke", "#000000")
+  outline.setAttributeNS(null, "stroke", color.hover)
   outline.setAttributeNS(null, "stroke-linecap", "round")
   outline.setAttributeNS(null, "stroke-width", stroke + OUTLINE_STROKE)
   group.append(outline)
@@ -58,7 +64,7 @@ function drawLine(svg, color, stroke, p0, p1, p2, p3) {
   newpath.setAttributeNS(null, "d", path)
   newpath.setAttributeNS(null, "class", "node_line_visible")
   newpath.setAttributeNS(null, "fill", "none")
-  newpath.setAttributeNS(null, "stroke", color)
+  newpath.setAttributeNS(null, "stroke", color.base)
   newpath.setAttributeNS(null, "stroke-linecap", "round" )
   newpath.setAttributeNS(null, "stroke-width", stroke)
   group.append(newpath)
@@ -158,4 +164,10 @@ const HIT_AREA_STROKE = 18
 // how much wider than the line itself its hover outline is drawn - half of it shows on
 // each side, so this is twice the border thickness the user actually sees
 const OUTLINE_STROKE = 4
-export { createSvg, createCanvas, disableSelection, drawLine, lineWidth, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH }
+
+// Colours of the connection lines. The resting tone is the darker one so the line stands
+// out against the light map; on hover it switches to the lighter variant and the outline
+// appears in that same colour.
+const LINE_PRODUCER = { base: "#0288D1", hover: "#5CC9FA" }
+const LINE_CONSUMER = { base: "#AD1457", hover: "#E91E63" }
+export { createSvg, createCanvas, disableSelection, drawLine, lineWidth, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH, LINE_PRODUCER, LINE_CONSUMER }

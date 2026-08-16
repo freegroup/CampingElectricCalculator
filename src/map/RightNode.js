@@ -1,6 +1,6 @@
 import Node from './Node'
 import $ from "jquery"
-import { drawLine, lineWidth, htmlToElement, CANVAS_WIDTH, createSvg } from "./utils.js"
+import { drawLine, lineWidth, htmlToElement, CANVAS_WIDTH, createSvg, LINE_CONSUMER } from "./utils.js"
 
 export default class RightNode extends Node {
   constructor() {
@@ -130,7 +130,7 @@ export default class RightNode extends Node {
         const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
         const width = lineWidth(3, percentage)
 
-        const line = drawLine(this.canvas, '#C2185B', width, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 })
+        const line = drawLine(this.canvas, LINE_CONSUMER, width, { x: CANVAS_WIDTH - 5, y: top }, { x: 0, y: top }, { x: CANVAS_WIDTH / 2, y: height / 2 }, { x: 5, y: height / 2 })
         $(line).on('click', () => { 
           this.mindmap.notifyListeners({ event: "wireSettings", component: child })
         })
