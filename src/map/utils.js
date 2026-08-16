@@ -42,6 +42,18 @@ function drawLine(svg, color, stroke, p0, p1, p2, p3) {
   hitArea.setAttributeNS(null, "stroke-width", HIT_AREA_STROKE)
   group.append(hitArea)
 
+  // Dark outline, hidden until the pointer is on the line. Drawn underneath the coloured
+  // path and a fixed amount wider, so the border looks the same on a thin line as on a
+  // thick one - the width itself carries information and must not change on hover.
+  const outline = document.createElementNS('http://www.w3.org/2000/svg', "path")
+  outline.setAttributeNS(null, "d", path)
+  outline.setAttributeNS(null, "class", "node_line_outline")
+  outline.setAttributeNS(null, "fill", "none")
+  outline.setAttributeNS(null, "stroke", "#000000")
+  outline.setAttributeNS(null, "stroke-linecap", "round")
+  outline.setAttributeNS(null, "stroke-width", stroke + OUTLINE_STROKE)
+  group.append(outline)
+
   const newpath = document.createElementNS('http://www.w3.org/2000/svg', "path")
   newpath.setAttributeNS(null, "d", path)
   newpath.setAttributeNS(null, "class", "node_line_visible")
@@ -143,4 +155,6 @@ const CANVAS_WIDTH = 80
 const ARROW_STROKE = 10
 // width of the invisible path that catches the pointer for a connection line
 const HIT_AREA_STROKE = 18
+// how much wider than the line itself its hover outline is drawn
+const OUTLINE_STROKE = 7
 export { createSvg, createCanvas, disableSelection, drawLine, lineWidth, drawArrowLine, drawCircle, htmlToElement, CANVAS_WIDTH }
