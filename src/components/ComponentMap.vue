@@ -546,7 +546,12 @@ export default {
       cursor: pointer;
       height:24px;
       position: relative;
-      display: block;
+      // "display: block" here used to beat Vuetify's own "inline-flex" on .v-icon and
+      // with it the centering, so the glyph sat on its text baseline - a few pixels below
+      // the connection line it is supposed to line up with
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .child_node {
       position: relative;

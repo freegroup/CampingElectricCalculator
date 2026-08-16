@@ -235,7 +235,7 @@ export default class Mindmap extends GenericNode {
           this.leftLines.style.width = `${this.lineCanvasWidth}px`
           this.leftLines.style.height = `${this.height}px`
           this.leftLines.style.display = `none`
-          this.leftCanvas = createSvg(this.leftLines) // createCanvas(this.leftLines)
+          this.leftCanvas = createSvg(this.leftLines)
           this.leftCanvas.style.height = `${this.height}px`
           this.leftCanvas.setAttribute('width', this.lineCanvasWidth)
           this.leftCanvas.setAttribute('height', this.height)
@@ -302,7 +302,6 @@ export default class Mindmap extends GenericNode {
           this.rightLines.style.width = `${this.lineCanvasWidth}px`
           this.rightLines.style.height = `${this.height}px`
           this.rightLines.style.display = `none`
-          // this.rightCanvas = createCanvas(this.rightLines)
           this.rightCanvas = createSvg(this.rightLines)
           this.rightCanvas.style.height = `${this.height}px`
           this.rightCanvas.setAttribute('width', this.lineCanvasWidth)
@@ -390,7 +389,7 @@ export default class Mindmap extends GenericNode {
       const anchor = child.getAbsoluteAnchor()
       const top = anchor.top - thisAnchor.top + child.getAnchorHeight() / 2
       const width = lineWidth(3, percentage)
-      const line = drawLine(this.rightCanvas, LINE_CONSUMER, width, { x: 5, y: centerTop }, { x: CANVAS_WIDTH / 2, y: centerTop }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top }, 15, false, false)
+      const line = drawLine(this.rightCanvas, LINE_CONSUMER, width, { x: 5, y: centerTop }, { x: CANVAS_WIDTH / 2, y: centerTop }, { x: CANVAS_WIDTH / 2, y: top }, { x: CANVAS_WIDTH - 5, y: top })
       $(line).on('click', () => { 
         this.notifyListeners({ event: "wireSettings", component: child })
       })
