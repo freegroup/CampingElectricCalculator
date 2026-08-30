@@ -1,0 +1,157 @@
+text: Ermittel doch deinen wahren Bedarf an Strom, den du im Camper brauchst. Du
+  hast keine Ahnung, wie du das machen sollst? Da hilft dir natürlich der
+  Konfigurator. Du brauchst nicht immer 400 Watt Solarzelle plus Landstrom plus
+  Lichtmaschine. Geht auch anders, kannst du machen. Trag einfach deine Geräte
+  ein, die du hast und ermittle dann, wie lange du freistehen kannst, mit
+  welcher Batterie du deine Reichweite noch erhöhen kannst und welche
+  Lademöglichkeiten du sonst brauchst.
+plot: >-
+  **Fall**
+
+  Rechenfrage (Wie viel Strom brauche ich wirklich und wie vermeide ich teure
+  Überdimensionierung?).
+
+
+  **Konkrete Frage**
+
+  Wie ermittle ich meinen echten Strombedarf im Camper und plane die Anlage
+  passend, ohne blind teure 400W-Solarsets zu kaufen?
+
+
+  **Reihenfolge der Beantwortung**
+
+  * **Der Trugschluss:** Warum "Sicherheitshalber die größte Batterie und
+  maximal Solar" dich Geld, Gewicht und Platz kostet.
+
+  * **Die Bestandsaufnahme:** Wie du den echten Verbrauch deiner Geräte (z. B.
+  Kompressorkühlschrank) in Amperestunden (Ah) erfasst.
+
+  * **Die Detail-Sicherheit:** Warum auch der kleinste Verbraucher das richtige
+  Kabel braucht (Rechnung Kabelquerschnitt für den Kühlschrank).
+
+  * **Die Dimensionierung:** Wie du aus dem Tagesbedarf die richtige
+  Batteriegröße und die passenden Ladequellen (Ladebooster vs. Solar) ableitest.
+
+  * **Der smarte Weg:** Warum du nicht schätzen musst, wenn ein Tool die gesamte
+  Energiebilanz für dich rechnet.
+
+
+  **Gerechnete Zahlen (mit `wire_cross_section`)**
+
+  * Verbraucher: Kompressorkühlschrank (50 W an 12 V = 4,17 A)
+
+  * Einfache Kabellänge: 300 cm
+
+  * Benötigter Kabelquerschnitt: **2,5 mm²** (exakt berechnet bei 2 %
+  Spannungsfall und 12 % Sicherheitsmarge)
+
+
+  **Verlinkbare Ziele**
+
+  * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/` (für die
+  Kabelberechnung des Kühlschranks)
+
+  * `https://camper-elektrik-planer.de/` (als finaler Call-to-Action für die
+  komplette Energiebilanz und den Schaltplan)
+
+
+  **Titelbild**
+
+  Hochwertiges, helles Foto aus dem Innenraum eines modernen Vans. Auf einem
+  warmen Holztisch steht ein Laptop mit einer Planungs-App, daneben eine
+  Kaffeetasse. Im Hintergrund ist die stylische Küchenzeile mit dem Kühlschrank
+  im weichen, goldenen Abendlicht zu sehen. Keine Grafiken, keine Overlays –
+  pure, einladende Vanlife-Ästhetik.
+toolLog:
+  - name: wire_cross_section
+    input:
+      voltage_v: 12
+      current_a: 4.17
+      length_cm: 300
+    output: |-
+      {
+        "recommendation_mm2": 2.5,
+        "computed_mm2": 1.86,
+        "input": {
+          "length_cm": 300,
+          "current_a": 4.17,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      current_a: 4.17
+      length_cm: 300
+      voltage_v: 12
+    output: |-
+      {
+        "recommendation_mm2": 2.5,
+        "computed_mm2": 1.86,
+        "input": {
+          "length_cm": 300,
+          "current_a": 4.17,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+markdown: |-
+  Einfach mal das dicke 400-Watt-Solarset und die größte Lithium-Batterie in den Warenkorb klicken, weil „sicher ist sicher“? Kannst du machen. Kostet dich aber unnötig viel Geld, nimmt wertvollen Platz weg und bringt Gewicht auf die Waage, das du beim Ausbau an anderer Stelle bitter bereust. Wer blind überdimensioniert, plant am eigenen Bedarf vorbei.
+
+  ![Gemütlicher Camper-Innenraum mit Laptop auf dem Tisch und Blick auf die Küchenzeile mit Kompressorkühlschrank](foto-1.webp)
+
+  Der clevere Weg startet mit einer echten Bestandsaufnahme. Statt zu schätzen, rechnest du den Verbrauch deiner Geräte in Amperestunden (Ah) um. Nimm zum Beispiel deinen Kompressorkühlschrank: Läuft er mit 50 Watt an einem 12-V-System, zieht er im Betrieb etwa 4,17 Ampere. Da ein Kühlschrank dank Thermostat nicht dauerhaft durchläuft, sondern etwa zu 30 bis 50 % der Zeit kühlt, verbraucht er in 24 Stunden rund 30 bis 50 Ah. Schreib diese Werte für jeden Verbraucher auf – vom Handy-Ladegerät über die LED-Spots bis zur Standheizung. Nur so siehst du, wie viel Strom du pro Tag wirklich verbrauchst.
+
+  Dabei geht es nicht nur um die Batteriekapazität. Auch der kleinste Verbraucher braucht das exakt passende Kabel, damit dir die Bude nicht abbrennt oder der Kühlschrank wegen eines zu hohen Spannungsabfalls ständig auf Störung geht. Legst du für deinen 50-W-Kühlschrank (4,17 A) ein Kabel über eine einfache Strecke von 300 cm, benötigst du bei einem erlaubten Spannungsfall von maximal 2 % und inklusive Sicherheitsmarge einen Kabelquerschnitt von **2,5 mm²**. Bevor du irgendetwas verlegst, solltest du jeden einzelnen Kabelweg präzise berechnen – das geht schnell und schützt vor Kabelbrand auf dem [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/).
+
+  Hast du deinen täglichen Amperestunden-Bedarf ermittelt, bestimmst du die Batteriegröße und deine Ladequellen. Willst du drei Tage autark stehen, muss deine Batterie diesen dreifachen Tagesbedarf liefern können. Erst jetzt entscheidest du sinnvoll: Reicht ein Ladebooster, weil du ohnehin alle zwei Tage weiterreist? Oder brauchst du Solar auf dem Dach, weil du tagelang an einsamen Stränden stehst? Ein ausgewogener Mix spart Gewicht und schont das Budget.
+
+  Du musst das nicht alles mühsam auf einem Schmierzettel zusammenrechnen. Trag deine Verbraucher einfach in den [Camper-Elektrik-Planer](https://camper-elektrik-planer.de/) ein. Das Tool erstellt für dich die komplette Energiebilanz, sagt dir genau, wie lange deine Batterie hält, und zeichnet dir am Ende den passenden Schaltplan inklusive aller Sicherungen und Kabelquerschnitte.
+description: Berechne deinen echten Strombedarf im Camper und plane Batterie
+  sowie Solar perfekt – ohne teure Überdimensionierung.
+title: "Wohnmobil-Strombedarf berechnen: So vermeidest du teure Fehlkäufe"
+slug: wohnmobil-strombedarf-berechnen-so-vermeidest-du-teure-fehlka
+image_names:
+  - foto-1.webp
