@@ -1,6 +1,8 @@
 ---
 title: "Wohnmobil-Strombedarf berechnen: So vermeidest du teure Fehlkäufe"
 description: "Berechne deinen echten Strombedarf im Camper und plane Batterie sowie Solar perfekt – ohne teure Überdimensionierung."
+date: "2026-08-30T17:35:07.000Z"
+lastmod: "2026-08-30T17:35:07.000Z"
 ---
 
 Einfach mal das dicke 400-Watt-Solarset und die größte Lithium-Batterie in den Warenkorb klicken, weil „sicher ist sicher“? Kannst du machen. Kostet dich aber unnötig viel Geld, nimmt wertvollen Platz weg und bringt Gewicht auf die Waage, das du beim Ausbau an anderer Stelle bitter bereust. Wer blind überdimensioniert, plant am eigenen Bedarf vorbei.

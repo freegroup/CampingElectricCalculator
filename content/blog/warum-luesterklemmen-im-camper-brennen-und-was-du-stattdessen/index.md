@@ -1,6 +1,8 @@
 ---
 title: "Warum Lüsterklemmen im Camper brennen (und was du stattdessen nutzt)"
 description: "Lüsterklemmen sind im Camper lebensgefährlich – erfahre, warum die Wago 221 vibrationsfest hält und wie du den passenden Kabelquerschnitt berechnest."
+date: "2026-08-30T17:08:50.000Z"
+lastmod: "2026-08-30T17:08:50.000Z"
 ---
 
 ![Wago-Klemme und Lüsterklemme im Camper auf einem Schaltplan](foto-1.webp)

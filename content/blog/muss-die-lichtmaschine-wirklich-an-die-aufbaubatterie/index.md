@@ -1,6 +1,8 @@
 ---
 title: "Muss die Lichtmaschine wirklich an die Aufbaubatterie?"
 description: "Muss die LiMa wirklich verkabelt werden? Erfahre, warum große Booster alte Camper zerstören und wie du mit Solar und 10 A sicher reist."
+date: "2026-08-30T20:18:54.000Z"
+lastmod: "2026-08-30T20:18:54.000Z"
 ---
 
 ![Der geöffnete Motorraum eines klassischen Vans an der Küste](foto-1.webp)

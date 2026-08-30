@@ -1,6 +1,8 @@
 ---
 title: "Das zentrale Elektrik-Board im Camper: Aufbau und richtige Zuleitung"
 description: "Baue deine Camper-Elektrik entspannt auf der Werkbank auf und berechne die Zuleitung zum Elektrik-Board fehlerfrei mit dem Kabelrechner."
+date: "2026-08-30T19:00:19.000Z"
+lastmod: "2026-08-30T19:00:19.000Z"
 ---
 
 Wer schon mal kopfüber mit der Taschenlampe im Mund in einer engen, dunklen Sitzkiste lag, um ein widerspenstiges Kabel in eine Klemme zu zwingen, weiß: Das ist kein Vanlife, das ist Folter. Es geht zehnmal geiler. Du baust die gesamte Elektrik einfach flach und entspannt auf der Werkbank auf.

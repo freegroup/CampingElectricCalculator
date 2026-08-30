@@ -16,6 +16,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const { execFileSync } = require('child_process')
 const { marked } = require('marked')
 
 const ROOT = path.resolve(__dirname, '..')
@@ -78,6 +79,24 @@ function rfc822 (date) {
 
 function isoDate (date) {
   return date.toISOString().slice(0, 10)
+}
+
+// The day the article was first committed (its "created on GitHub" date), or
+// null if it has no git history yet (e.g. a brand-new, uncommitted article on
+// a local checkout). This is the natural publish date and needs no manual
+// upkeep. We take the oldest add-commit so later edits never change the order,
+// and use the author date so it survives rebases. A fresh CI checkout resets
+// the filesystem mtime to "now", so mtime alone cannot order articles.
+function gitCreatedDate (file) {
+  try {
+    const out = execFileSync('git',
+      ['log', '--diff-filter=A', '--follow', '--format=%aI', '--', file],
+      { cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()
+    const lines = out.split('\n').filter(Boolean)
+    return lines.length ? new Date(lines[lines.length - 1]) : null
+  } catch (e) {
+    return null
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -199,7 +218,7 @@ function absolutiseImages (html, slug) {
 }
 
 function renderArticle (article) {
-  const { slug, title, description, date, layout, image, bodyHtml } = article
+  const { slug, title, description, date, lastmod, layout, image, bodyHtml } = article
   const canonical = `${BASE}/${slug}/`
 
   let figure = ''
@@ -221,6 +240,7 @@ function renderArticle (article) {
         description: description,
         inLanguage: 'de',
         datePublished: isoDate(date),
+        dateModified: isoDate(lastmod),
         mainEntityOfPage: canonical,
         ...(image ? { image: `${BASE}/${slug}/${image.src}` } : {}),
         author: { '@type': 'Organization', name: 'Camper Elektrik Planer' }
@@ -333,7 +353,7 @@ function renderFeed (articles) {
     <atom:link href="${BASE}/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Artikel rund um die 12-V-Elektrik im Wohnmobil.</description>
     <language>de-DE</language>
-    <lastBuildDate>${rfc822(articles[0] ? articles[0].date : new Date())}</lastBuildDate>
+    <lastBuildDate>${rfc822(articles[0] ? articles[0].lastmod : new Date())}</lastBuildDate>
 ${items}
   </channel>
 </rss>
@@ -348,14 +368,14 @@ function updateSitemap (articles) {
 
   const entries = [`  <url>
     <loc>${BASE}/</loc>
-    <lastmod>${isoDate(articles[0] ? articles[0].date : new Date())}</lastmod>
+    <lastmod>${isoDate(articles[0] ? articles[0].lastmod : new Date())}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>`]
   for (const a of articles) {
     entries.push(`  <url>
     <loc>${BASE}/${a.slug}/</loc>
-    <lastmod>${isoDate(a.date)}</lastmod>
+    <lastmod>${isoDate(a.lastmod)}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>`)
@@ -398,7 +418,16 @@ function main () {
       continue
     }
 
-    const date = data.date ? new Date(data.date) : fs.statSync(mdPath).mtime
+    // Order by the article's creation date. An explicit `date:` in the front
+    // matter wins; otherwise use the git creation day (see gitCreatedDate).
+    // A not-yet-committed article has no git date and falls back to mtime,
+    // which locally is "now" — i.e. it sorts newest, which is correct.
+    const date = data.date
+      ? new Date(data.date)
+      : (gitCreatedDate(mdPath) || fs.statSync(mdPath).mtime)
+    // `lastmod` is the "updated" date and drives sitemap <lastmod> / JSON-LD
+    // dateModified; it never affects ordering. Defaults to the created date.
+    const lastmod = data.lastmod ? new Date(data.lastmod) : date
     const layout = LAYOUTS.includes(data.layout)
       ? data.layout
       : LAYOUTS[hash(slug) % LAYOUTS.length]
@@ -421,6 +450,7 @@ function main () {
       title: data.title,
       description: data.description || '',
       date,
+      lastmod,
       layout,
       image,
       bodyHtml
@@ -430,8 +460,9 @@ function main () {
     console.log(`[blog] rendered ${slug} (${layout})`)
   }
 
-  // Newest first.
-  articles.sort((a, b) => b.date - a.date)
+  // Newest first by full creation timestamp; ties broken by slug so ordering
+  // is deterministic. (The pages themselves only render the day, not the time.)
+  articles.sort((a, b) => (b.date - a.date) || a.slug.localeCompare(b.slug))
 
   fs.mkdirSync(OUT_DIR, { recursive: true })
   fs.writeFileSync(path.join(OUT_DIR, 'index.html'), renderIndex(articles))
