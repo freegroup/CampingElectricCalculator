@@ -2,6 +2,9 @@
 node_modules
 /dist
 
+# generated blog output (served copies are committed under docs/)
+/public/blog
+
 
 # local env files
 .env.local

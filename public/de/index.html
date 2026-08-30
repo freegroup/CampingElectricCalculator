@@ -27,12 +27,19 @@
 :root{--ink:#212121;--muted:#5f6368;--line:#e0e0e0;--bg:#f7f8fb;--accent:#2e7d32;--accent-dk:#1b5e20;--head:#d9dff2}
 *{box-sizing:border-box}
 body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff}
-header{background:var(--head);padding:14px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+header{background:var(--head);padding:10px 0;border-bottom:1px solid rgba(0,0,0,.08);box-shadow:0 1px 4px rgba(0,0,0,.06)}
 .wrap{max-width:760px;margin:0 auto;padding:0 20px}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.brand{font-weight:600;text-decoration:none;color:var(--ink)}
-nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:14px}
-nav a:hover{color:var(--ink);text-decoration:underline}
+header .wrap{max-width:none;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink)}
+.brand-logo{width:56px;height:56px;border-radius:50%;display:block;flex-shrink:0}
+.brand-title{font-size:2rem;font-weight:300;line-height:1.2;letter-spacing:.2px}
+nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+nav a{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;color:#fff;text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;border-radius:4px;box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:filter .15s}
+nav a:hover{filter:brightness(.92)}
+nav a svg{width:20px;height:20px;fill:currentColor;flex-shrink:0}
+nav a.dark{background:#212121}
+nav a.blog{background:#388e3c}
+nav a.coffee{background:#00bfa5}
 h1{font-size:2rem;line-height:1.25;margin:36px 0 14px}
 h2{font-size:1.35rem;margin:38px 0 12px;padding-top:6px}
 h3{font-size:1.05rem;margin:24px 0 6px}
@@ -55,17 +62,21 @@ footer a{color:var(--muted)}
 .steps li b{display:block}
 .steps li::before{content:counter(s);counter-increment:s;position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:28px;font-size:14px;font-weight:700}
 .steps{counter-reset:s}
-@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}}
+@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}.brand-logo{width:40px;height:40px}.brand-title{font-size:1.15rem}nav a{padding:0 10px;height:30px;font-size:.72rem}nav a svg{width:18px;height:18px}}
 </style>
 </head>
 <body>
 
 <header><div class="wrap">
-  <a class="brand" href="/de/">Camper Elektrik Planer</a>
+  <a class="brand" href="/">
+    <img class="brand-logo" src="/logo.svg" alt="" width="52" height="52">
+    <span class="brand-title">Camper Elektrik Designer</span>
+  </a>
   <nav>
-    <a href="/de/kabelquerschnitt-berechnen/">Kabelquerschnitt</a>
-    <a href="/#/">Zur App</a>
-    <a href="/en/" hreflang="en">English</a>
+    <a class="dark" href="/en/" title="English"><svg viewBox="0 0 24 24"><path d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"/></svg>DE</a>
+    <a class="blog" href="/blog/"><svg viewBox="0 0 24 24"><path d="M19 2L14 6.5V17.5L19 13V2M6.5 5C4.55 5 2.45 5.4 1 6.5V21.16C1 21.41 1.25 21.66 1.5 21.66C1.6 21.66 1.65 21.59 1.75 21.59C3.1 20.94 5.05 20.5 6.5 20.5C8.45 20.5 10.55 20.9 12 22C13.35 21.15 15.8 20.5 17.5 20.5C19.15 20.5 20.85 20.81 22.25 21.56C22.35 21.61 22.4 21.59 22.5 21.59C22.75 21.59 23 21.34 23 21.09V6.5C22.4 6.05 21.75 5.75 21 5.5V19C19.9 18.65 18.7 18.5 17.5 18.5C15.8 18.5 13.35 19.15 12 20V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>Blog</a>
+    <a class="coffee" href="https://www.paypal.com/paypalme/freegroup/2.50" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M2,21V19H20V21H2M20,8V5H18V8H20M20,3A2,2 0 0,1 22,5V8A2,2 0 0,1 20,10H18V13A4,4 0 0,1 14,17H8A4,4 0 0,1 4,13V3H20M16,5H6V13A2,2 0 0,0 8,15H14A2,2 0 0,0 16,13V5Z"/></svg>Spendiere mir einen Kaffee</a>
+    <a class="dark" href="/#/"><svg viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/></svg>Anmelden</a>
   </nav>
 </div></header>
 

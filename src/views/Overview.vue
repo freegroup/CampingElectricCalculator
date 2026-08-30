@@ -218,6 +218,38 @@
           </v-col>
         </v-row>
 
+        <v-row class="mb-8 px-2">
+          <v-col cols="12">
+            <v-card class="rounded-xl transition-swing hover-card elevation-4" href="/blog/">
+              <v-row no-gutters>
+                <v-col cols="12" md="8" class="d-flex align-center">
+                  <v-card-text class="py-6 px-8">
+                    <div class="d-flex align-center mb-3">
+                      <v-avatar color="green lighten-5" size="60" class="mr-4">
+                        <v-icon large color="green darken-2">mdi-book-open-page-variant</v-icon>
+                      </v-avatar>
+                      <div>
+                        <h3 class="text-h5 font-weight-bold black--text mb-1">{{ $t('overview.blog.title') }}</h3>
+                        <div class="body-1 grey--text">{{ $t('overview.blog.subtitle') }}</div>
+                      </div>
+                    </div>
+                    <div class="body-2 grey--text text--darken-1 ml-15 pl-4">
+                      {{ $t('overview.blog.description') }}
+                    </div>
+                  </v-card-text>
+                </v-col>
+                <v-col cols="12" md="4" class="green lighten-5 d-flex align-center justify-center">
+                  <div class="text-center pa-6">
+                    <v-icon size="80" color="green darken-2" class="mb-3">mdi-newspaper-variant-outline</v-icon>
+                    <div class="font-weight-bold green--text text--darken-2">{{ $t('overview.blog.action') }}</div>
+                    <v-icon color="green darken-2" class="mt-2">mdi-arrow-right</v-icon>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+
         <!-- Disclaimer & Footer Info -->
         <v-row class="mt-8 mb-4">
           <v-col cols="12">

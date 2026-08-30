@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --dest ./docs",
+    "build": "node scripts/build-blog.js && vue-cli-service build --dest ./docs",
+    "build:blog": "node scripts/build-blog.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.13.1",
     "less-loader": "^5.0.0",
+    "marked": "^4.3.0",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.4.5",

@@ -23,6 +23,18 @@
 
       <v-btn
         :icon="iconButtons"
+        href="/blog/"
+        :color="iconButtons ? 'grey darken-1' : 'green darken-1'"
+        :dark="!iconButtons"
+        :class="iconButtons ? '' : 'ml-1'"
+        :small="!iconButtons"
+      >
+        <v-icon>mdi-book-open-page-variant</v-icon>
+        <div v-if="!iconButtons" class="ml-3 d-none d-lg-block">{{ $t('toolbar.blog') }}</div>
+      </v-btn>
+
+      <v-btn
+        :icon="iconButtons"
         href="https://www.paypal.com/paypalme/freegroup/2.50"
         target="_blank"
         :color="iconButtons ? 'grey darken-1' : 'teal accent-4'"

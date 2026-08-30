@@ -343,6 +343,7 @@ export default {
       parts: "Shopping Parts",
       help: "Help",
       coffee: "Send Me a Coffee",
+      blog: "Blog",
       estimatedCost: "Estimated Cost"
     },
     footer: {
@@ -423,6 +424,12 @@ export default {
           description: "If you prefer to calculate everything yourself, use the wire calculator to quickly find the right wire cross-section. Enter cable length, current, and voltage to instantly get the recommended wire cross-section including voltage drop and power loss. Perfect for individual connections!",
           action: "Calculate Now"
         }
+      },
+      blog: {
+        title: "Blog",
+        subtitle: "Knowledge about 12 V camper electrics",
+        description: "Background articles on cables, fuses, batteries, solar and charging technology — explained in plain language and linked to the matching calculator. New posts are added regularly.",
+        action: "Read Now"
       },
       footer: {
         disclaimer: "This tool provides estimates. Always consult a professional electrician.",
@@ -784,6 +791,7 @@ export default {
       parts: "Einkaufsliste",
       help: "Hilfe",
       coffee: "Spendiere mir einen Kaffee",
+      blog: "Blog",
       estimatedCost: "Geschätzte Kosten"
     },
     footer: {
@@ -864,6 +872,12 @@ export default {
           description: "Wenn du lieber alles selbst ausrechnen willst, nutze den Kabelrechner, um schnell den richtigen Kabelquerschnitt zu finden. Gib Kabellänge, Stromstärke und Spannung ein und erhalte sofort den empfohlenen Kabelquerschnitt inklusive Spannungsabfall und Leistungsverlust. Perfekt für einzelne Verbindungen!",
           action: "Jetzt Berechnen"
         }
+      },
+      blog: {
+        title: "Blog",
+        subtitle: "Wissen rund um die 12-V-Elektrik im Camper",
+        description: "Hintergrundartikel zu Kabeln, Sicherungen, Batterie, Solar und Ladetechnik — verständlich erklärt und mit dem passenden Rechner verlinkt. Neue Beiträge kommen regelmäßig dazu.",
+        action: "Jetzt Lesen"
       },
       footer: {
         disclaimer: "Dieses Tool liefert Schätzwerte. Konsultiere immer einen professionellen Elektriker.",

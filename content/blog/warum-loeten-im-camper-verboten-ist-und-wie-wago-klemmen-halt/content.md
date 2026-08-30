@@ -1,6 +1,7 @@
 ---
 title: "Warum Löten im Camper verboten ist und wie Wago-Klemmen halten"
 description: "Warum Löten im Camper brandgefährlich ist und wie Wago-Klemmen Vibrationen ausgleichen, erfährst du hier inklusive Kabel-Berechnung."
+date: "2026-08-29"
 ---
 
 Wer beim Camper-Ausbau zum Lötkolben greift, um Kabel zu verbinden, baut sich eine tickende Zeitbombe ein. Was in der Werkstatt am Schreibtisch hält, vibriert sich auf der Straße in kürzester Zeit kaputt.
