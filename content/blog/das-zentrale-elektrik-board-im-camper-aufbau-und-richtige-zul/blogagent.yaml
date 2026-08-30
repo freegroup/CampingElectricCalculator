@@ -1,0 +1,157 @@
+text: gutes Layout benötigt gute Planung. Am besten man hat seinen Bedarf
+  ansStrom schon vorher gut bestimmt. Dann klappt es mit der verkabelung um so
+  einfacher
+plot: >-
+  * **Fall**: Bauteil (Die vorgefertigte Montageplatte / das Elektrik-Board)
+
+  * **Bild**: foto-1.webp
+
+  * **Konkrete Frage**: Warum ist ein zentrales Elektrik-Board die halbe Miete
+  und wie berechnest du die Zuleitung dafür fehlerfrei?
+
+  * **Reihenfolge der Beantwortung**:
+      1. **Der Hook**: Warum Vorarbeiten auf der Werkbank (wie in `foto-1.webp`) 10-mal geiler ist als das Verdrahten in der engen, dunklen Sitzkiste.
+      2. **Was man sieht**: Strukturierter Aufbau mit MPPT-Regler, Sicherungsverteiler, Busbars und Hauptschalter auf einer Siebdruckplatte.
+      3. **Das Risiko**: Schätzen statt rechnen bei den kurzen, dicken Kabeln führt zu gefährlichem Spannungsabfall oder Kabelbrand.
+      4. **Konkretes Rechenbeispiel**: Die Hauptzuleitung vom Board zur Batterie. Bei 60 A Stromstärke und 100 cm Kabellänge (einfacher Weg) bei 12 V Systemspannung.
+      5. **Die Lösung**: Verweis auf den Kabelrechner für alle anderen Verbraucher auf dem Board.
+  * **Berechnung (mit Tool)**:
+      * *Eingabe*: 60 A, 100 cm Länge, 12 V.
+      * *Ergebnis*: **16 mm²** erforderlicher Kabelquerschnitt (berücksichtigt 2 % Spannungsverlust und 12 % Sicherheitsmarge).
+  * **Verlinkbare Ziele**:
+      * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/` (Für die Querschnitte der restlichen Board-Verkabelung)
+      * `https://camper-elektrik-planer.de/` (Für die Planung des gesamten Setups vor dem Schrauben)
+toolLog:
+  - name: wire_cross_section
+    input:
+      length_cm: 150
+      current_a: 30
+      voltage_v: 12
+    output: |-
+      {
+        "recommendation_mm2": 8,
+        "computed_mm2": 6.7,
+        "input": {
+          "length_cm": 150,
+          "current_a": 30,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      current_a: 60
+      voltage_v: 12
+      length_cm: 100
+    output: |-
+      {
+        "recommendation_mm2": 16,
+        "computed_mm2": 8.93,
+        "input": {
+          "length_cm": 100,
+          "current_a": 60,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      voltage_v: 12
+      current_a: 60
+      length_cm: 100
+    output: |-
+      {
+        "recommendation_mm2": 16,
+        "computed_mm2": 8.93,
+        "input": {
+          "length_cm": 100,
+          "current_a": 60,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+markdown: |-
+  Wer schon mal kopfüber mit der Taschenlampe im Mund in einer engen, dunklen Sitzkiste lag, um ein widerspenstiges Kabel in eine Klemme zu zwingen, weiß: Das ist kein Vanlife, das ist Folter. Es geht zehnmal geiler. Du baust die gesamte Elektrik einfach flach und entspannt auf der Werkbank auf.
+
+  ![Vorgefertigtes Elektrik-Board auf der Werkbank](foto-1.webp)
+
+  Auf diesem strukturierten Elektrik-Board ist alles kompakt auf einer stabilen Platte montiert: Ein MPPT-Solarregler, der Sicherungsverteiler für die 12-V-Verbraucher, solide Busbars (Sammelschienen) zur Stromverteilung und ein robuster Hauptschalter. Wenn alles auf der Platte fertig verdrahtet ist, hebst du das gesamte Board in deinen Camper, schraubst es fest und musst nur noch die Hauptleitungen anschließen. Das ist extrem sauber, übersichtlich und im Fehlerfall bist du sofort an jedem Bauteil dran.
+
+  Der größte Fehler beim Board-Bau passiert bei den vermeintlich „kurzen Wegen“. Weil die Abstände zwischen Hauptschalter, Sicherung und Busbar nur ein paar Zentimeter lang sind, wird beim Kabelquerschnitt oft einfach geschätzt. Doch genau hier fließen die höchsten Ströme im ganzen Camper. Zu dünne Kabel erzeugen einen hohen Widerstand, führen zu gefährlichem Spannungsabfall und im schlimmsten Fall zum Kabelbrand direkt unter deiner Matratze.
+
+  Machen wir es konkret: Nehmen wir die Hauptzuleitung von diesem Board zur Batterie. Wenn dein System für eine kontinuierliche Stromstärke von 60 A ausgelegt ist und das Board eine Kabellänge von 100 cm (einfacher Weg) von der Batterie entfernt sitzt, darfst du den Querschnitt nicht würfeln. 
+
+  Die exakte Berechnung für ein 12-V-System ergibt: Du benötigst für diese Zuleitung einen Kabelquerschnitt von **16 mm²**. Darin sind der maximal zulässige Spannungsverlust von 2 % und eine Sicherheitsmarge von 12 % bereits eingerechnet, damit deine Geräte die volle Spannung bekommen und die Kabel eiskalt bleiben.
+
+  Bevor du also die Crimpzange in die Hand nimmst, rechne deine Kabelwege sauber durch. Nutze den kostenlosen [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/), um jede einzelne Verbindung auf deiner Montageplatte exakt zu dimensionieren. 
+
+  Wenn du noch am Anfang stehst und wissen willst, wie Solarregler, Batterie und Ladebooster in deinem Setup am besten zusammenspielen: Plan deinen gesamten Schaltplan inklusive Energiebilanz und Stückliste vorab direkt im [Camper-Elektrik-Planer](https://camper-elektrik-planer.de/). Das spart Zeit, schützt vor teuren Fehlkäufen und sorgt dafür, dass deine Elektrik absolut sicher ist.
+description: Baue deine Camper-Elektrik entspannt auf der Werkbank auf und
+  berechne die Zuleitung zum Elektrik-Board fehlerfrei mit dem Kabelrechner.
+title: "Das zentrale Elektrik-Board im Camper: Aufbau und richtige Zuleitung"
+slug: das-zentrale-elektrik-board-im-camper-aufbau-und-richtige-zul
+image_names:
+  - foto-1.webp
