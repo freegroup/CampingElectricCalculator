@@ -1,0 +1,146 @@
+text: Ich schreibe einen Artikel über den Vor- und Nachteil von Vago-Klemmen im
+  Vergleich zu Lüsterklemmen beim Van-Ausbau. Also Lüsterklemmen geht eigentlich
+  gar nicht. Jemand, der mit Elektrik zu tun hat, weiß das. Vago-Klemmen ist das
+  A und O, es rüttelt fest, stabil, bricht nicht, rostet nicht vor sich hin.
+  Aber das weiß nicht jeder, der einen Van ausbaut. Das heißt, der Artikel
+  sollte für Leute sein, die zum ersten Mal ihren Camper-Van oder Van-Life
+  betreiben seien, wo das kurz und knapp erklärt wird, mit einem schönen Bild,
+  wo man eine Vago-Klemme und eine Lüsterklemmen sieht und mit einem
+  Fragezeichen, welches nehme ich denn.
+plot: >-
+  * **Fall:** Bauteil (Die Wago-Klemme 221 im Vergleich zur Lüsterklemme).
+
+  * **Konkrete Frage:** Warum führen Lüsterklemmen im Camper zum Kabelbrand und
+  warum ist die Wago-Verbindungsklemme (Serie 221) die einzig sichere Wahl?
+
+  * **Reihenfolge der Beantwortung:**
+    1. *Der Aufhänger:* Das Problem mit starren Schraubverbindungen (Lüsterklemmen) bei ständiger Vibration im Camper (Drahtbruch, Lockerung).
+    2. *Die Lösung:* Wago-Hebelklemmen (Serie 221) mit Federzugtechnik – sie halten dauerhaft vibrationsfest und verkraften flexible Litzen ohne Aderendhülsen.
+    3. *Praxis-Tipp:* Worauf beim Kauf achten (originale Wago 221 bis 4 $mm^2$, keine billigen Klone).
+    4. *Das Rechenbeispiel:* Welchen Querschnitt du für einen typischen Verbraucher brauchst und ob er in die Klemme passt.
+    5. *Call to Action:* Link zum Kabelrechner für die eigene Dimensionierung.
+  * **Rechnung (Beispiel 12V-Lichtkreis im Heck):**
+    * Systemspannung: 12 V
+    * Stromstärke: 5 A (z. B. LED-Spots und USB-Lader)
+    * Kabellänge (einfach): 4 m (400 cm)
+    * Errechneter Mindestquerschnitt: **4 $mm^2$** (Wichtig: Passt exakt in die Standard-Wago 221-41x).
+  * **Verlinkbare Ziele:**
+    * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/` (Zur Berechnung des passenden Querschnitts für die Wago-Klemmen).
+    * `https://camper-elektrik-planer.de/` (Für die Gesamtplanung des Stromlaufs).
+  * **Titelbild-Konzept:** Hochwertiges, helles Foto auf einer hölzernen
+  Camper-Werkbank im weichen Tageslicht. Im Fokus liegt eine orange-transparente
+  Wago 221 Klemme neben einer alten, leicht oxidierten Plastik-Lüsterklemme auf
+  einem Schaltplan-Entwurf. Im Hintergrund unscharf die offene Schiebetür eines
+  Vans im Grünen.
+toolLog:
+  - name: wire_cross_section
+    input:
+      length_cm: 400
+      voltage_v: 12
+      current_a: 5
+    output: |-
+      {
+        "recommendation_mm2": 4,
+        "computed_mm2": 2.98,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      current_a: 5
+      length_cm: 400
+      voltage_v: 12
+    output: |-
+      {
+        "recommendation_mm2": 4,
+        "computed_mm2": 2.98,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+markdown: |-
+  ![Wago-Klemme und Lüsterklemme im Camper auf einem Schaltplan](foto-1.webp)
+
+  Wer im Camper noch Lüsterklemmen verbaut, riskiert im schlimmsten Fall ein ausgebranntes Auto. Was zu Hause in der Deckenlampe starr und unbeweglich sitzt, wird im Van zur tickenden Zeitbombe. Ein Camper vibriert, rüttelt und schüttelt sich auf jeder Schotterpiste.
+
+  Das Problem mit der Lüsterklemme: Die kleine Schraube drückt direkt auf die feinen Drähte (Litzen) deines Kabels. Durch die ständige Vibration während der Fahrt lockert sich diese Schraubverbindung schleichend. Gleichzeitig können die starren Schrauben die feinen Kupferdrähte beschädigen oder ganz abscheren. Die Folge: Der Kontakt wird schlechter, der Übergangswiderstand steigt, die Stelle wird extrem heiß – und fängt irgendwann Feuer.
+
+  ### Die Lösung: Wago 221
+
+  Für den Camper-Ausbau gibt es deshalb nur eine sinnvolle Wahl: **Wago-Hebelklemmen der Serie 221**. Sie arbeiten nicht mit Schrauben, sondern mit einer patentierten Federzugtechnik.
+
+  * **Vibrationsfest:** Die integrierte Stahlfeder drückt dauerhaft mit exakt der richtigen Kraft auf das Kabel. Da lockert sich selbst auf der härtesten Offroad-Piste nichts.
+  * **Keine Aderendhülsen nötig:** Du kannst flexible Litzen einfach abisolieren, Hebel auf, Kabel rein, Hebel zu. Die Klemme beschädigt das Kupfer nicht.
+  * **Wiederverwendbar:** Hebel wieder auf, Kabel raus – perfekt, wenn du später etwas am Layout ändern willst.
+
+  **Wichtig beim Kauf:** Greife unbedingt zum Original (Wago 221) und lass die Finger von billigen Klonen aus dem Netz. Die Original-Klemme ist für Ströme bis 32 A zugelassen und hält den Belastungen im Camper sicher stand.
+
+  ### Ein konkretes Rechenbeispiel
+
+  Stell dir vor, du planst einen Lichtkreis für das Heck deines Vans. Daran hängen mehrere LED-Spots und zwei USB-Ladebuchsen. 
+
+  * **Systemspannung:** 12 V
+  * **Stromstärke:** 5 A
+  * **Kabellänge (einfacher Weg):** 4 Meter (400 cm)
+
+  Wenn du diese Werte mit einem maximal zulässigen Spannungsabfall von 2 % berechnest, benötigst du einen Kabelquerschnitt von **4 mm²**. 
+
+  Das Geniale: Ein Kabel mit 4 mm² Querschnitt passt exakt in die Standard-Variante der Wago-Klemme 221 (Modelle 221-412, 221-413, 221-415), die für Querschnitte von 0,2 bis 4 mm² ausgelegt ist. Erst wenn du noch dickere Kabel anschließen willst, musst du auf die größere Variante Wago 221-61x (bis 6 mm²) ausweichen.
+
+  Damit dir beim Ausbau kein Kabel wegschmilzt, solltest du jeden einzelnen Leitungsabschnitt vorher exakt berechnen. Nutze dafür direkt unseren [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/), um den passenden Querschnitt für deine Wago-Verbindungen zu ermitteln. Wenn du die komplette Elektrik deines Vans sicher und fehlerfrei planen willst, zeichne deinen Schaltplan am besten direkt im [Camper-Elektrik-Planer](https://camper-elektrik-planer.de/).
+description: Lüsterklemmen sind im Camper lebensgefährlich – erfahre, warum die
+  Wago 221 vibrationsfest hält und wie du den passenden Kabelquerschnitt
+  berechnest.
+title: Warum Lüsterklemmen im Camper brennen (und was du stattdessen nutzt)
+slug: warum-luesterklemmen-im-camper-brennen-und-was-du-stattdessen
+image_names:
+  - foto-1.webp
