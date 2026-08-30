@@ -388,7 +388,7 @@ function main () {
 
   for (const slug of slugs) {
     const dir = path.join(CONTENT_DIR, slug)
-    const mdPath = path.join(dir, 'content.md')
+    const mdPath = path.join(dir, 'index.md')
     if (!fs.existsSync(mdPath)) continue
 
     const raw = fs.readFileSync(mdPath, 'utf8')
@@ -409,9 +409,10 @@ function main () {
     const outDir = path.join(OUT_DIR, slug)
     fs.mkdirSync(outDir, { recursive: true })
 
-    // Copy every asset (images etc.) that sits next to content.md.
+    // Copy every asset (images etc.) that sits next to index.md.
     for (const f of fs.readdirSync(dir)) {
-      if (f === 'content.md') continue
+      if (f === 'index.md') continue
+      if (f === 'blogagent.yaml') continue
       fs.copyFileSync(path.join(dir, f), path.join(outDir, f))
     }
 
