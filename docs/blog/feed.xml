@@ -6,20 +6,20 @@
     <atom:link href="https://camper-elektrik-planer.de/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Artikel rund um die 12-V-Elektrik im Wohnmobil.</description>
     <language>de-DE</language>
-    <lastBuildDate>Sun, 30 Aug 2026 17:19:16 GMT</lastBuildDate>
-    <item>
-      <title>Warum Lüsterklemmen im Camper brennen (und was du stattdessen nutzt)</title>
-      <link>https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brennen-und-was-du-stattdessen/</link>
-      <guid isPermaLink="true">https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brennen-und-was-du-stattdessen/</guid>
-      <pubDate>Sun, 30 Aug 2026 17:19:16 GMT</pubDate>
-      <description>Lüsterklemmen sind im Camper lebensgefährlich – erfahre, warum die Wago 221 vibrationsfest hält und wie du den passenden Kabelquerschnitt berechnest.</description>
-    </item>
+    <lastBuildDate>Sun, 30 Aug 2026 17:22:03 GMT</lastBuildDate>
     <item>
       <title>Warum Lüsterklemmen im Camper brandgefährlich sind</title>
       <link>https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brandgefaehrlich-sind/</link>
       <guid isPermaLink="true">https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brandgefaehrlich-sind/</guid>
-      <pubDate>Sun, 30 Aug 2026 17:00:56 GMT</pubDate>
+      <pubDate>Sun, 30 Aug 2026 17:22:03 GMT</pubDate>
       <description>Lüsterklemmen im Camper sind eine Brandgefahr. Erfahre, warum Wago-Hebelklemmen vibrationssicher sind und wie du Leitungen richtig dimensionierst.</description>
+    </item>
+    <item>
+      <title>Warum Lüsterklemmen im Camper brennen (und was du stattdessen nutzt)</title>
+      <link>https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brennen-und-was-du-stattdessen/</link>
+      <guid isPermaLink="true">https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brennen-und-was-du-stattdessen/</guid>
+      <pubDate>Sun, 30 Aug 2026 17:22:03 GMT</pubDate>
+      <description>Lüsterklemmen sind im Camper lebensgefährlich – erfahre, warum die Wago 221 vibrationsfest hält und wie du den passenden Kabelquerschnitt berechnest.</description>
     </item>
   </channel>
 </rss>
