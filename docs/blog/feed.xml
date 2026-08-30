@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Camper Elektrik Planer – Blog</title>
+    <link>https://camper-elektrik-planer.de/blog/</link>
+    <atom:link href="https://camper-elektrik-planer.de/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Artikel rund um die 12-V-Elektrik im Wohnmobil.</description>
+    <language>de-DE</language>
+    <lastBuildDate>Sat, 29 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Warum Löten im Camper verboten ist und wie Wago-Klemmen halten</title>
+      <link>https://camper-elektrik-planer.de/blog/warum-loeten-im-camper-verboten-ist-und-wie-wago-klemmen-halt/</link>
+      <guid isPermaLink="true">https://camper-elektrik-planer.de/blog/warum-loeten-im-camper-verboten-ist-und-wie-wago-klemmen-halt/</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Warum Löten im Camper brandgefährlich ist und wie Wago-Klemmen Vibrationen ausgleichen, erfährst du hier inklusive Kabel-Berechnung.</description>
+    </item>
+  </channel>
+</rss>
