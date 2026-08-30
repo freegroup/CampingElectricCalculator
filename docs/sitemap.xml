@@ -45,13 +45,19 @@
   <!-- blog:start -->
   <url>
     <loc>https://camper-elektrik-planer.de/blog/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://camper-elektrik-planer.de/blog/warum-loeten-im-camper-verboten-ist-und-wie-wago-klemmen-halt/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <loc>https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brandgefaehrlich-sind/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://camper-elektrik-planer.de/blog/warum-luesterklemmen-im-camper-brennen-und-was-du-stattdessen/</loc>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
