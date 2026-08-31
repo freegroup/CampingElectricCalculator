@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wohnmobil-Elektrik: Wie rechne ich W, A und Ah in Wattstunden um?</title>
+<meta name="description" content="Verwirrt von W, A, Ah und Wh? So rechnest du den echten Stromverbrauch deiner Camper-Geräte um und planst Solar und Batterie fehlerfrei.">
+<link rel="canonical" href="https://camper-elektrik-planer.de/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/">
+<link rel="icon" href="/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="Camper Elektrik Planer – Blog" href="https://camper-elektrik-planer.de/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Camper Elektrik Planer">
+<meta property="og:title" content="Wohnmobil-Elektrik: Wie rechne ich W, A und Ah in Wattstunden um?">
+<meta property="og:description" content="Verwirrt von W, A, Ah und Wh? So rechnest du den echten Stromverbrauch deiner Camper-Geräte um und planst Solar und Batterie fehlerfrei.">
+<meta property="og:url" content="https://camper-elektrik-planer.de/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/">
+<meta property="og:image" content="https://camper-elektrik-planer.de/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/foto-1.webp">
+<style>
+:root{--ink:#212121;--muted:#5f6368;--line:#e0e0e0;--bg:#f7f8fb;--accent:#2e7d32;--accent-dk:#1b5e20;--head:#d9dff2}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff}
+header{background:var(--head);padding:10px 0;border-bottom:1px solid rgba(0,0,0,.08);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header .wrap{max-width:none;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink)}
+.brand-logo{width:56px;height:56px;border-radius:50%;display:block;flex-shrink:0}
+.brand-title{font-size:2rem;font-weight:300;line-height:1.2;letter-spacing:.2px}
+nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+nav a{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;color:#fff;text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;border-radius:4px;box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:filter .15s}
+nav a:hover{filter:brightness(.92)}
+nav a svg{width:20px;height:20px;fill:currentColor;flex-shrink:0}
+nav a.dark{background:#212121}
+nav a.blog{background:#388e3c}
+nav a.coffee{background:#00bfa5}
+h1{font-size:2rem;line-height:1.25;margin:36px 0 14px}
+h2{font-size:1.35rem;margin:38px 0 12px;padding-top:6px}
+h3{font-size:1.05rem;margin:24px 0 6px}
+p,li{color:#333}
+.lead{font-size:1.1rem;color:#444}
+a{color:var(--accent-dk)}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:13px 24px;border-radius:8px;font-weight:600;margin:6px 8px 6px 0}
+.cta:hover{background:var(--accent-dk)}
+.cta.sec{background:#fff;color:var(--accent-dk);border:2px solid var(--accent)}
+.cta.sec:hover{background:#f1f8f2}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:22px 0}
+.warn{background:#fff8e1;border-color:#ffe082}
+.crumb{font-size:14px;color:var(--muted);margin:18px 0 0}
+.crumb a{color:var(--muted)}
+.meta{color:var(--muted);font-size:14px;margin:0 0 8px}
+article img{max-width:100%;height:auto;border-radius:10px}
+figure{margin:0 0 22px}
+figure img{width:100%;height:auto;border-radius:10px;display:block}
+figure figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.fig-left{float:left;width:320px;max-width:45%;margin:6px 24px 14px 0}
+.fig-right{float:right;width:320px;max-width:45%;margin:6px 0 14px 24px}
+article::after{content:"";display:block;clear:both}
+.cards{list-style:none;padding:0;margin:28px 0}
+.cards li{border-bottom:1px solid var(--line);padding:22px 0}
+.cards a.title{font-size:1.25rem;font-weight:600;text-decoration:none;color:var(--ink)}
+.cards a.title:hover{color:var(--accent-dk)}
+.cards .thumb{float:right;width:150px;margin:0 0 10px 18px;border-radius:8px}
+.feedlink{font-size:13px}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:28px 0 44px;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}.fig-left,.fig-right{float:none;width:100%;max-width:100%;margin:0 0 18px}.cards .thumb{width:110px}.brand-logo{width:40px;height:40px}.brand-title{font-size:1.15rem}nav a{padding:0 10px;height:30px;font-size:.72rem}nav a svg{width:18px;height:18px}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="brand" href="/">
+    <img class="brand-logo" src="/logo.svg" alt="" width="52" height="52">
+    <span class="brand-title">Camper Elektrik Designer</span>
+  </a>
+  <nav>
+    <a class="dark" href="/en/" title="English"><svg viewBox="0 0 24 24"><path d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"/></svg>DE</a>
+    <a class="blog" href="/blog/"><svg viewBox="0 0 24 24"><path d="M19 2L14 6.5V17.5L19 13V2M6.5 5C4.55 5 2.45 5.4 1 6.5V21.16C1 21.41 1.25 21.66 1.5 21.66C1.6 21.66 1.65 21.59 1.75 21.59C3.1 20.94 5.05 20.5 6.5 20.5C8.45 20.5 10.55 20.9 12 22C13.35 21.15 15.8 20.5 17.5 20.5C19.15 20.5 20.85 20.81 22.25 21.56C22.35 21.61 22.4 21.59 22.5 21.59C22.75 21.59 23 21.34 23 21.09V6.5C22.4 6.05 21.75 5.75 21 5.5V19C19.9 18.65 18.7 18.5 17.5 18.5C15.8 18.5 13.35 19.15 12 20V6.5C10.55 5.4 8.45 5 6.5 5Z"/></svg>Blog</a>
+    <a class="coffee" href="https://www.paypal.com/paypalme/freegroup/2.50" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M2,21V19H20V21H2M20,8V5H18V8H20M20,3A2,2 0 0,1 22,5V8A2,2 0 0,1 20,10H18V13A4,4 0 0,1 14,17H8A4,4 0 0,1 4,13V3H20M16,5H6V13A2,2 0 0,0 8,15H14A2,2 0 0,0 16,13V5Z"/></svg>Spendiere mir einen Kaffee</a>
+    <a class="dark" href="/#/"><svg viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/></svg>Anmelden</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+
+<p class="crumb"><a href="/">Start</a> › <a href="/blog/">Blog</a> › Wohnmobil-Elektrik: Wie rechne ich W, A und Ah in Wattstunden um?</p>
+
+<h1>Wohnmobil-Elektrik: Wie rechne ich W, A und Ah in Wattstunden um?</h1>
+<p class="meta"><time datetime="2026-08-31">31. August 2026</time></p>
+
+<article>
+<figure class=""><img src="/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/foto-1.webp" alt="So wird die Versorgerbatterie geladen und gemessen." loading="lazy"><figcaption>So wird die Versorgerbatterie geladen und gemessen.</figcaption></figure>
+<p>Wer seine Camper-Elektrik plant, steht schnell vor einem gewaltigen Haufen Buchstabensalat. Auf der Kühlbox stehen Watt, auf der Wasserpumpe Ampere, auf der Powerbank Milliamperestunden (mAh) und der Solarregler will plötzlich Wattstunden (Wh) wissen. Warum machen die Hersteller das? Weil große Zahlen im Marketing besser aussehen. Eine Powerbank mit &quot;20.000 mAh&quot; klingt eben fetter als eine mit mickrigen 74 Wattstunden. </p>
+<p>Für deine Solar- und Batterieplanung ist dieser Mix tödlich. Du kannst Äpfel nicht mit Birnen vergleichen. Um herauszufinden, wie groß deine Batterie und deine Solaranlage wirklich sein müssen, brauchst du eine einzige, einheitliche Währung: <strong>Wattstunden (Wh)</strong> pro Tag. Erst wenn alles in Wh umgerechnet ist, kannst du die Werte einfach zusammenzählen.</p>
+<p>Hier sind die vier typischen Fälle, die dir beim Ausbau begegnen, und wie du sie knackst.</p>
+<h3 id="1-der-klassiker-watt-w-direkt-gegeben">1. Der Klassiker: Watt (W) direkt gegeben</h3>
+<p>Manche Verbraucher machen es dir leicht. Auf LED-Strahlern oder dem Handyladegerät steht die Leistung oft direkt in Watt.</p>
+<ul>
+<li><strong>Beispiel:</strong> Ein LED-Strahler mit <strong>10 W</strong> brennt abends für <strong>3 Stunden</strong>.</li>
+<li><strong>Rechnung:</strong> 10 W × 3 h = <strong>30 Wh</strong></li>
+</ul>
+<h3 id="2-der-stromfresser-ampere-a-bei-12-v">2. Der Stromfresser: Ampere (A) bei 12 V</h3>
+<p>Manche 12-V-Geräte geben nur die Stromstärke in Ampere an. Um auf Watt zu kommen, nimmst du die Spannung (im Camper meist 12 V) mal die Ampere.</p>
+<ul>
+<li><strong>Beispiel:</strong> Eine Druckwasserpumpe zieht <strong>4 A</strong> bei 12 V. Sie läuft am Tag insgesamt vielleicht <strong>6 Minuten</strong> (0,1 Stunden) zum Abwaschen und Händewaschen.</li>
+<li><strong>Rechnung:</strong> <ul>
+<li>Erst die Leistung in Watt: 4 A × 12 V = 48 W</li>
+<li>Dann der Verbrauch: 48 W × 0,1 h = <strong>4,8 Wh</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-der-marketing-trick-mah-bei-usb-geräten">3. Der Marketing-Trick: mAh bei USB-Geräten</h3>
+<p>Powerbanks und Stirnlampen glänzen mit riesigen mAh-Angaben. Was verschwiegen wird: Diese Kapazität bezieht sich fast immer auf die interne Akkuzelle mit 3,7 Volt – nicht auf die 5 Volt am USB-Ausgang oder die 12 Volt im Camper.</p>
+<ul>
+<li><strong>Beispiel:</strong> Du willst eine Powerbank mit <strong>10.000 mAh</strong> laden. </li>
+<li><strong>Rechnung:</strong> <ul>
+<li>Erst Milliamperestunden in Amperestunden umrechnen: 10.000 mAh / 1.000 = 10 Ah</li>
+<li>Dann mit der Zellspannung multiplizieren: 10 Ah × 3,7 V = <strong>37 Wh</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="4-das-phantom-geräte-mit-einschaltdauer">4. Das Phantom: Geräte mit Einschaltdauer</h3>
+<p>Eine Kompressorkühlbox läuft nicht durch. Sie springt an, kühlt runter und schaltet sich wieder ab. Wie oft sie anspringt, hängt von der Außentemperatur ab. Man rechnet im Schnitt mit einer Einschaltdauer von ca. 25 Prozent.</p>
+<ul>
+<li><strong>Beispiel:</strong> Eine Kompressorkühlbox hat eine Leistungsaufnahme von <strong>45 W</strong> und läuft über 24 Stunden verteilt etwa ein Viertel der Zeit.</li>
+<li><strong>Rechnung:</strong> 45 W × 24 h × 0,25 = <strong>270 Wh</strong></li>
+</ul>
+<p><img src="/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/foto-2.webp" alt="Gemütliches Licht im Camper – jede LED-Leuchte will präzise in die Energiebilanz eingerechnet werden."></p>
+<h3 id="der-sicherheits-check-warum-die-leistung-auch-dein-kabel-bestimmt">Der Sicherheits-Check: Warum die Leistung auch dein Kabel bestimmt</h3>
+<p>Die Stromstärke entscheidet nicht nur darüber, wie schnell die Batterie leer ist – sie bestimmt auch, wie dick deine Kabel sein müssen. Zu dünne Kabel bedeuten Spannungsabfall. Das führt dazu, dass die Kühlbox wegen Unterspannung abschaltet, obwohl die Batterie noch voll ist. Im schlimmsten Fall droht ein Kabelbrand.</p>
+<p>Nehmen wir unsere 45-W-Kühlbox aus dem Beispiel oben. Bei 12 V zieht sie im Betrieb exakt <strong>3,75 A</strong> (45 W / 12 V). Liegt die Kühlbox im Heck des Vans und du brauchst eine einfache Kabellänge von <strong>4 Metern</strong> (400 cm) bis zur Batterie, spuckt der Sicherheits-Rechner für diesen Fall einen Mindestquerschnitt von exakt <strong>4 mm²</strong> aus. Nimmst du stattdessen ein dünneres Kabel, riskierst du Fehlfunktionen und Hitzeentwicklung. Berechne deine Leitungen im Zweifel immer selbst mit dem <a href="https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/">Kabelquerschnitt-Rechner</a>.</p>
+<h3 id="mach-es-dir-einfach-der-no-brainer-weg">Mach es dir einfach: Der No-Brainer-Weg</h3>
+<p>Du hast keine Lust, für jedes Gerät einzeln den Taschenrechner zu zücken, die Einschaltdauer zu schätzen und am Ende doch einen Verbraucher zu vergessen? Musst du auch nicht. </p>
+<p>Mit dem <a href="https://camper-elektrik-planer.de/">Camper-Elektrik-Planer</a> trägst du deine Geräte einfach per Klick in eine Liste ein. Das Tool rechnet die Einheiten im Hintergrund automatisch um, erstellt deine persönliche Energiebilanz und sagt dir sofort, wie groß deine Batterie und deine Solaranlage sein müssen. Kein Mathe-Frust, keine Brandgefahr – einfach funktionierende Elektrik.</p>
+
+</article>
+
+<p>
+  <a class="cta" href="/#/map/new">Ganze Anlage planen</a>
+  <a class="cta sec" href="/de/kabelquerschnitt-berechnen/">Kabelquerschnitt berechnen</a>
+</p>
+
+<p class="crumb"><a href="/blog/">← Alle Beiträge</a></p>
+
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Wohnmobil-Elektrik: Wie rechne ich W, A und Ah in Wattstunden um?",
+      "description": "Verwirrt von W, A, Ah und Wh? So rechnest du den echten Stromverbrauch deiner Camper-Geräte um und planst Solar und Batterie fehlerfrei.",
+      "inLanguage": "de",
+      "datePublished": "2026-08-31",
+      "dateModified": "2026-08-31",
+      "mainEntityOfPage": "https://camper-elektrik-planer.de/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/",
+      "image": "https://camper-elektrik-planer.de/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/foto-1.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "Camper Elektrik Planer"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Start",
+          "item": "https://camper-elektrik-planer.de/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://camper-elektrik-planer.de/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Wohnmobil-Elektrik: Wie rechne ich W, A und Ah in Wattstunden um?",
+          "item": "https://camper-elektrik-planer.de/blog/wohnmobil-elektrik-wie-rechne-ich-w-a-und-ah-in-wattstunden-u/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<footer><div class="wrap">
+  <p>Camper Elektrik Planer — kostenloses Open-Source-Projekt für den Wohnmobil-Selbstausbau.
+  <a href="https://github.com/freegroup/CampingElectricCalculator" rel="noopener">Quellcode auf GitHub</a>.</p>
+  <p><a href="/blog/">Blog</a> · <a href="/blog/feed.xml">RSS</a> · <a href="/de/">Deutsch</a> · <a href="/en/" hreflang="en">English</a> · <a href="/#/">Zur App</a></p>
+</div></footer>
+
+</body>
+</html>
