@@ -351,7 +351,9 @@ export default {
       loading: "Loading...",
       madeWith: "Made with",
       forCampers: "for campers",
-      analytics: "Analytics"
+      analytics: "Analytics",
+      imprint: "Imprint",
+      privacy: "Privacy"
     },
     share: {
       button: "Share",
@@ -799,7 +801,9 @@ export default {
       loading: "Lädt...",
       madeWith: "Gemacht mit",
       forCampers: "für Camper",
-      analytics: "Statistiken"
+      analytics: "Statistiken",
+      imprint: "Impressum",
+      privacy: "Datenschutz"
     },
     share: {
       button: "Teilen",

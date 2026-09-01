@@ -42,8 +42,25 @@
               {{ $t('footer.analytics') }}
             </a>
 
-            <!-- Divider -->
+            <!-- Divider - exactly one of the two shows: the analytics link and its
+                 divider are hidden on xs, the legal links below never are -->
             <span class="mx-2 grey--text text--lighten-1 d-none d-sm-inline">•</span>
+            <span class="mx-2 grey--text text--lighten-1 d-sm-none">•</span>
+
+            <!-- Legal pages - must stay reachable on every screen size -->
+            <a href="/impressum/" class="legal-link grey--text text--darken-1">
+              {{ $t('footer.imprint') }}
+            </a>
+
+            <!-- Divider -->
+            <span class="mx-2 grey--text text--lighten-1">•</span>
+
+            <a href="/datenschutz/" class="legal-link grey--text text--darken-1">
+              {{ $t('footer.privacy') }}
+            </a>
+
+            <!-- Divider -->
+            <span class="mx-2 grey--text text--lighten-1">•</span>
 
             <!-- Share Buttons - Always visible! -->
             <ShareButtons />
@@ -158,7 +175,8 @@ export default {
   }
 }
 
-.analytics-link {
+.analytics-link,
+.legal-link {
   text-decoration: none;
   transition: color 0.2s ease;
 
