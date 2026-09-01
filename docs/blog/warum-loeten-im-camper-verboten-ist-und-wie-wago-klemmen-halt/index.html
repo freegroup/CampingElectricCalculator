@@ -60,9 +60,23 @@ article::after{content:"";display:block;clear:both}
 .cards a.title:hover{color:var(--accent-dk)}
 .cards .thumb{float:right;width:150px;margin:0 0 10px 18px;border-radius:8px}
 .feedlink{font-size:13px}
-footer{border-top:1px solid var(--line);margin-top:56px;padding:28px 0 44px;color:var(--muted);font-size:14px}
-footer a{color:var(--muted)}
-@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}.fig-left,.fig-right{float:none;width:100%;max-width:100%;margin:0 0 18px}.cards .thumb{width:110px}.brand-logo{width:40px;height:40px}.brand-title{font-size:1.15rem}nav a{padding:0 10px;height:30px;font-size:.72rem}nav a svg{width:18px;height:18px}}
+/* Same footer as the app (AppFooter.vue): fixed to the bottom, light grey bar,
+   one centered line of links separated by dots. Colours and heights are the ones
+   that component ends up with - grey darken-1 on grey lighten-4, elevation 4,
+   and the 28px content row of the Vuetify container/row/col paddings. */
+body{padding-bottom:80px}
+footer{position:fixed;left:0;right:0;bottom:0;z-index:5;background:#f5f5f5;border-top:1px solid rgba(0,0,0,.08);box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);padding:24px 0;font-size:14px;line-height:1.5;color:#757575}
+footer .wrap{max-width:none;min-height:28px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px}
+footer a{color:#757575;text-decoration:none;transition:color .2s ease}
+footer a:hover{color:#1976d2;text-decoration:underline}
+footer .sep{margin:0 8px;color:#bdbdbd}
+footer .heart{color:#ff5252;display:inline-block;margin:0 2px;animation:heartbeat 1.5s ease-in-out infinite}
+footer .ico{width:16px;height:16px;fill:currentColor;flex-shrink:0;margin-right:4px}
+footer .visitors,footer .visitors-sep{display:none}
+footer .stats{display:inline-flex;align-items:center}
+@media(min-width:960px){footer .visitors{display:inline-flex;align-items:center}footer .visitors-sep{display:inline}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}10%,30%{transform:scale(1.1)}20%,40%{transform:scale(1)}}
+@media(max-width:600px){h1{font-size:1.6rem}.cta{display:block;text-align:center;margin-right:0}.fig-left,.fig-right{float:none;width:100%;max-width:100%;margin:0 0 18px}.cards .thumb{width:110px}.brand-logo{width:40px;height:40px}.brand-title{font-size:1.15rem}nav a{padding:0 10px;height:30px;font-size:.72rem}nav a svg{width:18px;height:18px}body{padding-bottom:64px}footer{padding:8px 0;font-size:12px;line-height:1.4}footer .sep{margin:0 5px}footer .stats,footer .stats-sep{display:none}}
 </style>
 </head>
 <body>
@@ -154,10 +168,24 @@ footer a{color:var(--muted)}
 </script>
 
 <footer><div class="wrap">
-  <p>Camper Elektrik Planer — kostenloses Open-Source-Projekt für den Wohnmobil-Selbstausbau.
-  <a href="https://github.com/freegroup/CampingElectricCalculator" rel="noopener">Quellcode auf GitHub</a>.</p>
-  <p><a href="/blog/">Blog</a> · <a href="/blog/feed.xml">RSS</a> · <a href="/de/">Deutsch</a> · <a href="/en/" hreflang="en">English</a> · <a href="/#/">Zur App</a></p>
+  <span class="visitors"><svg class="ico" viewBox="0 0 24 24"><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z"/></svg><span id="visitorCount">Lädt...</span></span>
+  <span class="sep visitors-sep">•</span>
+  <span>Gemacht mit <span class="heart">&hearts;</span> für Camper</span>
+  <span class="sep stats-sep">•</span>
+  <a class="stats" href="https://camping-calculator.goatcounter.com" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24"><path d="M16,11.78L20.24,4.45L21.97,5.45L16.74,14.5L10.23,10.75L5.46,19H22V21H2V3H4V17.54L9.5,8L16,11.78Z"/></svg>Statistiken</a>
+  <span class="sep">•</span>
+  <a href="/impressum/">Impressum</a>
+  <span class="sep">•</span>
+  <a href="/datenschutz/">Datenschutz</a>
 </div></footer>
+
+<script>
+fetch("https://camping-calculator.goatcounter.com/api/v0/stats/total",{headers:{Authorization:"Bearer 1jyqqbdeaorhiy63vxt0disqjm99ofzc2fcsl232fai15jdqdi"}})
+  .then(function(r){return r.json()})
+  .then(function(d){var n=Number(d.total_utc)||0,s=n>=1000?(n/1000).toFixed(1)+"K":n.toLocaleString();
+    document.getElementById("visitorCount").innerHTML="<strong>"+s+"</strong> Besucher"})
+  .catch(function(){document.getElementById("visitorCount").textContent="Besucher"})
+</script>
 
 </body>
 </html>
