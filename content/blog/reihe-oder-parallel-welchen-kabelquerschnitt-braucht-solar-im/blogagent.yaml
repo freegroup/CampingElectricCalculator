@@ -1,0 +1,230 @@
+text: >-
+  Bitte den Text auf Insta posten:
+
+
+  Als ich damals meine zwei Solarmodule auf das Dach geklebt habe, stand ich vor
+  der Frage: In Reihe oder parallel schalten? Am Ende entscheidet das nicht nur
+  darüber, wie viel Strom bei Wolken fließt, sondern auch über die Dicke deiner
+  Kabel.
+
+
+  ![Zwei Solarmodule auf einem Camper-Dach im warmen Abendlicht](foto-1.webp)
+
+
+  Wo zieht es dich hin? Deine Reiseziele entscheiden über die Schaltung:
+
+
+  **Reihe für den Norden**
+
+  Wenn du im Norden unterwegs bist, wo die Sonne flach steht und es oft bewölkt
+  ist, ist die Reihenschaltung perfekt. Die Spannungen der Module addieren sich.
+  Weil die Gesamtspannung dadurch viel höher ist, springt dein Laderegler
+  morgens viel früher an – er lädt die Batterie selbst bei schwachem Licht. Bei
+  einer Parallelschaltung reicht die Spannung bei dicken Wolken oft gar nicht
+  aus, um den Ladevorgang überhaupt zu starten.
+
+
+  **Parallel für den Süden**
+
+  Im heißen Süden parkst du deinen Camper gern im Halbschatten unter Bäumen.
+  Hier ist die Parallelschaltung im Vorteil.
+briefing: camper-blog
+context:
+  target_url: null
+  reference_urls: []
+created: 2026-09-03T14:11:36.734Z
+updated: 2026-09-03T14:11:38.725Z
+plot: >-
+  * **Fall:** Bauteil (Systementscheidung Solaranlage)
+
+  * **Konkrete Frage:** Wie stark beeinflusst die Entscheidung zwischen Reihen-
+  und Parallelschaltung bei zwei 100-Wp-Modulen den benötigten Kabelquerschnitt?
+
+  * **Reihenfolge der Beantwortung:**
+      * **Einstieg:** Mein eigener Solaranbau – die Entscheidung zwischen Reihe und parallel bestimmt nicht nur den Ertrag, sondern direkt die Kabeldicke.
+      * **Norden (Reihe):** Höhere Spannung (40 V), Laderegler startet bei Bewölkung früher, geringerer Strom ermöglicht dünnere Kabel.
+      * **Süden (Parallel):** Höherer Strom (10 A), schattentoleranter unter Bäumen, benötigt aber deutlich dickere Kabel zur Verlustvermeidung.
+      * **Zahlen-Beispiel:** Konkreter Querschnittsvergleich für beide Szenarien bei 5 m Kabellänge.
+      * **Weg zum Rechner:** Verweis auf den Kabelrechner für die eigene Planung.
+  * **Berechnete Zahlen (2x 100 Wp Module mit je 20 V / 5 A, bei 5 m
+  Kabellänge):**
+      * Reihenschaltung (40 V / 5 A): **2,5 mm²** (berechnet: 1,12 mm²)
+      * Parallelschaltung (20 V / 10 A): **6 mm²** (berechnet: 4,46 mm²)
+  * **Verlinkbare Ziele:**
+      * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/`
+toolLog:
+  - name: wire_cross_section
+    input:
+      voltage_v: 40
+      length_cm: 500
+      current_a: 5
+    output: |-
+      {
+        "recommendation_mm2": 2.5,
+        "computed_mm2": 1.12,
+        "input": {
+          "length_cm": 500,
+          "current_a": 5,
+          "voltage_v": 40
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      voltage_v: 20
+      length_cm: 500
+      current_a: 10
+    output: |-
+      {
+        "recommendation_mm2": 6,
+        "computed_mm2": 4.46,
+        "input": {
+          "length_cm": 500,
+          "current_a": 10,
+          "voltage_v": 20
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      length_cm: 500
+      voltage_v: 40
+      current_a: 5
+    output: |-
+      {
+        "recommendation_mm2": 2.5,
+        "computed_mm2": 1.12,
+        "input": {
+          "length_cm": 500,
+          "current_a": 5,
+          "voltage_v": 40
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      length_cm: 500
+      voltage_v: 20
+      current_a: 10
+    output: |-
+      {
+        "recommendation_mm2": 6,
+        "computed_mm2": 4.46,
+        "input": {
+          "length_cm": 500,
+          "current_a": 10,
+          "voltage_v": 20
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+markdown: |-
+  Als ich damals meine zwei Solarmodule auf das Dach geklebt habe, stand ich vor der Frage: In Reihe oder parallel schalten? Am Ende entscheidet das nicht nur darüber, wie viel Strom bei Wolken fließt, sondern auch direkt über die Dicke deiner Kabel.
+
+  ![Zwei Solarmodule auf einem Camper-Dach im warmen Abendlicht](foto-1.webp)
+
+  Wo zieht es dich hin? Deine Reiseziele entscheiden über die Schaltung:
+
+  **Reihe für den Norden**
+  Wenn du im Norden unterwegs bist, wo die Sonne flach steht und es oft bewölkt ist, ist die Reihenschaltung perfekt. Die Spannungen der Module addieren sich. Weil die Gesamtspannung dadurch viel höher ist, springt dein Laderegler morgens viel früher an – er lädt die Batterie selbst bei schwachem Licht. Bei einer Parallelschaltung reicht die Spannung bei dicken Wolken oft gar nicht aus, um den Ladevorgang überhaupt zu starten. Ein netter Nebeneffekt: Bei höherer Spannung fließt weniger Strom durch die Leitung. Die Kabel können dadurch dünner ausfallen.
+
+  **Parallel für den Süden**
+  Im heißen Süden parkst du deinen Camper gern im Halbschatten unter Bäumen. Hier ist die Parallelschaltung im Vorteil. Wird ein Modul verschattet, liefert das andere trotzdem noch die volle Leistung. In Reihe würde das verschattete Modul den gesamten String ausbremsen. Weil sich bei der Parallelschaltung jedoch die Ströme addieren, wandert deutlich mehr Strom durch die Leitungen. Um den Spannungsabfall gering zu halten, brauchst du dickere Kabel.
+
+  **Der direkte Vergleich**
+  Nehmen wir zwei typische 100-Wp-Module (mit je 20 V und 5 A) und eine einfache Kabellänge von 5 Metern bis zum Laderegler:
+
+  *   **In Reihe (40 V / 5 A):** Hier kommen wir mit einem Kabelquerschnitt von **2,5 mm²** locker aus (rechnerisch reichen sogar 1,12 mm²). Das Kabel ist dünn, flexibel und lässt sich super verlegen.
+  *   **Parallel (20 V / 10 A):** Durch den doppelten Strom und die geringere Spannung müssen wir auf **6 mm²** aufrüsten (rechnerisch 4,46 mm²), damit auf dem Weg nicht zu viel Energie verloren geht. 
+
+  Welcher Querschnitt für dein eigenes Setup der richtige ist, hängt stark von deiner Modulleistung und der Kabellänge ab. Du kannst das ganz einfach für dein eigenes Projekt mit dem [Kabelrechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/) präzise nachrechnen.
+description: Erfahre, wie sich Reihen- und Parallelschaltung deiner Solarmodule
+  auf den benötigten Kabelquerschnitt im Camper auswirkt und berechne ihn
+  direkt.
+title: "Reihe oder parallel: Welchen Kabelquerschnitt braucht Solar im Van?"
+slug: reihe-oder-parallel-welchen-kabelquerschnitt-braucht-solar-im
+image_names:
+  - foto-1.webp
