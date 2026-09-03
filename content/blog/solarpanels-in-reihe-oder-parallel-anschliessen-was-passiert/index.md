@@ -1,8 +1,8 @@
 ---
-title: "Solarpanels in Reihe oder parallel anschließen: Was passiert mit dem Kabel?"
-description: "Erfahre, ob du deine Solarpanels in Reihe oder parallel anschließen solltest und welcher Kabelquerschnitt für deinen Camper wirklich nötig ist."
+title: "Solarpanels in Reihe oder parallel? Der richtige Anschluss und Kabelquerschnitt"
+description: "Reihe oder parallel? Erfahre, was die Solar-Verschaltung für deine Startspannung bei Schatten und den nötigen Kabelquerschnitt bedeutet."
 date: "2026-09-03T12:09:41.678Z"
-lastmod: "2026-09-03T12:09:43.380Z"
+lastmod: "2026-09-03T12:25:47.230Z"
 ---
 
 Als ich damals die zwei 100-Watt-Panels auf mein Camper-Dach geklebt habe, stand ich vor der klassischen Frage: Schalte ich sie in Reihe oder parallel? Am Ende entscheidet diese kleine Steckverbindung nicht nur darüber, wie viel Strom bei Bewölkung in der Batterie landet, sondern auch, wie dick die Kabel sein müssen, die ich durchs Dach ins Innere ziehe.
