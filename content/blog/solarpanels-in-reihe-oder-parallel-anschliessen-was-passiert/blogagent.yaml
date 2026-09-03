@@ -9,28 +9,55 @@ context:
   target_url: null
   reference_urls: []
 created: 2026-09-03T12:09:41.678Z
-updated: 2026-09-03T12:33:58.259Z
+updated: 2026-09-03T12:38:04.956Z
 plot: >-
-  * **Fall-Typ:** Rechenfrage (Solar-Verschaltung & Leitungsquerschnitt)
+  **Fall-Typ:**
 
-  * **Konkrete Frage:** Wie schließe ich zwei Solarmodule am besten an – in
-  Reihe oder parallel – und was macht das mit meinen Kabeln?
+  Rechenfrage / System-Entscheidung (Reihe vs. Parallel & Leitungsquerschnitt)
 
-  * **Ablauf:**
-    1. *Einstieg:* Mein Setup auf dem Dach (`foto-1.webp`) und die ewige Frage: Reihe oder parallel?
-    2. *In Reihe (Serie):* Spannungen addieren sich. Vorteil: Der Laderegler springt bei Bewölkung und Schwachlicht viel früher an, weil die Mindestspannung schnell erreicht wird.
-    3. *Parallel:* Ströme addieren sich. Nachteil: Bei Wolken bricht die Spannung ein und der Laderegler schaltet komplett ab. Zudem fließt mehr Strom durch die Leitungen.
-    4. *Die Kabel-Konsequenz:* Mehr Strom bei Parallelschaltung verlangt nach dickeren Kabeln, um Verluste zu vermeiden.
-    5. *Rechenbeispiel (4 m Kabelweg, 2x 100 W Panels):*
-       * Parallel (11 A bei 12 V): Benötigt **8 mm²** (berechnet: 6,55 mm²).
-       * In Reihe (5,5 A bei 24 V): Benötigt **2,5 mm²** (berechnet: 1,64 mm²).
-    6. *Weg zum Tool:* Link zum Kabelrechner für die eigene Planung.
-  * **Berechnete Zahlen (400 cm Kabelweg):**
-    * Parallel (11 A, 12 V): **8 mm²** (genau: 6,55 mm²)
-    * In Reihe (5,5 A, 24 V): **2,5 mm²** (genau: 1,64 mm²)
-  * **Verlinkbare Ziele:**
-    * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/` (Direkt im Text für den Querschnitt-Vergleich)
-    * `https://camper-elektrik-planer.de/` (Als Abschluss für die Systemplanung)
+
+  **Konkrete Frage:**
+
+  Schalte ich meine Solarpanels in Reihe oder parallel – was passt zu meinen
+  Reisezielen und welche Kabel brauche ich?
+
+
+  **Ablauf:**
+
+  1. **Einstieg:** Mein Setup auf dem Dach (`foto-1.webp`) und das ewige Grübeln
+  über die richtige Verschaltung.
+
+  2. **Reihe (Serie) für den Norden:** Spannungen addieren sich. Ideal bei
+  Wolken und flacher Sonne (z. B. Skandinavien). Der Laderegler springt durch
+  die höhere Spannung viel früher an.
+
+  3. **Parallel für den Süden:** Ströme addieren sich. Ideal, wenn man wegen der
+  Hitze im Schatten parkt (z. B. unter Bäumen). Wird ein Panel schattig, liefert
+  das andere trotzdem voll ab. Bei Reihe würde der Stromfluss komplett
+  blockiert.
+
+  4. **Kabel-Konsequenz:** Bei Parallelschaltung fließt mehr Strom (Ampere), was
+  dickere Kabel verlangt, um Verluste zu vermeiden.
+
+  5. **Rechenbeispiel (4 m Kabelweg, 2x 100 W Panels):**
+     * *Parallel* (11 A bei 12 V): Benötigt **8 mm²** (genau: 6,55 mm²).
+     * *In Reihe* (5,5 A bei 24 V): Benötigt **2,5 mm²** (genau: 1,64 mm²).
+  6. **Weg zum Tool:** Link zum Kabelrechner für die eigene Dimensionierung.
+
+
+  **Zahlen & Berechnungen (400 cm Kabelweg):**
+
+  * Parallel (11 A, 12 V): **8 mm²** (empfohlen) / 6,55 mm² (berechnet)
+
+  * Reihe (5,5 A, 24 V): **2,5 mm²** (empfohlen) / 1,64 mm² (berechnet)
+
+
+  **Verlinkbare Ziele:**
+
+  * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/` (Direkt
+  beim Kabel-Vergleich)
+
+  * `https://camper-elektrik-planer.de/` (Für die gesamte Systemplanung)
 toolLog:
   - name: wire_cross_section
     input:
@@ -550,24 +577,176 @@ toolLog:
           ]
         }
       }
+  - name: wire_cross_section
+    input:
+      voltage_v: 12
+      length_cm: 400
+      current_a: 11
+    output: |-
+      {
+        "recommendation_mm2": 8,
+        "computed_mm2": 6.55,
+        "input": {
+          "length_cm": 400,
+          "current_a": 11,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      voltage_v: 24
+      current_a: 5.5
+      length_cm: 400
+    output: |-
+      {
+        "recommendation_mm2": 2.5,
+        "computed_mm2": 1.64,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5.5,
+          "voltage_v": 24
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      length_cm: 400
+      current_a: 11
+      voltage_v: 12
+    output: |-
+      {
+        "recommendation_mm2": 8,
+        "computed_mm2": 6.55,
+        "input": {
+          "length_cm": 400,
+          "current_a": 11,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      voltage_v: 24
+      current_a: 5.5
+      length_cm: 400
+    output: |-
+      {
+        "recommendation_mm2": 2.5,
+        "computed_mm2": 1.64,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5.5,
+          "voltage_v": 24
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
 markdown: |-
-  Als ich damals die zwei 100-Watt-Panels auf mein Camper-Dach geklebt habe, stand ich vor der großen Frage: Reihe oder parallel? Am Ende entscheidet diese kleine Steckverbindung nicht nur darüber, wie viel Strom bei Bewölkung in der Batterie landet, sondern auch, wie dick die Kabel sein müssen.
+  Als ich damals meine zwei Solarmodule auf das Dach geklebt habe, stand ich vor der Frage: Schalte ich sie in Reihe oder parallel? Am Ende entscheidet das nicht nur darüber, wie viel Strom bei Wolken ankommt, sondern auch, wie dick deine Kabel sein müssen.
 
   ![Zwei Solarmodule auf einem Camper-Dach im warmen Abendlicht](foto-1.webp)
 
-  Schaltest du die Panels in Reihe (hintereinander), addiert sich die Spannung. Der große Vorteil: Der Laderegler springt morgens oder bei bewölktem Himmel viel früher an. Weil die Spannung hoch genug ist, lädt die Batterie selbst bei Schwachlicht noch. Bei einer Parallelschaltung dagegen bricht die Spannung bei Wolken so stark ein, dass der Laderegler oft komplett abschaltet.
+  Deine Entscheidung hängt stark von deinen Reisezielen ab:
 
-  Der Haken bei der Reihenschaltung? Wenn ein Panel im Schatten steht – etwa durch einen Ast oder die Dachbox –, zieht es das andere Panel mit runter. Bei der Parallelschaltung liefert das sonnige Panel weiter volle Leistung, allerdings fließen hier dauerhaft deutlich höhere Ströme durch die Leitung. Und das hat direkte Folgen für deine Kabel.
+  **In Reihe für den Norden**
+  Wenn du eher in Skandinavien unterwegs bist, wo die Sonne flach steht und es oft wolkig ist, ist die Reihenschaltung ideal. Hier addiert sich die Spannung der Module. Weil die Gesamtspannung höher ist, springt dein Laderegler morgens viel früher an und lädt die Batterie selbst bei schwachem Licht noch. Bei einer Parallelschaltung würde die Spannung bei dicken Wolken oft gar nicht erst ausreichen, um den Ladevorgang zu starten.
 
-  Ein konkretes Rechenbeispiel bei 4 Metern Kabelweg und zwei 100-Watt-Panels zeigt das deutlich:
+  **Parallel für den Süden**
+  Zieht es dich eher in den heißen Süden, parkst du deinen Camper wegen der Hitze gerne mal im Schatten von Bäumen. Bei einer Reihenschaltung würde ein einziger Schattenwurf auf einem Modul die Leistung des gesamten Systems fast komplett blockieren. Parallel geschaltet liefert das sonnige Modul einfach weiter volle Leistung. Allerdings fließt hierbei mehr Strom (Ampere).
 
-  * **In Reihe (5,5 A bei 24 V):** Da die Spannung hoch und der Strom niedrig bleibt, reicht ein dünneres Kabel mit **2,5 mm²** (rechnerisch genügen 1,64 mm²).
-  * **Parallel (11 A bei 12 V):** Durch den doppelten Strom brauchst du ein deutlich dickeres Kabel von **8 mm²** (rechnerisch 6,55 mm²), um Leistungsverluste zu vermeiden.
+  Und das hat direkte Auswirkungen auf deine Verkabelung. Bei 4 Metern Kabelweg und zwei 100-Watt-Modulen sieht das so aus:
 
-  Wenn du den passenden Querschnitt für dein eigenes Projekt ermitteln willst, kannst du das ganz einfach mit dem [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/) tun. Um deine gesamte Solarverkabelung mit Batterie und Laderegler zu planen, hilft dir der [Camper-Elektrik-Planer](https://camper-elektrik-planer.de/).
-description: Reihe oder parallel? Finde heraus, wie die Solar-Verschaltung deine
-  Startspannung bei Schatten und den nötigen Kabelquerschnitt beeinflusst.
-title: Solarpanels in Reihe oder parallel anschließen?
+  * **In Reihe (5,5 A bei 24 V):** Wenig Strom bedeutet ein dünneres Kabel. Es reichen **2,5 mm²** (rechnerisch genügen 1,64 mm²).
+  * **Parallel (11 A bei 12 V):** Durch den doppelten Strom brauchst du wegen der Verluste ein deutlich dickeres Kabel von **8 mm²** (rechnerisch 6,55 mm²).
+
+  Welcher Querschnitt für dein Projekt der richtige ist, kannst du schnell im [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/) ausrechnen. Wenn du die gesamte Anlage inklusive Laderegler und Batterie visualisieren willst, hilft dir der [Camper-Elektrik-Planer](https://camper-elektrik-planer.de/).
+description: Reihe oder parallel beim Solar? Finde heraus, was bei Schatten
+  besser lädt und welche Kabelstärke du für deinen Camper brauchst.
+title: Solarpanels in Reihe oder parallel schalten?
 slug: solarpanels-in-reihe-oder-parallel-anschliessen-was-passiert
 image_names:
   - foto-1.webp
