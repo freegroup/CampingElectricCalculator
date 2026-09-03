@@ -1,0 +1,174 @@
+text: Welchen Querschnitt benötige ich denn für den Camper-Ausbau und meine
+  Elektrik? Mach noch ein zweites gutes Bild dazu.
+briefing: camper-blog
+context:
+  target_url: https://camper-elektrik-planer.de/blog/solarpanels-in-reihe-oder-parallel-anschliessen-was-passiert/
+  reference_urls: []
+created: 2026-09-03T22:50:42.092Z
+updated: 2026-09-03T22:50:43.680Z
+plot: >-
+  - **Fall:** Rechenfrage
+
+
+  - **Konkrete Frage:** Wie berechne ich den passenden Kabelquerschnitt für
+  meine Camper-Elektrik selbst, um Spannungsverluste zu vermeiden?
+
+
+  - **Ablauf des Artikels:**
+    1. *Einstieg:* Mein eigener Trugschluss beim ersten Ausbau, dass dünne Kabel für 12 V schon reichen werden.
+    2. *Die Erklärung:* Warum bei 12 V der Spannungsabfall der größte Feind ist und warum man immer den Hin- und Rückweg (Zweiadrig) betrachten muss.
+    3. *Das Rechenbeispiel:* Eine typische Kompressor-Kühlbox (5 A, 4 m einfache Kabellänge).
+    4. *Das Ergebnis:* Rechnerischer Wert (2,98 mm²) und warum wir in der Praxis auf den nächsten Standardwert (4 mm²) aufrunden.
+    5. *Der Übergang:* Verweis auf das Tool, um jedes eigene Gerät (Standheizung, USB-Dose, Ladebooster) in Sekunden selbst zu berechnen.
+
+  - **Gerechnete Zahlen:**
+    - Systemspannung: 12 V
+    - Stromstärke Kühlbox: 5 A
+    - Einfache Länge: 400 cm
+    - Berechneter Querschnitt (inkl. 12 % Sicherheitsmarge & 2 % Spannungsfall): 2,98 mm²
+    - Empfohlener Standardquerschnitt: 4 mm²
+
+  - **Zweites Bild (foto-2.webp):** Ein warmes, ästhetisches Foto aus dem
+  Camper-Innenraum. Auf einer Holz-Arbeitsplatte liegt ein Stück dickerer
+  Kabelstrang, eine Crimpzange und ein paar goldene Kabelschuhe im weichen
+  Nachmittagslicht.
+
+
+  - **Passende Links:**
+    - `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/`
+toolLog:
+  - name: wire_cross_section
+    input:
+      current_a: 5
+      length_cm: 400
+      voltage_v: 12
+    output: |-
+      {
+        "recommendation_mm2": 4,
+        "computed_mm2": 2.98,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      length_cm: 300
+      current_a: 40
+      voltage_v: 12
+    output: |-
+      {
+        "recommendation_mm2": 25,
+        "computed_mm2": 17.86,
+        "input": {
+          "length_cm": 300,
+          "current_a": 40,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      length_cm: 400
+      voltage_v: 12
+      current_a: 5
+    output: |-
+      {
+        "recommendation_mm2": 4,
+        "computed_mm2": 2.98,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+markdown: |-
+  ![Kabelquerschnitt im Camper bestimmen](foto-1.webp)
+
+  Bei meinem ersten Van-Ausbau dachte ich: „Ach, 12 Volt ist doch kaum Spannung, da fließt nicht viel – da reichen die dünnen Kabel aus der Restekiste völlig.“ Ein klassischer Trugschluss. In Wahrheit ist bei 12-Volt-Systemen im Camper der Spannungsabfall der größte Endgegner. Da die Ausgangsspannung so niedrig ist, macht sich jeder kleinste Verlust sofort bemerkbar. Am Ende schaltet sich die Kühlbox wegen Unterspannung ab, obwohl die Batterie eigentlich noch voll ist.
+
+  Dazu kommt ein physikalisches Detail, das man leicht vergisst: Der Strom muss immer im Kreis fließen. Wir müssen für den Widerstand also immer den Hin- und den Rückweg betrachten – die Kabellänge verdoppelt sich für den Stromfluss quasi.
+
+  Schauen wir uns das an einem ganz typischen Beispiel an: Eine normale Kompressor-Kühlbox benötigt im Betrieb etwa 5 Ampere Strom. Wenn die Box hinten im Heck steht und die Batterie weiter vorne verbaut ist, kommen wir schnell auf eine einfache Leitungslänge von 4 Metern (also 400 Zentimetern). 
+
+  ![Werkzeuge für die Camper-Elektrik auf einer Holz-Arbeitsplatte](foto-2.webp)
+
+  Rechnet man das exakt durch – mit den üblichen 2 % maximal zulässigem Spannungsfall und einer Sicherheitsmarge von 12 % –, ergibt sich rechnerisch ein benötigter Kabelquerschnitt von exakt 2,98 mm². Da es Kabel in dieser Stärke im Handel nicht gibt, rundet man in der Praxis immer auf den nächsten Standardwert auf. In diesem Fall greift man also zu einem Kabel mit 4 mm² Querschnitt.
+
+  Damit läuft die Kühlbox absolut stabil, ohne dass unterwegs wertvolle Energie auf dem Weg durch das Kabel verloren geht. 
+
+  Dieses Prinzip gilt für jeden Verbraucher an Bord – von der Standheizung über die USB-Dosen bis hin zum Ladebooster. Damit du nicht jedes Mal selbst den Taschenrechner herausholen musst, kannst du die Werte für deine Geräte einfach direkt im [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/) eingeben. Der spuckt dir in Sekunden den passenden Querschnitt für dein Projekt aus.
+description: Berechne den perfekten Kabelquerschnitt für deine Kühlbox und
+  andere 12V-Verbraucher im Camper, um lästige Spannungsverluste einfach zu
+  vermeiden.
+title: "Camper-Kabelquerschnitt berechnen: So vermeidest du Spannungsverluste"
+slug: camper-kabelquerschnitt-berechnen-so-vermeidest-du-spannungsv
+image_names:
+  - foto-1.webp
+  - foto-2.webp
