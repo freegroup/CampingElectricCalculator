@@ -1,0 +1,157 @@
+text: Erstmal nachdenken, bevor wir mit der Kabelplanung am CamperVan
+  anfangen... Ein Tool kann dir hier helfen.
+briefing: camper-blog
+context:
+  target_url: null
+  reference_urls: []
+created: 2026-09-04T10:20:33.253Z
+updated: 2026-09-04T10:20:34.982Z
+plot: >-
+  **Fall**
+
+  Rechenfrage / Planungsansatz (symbolisiert durch das Nachdenken auf dem Foto)
+
+
+  **Konkrete Frage**
+
+  Wie berechne ich vor dem Kauf die Kabelquerschnitte meiner Camper-Elektrik
+  richtig, um Fehler zu vermeiden?
+
+
+  **Reihenfolge der Beantwortung**
+
+  * **Einstieg:** Bezug zu `foto-1.webp` – Warum stilles Nachdenken und Planen
+  vor dem ersten Kabelkauf Frust und Fehlkäufe spart (Ich-Perspektive: "Ich saß
+  damals auch so da und habe gegrübelt").
+
+  * **Das Problem:** Kabel werden oft nach Gefühl oder Tabellen aus dem Internet
+  gekauft, ohne den realen Spannungsabfall zu berücksichtigen.
+
+  * **Der konkrete Rechenweg:** Beispiel Ladebooster (30 A Ladestrom, 12 V
+  System, 3 m einfache Kabellänge).
+
+  * **Das exakte Ergebnis:** Aufzeigen, wie aus 30 A auf 3 m ein notwendiger
+  Querschnitt von 16 mm² wird.
+
+  * **Der Weg zum Rechner:** Vorstellung des Tools, das die genaue Berechnung
+  für jeden Verbraucher übernimmt.
+
+
+  **Gerechnete Zahlen**
+
+  * Verbraucher: Ladebooster (30 A, 12 V, 300 cm einfache Länge)
+
+  * Berechneter Querschnitt: 13,39 mm²
+
+  * Empfohlener, handelsüblicher Querschnitt (aufgerundet): 16 mm²
+
+
+  **Verlinkbare Ziele**
+
+  * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/`
+  (Direktlink für das Rechenbeispiel)
+
+  * `https://camper-elektrik-planer.de/` (Für die gesamte Schaltplan-Planung)
+toolLog:
+  - name: wire_cross_section
+    input:
+      voltage_v: 12
+      length_cm: 300
+      current_a: 30
+    output: |-
+      {
+        "recommendation_mm2": 16,
+        "computed_mm2": 13.39,
+        "input": {
+          "length_cm": 300,
+          "current_a": 30,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      voltage_v: 12
+      length_cm: 300
+      current_a: 30
+    output: |-
+      {
+        "recommendation_mm2": 16,
+        "computed_mm2": 13.39,
+        "input": {
+          "length_cm": 300,
+          "current_a": 30,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+markdown: |-
+  Ich saß damals genau so da wie auf dem Foto – im stillen Kämmerchen, den Kopf voller Pläne und vor mir ein leerer Notizblock. Die Elektrik im Van stand an und ich hatte absolut keinen Plan, wo ich anfangen soll. Man will ja nicht einfach irgendwelche Kabel bestellen, die am Ende zu dünn sind oder ungenutzt in der Kiste liegen bleiben. Gründliches Nachdenken vor dem ersten Kauf spart einfach massig Frust, Zeit und bares Geld.
+
+  ![Planung im Kopf vor dem Kabelkauf](foto-1.webp)
+
+  Das Problem beim Selbstausbau: Viele kaufen ihre Kabel einfach nach Gefühl, nach Empfehlungen aus Foren oder blind nach irgendwelchen Tabellen aus dem Internet. Dabei wird der wichtigste Faktor oft komplett ignoriert: der reale Spannungsabfall auf der Strecke. Im 12-Volt-System ist die Spannung so niedrig, dass selbst kleine Widerstände im Kabel dafür sorgen, dass am Ende nicht mehr genug Power ankommt. Das Gerät streikt dann einfach, obwohl die Batterie voll ist.
+
+  Um das zu verhindern, rechnen wir das Ganze lieber einmal sauber durch, statt zu schätzen. Nehmen wir als Beispiel einen klassischen Ladebooster, den du von der Starterbatterie zum Wohnraum-Akku legst:
+
+  * **Ladestrom:** 30 Ampere
+  * **Bordnetz:** 12 Volt
+  * **Einfache Kabellänge:** 3 Meter (300 cm)
+
+  Wenn wir hier mit einem maximalen Spannungsverlust von 2 % und einer Sicherheitsmarge von 12 % rechnen, ergibt sich ein exakter theoretischer Querschnitt von 13,39 mm². Da es dieses Maß im Handel nicht gibt, runden wir auf den nächsten Standardwert auf: 16 mm². Mit dieser Leitung bist du auf der sicheren Seite, und der Booster bekommt genau den Saft, den er zum effizienten Laden braucht.
+
+  ![Sauber verkabelter Ladebooster im Van-Ausbau](foto-2.webp)
+
+  Damit du dich nicht durch physikalische Formeln quälen musst, kannst du das ganz einfach für jeden deiner Verbraucher – von der Kühlbox bis zur Standheizung – mit unserem [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/) ermitteln. Und wenn du gleich das gesamte System samt Absicherung und Schaltplan planen willst, hilft dir der [Camper-Elektrik-Planer](https://camper-elektrik-planer.de/) dabei, den Überblick zu behalten.
+description: Berechne den Kabelquerschnitt deiner Camper-Elektrik vor dem Kauf
+  exakt, um Spannungsverlust, Fehlkäufe und Frust beim Ausbau zu vermeiden.
+title: "Camper-Kabelquerschnitt richtig berechnen: So vermeidest du Fehlkäufe"
+slug: camper-kabelquerschnitt-richtig-berechnen-so-vermeidest-du-fe
+image_names:
+  - foto-1.webp
+  - foto-2.webp
+image_sources:
+  foto-1.webp: ai
+  foto-2.webp: ai
