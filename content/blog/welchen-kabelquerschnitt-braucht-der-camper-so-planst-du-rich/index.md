@@ -1,13 +1,13 @@
 ---
 title: "Welchen Kabelquerschnitt braucht der Camper? So planst du richtig"
-description: "Vermeide Planungsfehler im Van: Erfahre, wie du den perfekten Kabelquerschnitt berechnest und deine Elektrik von Anfang an sicher aufbaust."
+description: "Berechne den exakten Kabelquerschnitt für deinen Camper, vermeide lästige Spannungsverluste und plane deine Elektrik von Anfang an absolut sicher."
 date: "2026-09-04T10:48:08.037Z"
-lastmod: "2026-09-04T10:48:10.113Z"
+lastmod: "2026-09-04T10:51:34.575Z"
 ---
 
-Ich kenne das: Man sitzt stundenlang im leeren Van oder starrt auf den Bodenplan und geht im Kopf jede einzelne Steckdose durch. Die meiste Zeit beim Ausbau geht ohnehin für das Nachdenken drauf, bevor überhaupt das erste Kabel liegt. Aber genau diese Ruhe spart am Ende die Nerven, die man beim Suchen von Fehlern in einem wirren Kabelsalat verliert.
+Ich kenne das: Man sitzt gemütlich auf einer provisorischen Holzplatte im halbfertigen Van, den Laptop auf den Knien, und geht im Kopf jede einzelne Steckdose durch. Die meiste Zeit beim Ausbau geht ohnehin für das Nachdenken drauf, bevor überhaupt das erste Kabel liegt. Aber genau diese gemütliche Planungsphase direkt am Ort des Geschehens spart am Ende die Nerven, die man beim Suchen von Fehlern in einem wirren Kabelsalat verliert.
 
-![Nachdenken vor dem Einbau spart später Zeit und Nerven](foto-1.webp)
+![Gemütliche Planungsphase im halbfertigen Van mit Laptop auf einer Holzplatte](foto-2.webp)
 
 Wer einfach draufloskauft, steht schnell vor zwei Problemen: Entweder greift man zu dünnen Leitungen, bei denen am Ende die Geräte streiken, oder man kauft völlig überdimensionierten Kupfer-Overkill, der das Budget unnötig belastet und sich kaum noch vernünftig verlegen lässt. Ich habe für mich gelernt, dass Schätzen bei der Elektrik nicht funktioniert. Jedes Kabel braucht seinen exakten Querschnitt, basierend auf der Systemspannung, der Stromstärke des Verbrauchers und der genauen Leitungslänge.
 
