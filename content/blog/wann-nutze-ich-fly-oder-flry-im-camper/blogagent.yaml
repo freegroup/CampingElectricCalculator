@@ -1,0 +1,165 @@
+text: >-
+  Bitte für den Instagram-Kanal schreiben:
+
+
+  Nur spezielle Kfz-Stromkabel bei der Van Elektronik verwenden!
+
+  Beim Ausbau eines Campers ist die Wahl der richtigen Fahrzeugleitungen
+  entscheidend für die Sicherheit und Effizienz Deiner elektrischen Anlage. Bei
+  der Van Elektronik kommen daher die Fahrzeugleitungen FLY und FLRY zum
+  Einsatz. Doch welche der beiden solltest Du wann nutzen? Hier eine kurze
+  Übersicht:
+
+  FLRY-Leitungen
+
+  FLRY steht für „Flexible Low Voltage Reduced cross-section Y cable“ und ist in
+  zwei Varianten erhältlich: FLRY-A und FLRY-B.
+
+  FLRY-A
+
+  Eigenschaften: Dünnere Isolierung, kleinerer Außendurchmesser.
+
+  Vorteile: Platzsparend und flexibel, ideal für enge Einbauräume.
+
+  Einsatzbereich: Perfekt für Anwendungen, bei denen mechanische Belastungen
+  gering sind, wie Beleuchtung oder kleinere Verbraucher.
+
+  FLRY-B
+
+  Eigenschaften: Dickere Isolierung im Vergleich zu FLRY-A.
+
+  Vorteile: Bietet zusätzlichen mechanischen Schutz und ist abriebfester.
+
+  Einsatzbereich: Geeignet für Bereiche mit mittlerer mechanischer Belastung.
+briefing: camper-blog
+context:
+  target_url: null
+  reference_urls: []
+created: 2026-09-04T16:03:14.418Z
+updated: 2026-09-04T16:03:17.321Z
+plot: >-
+  * **Fall:** Bauteil (Kfz-Leitungen FLY und FLRY).
+
+  * **Konkrete Frage:** Wann benutze ich FLY, FLRY-A oder FLRY-B im Camper und
+  wie finde ich den passenden Querschnitt?
+
+  * **Reihenfolge der Beantwortung:**
+    * *Einstieg:* Warum ich im Van ausschließlich flexible Kfz-Leitungen statt starrer Haushaltskabel verlege.
+    * *Unterschied FLY vs. FLRY:* FLY ist der Standard mit dickerer Isolierung; FLRY spart durch reduzierte Wandstärke extrem viel Platz und Gewicht im Kabelkanal.
+    * *FLRY-A vs. FLRY-B:* FLRY-A ist dank dünnerer Einzeldrähte super flexibel für enge Ecken; FLRY-B hat dickere Einzeldrähte und ist mechanisch robuster.
+    * *Praxis-Anwendung:* Meine Aufteilung im Van – FLRY-A für LED-Spots und Sensorik, FLRY-B für USB-Dosen und mittlere Verbraucher.
+    * *Berechnungs-Beispiel:* Warum der Querschnitt trotz dünnerer Isolierung exakt stimmen muss (z. B. für die Kühlbox).
+    * *Abschluss:* Verweis auf das Rechner-Tool für die eigene Dimensionierung.
+  * **Berechnete Zahlen für das Beispiel:**
+    * Verbraucher: Kompressorkühlbox mit 5 A Dauerstrom
+    * Kabellänge: 400 cm (einfache Strecke) bei 12 V
+    * Ergebnis: Erforderlicher Kabelquerschnitt ist 4 mm² (berechnet mit dem Tool `wire_cross_section`).
+  * **Verlinkbare Ziele:**
+    * `https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/` (Fokus-Link für diesen Beitrag)
+    * `https://camper-elektrik-planer.de/` (Als ergänzender Link für die gesamte Systemplanung)
+toolLog:
+  - name: wire_cross_section
+    input:
+      length_cm: 400
+      voltage_v: 12
+      current_a: 5
+    output: |-
+      {
+        "recommendation_mm2": 4,
+        "computed_mm2": 2.98,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+  - name: wire_cross_section
+    input:
+      length_cm: 400
+      voltage_v: 12
+      current_a: 5
+    output: |-
+      {
+        "recommendation_mm2": 4,
+        "computed_mm2": 2.98,
+        "input": {
+          "length_cm": 400,
+          "current_a": 5,
+          "voltage_v": 12
+        },
+        "basis": {
+          "voltage_drop": "2 %",
+          "copper_conductivity": 56,
+          "safety_margin": "12 %",
+          "standard_values_mm2": [
+            1,
+            2.5,
+            4,
+            6,
+            8,
+            10,
+            16,
+            25,
+            35,
+            50,
+            60,
+            100,
+            150,
+            200,
+            500
+          ]
+        }
+      }
+markdown: |-
+  ![Eine ordentlich strukturierte Verkabelung im Camper mit farbigen, flexiblen Kfz-Leitungen, die sauber in Schutzschläuchen verlegt sind.](foto-1.webp)
+
+  Starre Kabel aus der Hausinstallation haben im Camper nichts verloren. Das habe ich schnell gelernt, als ich meinen ersten Van ausgebaut habe. Durch die ständigen Vibrationen während der Fahrt können starre Kupferadern ermüden und brechen. Deshalb greife ich ausschließlich zu feindrähtigen, flexiblen Kfz-Leitungen. Sie machen jede Bewegung klaglos mit und sorgen dafür, dass die Elektrik auch auf holprigen Schotterpisten absolut zuverlässig bleibt.
+
+  Bei der Auswahl stößt man sofort auf die Bezeichnungen FLY und FLRY. Der Unterschied liegt in der Dicke der Isolierung. FLY ist der traditionelle Standard mit einer relativ dicken PVC-Hülle. FLRY hingegen steht für eine reduzierte Wandstärke (das „R“ in der Bezeichnung). Das Geniale an FLRY: Der Kupferkern bleibt gleich, aber durch die dünnere Isolierung ist das Kabel viel schlanker und leichter. Wenn man dutzende Meter Kabel durch enge Leerrohre ziehen muss, spart das extrem viel Platz und Nerven.
+
+  FLRY gibt es wiederum in zwei Varianten, die sich durch den Aufbau des Kupferleiters unterscheiden:
+
+  * **FLRY-A:** Die einzelnen Drähte im Inneren sind besonders dünn. Dadurch ist das Kabel extrem biegsam und lässt sich hervorragend um sehr enge Ecken verlegen.
+  * **FLRY-B:** Hier sind die Einzeldrähte etwas dicker. Das Kabel ist dadurch minimal steifer, aber mechanisch robuster und widerstandsfähiger beim Einziehen.
+
+  In meinem Van habe ich das so aufgeteilt: FLRY-A kam überall dort zum Einsatz, wo es wirklich eng zuging und nur minimale Ströme fließen – zum Beispiel bei den LED-Decken-Spots und den feinen Leitungen für die Tanksensoren. Für USB-Steckdosen und die Zuleitungen zu den größeren Verbrauchern habe ich FLRY-B genutzt, weil die Kabel beim Einziehen in die Wellschläuche etwas mehr Zug vertragen.
+
+  ![Ein Blick in die geöffnete Serviceklappe des Campers, auf der eine perfekt dimensionierte Kompressorkühlbox neben einer sauberen 12V-Unterverteilung zu sehen ist.](foto-2.webp)
+
+  Auch wenn die dünne Isolierung von FLRY Platz spart: Am tatsächlichen Kupferquerschnitt darf niemals gespart werden. Welchen Querschnitt eine Leitung braucht, hängt immer vom Strom und der Kabellänge ab, damit der Spannungsverlust minimal bleibt und die Geräte die volle Leistung bekommen.
+
+  Für meine Kompressorkühlbox, die auf 12 Volt läuft und einen Dauerstrom von 5 Ampere zieht, musste ich eine Strecke von 4 Metern (einfache Länge) überbrücken. Mit dem passenden Berechnungs-Tool ergibt sich dafür ein exakter Mindestquerschnitt von 4 mm². Weniger Kupfer würde dazu führen, dass an der Kühlbox zu wenig Spannung ankommt und sie im Sommer unnötig oft anspringt oder abschaltet.
+
+  Wer gerade seine eigene Elektrik plant und nicht sicher ist, welche Kabelstärken für die Verbraucher nötig sind, kann den passenden Querschnitt ganz einfach mit dem [Kabelquerschnitt-Rechner](https://camper-elektrik-planer.de/de/kabelquerschnitt-berechnen/) ermitteln. Für die komplette Planung aller Komponenten und des gesamten Systems hilft der [Camper Elektrik Planer](https://camper-elektrik-planer.de/) beim Erstellen des optimalen Schaltplans.
+description: Erfahre, wann du FLY, FLRY-A oder FLRY-B im Camper brauchst und wie
+  du den perfekten Kabelquerschnitt für deine Verbraucher ermittelst.
+title: Wann nutze ich FLY oder FLRY im Camper?
+slug: wann-nutze-ich-fly-oder-flry-im-camper
+image_names:
+  - foto-1.webp
+  - foto-2.webp
+image_sources:
+  foto-1.webp: ai
+  foto-2.webp: ai
